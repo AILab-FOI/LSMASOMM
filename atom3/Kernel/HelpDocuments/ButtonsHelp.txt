@@ -1,0 +1,49 @@
+When you create a new button make sure you select the radio button that says:
+
+Contents       Select Attribute     Text []
+
+Although it looks like it's doing text for you by default, it really isn't, so just push on that button! 
+
+
+
+The action can be any code you want... You have access to 'self' which is an instance of AToM3.py. With this you can access a huge number of methods :D
+
+
+
+Drawing_Mode with a check means that you must click the button, then Control-Right-Click (or use the popup menu) to make the action occur. If you remove the check, the action happens as soon as the button is pressed.
+
+
+
+WARNING: Buttons models created prior to the March 28, 2005 build of AToM 0.3 should be loaded with only the Buttons Formalism opened! Otherwise, important Formalism level attributes are lost... 
+
+
+
+Sample button action (fairly complex, but cool!):
+
+"""
+This action will not only create my entity, it also creates another entity,
+makes a relation between them, and makes the arrow pretty!
+"""
+# This method has as parameters:
+#   - wherex : X Position in window coordinates where the user clicked.
+#   - wherey : Y Position in window coordinates where the user clicked.
+
+# The automatically generated button action
+newPlace = self.createNewTextAnnotationBox (self, wherex, wherey)
+
+# Now I import another entity, and create it too, at a slight position offset...
+from Annotation_MM import createNewAnchor
+anchor = createNewAnchor( self,  wherex + 50 ,  wherey + 100 )
+
+# Get the semantic object (we need this to make a relation betwen them...)
+self.sem_objTo = anchor       
+self.sem_objFrom = newPlace
+self.toClass = anchor.graphObject_.tag
+self.fromClass = newPlace.graphObject_.tag
+
+from DrawConnections      import drawConnection
+drawConnection( self, smooth = True, simpleConnect = True )
+
+# This just makes a nice curved arrow, instead of a normal ugly one :D
+from Utilities import optimizeLinks
+optimizeLinks( self.cb, selectedLinks=[  newPlace.out_connections_[0].graphObject_ ] )

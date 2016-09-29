@@ -1,0 +1,341 @@
+"""
+__CD_ClassDiagramsV3_META.py_____________________________________________________
+
+Automatically generated AToM3 Model File (Do not modify directly)
+Author: Denis Dube
+Modified: Sun Jun 11 11:43:56 2006
+_________________________________________________________________________________
+"""
+from stickylink import *
+from widthXfillXdecoration import *
+from ButtonConfig import *
+from graph_ButtonConfig import *
+from ATOM3Enum import *
+from ATOM3String import *
+from ATOM3BottomType import *
+from ATOM3Constraint import *
+from ATOM3Attribute import *
+from ATOM3Float import *
+from ATOM3List import *
+from ATOM3Link import *
+from ATOM3Connection import *
+from ATOM3Boolean import *
+from ATOM3Appearance import *
+from ATOM3Text import *
+from ATOM3Action import *
+from ATOM3Integer import *
+from ATOM3Port import *
+from ATOM3MSEnum import *
+
+def CD_ClassDiagramsV3_META(self, rootNode, ButtonsRootNode=None):
+
+    # --- Generating attributes code for ASG Buttons ---
+    if( ButtonsRootNode ): 
+        # RowSize
+        ButtonsRootNode.RowSize.setValue(4)
+
+        # Formalism_File
+        ButtonsRootNode.Formalism_File.setValue('CD_ClassDiagramsV3_MM.py')
+
+        # Formalism_Name
+        ButtonsRootNode.Formalism_Name.setValue('CD_ClassDiagramsV3')
+    # --- ASG attributes over ---
+
+
+    self.obj21=ButtonConfig(self)
+    self.obj21.isGraphObjectVisual = True
+
+    if(hasattr(self.obj21, '_setHierarchicalLink')):
+      self.obj21._setHierarchicalLink(False)
+
+    # Action
+    self.obj21.Action.setValue(('ActionButton1', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# This method has as parameters:\n#   - wherex : X Position in window coordinates where the user clicked.\n#   - wherey : Y Position in window coordinates where the user clicked.\nself.modelAttributes(self.ASGroot.getASGbyName("CD_ClassDiagramsV3_META")) \n\n'))
+
+    # Drawing_Mode
+    self.obj21.Drawing_Mode.setValue((' ', 0))
+    self.obj21.Drawing_Mode.config = 0
+
+    # Contents
+    self.obj21.Contents.Text.setValue('New Edit')
+    self.obj21.Contents.Image.setValue('CD_classDiagramsV3/icons/edit.gif')
+    self.obj21.Contents.lastSelected= "Image"
+
+    self.obj21.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       new_obj = graph_ButtonConfig(380.0,60.0,self.obj21)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [2.3000000000000007, 1.2200000000000002]
+    else: new_obj = None
+    self.obj21.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj21)
+    self.globalAndLocalPostcondition(self.obj21, rootNode)
+    self.obj21.postAction( rootNode.CREATE )
+
+    self.obj22=ButtonConfig(self)
+    self.obj22.isGraphObjectVisual = True
+
+    if(hasattr(self.obj22, '_setHierarchicalLink')):
+      self.obj22._setHierarchicalLink(False)
+
+    # Action
+    self.obj22.Action.setValue(('ActionButton1', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# This method has as parameters:\n#   - wherex : X Position in window coordinates where the user clicked.\n#   - wherey : Y Position in window coordinates where the user clicked.\nfrom HelpDialog import HelpDialog\nHelpDialog(["CD_ClassDiagramsV3Help.txt"])\n\n'))
+
+    # Drawing_Mode
+    self.obj22.Drawing_Mode.setValue((' ', 0))
+    self.obj22.Drawing_Mode.config = 0
+
+    # Contents
+    self.obj22.Contents.Text.setValue('New Help')
+    self.obj22.Contents.Image.setValue('CD_classDiagramsV3/icons/help.gif')
+    self.obj22.Contents.lastSelected= "Image"
+
+    self.obj22.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       new_obj = graph_ButtonConfig(380.0,180.0,self.obj22)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [2.3000000000000007, 1.2200000000000002]
+    else: new_obj = None
+    self.obj22.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj22)
+    self.globalAndLocalPostcondition(self.obj22, rootNode)
+    self.obj22.postAction( rootNode.CREATE )
+
+    self.obj23=ButtonConfig(self)
+    self.obj23.isGraphObjectVisual = True
+
+    if(hasattr(self.obj23, '_setHierarchicalLink')):
+      self.obj23._setHierarchicalLink(False)
+
+    # Action
+    self.obj23.Action.setValue(('ActionButton1', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# This method has as parameters:\n#   - wherex : X Position in window coordinates where the user clicked.\n#   - wherey : Y Position in window coordinates where the user clicked.\nnewPlace = self.createNewCD_Association3 (self, wherex, wherey)\n\n'))
+
+    # Drawing_Mode
+    self.obj23.Drawing_Mode.setValue((' ', 1))
+    self.obj23.Drawing_Mode.config = 0
+
+    # Contents
+    self.obj23.Contents.Text.setValue('New Association3')
+    self.obj23.Contents.Image.setValue('CD_classDiagramsV3/icons/Association.gif')
+    self.obj23.Contents.lastSelected= "Image"
+
+    self.obj23.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       new_obj = graph_ButtonConfig(80.0,180.0,self.obj23)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [2.3000000000000007, 1.2200000000000002]
+    else: new_obj = None
+    self.obj23.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj23)
+    self.globalAndLocalPostcondition(self.obj23, rootNode)
+    self.obj23.postAction( rootNode.CREATE )
+
+    self.obj24=ButtonConfig(self)
+    self.obj24.isGraphObjectVisual = True
+
+    if(hasattr(self.obj24, '_setHierarchicalLink')):
+      self.obj24._setHierarchicalLink(False)
+
+    # Action
+    self.obj24.Action.setValue(('ActionButton1', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# This method has as parameters:\n#   - wherex : X Position in window coordinates where the user clicked.\n#   - wherey : Y Position in window coordinates where the user clicked.\nnewPlace = self.createNewCD_Inheritance3 (self, wherex, wherey)\n\n'))
+
+    # Drawing_Mode
+    self.obj24.Drawing_Mode.setValue((' ', 1))
+    self.obj24.Drawing_Mode.config = 0
+
+    # Contents
+    self.obj24.Contents.Text.setValue('New Inheritance3')
+    self.obj24.Contents.Image.setValue('CD_classDiagramsV3/icons/Inherits.gif')
+    self.obj24.Contents.lastSelected= "Image"
+
+    self.obj24.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       new_obj = graph_ButtonConfig(80.0,300.0,self.obj24)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [2.3000000000000007, 1.2200000000000002]
+    else: new_obj = None
+    self.obj24.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj24)
+    self.globalAndLocalPostcondition(self.obj24, rootNode)
+    self.obj24.postAction( rootNode.CREATE )
+
+    self.obj25=ButtonConfig(self)
+    self.obj25.isGraphObjectVisual = True
+
+    if(hasattr(self.obj25, '_setHierarchicalLink')):
+      self.obj25._setHierarchicalLink(False)
+
+    # Action
+    self.obj25.Action.setValue(('ActionButton1', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# This method has as parameters:\n#   - wherex : X Position in window coordinates where the user clicked.\n#   - wherey : Y Position in window coordinates where the user clicked.\nnewPlace = self.createNewCD_Class3 (self, wherex, wherey)\n\n'))
+
+    # Drawing_Mode
+    self.obj25.Drawing_Mode.setValue((' ', 1))
+    self.obj25.Drawing_Mode.config = 0
+
+    # Contents
+    self.obj25.Contents.Text.setValue('New Class3')
+    self.obj25.Contents.Image.setValue('CD_classDiagramsV3/icons/Class.gif')
+    self.obj25.Contents.lastSelected= "Image"
+
+    self.obj25.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       new_obj = graph_ButtonConfig(80.0,60.0,self.obj25)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [2.3000000000000007, 1.2200000000000002]
+    else: new_obj = None
+    self.obj25.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj25)
+    self.globalAndLocalPostcondition(self.obj25, rootNode)
+    self.obj25.postAction( rootNode.CREATE )
+
+    self.obj26=ButtonConfig(self)
+    self.obj26.isGraphObjectVisual = True
+
+    if(hasattr(self.obj26, '_setHierarchicalLink')):
+      self.obj26._setHierarchicalLink(False)
+
+    # Action
+    self.obj26.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), 'from inheritanceGenerator import genCode\ngenCode( self )\n\n'))
+
+    # Drawing_Mode
+    self.obj26.Drawing_Mode.setValue((' ', 0))
+    self.obj26.Drawing_Mode.config = 0
+
+    # Contents
+    self.obj26.Contents.Text.setValue('')
+    self.obj26.Contents.Text.setNone()
+    self.obj26.Contents.Image.setValue('CD_classDiagramsV3/icons/gen.gif')
+    self.obj26.Contents.lastSelected= "Image"
+
+    self.obj26.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       new_obj = graph_ButtonConfig(379.11173714,293.813565352,self.obj26)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [2.3000000000000012, 1.1600000000000001]
+    else: new_obj = None
+    self.obj26.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj26)
+    self.globalAndLocalPostcondition(self.obj26, rootNode)
+    self.obj26.postAction( rootNode.CREATE )
+
+    self.obj27=ButtonConfig(self)
+    self.obj27.isGraphObjectVisual = True
+
+    if(hasattr(self.obj27, '_setHierarchicalLink')):
+      self.obj27._setHierarchicalLink(False)
+
+    # Action
+    self.obj27.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), 'from AToM3LayoutInterfaceModule.AbstractGraph import AbstractGraph\n\nfrom HierarchicalLayoutModule.HierarchicalLayout import doHierarchicalLayout \\\n  as hierarchicalLayoutMethod\n\n\n# Hierarchical Layout Options\noptionsDict = dict()\noptionsDict[\'Origin\'] = True\noptionsDict[\'EdgePromotion\'] = \'Always\' # [\'Never\', \'Smart\', \'Always\']\noptionsDict[\'LayoutDirection\'] = \'South\' # [\'North\', \'East\', \'South\', \'West\']\noptionsDict[\'yOffset\'] = 20\noptionsDict[\'xOffset\'] = 20\noptionsDict[\'layerAlg\'] = \'BFS\' # [\'BFS\', \'Longest-path\', \'Minimum-width\']\noptionsDict[\'maxTotalRounds\'] = 50\noptionsDict[\'maxNoProgressRounds\'] = 10\noptionsDict[\'crossAlgChoice\'] = \'Both\' # [\'None\', \'Barycenter\', \'Transpose\', \'Both\']\noptionsDict[\'randomRestartsWith\'] = \'Both\' # [\'None\', \'Barycenter\', \'Transpose\', \'Both\']\noptionsDict[\'baryPlaceMax\'] = 100\noptionsDict[\'Arrow curvature\'] = 3\noptionsDict[\'Spline optimization\'] = True\n\nabstractGraph = AbstractGraph(self, [])\nhierarchicalLayoutMethod(abstractGraph, optionsDict)    \nabstractGraph.updateAToM3(quickUpdate=False)\n\n'))
+
+    # Drawing_Mode
+    self.obj27.Drawing_Mode.setValue((' ', 0))
+    self.obj27.Drawing_Mode.config = 0
+
+    # Contents
+    self.obj27.Contents.Text.setValue('')
+    self.obj27.Contents.Text.setNone()
+    self.obj27.Contents.Image.setValue('CD_classDiagramsV3/icons/layered.gif')
+    self.obj27.Contents.lastSelected= "Image"
+
+    self.obj27.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       new_obj = graph_ButtonConfig(80.0,380,self.obj27)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [2.2972972972972974, 1.0892857142857142]
+    else: new_obj = None
+    self.obj27.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj27)
+    self.globalAndLocalPostcondition(self.obj27, rootNode)
+    self.obj27.postAction( rootNode.CREATE )
+
+    self.obj28=ButtonConfig(self)
+    self.obj28.isGraphObjectVisual = True
+
+    if(hasattr(self.obj28, '_setHierarchicalLink')):
+      self.obj28._setHierarchicalLink(False)
+
+    # Action
+    self.obj28.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), 'from AToM3LayoutInterfaceModule.AbstractGraph import AbstractGraph\n\nfrom ForceTransferModule.ForceTransfer import doForceTransfer \\\n  as forceTransferMethod\\\n\nfrom SpringLayoutModule.SpringLayout import doSpringLayout \\\n  as springElectricalMethod\n\nfrom CircleLayoutModule.CircleLayout import doCircleLayout \\\n  as circleLayoutMethod\n\n# Circle Layout Options\noptionsDict = dict()\noptionsDict[\'Origin\'] = True\noptionsDict[\'Spline optimization\'] = False\noptionsDict[\'Offset\'] = 0\noptionsDict[\'EdgePromotion\'] = \'Always\' # [\'Never\', \'Smart\', \'Always\']\noptionsDict[\'Arrow curvature\'] = 0\n\nabstractGraph = AbstractGraph(self, [])\ncircleLayoutMethod(abstractGraph, optionsDict)    \nabstractGraph.updateInternally()\n\n# Spring Layout Options\noptionsDict = dict()\noptionsDict[\'Origin\'] = True\noptionsDict[\'Random amount\'] = 0\noptionsDict[\'Maximum iterations\'] = 100\noptionsDict[\'Forgiveness rounds\'] = 2\noptionsDict[\'Minimum force\'] = 10.0\noptionsDict[\'Arrow curvature\'] = 0\noptionsDict[\'Spring rest length\'] = 100\noptionsDict[\'EdgePromotion\'] = \'Always\' # [\'Never\', \'Smart\', \'Always\']\noptionsDict[\'Gravity strength\'] = 10\noptionsDict[\'Charge strength\'] = 10.0\noptionsDict[\'Charge threshold\'] = 300\noptionsDict[\'Spring constant\'] = 0.1\noptionsDict[\'Spline optimization\'] = False\n\nfrom SpringLayoutModule.AToM3SpringOptions \\\n  import showSpringOptions \noptionsDict = showSpringOptions(self)\nspringElectricalMethod(abstractGraph, optionsDict)    \nabstractGraph.updateInternally()\n\n# Force-Transfer Layout Options\noptionsDict = dict()\noptionsDict[\'EdgePromotion\'] = \'Always\' # [\'Never\', \'Smart\', \'Always\']\noptionsDict[\'Minimum link distance\'] = 20\noptionsDict[\'Minimum node distance\'] = 20\noptionsDict[\'Max Total Iterations\'] = 100\noptionsDict[\'Seperation Force\'] = 0.2\noptionsDict[\'Arrow curvature\'] = 5\noptionsDict[\'Border Distance\'] = -1\noptionsDict[\'Spline optimization\'] = True\n\n\nforceTransferMethod(abstractGraph, optionsDict)    \nabstractGraph.updateAToM3(quickUpdate=False)\n\n'))
+
+    # Drawing_Mode
+    self.obj28.Drawing_Mode.setValue((' ', 0))
+    self.obj28.Drawing_Mode.config = 0
+
+    # Contents
+    self.obj28.Contents.Text.setValue('')
+    self.obj28.Contents.Text.setNone()
+    self.obj28.Contents.Image.setValue('CD_classDiagramsV3/icons/circleSpringFTA.gif')
+    self.obj28.Contents.lastSelected= "Image"
+
+    self.obj28.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       new_obj = graph_ButtonConfig(380.0,380,self.obj28)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [2.2792792792792791, 1.0714285714285714]
+    else: new_obj = None
+    self.obj28.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj28)
+    self.globalAndLocalPostcondition(self.obj28, rootNode)
+    self.obj28.postAction( rootNode.CREATE )
+
+    # Connections for obj21 (graphObject_: Obj0) of type ButtonConfig
+    self.drawConnections(
+ )
+    # Connections for obj22 (graphObject_: Obj1) of type ButtonConfig
+    self.drawConnections(
+ )
+    # Connections for obj23 (graphObject_: Obj2) of type ButtonConfig
+    self.drawConnections(
+ )
+    # Connections for obj24 (graphObject_: Obj3) of type ButtonConfig
+    self.drawConnections(
+ )
+    # Connections for obj25 (graphObject_: Obj4) of type ButtonConfig
+    self.drawConnections(
+ )
+    # Connections for obj26 (graphObject_: Obj5) of type ButtonConfig
+    self.drawConnections(
+ )
+    # Connections for obj27 (graphObject_: Obj6) of type ButtonConfig
+    self.drawConnections(
+ )
+    # Connections for obj28 (graphObject_: Obj7) of type ButtonConfig
+    self.drawConnections(
+ )
+
+newfunction = CD_ClassDiagramsV3_META
+
+loadedMMName = 'Buttons'
+
+atom3version = '0.3'

@@ -1,0 +1,69 @@
+AToM3 constraint and action Help Info
+
+
+self = The current semantic object
+        See ASGNode.py for the internal details of a semanticObject
+        This can be found in <central atom3 install>/Kernel/UserInterface/
+
+self.in_connections_ = List of semantic objects whom we are the destination
+self.out_connections_ = List of semantic objects whom we are the source
+
+self.graphObject_ = The visual icon associated with this object
+        NOTE: in_connections_ and out_connections_ are available for it too, but
+        have a different meaning (ie: arrow segments and such), avoid using it..
+        See graphEntity.py, graphLink.py, VisualObj.py for ALL available methods
+        These can be found in <central atom3 install>/Kernel/UserInterface/
+
+self.rootNode = The ASG root of the graph, you can do a traversal on this...
+                Example: The following will traverse all nodes in the graph
+                for nodeType in self.rootNode.nodeTypes:
+                    node = self.rootNode.listNodes[nodeType]
+
+self.rootNode.getASGbyName('myName_META') = The ASG root of the graph for a 
+        specific formalism, in this case 'myName_META' (the search term is the 
+        button model file, and all new formalisms have the '_META' extension).
+        You can use this to access attributes set at the ASG root.
+        Sample usage:
+            myASG = self.rootNode.getASGbyName('DevsV2_META')
+            if( not myASG ): enumValue = 2
+            else:            enumValue = myASG.arrowOptimization.getValue()[1]
+
+self.parent = The AToM3 instance, you can use this to access any methods in
+                ATOM3.py, including manipulation of the selection dictionary,
+                which is self.parent.cb (ie: you can make a constraint such that
+                if the user clicks one entity, another entity is selected and 
+                highlighted as well).
+                See CallbackState.py if you want more info on the selection 
+                dictionary... <central atom3 install>/Kernel/UserInterface/
+
+To get info out of an ATOM3 attribute (such as an ATOM3Enum attribute),
+check out the ATOM3 attribute files. In particular, see getValue() methods.
+These can be found in <central atom3 install>/Kernel/ATOM3Types/
+
+
+Fun tricks: you can get lots of info by doing: 
+print self.__dict__, self.graphObject_.__dict__   # <-- Actual data
+print dir( self ), dir( self.graphObject_ )       # <-- Actual methods
+
+
+Constraint specific info:
+    You must choose at least one trigger action (such as Edit)
+    Pre-Conditions are evaluated before the trigger event starts
+    Post-Conditions are evaulated after the trigger event ends
+    You must return a value, None will be assumed to mean everything's okay
+    Or you can return something more complicated if something went wrong
+    Example:
+        return ("This entity has more than one keyword", self)
+    If you return a value != None, the method that sent the trigger event will
+    abort/undo.
+
+Action specific info:
+    If you specify no trigger, the generated code will simply contain a method
+    with the name of your action. You can then call this method at will...
+    Example:
+        You create an action 'sillyAction' with no triggers
+        You can now do: self.sillyAction( parameter )
+        NOTE: parameter is NOT optional, it can be None, a list, or whatever.
+    Return values are completely optional.
+
+Help info by Denis Dube, d3n14@yahoo.com, March 27, 2005

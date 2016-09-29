@@ -1,0 +1,559 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="Graph%20Grammars%20Tutorial_files/filelist.xml">
+<link rel=Edit-Time-Data href="Graph%20Grammars%20Tutorial_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Graph Grammars Tutorial</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Denis Dube</o:Author>
+  <o:LastAuthor>Denis Dube</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>139</o:TotalTime>
+  <o:Created>2006-09-21T00:55:00Z</o:Created>
+  <o:LastSaved>2006-09-21T00:55:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>786</o:Words>
+  <o:Characters>4481</o:Characters>
+  <o:Lines>37</o:Lines>
+  <o:Paragraphs>10</o:Paragraphs>
+  <o:CharactersWithSpaces>5257</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-CA;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+table.MsoTableSimple1
+	{mso-style-name:"Table Simple 1";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	border-top:solid green 1.5pt;
+	border-left:none;
+	border-bottom:solid green 1.5pt;
+	border-right:none;
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+table.MsoTableSimple1FirstRow
+	{mso-style-name:"Table Simple 1";
+	mso-table-condition:first-row;
+	mso-tstyle-border-bottom:.75pt solid green;
+	mso-tstyle-diagonal-down:0in none windowtext;
+	mso-tstyle-diagonal-up:0in none windowtext;}
+table.MsoTableSimple1LastRow
+	{mso-style-name:"Table Simple 1";
+	mso-table-condition:last-row;
+	mso-tstyle-border-top:.75pt solid green;
+	mso-tstyle-diagonal-down:0in none windowtext;
+	mso-tstyle-diagonal-up:0in none windowtext;}
+table.MsoTableElegant
+	{mso-style-name:"Table Elegant";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	border:double black 2.25pt;
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-border-insideh:.75pt solid black;
+	mso-border-insidev:.75pt solid black;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+table.MsoTableElegantFirstRow
+	{mso-style-name:"Table Elegant";
+	mso-table-condition:first-row;
+	mso-tstyle-diagonal-down:0in none windowtext;
+	mso-tstyle-diagonal-up:0in none windowtext;
+	color:windowtext;
+	text-transform:uppercase;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-CA
+style='font-size:18.0pt'>Graph Grammars Tutorial<o:p></o:p></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-CA>By
+Denis <span class=SpellE>Dube</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>This tutorial continues where the Advanced
+Meta-modelling Tutorial left off. </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:366.75pt;
+ height:430.5pt'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image001.png" o:title=""
+  cropbottom="16612f" cropright="34219f"/>
+</v:shape><![endif]--><![if !vml]><img width=489 height=574
+src="Graph%20Grammars%20Tutorial_files/image002.jpg" v:shapes="_x0000_i1025"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>1) Open the formalism generated from the
+above. You need to have something similar to the above (a class and an
+association), and give them each a &quot;name&quot; and &quot;number&quot; attribute
+(the other attributes are not used in this tutorial). Now press &quot;T&quot;
+to bring up the Graph Grammar editing dialog. </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1026"
+ type="#_x0000_t75" style='width:768pt;height:8in'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image003.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=1024 height=768
+src="Graph%20Grammars%20Tutorial_files/image004.jpg" v:shapes="_x0000_i1026"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>2) <span
+style='mso-spacerun:yes'> </span>Give your GG a name.<span
+style='mso-spacerun:yes'>  </span>Then press New to create a new rule. The
+screen below appears (you can re-size as desired). </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>On the LHS of the rule create an instance
+of a <span class=SpellE>QuickTurialClass</span>. When you edit it, you'll be
+able to match attributes or any attributes. Below the rule is set to
+specifically match only those &quot;<span class=SpellE>QuickTurialClass</span>&quot;
+instances that have the number zero. The <span class=SpellE>GGLabel</span> is
+important, since if it doesn't appear on the RHS then the &quot;<span
+class=SpellE>QuickTurialClass</span>&quot; will be deleted when this rule is
+run. </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1027"
+ type="#_x0000_t75" style='width:699pt;height:8in'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image005.png" o:title=""
+  cropright="5888f"/>
+</v:shape><![endif]--><![if !vml]><img width=932 height=768
+src="Graph%20Grammars%20Tutorial_files/image006.jpg" v:shapes="_x0000_i1027"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>3) Press &quot;Copy LHS&quot; to make the
+RHS equivalent to the LHS. </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>Now edit the copied &quot;<span
+class=SpellE>QuickTurialClass</span>&quot; instance. The dialog is different
+now. You can either copy the attribute values from the LHS or specify the attribute
+using code (NOTE: if you choose, for example, to put an arbitrary string in
+&quot;name&quot; and remove the checks from both Copy from LHS and Enabled?
+then it will probably work… but the GG documentation generator will likely
+crash). </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1028"
+ type="#_x0000_t75" style='width:699pt;height:448.5pt'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image007.png" o:title=""
+  croptop="14564f" cropright="5888f"/>
+</v:shape><![endif]--><![if !vml]><img width=932 height=598
+src="Graph%20Grammars%20Tutorial_files/image008.jpg" v:shapes="_x0000_i1028"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>4) To specify an attribute with code, one
+typically obtains a reference to an object on the LHS, accesses an attribute,
+modifies it, and then returns it. The code below finds the LHS object with GG
+label 1, gets the number attribute, then increases it by 1, and finally returns
+it (thus executing this rule causes the attribute to increment by 1). </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1029"
+ type="#_x0000_t75" style='width:602.25pt;height:8in'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image009.png" o:title=""
+  cropleft="4608f" cropright="9557f"/>
+</v:shape><![endif]--><![if !vml]><img width=803 height=768
+src="Graph%20Grammars%20Tutorial_files/image010.jpg" v:shapes="_x0000_i1029"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoTableElegant border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:double black 2.25pt;
+ mso-yfti-tbllook:384;mso-padding-alt:0in 5.4pt 0in 5.4pt;mso-border-insideh:
+ .75pt solid black;mso-border-insidev:.75pt solid black'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td width=590 valign=top style='width:6.15in;border:double black 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-CA>LHSvalue</span></span><span
+  lang=EN-CA> = <span class=SpellE>self.getMatched</span>(<span class=SpellE>graphID</span>,
+  <span class=SpellE>self.LHS.nodeWithLabel</span>(1)).<span class=SpellE>number.getValue</span>()</span></p>
+  <p class=MsoNormal><span lang=EN-CA>return <span class=SpellE>LHSvalue</span>
+  + 1</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>5) It is possible to create arbitrary stuff
+in the RHS. Here is one example:</span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1030"
+ type="#_x0000_t75" style='width:702pt;height:448.5pt'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image011.png" o:title=""
+  croptop="14564f" cropright="5632f"/>
+</v:shape><![endif]--><![if !vml]><img width=936 height=598
+src="Graph%20Grammars%20Tutorial_files/image012.jpg" v:shapes="_x0000_i1030"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>6) Give the rule a name, and press OK in
+the bottom. Then Save GG (always good to save!). The saved file has this name: <span
+class=SpellE>QuickTutorialGG_GG_mdl.py</span></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>If you press Generate latex document, the
+entire GG will be pretty formatted and the LHS &amp; RHS views converted to EPS
+to form a .<span class=SpellE>tex</span> document that can then be used to
+generate a PS or PDF file. </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1031"
+ type="#_x0000_t75" style='width:510.75pt;height:365.25pt'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image013.png" o:title=""
+  cropbottom="24007f" cropright="21931f"/>
+</v:shape><![endif]--><![if !vml]><img width=681 height=487
+src="Graph%20Grammars%20Tutorial_files/image014.jpg" v:shapes="_x0000_i1031"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>7) Press Generate GG code (i.e.: you can
+put it in same place as you saved the GG model<span class=GramE>)<span
+style='mso-spacerun:yes'>  </span>and</span> then Execute GG code to actually
+run the GG. <span style='mso-spacerun:yes'> </span></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>Note that the generated code has a <span
+class=SpellE>ggQuickTut_GG_exec.py</span> and then a <span class=SpellE>ggRuleQuickTut_GG_rule.py</span>
+file (there's as many files as there are rules). </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1032"
+ type="#_x0000_t75" style='width:529.5pt;height:336pt'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image015.png" o:title=""
+  cropbottom="27307f" cropright="20395f"/>
+</v:shape><![endif]--><![if !vml]><img width=706 height=448
+src="Graph%20Grammars%20Tutorial_files/image016.jpg" v:shapes="_x0000_i1032"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>8) The execute GG dialog looks like the
+above. Press ok.</span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>If <span class=SpellE>STEPbySTEP</span> is
+not selected, the GG just runs as fast as possible.</span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=SpellE><span lang=EN-CA>LetEntitiesMove</span></span><span
+lang=EN-CA> does… I have no idea…</span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>Animate does nothing (there for historical
+reasons)</span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>Sequential Random execution: if two (or
+more) rules have the same order, then the one executed is chosen randomly.</span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>Sequential Manual execution: deterministic
+execution.</span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>Parallel execution: if two (or more) rules
+have the same order, they are executed in parallel.</span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>9) After 2 steps of execution, the canvas
+looks like as follows:</span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1033"
+ type="#_x0000_t75" style='width:314.25pt;height:339pt'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image017.png" o:title=""
+  cropbottom="26965f" cropright="38741f"/>
+</v:shape><![endif]--><![if !vml]><img width=419 height=452
+src="Graph%20Grammars%20Tutorial_files/image018.jpg" v:shapes="_x0000_i1033"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>10) Note how when we execute this rule, it
+will occur only once for each &quot;<span class=SpellE>QuickTurialClass</span>&quot;
+since the LHS is required to have the number 0 and the RHS increments it by 1.
+In general, this happy state of affairs does not happen. So <span class=GramE>lets</span>
+change the LHS so it matches everything (&lt;ANY&gt;). Now the GG will execute
+forever! </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1034"
+ type="#_x0000_t75" style='width:522pt;height:378.75pt'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image019.png" o:title=""
+  croptop="12743f" cropbottom="9671f" cropleft="6400f" cropright="14592f"/>
+</v:shape><![endif]--><![if !vml]><img width=696 height=505
+src="Graph%20Grammars%20Tutorial_files/image020.jpg" v:shapes="_x0000_i1034"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>11) Condition. To prevent the GG from
+looping forever, introduce a condition (Enable it then press Edit). The basic
+idea is <span class=GramE>this,</span> we find a node associated with some GG
+label on the LHS, then check if the node has some arbitrary attribute (which we
+shall add to the node whenever we execute the rule in the next step). </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1035"
+ type="#_x0000_t75" style='width:659.25pt;height:282.75pt'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image021.png" o:title=""
+  croptop="12516f" cropbottom="20821f" cropright="9301f"/>
+</v:shape><![endif]--><![if !vml]><img width=879 height=377
+src="Graph%20Grammars%20Tutorial_files/image022.jpg" v:shapes="_x0000_i1035"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoTableElegant border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:double black 2.25pt;
+ mso-yfti-tbllook:384;mso-padding-alt:0in 5.4pt 0in 5.4pt;mso-border-insideh:
+ .75pt solid black;mso-border-insidev:.75pt solid black'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td width=590 valign=top style='width:6.15in;border:double black 2.25pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-CA>node = <span class=SpellE>self.getMatched</span>(<span
+  class=SpellE>graphID</span>, <span class=SpellE>self.LHS.nodeWithLabel</span>(1))</span></p>
+  <p class=MsoNormal><span lang=EN-CA>return not <span class=SpellE>hasattr</span>(node,
+  &quot;_rule_1_executed_already&quot;)</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>12) Action. Whenever the rule is executed,
+this action code is run. Hence we add an extra attribute to the LHS node. </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1036"
+ type="#_x0000_t75" style='width:602.25pt;height:425.25pt'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image023.png" o:title=""
+  croptop="12743f" cropbottom="4437f" cropright="14165f"/>
+</v:shape><![endif]--><![if !vml]><img width=803 height=567
+src="Graph%20Grammars%20Tutorial_files/image024.jpg" v:shapes="_x0000_i1036"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>13) Save, Gen, Exec the grammar. The result
+is shown below. It matched the existing circles with the attribute set to 1
+because of the &lt;ANY&gt; matching, but it only executed once for each circle
+because of the condition/action added to the rule.</span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>NOTE: If memory leaks bother you, you can
+remove all these added attributes in the Graph Grammar final action :)</span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1037"
+ type="#_x0000_t75" style='width:376.5pt;height:343.5pt'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image025.png" o:title=""
+  cropbottom="26396f" cropright="33451f"/>
+</v:shape><![endif]--><![if !vml]><img width=502 height=458
+src="Graph%20Grammars%20Tutorial_files/image026.jpg" v:shapes="_x0000_i1037"><![endif]></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>14) Curious what the &quot;Generic
+Links&quot; button does? This is if you need to connect different formalisms or
+components that would not normally be allowed to connect to one another. This
+is a brute force method, as it completely disables the normal &quot;this can
+connect to that&quot; checking. </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>15) What if you want to match an
+association that could be connected to anything (you don't care what it's
+connected to). It is easy to draw the association labelled 7, but not 3 as
+shown below. </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA>To draw the association separately (without
+creating a new button in your *_<span class=SpellE>META.py</span> buttons
+model), what you do is draw your class instances and the association between
+them as you would normally. Then you select one of the instances (say 5), and
+press the button &quot;Isolate Association&quot; in the LHS
+&quot;Transformation&quot; toolbar. Do the same for the instance labelled 6 and
+then the association 7 will be as disconnected as association 3. </span></p>
+
+<p class=MsoNormal><span lang=EN-CA><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-CA><!--[if gte vml 1]><v:shape id="_x0000_i1038"
+ type="#_x0000_t75" style='width:471pt;height:378.75pt'>
+ <v:imagedata src="Graph%20Grammars%20Tutorial_files/image027.png" o:title=""
+  croptop="12629f" cropbottom="9785f" cropleft="6229f" cropright="19115f"/>
+</v:shape><![endif]--><![if !vml]><img width=628 height=505
+src="Graph%20Grammars%20Tutorial_files/image028.jpg" v:shapes="_x0000_i1038"><![endif]></span></p>
+
+</div>
+
+</body>
+
+</html>

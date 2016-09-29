@@ -1,0 +1,6 @@
+#define thindotline8_width 8
+#define thindotline8_height 8
+#define thindotline8_x_hot 0
+#define thindotline8_y_hot 0
+static char bomb_bits[] = {
+  0x00,0x80,0x00,0x80,0x00,0x80,0x00,0x80};

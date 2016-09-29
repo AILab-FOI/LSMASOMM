@@ -1,0 +1,33 @@
+Marc Provost has a tutorial on Graph Grammars for AToM3 v0.2.2
+http://moncs.cs.mcgill.ca/people/mprovost/tutorial_a/tut_a_main.html
+
+It *is* out of date (you'll have to ignore most of the intro), but for the most part, the stuff that has to do with the Graph Grammars has NOT changed at all in AToM3 v0.3
+
+So go check it out, while you wait for me to write a new tutorial...
+
+
+Quick Overview:
+
+1. Edit Transformation:
+    This will create a new transformation if non exists, or allow you to modify the currently created/loaded one.
+    #todo: explain how we edit transformations
+    
+2. Load Transformation: 
+    Allows you to load a transformation grammar model file ( *_GG_mdl.py ) 
+    You can also load transfromations from earlier versions of AToM3, good luck figuring out which extensions they use though :D
+    
+3. Save Transformation:
+    Saves your transfromation grammar as a model file ( *_GG_mdl.py )
+    
+4. Generate Transformation:
+    Generates code for the transfromation that is 'executable' by the AToM3 graph re-writing system. The generated file has format *_GG_exec.py (although *_GG_rule.py will also be generated in the same directory, and are of course needed!).
+     
+5. Execute Transformation:
+    Actually runs the transformation on your host graph (ie: whatever is on your canvas). 
+    This has quite a few options 
+    #todo: explain the transfromation execution options
+    
+6. Document Transformation:
+    Sadly, the AToM3 transformation making tool has a tendency to hide the 'big picture' from the user. So hit this button to generate a textual description of what is going on (*.txt file) as well as a Latex file, and a bunch of postscript shots. The txt is quick and dirty, but the Latex file (once compiled with your favorite Latex compiling tool) is pretty nice...
+
+- Denis Dube, d3n14@yahoo.com, March 29, 2005

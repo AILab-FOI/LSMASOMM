@@ -1,0 +1,76 @@
+Install guide for AToM3
+
+1) Just extract the AToM3.zip file somewhere (anywhere really).
+
+2) Start AToM3 with either of "python atom3.py" or "python atom3NoSplash.py"
+If you are running linux, you can try: "atom3.sh" to save yourself from typing python
+If you are running Windows, you can try: "atom3.bat" to save yourself from typing python
+
+3) You'll be asked for a directory for the User Area. This is where you'll save your new
+models, formalisms, grammars, and/or external tools. I recommend you create a directory 
+NOT inside wherever you extracted AToM3.zip too. That way upgrading AToM3 to newer versions
+is easier, since you can easily delete the old extracted files, and just use the new ones.
+
+*NOTE: AToM3.zip contains the entire meta-modelling tool as well as many example 
+formalisms and models. It does not contain so called "External Tools" such as the SVM
+statechart simulator by Thomas Feng. These can be downloaded seperately and extracted
+to the User Area directory in the "External" subdirectory, if needed.
+
+
+
+Minimum Requirements:
+
+AToM3 can and has been installed and used on Windows, Mac, and Unix computers.
+The only requirement is that Python 2.3 and Tk/tcl 8.3 or better be installed. 
+Active developement is currently being done on Python 2.3.4 and Tk/tcl 8.4. 
+
+To check your version, open a console and type "python" to start the interpreter. 
+You should immediately see your Python version. 
+To get your Tk/tcl version enter: "from Tkinter import *" 
+followed by "TclVersion" 
+
+A processor speed of 1 ghz or better is *highly* recommended. 
+
+
+
+Upgrading AToM3
+
+To be completely safe, delete the old AToM3 (but not your user area!) and then extract
+the new version of AToM3. Alternatively, just extract a newer version of AToM3 over the
+old one if your feeling brave (no reason it shouldn't work...). 
+
+
+
+Quickstart
+
+1) Right clicking on the canvas brings up the popup-menu, you can find everything there,
+including open model which you might want to do to see what has been done before with AToM3...
+2) AToM3 starts with class diagrams by default. To create a class, click the class button
+in the top right, then either control-rightClick on the canvas or use the right-click popup menu.
+3) To create associations between classes, control-leftClick on the first class, then click 
+your way to the next class. 
+4) To edit a class, double click on it (or hover over it and press E). 
+5) When creating a graphical icon for a class, remember to give it a connector (looks like a
+crosshair), otherwise when you generate your formalism, you will not be able to connect
+the entity with an arrow.
+6) You can give your class arbitrary Python code in the action/condition fields. Use this
+power wisely. Be warned however: the triggers that actuate said code are not guaranteed to
+work in all situations. 
+7) Once you've created a simple class model, go ahead and press the "Gen" (short for generate
+code) button in the button toolbar. Typically, you'll generate code in the same directory as
+you've saved your class diagram model (you did save it in either the Central Formalism or 
+User Formalism directory right? You'll regret it otherwise!).  
+8) Restart AToM3, open your newly generated formalism, and voila, you can make models in your
+own well specified formalism!
+
+
+
+Uninstalling AToM3
+
+Run the uninstall.py script to remove hidden option and temporary file folders. The main AToM3
+installation directory as well as the user area will not be affected by this. You must manually
+delete them.
+
+
+
+Guide by Denis Dube, Aug 8, 2005

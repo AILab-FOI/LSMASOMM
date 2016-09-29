@@ -1,0 +1,14 @@
+WARNING: The more complicated algorithms in the "Layout" folder have been 
+improved and now reside in "LayoutModule". Please use the new ones instead. The
+old ones are kept for compatibility with existing formalisms. 
+
+Obsolete files:
+
+CircleLayou.py
+ForceTransfer.py
+SpringLayout.py
+TreeLikeLayout.py
+
+Obsolete folder:
+
+HierarchicalLayout

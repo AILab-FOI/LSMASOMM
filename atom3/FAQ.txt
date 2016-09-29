@@ -1,0 +1,262 @@
+AToM3 Frequently Asked Questions
+
+
+None of the keybinds work?!?
+
+Enter all keybinds in lower-case. So if a shortcut is M then press the m key, not shift-m! And make sure the Tab lock is off. 
+
+
+
+I am getting really strange problems while generating a new formalism from a meta-model:
+
+1) Almost all files in AToM3 share the same namespace (ie: it's like they're all in one directory). Thus if two files have the same name bad things happen. Denis tried to detect these situations automatically and warn the user, but it doesn't always work. Your best bet is to use "unique" names in naming everything (Metamodel name, Class name, Association name, Graph grammar name, Rule name, etc.). 
+
+2) In the central AToM3 install directory you will find "uniqueFormalismNamer.py". Just run this script and it will prompt you along to re-name an existing formalism directory to a new one. It does not just rename files, but examines the contents of each file line by line to preserve import statements. Also, a given file may refer to others, so each file is searched for the name of every other file and replaced with the new name. 
+WARNING: This is not guaranteed to work for every formalism! Example: suppose you have a source file called "Constraint.py" in your formalism. A common import statement used in model files is "from ATOM3Constraint import *". This will be mistakenly replaced. 
+
+
+
+I have existing graph_*.py files (visual icons) that I would like to re-use in another formalism. Can I do that?
+
+Yes. In the central AToM3 install you will find "graphRenamer.py". Place it in a directory with the graph_* files you would like to re-use and re-name each graph_* file to the same name as the entities in your new formalism. As always with AToM3 make sure the names are "unique" otherwise multiple formalisms will not work at the same time.
+
+
+
+Creating a repository of code to be used by multiple formalisms:
+
+Either place it in "User External" or modify the "ExternalUserPaths.py" file in "User External" to point to wherever you are actually storing your code. "User External" is a subdirectory of the user area AToM3 prompts you to create when you run it for the first time. 
+
+
+
+How do I create a new attribute type for a new meta-modeled (with Class Diagrams I hope!) formalism?
+
+AToM3 comes with a variety of built-in attributes in atom3/kernel/ATOM3Types/ so check there first for an attribute that can do what you need. 
+Quick re-hash, the built-in types are:
+ATOM3Action: Used by generative models (meta-models), code box and a list of trigger actions for executing the code
+ATOM3Appearance: Used by generative models (meta-models), sets icons
+ATOM3Attribute: Used by generative models (meta-models), allows you to choose any of the other ATOM3Types as an attribute.
+ATOM3Boolean: A boolean True/False. Use getValueBoolean() instead of getValue() if you want a Python boolean value...
+ATOM3BottomType: <Unknown to Denis>
+ATOM3Connection: Used by generative models (meta-models), cardinalities of a connection between entities. 
+ATOM3Constraint: Same as ATOM3Action
+ATOM3Enum: Enumeration of items
+ATOM3File: File
+ATOM3Float: Floating point number
+ATOM3Integer: Integer
+ATOM3Link: Used by ATOM3Appearance, not for general consumption.
+ATOM3List: List of other ATOM3Types
+ATOM3MSEnum: Like enumeration, but allows multiple selections
+ATOM3Port: <Unknown to Denis>
+ATOM3String: String, one line entry, 20 chars wide, unlimited chars
+ATOM3Text: Text box
+*NOTE*: ATOM3Types all have getValue(), setValue(), toString() methods (among others)
+
+The following process will allow you to create a type that combines those of existing types. 
+DISCLAIMER: Denis is a novice at using Type Models, so don't take this as the final word...
+
+1) In your formalism's meta-model, goto through the menu system and look for "Model Menu" (shortcut key is M)
+2) Find "Edit types"
+3) Press the "New" button to add a new type to the list
+4) Goto "model" and hit the "edit" button. 
+5) The Type Model foramlism will open.
+6) Create a "TypeName", give it the name you want this type to be generated as, example: DChartV3_HyperEdge_TYPE
+7) Create as many "LeafType" as you need, each of these correspond to existing types. Setup each "LeafType" as desired
+8) Save your model somewhere safe...
+9) Hit the "Gen.Python" button
+10) The generated type is in the "User Formalism" directory. Not sure why... 
+The generated type consists of two files: DChartV3_HyperEdge_TYPE.py and something wierd and long, such as:
+showNameXshowTriggerXshowGuardXshowActionXshowBroadcastXshowBroadcastToXdisplay.py
+11) Copy both files to your new formalism's working directory. 
+12) Manually edit showNameXshowTriggerXshowGuardXshowActionXshowBroadcastXshowBroadcastToXdisplay.py
+13) In particular: from Text import Text should be from ATOM3Text import ATOM3Text (if you used a Text attribute),
+the destroy() method is a bit whacky, and the toString() method probably isn't generating the string you had in mind.
+14) Back to your meta-model now, in the same dialog where you hit "model" and then the "edit" button...
+a) Set "Name" to something easy to remember but unique
+b) Set "className" to your type's name. Example: DChartV3_HyperEdge_TYPE
+c) Press okay! Your done!
+15) Now when you add attributes to your meta-model's entities, the new type appears.
+
+16) WARNING: Keep backups of your meta-model. In particular, if you add one type and then add another, the model might not
+save properly (AToM3 will warn you about this when you try to open your meta-model again). 
+a) You can overcome this by (manually) adding in the missing import statements.
+Example:
+from DChartV3_HyperEdge_TYPE import *  # This goes at the top of the file
+b) And by fixing the loadedTypes attribute at the end of the file, so just add back any missing types in the list.
+The elements of the list loadedTypes are: (name_of_the_type_string, class_name_of_the_type, (), 1)
+Example:
+loadedTypes = [('HyperEdgeType', 'DChartV3_HyperEdge_TYPE', (), 1),('Hidden', 'DChartV3_hidden_TYPE', (), 1),('DChartV3TransitionType_TYPE', 'DChartV3TransitionType_TYPE', (), 1)]
+
+
+
+Creating new formalisms that handle object scaling internally (with crazy hacks):
+
+Edit ModelSpecificCode.py in the AToM3 Kernel directory (this is not ideal, don't do crazy scaling!)
+
+
+
+Embbeded Images:
+
+1) What is that long unreadable string in my graph_*.py graphical appearence file when I am creating new models?
+
+This is simply the GIF image converted to an ASCII string. This way your image will never get seperated from your model. 
+
+
+
+Naming Conventions:
+
+1) What filenames should meta-models, ER-models, etc. have?
+
+Entity Relationship models: *_ER_mdl.py
+Formalism / Meta-model: *_META.py
+Transformation Models: *_GG_mdl.py
+Transformation Executables: *_GG_exec.py
+Transformation Rules: *_GG_rule.py
+
+
+
+Undo/Redo:
+
+1) Why does it work so poorly?
+
+Short answer: because it saves models & then loads them to provide the functionality. It is now an unsupported feature.
+
+Long answer: doing better than this, in the worst case, isn't possible in this version of AToM3. Scenario: a model has a post condition that when node X has an attribute Y changed to Z everything on the canvas is deleted. So how does one Undo changing node X's attribute Y to Z? You'd have to know what the post condition was going to do, and that unfortunately, is not possible. Indeed, you'd need to make formalism makers responsible for creating an 'undo post condition' method. 
+
+
+
+Openning Formalisms:
+
+1) I cannot load a meta-model in the Formalism or Kernel subdirectories.
+
+Formalisms are loaded on a priority basis, whereby everything in the User space has the highest priority, then the Formalism space, and finally the Kernel space. Therefore, if you have a custom version of PNModels 
+in your User space, it will always be loaded instead of the one in the Formalism space. If this is not the desired behaviour, simply re-name the formalism directory in your User space to something that doesn't conflict.
+
+2) If a modified copy of a formalism is placed in User/Formalism, how does one use the original version in the Formalisms directory?
+
+You can explicitly open the formalism you want. After doing so, any models you open, and that use this formalism will use the version of the formalism that is currently open. If neither version of the formalism is opened, then openning the model will use the User/Formalism version by default. 
+WARNING: There is no way to switch between the two formalisms version during a single AToM3 session. In fact: even if you name the formalism directories differently, the simple fact that the two formalism versions will have file names in common gums up the works. 
+
+
+
+Postscript:
+
+1) How do I view/print the postscript files AToM3 generates?
+
+Get Ghostscript & GSView from http://www.cs.wisc.edu/~ghost/
+
+2) How do I convert postscript files into decent quality images?
+
+Ghostscript/GSView can do this, simply use the "Convert" utility in the file menu. Unfortunately, it will generate a full 8.5x11 inches worth of image, no matter what size your image is (ie: there will be a considerable amount of whitespace). 
+
+For best results: use 300 pixels resolution, the PNG16m format,and a seperate program to crop the image (if desperate, the Paint program that comes with Windows can actually do this, with difficulty).
+
+NOTE: PNG's use very little space and yet have much better quality than GIF's or JPEG's (at least for AToM3 models). 
+NOTE2: epstopdf can generate PDF's with the same quality as the postscript (as far as Denis can tell)
+
+
+
+AToM3 code access (for model constraints & actions):
+
+1) How you access the instance of ATOM3 in an entity's constraint where self is the instance of the entity?
+
+atom3i = self.parent
+
+2) How do you access to the root node of the ASG in an entity's constraint where self is the instance of the entity?
+How do you access the value of a global constraint attribute 'name' in an entity's constraint?
+
+atom3i = self.parent # Get an instance of AToM3
+myASGroot = atom3i.ASGroot.getASGbyName("ClassDiagramsV3_Meta") # Get the ASG by string name, use the *_Meta.py file
+myASGroot.name.getValue() # Get the name attribute of the Class Diagrams ASG
+
+4) How do you access the semantic object in an appearence constraint?
+
+obj = self.semanticObject
+
+5) How do you access graphical instance of a semantic object, 'someSemanticObject'?
+
+graphicalObject = someSemanticObject.graphObject_
+
+6) How can the bounding box of a graphical object be obtained?
+
+bbox = graphicalObject.dc.bbox( graphicalObject.tag )
+
+Or if this is an appearance's constraint:
+
+bbox = self.dc.bbox( self.tag )
+
+7) How do I change an ATOM3List attribute in an action/condition block?
+
+An ATOM3List is a list of somethings (examples: ATOM3Integer, ATOM3String).
+First since we are in an action/condition, self is the semantic object subclass of ASGNode.py
+Assume that the list attribute has the name "myList"
+Now we do the following:
+
+from ATOM3String import ATOM3String
+self.myList.newItem(ATOM3String("My new string")) # self.myList is of ATOM3String
+from ATOM3Integer import ATOM3Integer
+self.myList.newItem(ATOM3Integer(666)) # self.myList is of ATOM3Integer
+
+Alternative and much more complex method:
+
+tempList = self.myList.getValue() # Converts ATOM3List to a Python list
+if(this is a list of strings): # Just pick whichever case is yours...
+  from ATOM3String import ATOM3String
+  tempList.append(ATOM3String("My new string")) # Appends a new ATOM3String object
+elif(this is a list of integers):
+  from ATOM3Integer import ATOM3Integer
+  tempList.append(ATOM3Integer(666)) # Appends a new ATOM3Integer object
+else:
+  It goes on and on... see atom3/kernel/ATOM3Types/*
+self.myList.setValue(tempList) # Sets the ATOM3List to the value of Python list
+
+
+
+Graph Grammars:
+
+Q: How can I make an invisible link between two entities visible?
+
+A: Hold down the control key and press 6 (Ctrl-6). This is a quick fix solution,
+alternatively, you can modify your meta-model and re-generate such that the 
+links are no longer invisible, however the links are probably invisible in the
+first place for a reason...
+
+Q: How do I make links between two entities of different formalisms?
+
+A: The GenericGraph formalism has the special (hard-coded) property of being
+able to bypass the usual connection cardinality rules. Attempting to draw a link
+between two entities of different formalisms will automatically "summon" the
+generic graph formalism and create your arrow. It is also possible to draw a 
+generic link between... two links using the same technique.
+
+Q: How do I make links between two entities of the same formalism that would not
+normally allow links between each other?
+
+A: You must manually open the GenericGraph formalism in this case. You'll find 
+it in atom3/kernel/GenericGraph/GenericGraph.py (it lacks the _META.py extension
+you might expect since it is an older formalism). Once open, you put down a 
+generic entity, and create generic links to your two targets in the original
+formalism. 
+
+Q: I want to have a button that runs a graph grammar to transform formalism X to 
+foramlism Y. How do I make sure formalism Y is open?
+
+A: You need an instance of AToM3, say atom3i. Then you use a line like the 
+following: atom3i.addDirectoryWithModelName('PetriNets')
+The example assumes that there is a formalism in Central or User formalism 
+directories that contains a file named PetriNets.py
+WARNING: atom3i.addDirectoryWithModelName('PetriNets.py') will NOT work.
+
+Q: I want an arrow/link not connected to an entity (or partially connected).
+
+A1: You can use the Model menu to drop an arrow on its own in most cases. 
+A2: You can draw two entities, create the arrow between them, 
+then delete one or both entities using SHIFT-DELETE (hold shift down, hit delete).
+
+
+
+Batch scripting AToM3:
+
+Q: How can I run tests on AToM3 without any user intervention?
+
+A: See atom3/scriptedAToM3.py for a template. Running the example will require
+Sagar's formalisms however and these are not yet integrated into AToM3. 

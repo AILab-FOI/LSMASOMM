@@ -1,0 +1,28 @@
+Welcome to the new and improved class diagram formalism, generated using Entity Relationship version 3. 
+
+
+GEN button. Use this to generate a formalism from it's class diagram model. DO NOT USE ANY OTHER METHOD TO GENERATE CODE. This is the only method that knows how to deal with inheritance. Before generating code please check the following:
+
+IMPORTANT WARNING: All classes, associations, and the class diagram model name, must be globally unique!!! This means, if another formalism exists in the Central Formalism/Kernel/User Formalism directory that uses the same name for a class/association/model name you are in for a world of wierd errors. TIP: Prepend all names with a formalism dependent string, so for a Class Diagram formalism, prepend "CDvX_" to all the names. 
+
+EDIT button. This formalism has a button for options at the entire model level. In particular, you'll want to give your model a name, but also you can set what exactly is shown in your model: Atributes, Actions, Cardinalities, etc. Changes will be applied as soon as you accept the edit dialog. Force transfer will be automatically run to deal with overlapping classes. 
+
+
+Feb, 2006 UPDATE: Inheritance support has been upgraded! 
+
+Attributes of superclasses are immediately propagated to subclasses. They are internally marked as derived attributes, so don't bother messing around with them! Each time you edit an entity, all derived attributes are REMOVED (read: deleted) then re-generated. This means derived attributes behave properly if you delete them in the superclass, re-name them in the superclass, or do something inappropriate to them in a subclass. As a super special bonus, all attributes are alphabetically sorted :)
+
+Graphical icons are also propagated. So if a superclass has an icon and its subclass doesn't, the subclass gets a copy of the icon. This only works if the model is saved. The propagation descends one inheritance level with each trigger (each time you edit something).
+
+
+Questions? Ask Denis at denkkar@gmail.com
+
+
+#-----------------------------------------------------------------------------
+
+Help document loaded from:
+    D:\ResearchSummer2005\atom3 user area\User Formalisms\CD_classDiagramsV3\CD_ClassDiagramsV3Help.txt
+
+Help document loader (by Denis Dube):
+    D:\EclipseWorkspace\atom3\Kernel\HelpDocuments\HelpDialog.pyc
+

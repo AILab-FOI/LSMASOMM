@@ -1,0 +1,55 @@
+Constraints allow you to modify the visual icon at run-time
+
+self = A graphical object
+       See graphEntity.py, graphLink.py, VisualObj.py for ALL available methods
+       These can be found in <central atom3 install>/Kernel/UserInterface/
+       
+self.semanticObject = The ER Model entity you are defining a visual icon for
+       See ASGNode.py for the internal details of a semanticObject
+       This can be found in <central atom3 install>/Kernel/UserInterface/
+       
+self.dc = The canvas
+
+self.gfXXX = A GraphicalForm, where XXX is the unique number of the GF, you can
+            find the GF number by putting your mouse over Visual Icon components
+            and staring at the statusbar. 
+            See GraphicalForm.py for internal details
+            This can be found in <central atom3 install>/Kernel/UserInterface/
+
+For graphical item configuration options, please refer to any of the following:
+http://infohost.nmt.edu/tcc/help/pubs/tkinter/canvas.html
+http://www.cs.sfu.ca/CC/120/ggbaker/ref/tkinter/ar01s06.html
+http://www.pythonware.com/library/tkinter/introduction/tkinter-reference.htm
+
+
+To get info out of an ATOM3 attribute (like pulling teeth sometimes),
+check out the ATOM3 attribute files... particularly, the getValue() methods
+These can be found in <central atom3 install>/Kernel/ATOM3Types/
+       
+       
+Do NOT forget to choose a trigger for your constraint (such as Edit or Create)
+       
+Extreme measures... you can get lots of info by doing: 
+print self.__dict__, self.semanticObject.__dict__   # <-- Actual data
+print dir( self ), dir( self.semanticObject )       # <-- Actual methods
+
+       
+Example of a cool thing to do with a graphical constraint:
+
+# Check to make sure we really have the semanticObject and canvas (overcaution?)
+if( self.semanticObject and self.dc ):
+    # Assume that our semanticObject has an attribute portType which is an Enum
+    enumValue = self.semanticObject.portType.getValue()[1] # <-- Integer value
+    print 'port type is ',enumValue
+    
+    # Get the handler of the Visual Icon component we will modify
+    handler = self.gf84.getHandler() 
+    if( enumValue == 0 ):
+        print 'port is input'
+        self.dc.itemconfigure( handler, fill='green' )
+    else:
+        print 'port is output'
+        self.dc.itemconfigure( handler, fill='red' )
+        
+BTW: I have no idea what the 'Changes at run-time' flag does...
+This tutorial by Denis Dube, d3n14@yahoo.com, March 27, 2005

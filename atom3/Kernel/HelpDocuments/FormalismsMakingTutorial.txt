@@ -1,0 +1,15 @@
+Note: Marc Provost has a tutorial for AToM3 v0.2.2 available at http://moncs.cs.mcgill.ca/people/mprovost/tutorial_b/tut_a_main.html
+
+
+This tutorial is intended for users new to AToM3. It is assumed that you have correctly installed AToM3 and that you know the secret (when things go wrong, just close AToM3 and restart it). 
+
+
+A default installation of AToM3 loads up with the Entity Relationship V3 formalism. If you have changed the options (F1 or via right-click popup menu), you may not get this formalism automatically. So first open that formalism (F3 or via right-click popup menu), it's in the central install. 
+
+
+At this point Entity Relationship V3 formalism is open, so you have a button in the toolbar to create Entities. Click the button once, then Control-Right-click (or popup menu) to create entities on the canvas. To create relationships between the Entities, Control-Right-Click on a ...
+
+Aaaah, forget it, as soon as I find the time, I'll do this with Powerpoint (with screenshots), and I'll export a PDF version as well... 
+
+- Denis Dube, d3n14@yahoo.com, March 28, 2005
+
