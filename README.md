@@ -51,8 +51,7 @@ errors should be ignored, as instructed by AToM<sup>3</sup> authors.
 Initial setup will cause several dialogue boxes to pop up when running
 AToM<sup>3</sup> for the first and second time.
 
-[^1]: AToM<sup>3</sup> [Installation
-    guide](http://atom3.cs.mcgill.ca/people/denis/files/Installation.txt)
+[^1]: <http://atom3.cs.mcgill.ca/people/denis/files/Installation.txt>
 
 [^2]: <https://www.themanaworld.org>
 
