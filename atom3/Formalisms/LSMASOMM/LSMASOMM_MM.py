@@ -3,8 +3,8 @@ __LSMASOMM_MM.py______________________________________________________
 
 Automatically generated AToM3 MetaModel (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Mon Sep 26 16:26:31 2016
-_____________________________________________________________________
+Modified: Wed Nov  9 16:40:10 2016
+______________________________________________________________________
 """
 from ASG_LSMASOMM import *
 from graph_ASG_ERmetaMetaModel import *

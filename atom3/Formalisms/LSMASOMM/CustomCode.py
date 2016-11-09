@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # hubs em9NZf))r(D*I#af
 
+
 def canAccessKnArtCheckConnections(self):
     '''
     Check input and output connections of a canAccessKnArt instance.
@@ -66,9 +67,7 @@ else:
 
 
 def OrgUnitDetermineSize(self):
-    '''
-    Determine whether there is a 
-    '''
+    """Determine whether OrgUnit is an Individual or a Group."""
     eIns = NodeOutputsInputs(self, 'in', 'count')
 
     if 'isPartOfOrgUnit' in eIns:
@@ -79,6 +78,62 @@ def OrgUnitDetermineSize(self):
         return 'Individual'
 
     return
+
+
+def RoleHierarchy(self):
+    """Check if a Role is a MetaRole, i.e. it has some subRoles."""
+    eIns = NodeOutputsInputs(self, 'in', 'count')
+
+    if 'isPartOfRole' in eIns:
+        print eIns
+        return 1
+    else:
+        return 0
+
+
+def RoleInheritance(self):
+    """Make Role nodes inherit Actions from their superior Roles."""
+    eOuts = NodeOutputsInputs(self, 'out', 'nodes')
+
+    metaRoles = []
+    inheritActions = []
+
+    if 'isPartOfRole' in eOuts:
+        print eOuts
+
+        for link in eOuts['isPartOfRole']:
+            # print link.out_connections_
+            eOutsLink = NodeOutputsInputs(link, 'out', 'nodes')
+            print eOutsLink
+            if 'Role' in eOutsLink:
+                for mR in eOutsLink['Role']:
+                    metaRoles.append(mR)
+
+        print metaRoles
+
+        for mR in metaRoles:
+            [inheritActions.append(a) for a in mR.roleActions.getValue()]
+
+        for a in inheritActions:
+            self.roleActions.newItem(item=a)
+
+        # self.roleActions.setValue([self.roleActions.getValue().append(a) for a in inheritActions])
+
+        print inheritActions
+        return inheritActions
+
+
+def RoleInheritanceAllRoles(self):
+    Root = self.ASGroot.getASGbyName('LSMASOMM_META')
+
+    nodeList = Root.listNodes['Role']
+
+    for role in nodeList:
+        if role.isMetaRole.toString() is 'False':
+            print role
+            RoleInheritance(role)
+            role.graphObject_.ModifyAttribute(
+                'roleActions', role.roleActions.toString())
 
 
 def RoleCheckOutputs(self):
@@ -107,12 +162,15 @@ else:
 
 
 def NodeOutputsInputs(self, inOutBoth, countNodes):
-    '''
-    Iterate through inputs and/or outputs of a node. Returns a dictionary with 'ClassName':numberOfInstances OR 'ClassName':[instances] dictionary
+    """Iterate through inputs and/or outputs of a node.
+Returns a dictionary with
+'ClassName':numberOfInstances
+OR
+'ClassName':[instances] dictionary
 
-    inOutBoth -- in / out / both -- iterates through input / output / both nodes
-    countNodes -- count / nodes -- returns count of nodes or nodes
-    '''
+inOutBoth -- in / out / both -- iterates through input / output / both nodes
+countNodes -- count / nodes -- returns count of nodes or nodes
+"""
     eOuts = {}
 
     if inOutBoth is 'in':
@@ -139,43 +197,111 @@ def NodeOutputsInputs(self, inOutBoth, countNodes):
 
     return eOuts
 
-    # for e in self.in_connections_:
-    #     print "'ola"
-    #     print e
-    #     try:
-    #         print "GGlabel: %s" % e.GGLabel
-    #     except:
-    #         pass
-    #     try:
-    #         print "keyword: %s" % e.keyword_
-    #     except:
-    #         pass
-    #     try:
-    #         print "graphClass: %s" % (e.graphClass_)
-    #         print "graphClassName: %s" % e.graphClass_.getGraphClassName(e.graphClass_)
-    #         print [i for i in dir(e.graphClass_)]
-    #     except Exception, ex:
-    #         print ex
-    #     try:
-    #         print "ID: %s" % e.ID.getValue()
-    #         print [i for i in dir(e.ID)]
-    #     except Exception, ex:
-    #         print ex
-    #     try:
-    #         print "getValue: %s" % e.getValue()
-    #     except Exception, ex:
-    #         print ex
-    #     try:
-    #         print "getClass: %s" % e.getClass()
-    #         print "getTypeName: %s" % e.getTypeName()
-    #     except:
-    #         pass
-    #     try:
-    #         print "rootNode: %s" % e.rootNode
-    #     except:
-    #         pass
 
-    #     for v in e.graphClass_.__dict__.keys():
-    #         print v
-    #     print "###drugi dio###"
-    #     print [i for i in dir(e)]
+def saveToFile(filename, content):
+    """Write content into a filename."""
+    file = open(filename, 'w')
+    file.write(str(content))
+    file.close()
+
+
+def printAllNodeNames(self):
+    '''
+    '''
+    # get the current model
+    Root = self.ASGroot.getASGbyName('LSMASOMM_META')
+
+    # traverse all nodes of the graph
+    nodeTypeList = Root.listNodes.keys()
+    for nodeType in nodeTypeList:
+        nodeList = Root.listNodes[nodeType]
+        for node in nodeList:
+            try:
+                print node.name.getValue()
+            except Exception as e:
+                print e
+
+
+def printSpecificNodeClassNames(self, className):
+    """Work with nodes of a specific class specified by className."""
+    # get the current model
+    Root = self.ASGroot.getASGbyName('LSMASOMM_META')
+
+    nodeList = Root.listNodes[className]
+
+# aux elements
+    # store elements for code generating
+    elements = {}
+
+    # beginning of generated code
+    code = 'import spade \n'
+
+    # templates for agents ang behaviours
+    agent = ["""
+class {0}(spade.Agent.Agent):
+    '''Bear skeleton for agent type {0}'''
+""", """
+    def _setup(self):
+        print '{0}: running'
+"""]
+
+    behaviour = """
+    class {0}(spade.Behaviour.OneShotBehaviour):
+        '''Bare skeleton for behaviour {0}'''
+        def _process(self):
+            print '{0}: behaving'
+"""
+
+    # OrgUnits
+    if className is 'OrgUnit':
+        for node in nodeList:
+            # save name of the node
+            if node.UnitSize.getValue() is 'Individual':
+                nodeName = node.name.getValue()
+            elif node.UnitSize.getValue() is 'Group':
+                nodeName = "OrgUnit{}".format(node.name.getValue())
+
+            elements[nodeName] = {}
+            elements[nodeName]['behavs'] = []
+            # add declaration of the agent
+            elements[nodeName]['code'] = [agent[0].format(nodeName)]
+
+            # work with the behaviours of the agent/role
+            for behav in node.UnitActions.getValue():
+                elements[nodeName]['behavs'].append(
+                    behav.getValue())
+                elements[nodeName]['code'].append(
+                    behaviour.format(behav.getValue()))
+
+            # add the default method of an agent (_setup)
+            elements[nodeName]['code'].append(agent[1].format(nodeName))
+
+        print elements
+
+        for el in elements.keys():
+            print elements[el]['code']
+            code = code + ''.join(elements[el]['code'])
+        saveToFile('./OrgUnit.txt', code)
+
+    # Roles
+    if className is 'Role':
+        for node in nodeList:
+            nodeName = "Role{}".format(node.name.getValue())
+            if node.isMetaRole.toString() is 'False':
+                elements[nodeName] = {}
+                elements[nodeName]['behavs'] = []
+                elements[nodeName]['code'] = [agent[0].format(nodeName)]
+
+                for behav in node.roleActions.getValue():
+                    elements[nodeName]['behavs'].append(behav.getValue())
+                    elements[nodeName]['code'].append(
+                        behaviour.format(behav.getValue()))
+
+                elements[nodeName]['code'].append(agent[1].format(nodeName))
+
+        print elements
+
+        for el in elements.keys():
+            print elements[el]['code']
+            code = code + ''.join(elements[el]['code'])
+        saveToFile('./Roles.txt', code)

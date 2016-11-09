@@ -3,7 +3,7 @@ __OrganisationalKnArt.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Mon Sep 26 16:26:30 2016
+Modified: Wed Nov  9 16:40:09 2016
 _____________________________________________________________________________
 """
 from ASGNode import *

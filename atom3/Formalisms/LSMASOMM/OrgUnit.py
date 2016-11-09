@@ -3,7 +3,7 @@ __OrgUnit.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Mon Sep 26 16:26:30 2016
+Modified: Wed Nov  9 16:40:09 2016
 _________________________________________________________________
 """
 from ASGNode import *
@@ -11,6 +11,7 @@ from ASGNode import *
 from ATOM3Type import *
 
 from ATOM3Boolean import *
+from ATOM3List import *
 from ATOM3String import *
 from graph_OrgUnit import *
 class OrgUnit(ASGNode, ATOM3Type):
@@ -28,13 +29,19 @@ class OrgUnit(ASGNode, ATOM3Type):
       self.Individual=ATOM3Boolean()
       self.Individual.setValue((None, 1))
       self.Individual.config = 0
+      self.UnitActions=ATOM3List([ 1, 1, 1, 0],ATOM3String)
+      lcobj0=[]
+      cobj0=ATOM3String('ChangeRole', 20)
+      lcobj0.append(cobj0)
+      self.UnitActions.setValue(lcobj0)
       self.UnitSize=ATOM3String('Individual', 20)
       self.name=ATOM3String('orgUnitName', 20)
       self.generatedAttributes = {'Individual': ('ATOM3Boolean', ),
+                                  'UnitActions': ('ATOM3List', 'ATOM3String'),
                                   'UnitSize': ('ATOM3String', ),
                                   'name': ('ATOM3String', )      }
-      self.realOrder = ['Individual','UnitSize','name']
-      self.directEditing = [1,0,1]
+      self.realOrder = ['Individual','UnitActions','UnitSize','name']
+      self.directEditing = [1,1,1,1]
    def clone(self):
       cloneObject = OrgUnit( self.parent )
       for atr in self.realOrder:
@@ -103,6 +110,7 @@ class OrgUnit(ASGNode, ATOM3Type):
    def determineSize(self, params):
       from CustomCode import *
       res = OrgUnitDetermineSize(self)
+      self.UnitSize.setValue(res)
       self.graphObject_.ModifyAttribute('UnitSize', res)
       
       

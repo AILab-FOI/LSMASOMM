@@ -3,8 +3,8 @@ __ASG_LSMASOMM.py_____________________________________________________
 
 Automatically generated AToM3 ASGroot node (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Mon Sep 26 16:26:31 2016
-_____________________________________________________________________
+Modified: Wed Nov  9 16:40:10 2016
+______________________________________________________________________
 """
 from ASG import *
 from ATOM3Type       import *
