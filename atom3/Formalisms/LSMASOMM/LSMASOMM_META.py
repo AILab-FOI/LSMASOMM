@@ -3,7 +3,7 @@ __LSMASOMM_META.py_____________________________________________________
 
 Automatically generated AToM3 Model File (Do not modify directly)
 Author: bogdan
-Modified: Wed Nov  9 17:05:54 2016
+Modified: Mon Nov 14 16:13:04 2016
 _______________________________________________________________________
 """
 from stickylink import *
@@ -797,7 +797,7 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
       self.obj43._setHierarchicalLink(False)
 
     # Action
-    self.obj43.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\nfrom CustomCode import *\nRoleInheritanceAllRoles(self)\nprintSpecificNodeClassNames(self, \'OrgUnit\')\nprintSpecificNodeClassNames(self, \'Role\')\n\n'))
+    self.obj43.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\nfrom CustomCode import *\nRoleInheritanceAllRoles(self)\nprintAllNodeNames(self)\nprintSpecificNodeClassNames(self, \'OrgUnit\')\nprintSpecificNodeClassNames(self, \'Role\')\n\n'))
 
     # Drawing_Mode
     self.obj43.Drawing_Mode.setValue((' ', 0))
@@ -823,6 +823,40 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
     rootNode.addNode(self.obj43)
     self.globalAndLocalPostcondition(self.obj43, rootNode)
     self.obj43.postAction( rootNode.CREATE )
+
+    self.obj44=ButtonConfig(self)
+    self.obj44.isGraphObjectVisual = True
+
+    if(hasattr(self.obj44, '_setHierarchicalLink')):
+      self.obj44._setHierarchicalLink(False)
+
+    # Action
+    self.obj44.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\nfrom CustomCode import *\nSaveAll(self)\n\n'))
+
+    # Drawing_Mode
+    self.obj44.Drawing_Mode.setValue((' ', 0))
+    self.obj44.Drawing_Mode.config = 0
+
+    # Contents
+    self.obj44.Contents.Text.setValue('Save All')
+    self.obj44.Contents.Image.setValue('')
+    self.obj44.Contents.Image.setNone()
+    self.obj44.Contents.lastSelected= "Text"
+
+    self.obj44.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       new_obj = graph_ButtonConfig(180.0,220.0,self.obj44)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj44.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj44)
+    self.globalAndLocalPostcondition(self.obj44, rootNode)
+    self.obj44.postAction( rootNode.CREATE )
 
     # Connections for obj21 (graphObject_: Obj0) of type ButtonConfig
     self.drawConnections(
@@ -891,6 +925,9 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
     self.drawConnections(
  )
     # Connections for obj43 (graphObject_: Obj22) of type ButtonConfig
+    self.drawConnections(
+ )
+    # Connections for obj44 (graphObject_: Obj23) of type ButtonConfig
     self.drawConnections(
  )
 

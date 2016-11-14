@@ -99,17 +99,12 @@ def RoleInheritance(self):
     inheritActions = []
 
     if 'isPartOfRole' in eOuts:
-        print eOuts
-
         for link in eOuts['isPartOfRole']:
             # print link.out_connections_
             eOutsLink = NodeOutputsInputs(link, 'out', 'nodes')
-            print eOutsLink
             if 'Role' in eOutsLink:
                 for mR in eOutsLink['Role']:
                     metaRoles.append(mR)
-
-        print metaRoles
 
         for mR in metaRoles:
             [inheritActions.append(a) for a in mR.roleActions.getValue()]
@@ -119,7 +114,6 @@ def RoleInheritance(self):
 
         # self.roleActions.setValue([self.roleActions.getValue().append(a) for a in inheritActions])
 
-        print inheritActions
         return inheritActions
 
 
@@ -132,8 +126,8 @@ def RoleInheritanceAllRoles(self):
         if role.isMetaRole.toString() is 'False':
             print role
             RoleInheritance(role)
-            role.graphObject_.ModifyAttribute(
-                'roleActions', role.roleActions.toString())
+            role.updateAppearanceAttributes()
+            # role.graphObject_.ModifyAttribute('roleActions', role.roleActions.toString())
 
 
 def RoleCheckOutputs(self):
@@ -214,12 +208,14 @@ def printAllNodeNames(self):
     # traverse all nodes of the graph
     nodeTypeList = Root.listNodes.keys()
     for nodeType in nodeTypeList:
+        print "#### {} ####".format(nodeType)
         nodeList = Root.listNodes[nodeType]
         for node in nodeList:
-            try:
-                print node.name.getValue()
-            except Exception as e:
-                print e
+            for attr in node.realOrder:
+                try:
+                    print "{} -- {}".format(attr, node.getAttrValue(attr).getValue())
+                except Exception as e:
+                    print e
 
 
 def printSpecificNodeClassNames(self, className):
@@ -305,3 +301,52 @@ class {0}(spade.Agent.Agent):
             print elements[el]['code']
             code = code + ''.join(elements[el]['code'])
         saveToFile('./Roles.txt', code)
+
+
+def SaveAll(self):
+    import ZODB, ZODB.FileStorage
+    import transaction
+    import BTrees.OOBTree
+
+    # open DB connection to file mydata.fs; check if conn is open already
+    try:
+        conn = db.open()
+    except Exception as e:
+        storage = ZODB.FileStorage.FileStorage('mydata.fs')
+        db = ZODB.DB(storage)
+        conn = db.open()
+        root = conn.root
+
+
+    # get the current model
+    Root = self.ASGroot.getASGbyName('LSMASOMM_META')
+
+    print "#### DB running..."
+
+    root.role = BTrees.OOBTree.BTree()
+
+    for node in Root.listNodes['Role']:
+        try:
+            root.role[node.name.getValue()] = node
+            transaction.commit()
+            print "DB add for {}".format(node.name.getValue())
+        except Exception as e:
+            print "No can do: {}".format(e)
+    db.close()
+
+    # # traverse all nodes of the graph
+    # nodeTypeList = Root.listNodes.keys()
+    # print os.getcwd()
+    # for nodeType in nodeTypeList:
+    #     # make room for the new nodeType in the DB
+    #     conn.root.nodeType = BTrees.OOBTree.BTree()
+    #     # root[nodeType] = {}
+    #     # take a list of all the nodes of nodeType, and proceed
+    #     nodeList = Root.listNodes[nodeType]
+    #     for node in nodeList:
+    #         try:
+    #             root[nodeType][node.name.getValue()] = node
+    #             print "Success for {}.".format(node.name.getValue())
+    #             transaction.commit()
+    #         except Exception as e:
+    #             print e
