@@ -3,7 +3,7 @@ __LSMASOMM_MM.py______________________________________________________
 
 Automatically generated AToM3 MetaModel (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Nov  9 16:40:10 2016
+Modified: Mon Nov 14 17:13:23 2016
 ______________________________________________________________________
 """
 from ASG_LSMASOMM import *
@@ -1828,99 +1828,5 @@ def createNew_Model(self, wherex, wherey, screenCoordinates = 1):
    return new_semantic_obj
 def fillTypesInformation(self):
     objs = []
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    obj.setValue(("String", "ATOM3String", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    param = ATOM3String("None")
-    params.append(param)
-    param = ATOM3String("None")
-    params.append(param)
-    param = ATOM3String("1")
-    params.append(param)
-    obj.setValue(("Boolean", "ATOM3Boolean", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    obj.setValue(("Integer", "ATOM3Integer", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    obj.setValue(("Float", "ATOM3Float", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    param = ATOM3String("self.types")
-    params.append(param)
-    obj.setValue(("Attribute", "ATOM3Attribute", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    param = ATOM3String("[1,1,1,self.types]")
-    params.append(param)
-    param = ATOM3String("ATOM3Attribute")
-    params.append(param)
-    param = ATOM3String("self.types")
-    params.append(param)
-    obj.setValue(("List", "ATOM3List", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    param = ATOM3String("[]")
-    params.append(param)
-    param = ATOM3String("1")
-    params.append(param)
-    param = ATOM3String("1")
-    params.append(param)
-    obj.setValue(("Enum", "ATOM3Enum", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    obj.setValue(("Constraint", "ATOM3Constraint", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    obj.setValue(("Action", "ATOM3Action", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    param = ATOM3String("'class0'")
-    params.append(param)
-    param = ATOM3String("None")
-    params.append(param)
-    obj.setValue(("Appearance", "ATOM3Appearance", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    obj.setValue(("BottomType", "ATOM3BottomType", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    obj.setValue(("Link", "ATOM3Link", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    obj.setValue(("Port", "ATOM3Port", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    obj.setValue(("Connection", "ATOM3Connection", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    param = ATOM3String("None")
-    params.append(param)
-    param = ATOM3String("None")
-    params.append(param)
-    param = ATOM3String("1")
-    params.append(param)
-    obj.setValue(("MSEnum", "ATOM3MSEnum", params, (None, 0) ))
-    objs.append(obj)
-    obj = ATOM3TypeInfo(self)
-    params  = []
-    obj.setValue(("Text", "ATOM3Text", params, (None, 0) ))
-    objs.append(obj)
     self.typeList.setValue(objs)
 

@@ -3,7 +3,7 @@ __TMWQDE_MDL.py_____________________________________________________
 
 Automatically generated AToM3 Model File (Do not modify directly)
 Author: bogdan
-Modified: Mon Sep 26 17:33:17 2016
+Modified: Mon Sep 26 17:33:48 2016
 ____________________________________________________________________
 """
 from stickylink import *
@@ -51,20 +51,20 @@ from ATOM3Integer import *
 from ATOM3Port import *
 from ATOM3MSEnum import *
 
-def TMWQDE_MDL(self, rootNode, OMLSMASRootNode=None):
+def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
 
-    # --- Generating attributes code for ASG OMLSMAS ---
-    if( OMLSMASRootNode ): 
+    # --- Generating attributes code for ASG LSMASOMM ---
+    if( LSMASOMMRootNode ): 
         # author
-        OMLSMASRootNode.author.setValue('Annonymous')
+        LSMASOMMRootNode.author.setValue('Annonymous')
 
         # description
-        OMLSMASRootNode.description.setValue('\n')
-        OMLSMASRootNode.description.setHeight(15)
+        LSMASOMMRootNode.description.setValue('\n')
+        LSMASOMMRootNode.description.setHeight(15)
 
         # name
-        OMLSMASRootNode.name.setValue('')
-        OMLSMASRootNode.name.setNone()
+        LSMASOMMRootNode.name.setValue('')
+        LSMASOMMRootNode.name.setNone()
     # --- ASG attributes over ---
 
 
@@ -2325,6 +2325,6 @@ def TMWQDE_MDL(self, rootNode, OMLSMASRootNode=None):
 
 newfunction = TMWQDE_MDL
 
-loadedMMName = 'OMLSMAS_META'
+loadedMMName = 'LSMASOMM_META'
 
 atom3version = '0.3'

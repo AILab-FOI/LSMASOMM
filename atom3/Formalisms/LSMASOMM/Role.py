@@ -3,7 +3,7 @@ __Role.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Nov  9 16:40:09 2016
+Modified: Mon Nov 14 17:13:22 2016
 ______________________________________________________________
 """
 from ASGNode import *
@@ -45,7 +45,7 @@ class Role(ASGNode, ATOM3Type):
                                   'name': ('ATOM3String', ),
                                   'roleActions': ('ATOM3List', 'ATOM3String')      }
       self.realOrder = ['ID','isMetaRole','name','roleActions']
-      self.directEditing = [0,1,1,1]
+      self.directEditing = [1,1,1,1]
    def clone(self):
       cloneObject = Role( self.parent )
       for atr in self.realOrder:
@@ -91,8 +91,6 @@ class Role(ASGNode, ATOM3Type):
    def postAction (self, actionID, * params):
       if actionID == self.CONNECT or actionID == self.DISCONNECT or actionID == self.SELECT:
          self.checkMetaRole(params)
-      if actionID == self.CONNECT or actionID == self.SELECT:
-         self.InheritActions(params)
       if self.graphObject_:
          return self.graphObject_.postAction(actionID, params)
       else: return None
@@ -122,19 +120,6 @@ class Role(ASGNode, ATOM3Type):
       res = RoleHierarchy(self)
       self.isMetaRole.setValue(('isMetaRole',res))
       self.graphObject_.ModifyAttribute('isMetaRole', res)
-      
-      
-
-   def InheritActions(self, params):
-      from CustomCode import RoleInheritance
-      res = RoleInheritance(self)
-      if res:
-      ##    actions = self.roleActions.getValue()
-      ##    for r in res:
-      ##    	actions.append(r)
-      ##    print actions
-      ##    self.roleActions.setValue(actions)
-          self.graphObject_.ModifyAttribute('roleActions', self.roleActions.toString())
       
       
 

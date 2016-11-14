@@ -218,6 +218,16 @@ def printAllNodeNames(self):
                     print e
 
 
+def printNodeAttrs(node):
+    for attr in node.realOrder:
+        try:
+            print "{} -- {}".format(attr, node.getAttrValue(attr).getValue())
+        except Exception as e:
+            print e
+    a = node.getValue()
+    print a
+
+
 def printSpecificNodeClassNames(self, className):
     """Work with nodes of a specific class specified by className."""
     # get the current model

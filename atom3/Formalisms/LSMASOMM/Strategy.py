@@ -3,7 +3,7 @@ __Strategy.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Nov  9 16:40:09 2016
+Modified: Mon Nov 14 17:13:22 2016
 __________________________________________________________________
 """
 from ASGNode import *
@@ -11,6 +11,7 @@ from ASGNode import *
 from ATOM3Type import *
 
 from ATOM3String import *
+from ATOM3Text import *
 class Strategy(ASGNode, ATOM3Type):
 
    def __init__(self, parent = None):
@@ -19,10 +20,10 @@ class Strategy(ASGNode, ATOM3Type):
       self.parent = parent
       self.ID=ATOM3String('STR', 20)
       self.keyword_= self.ID
-      self.description=ATOM3String('', 20)
+      self.description=ATOM3Text('\n', 80,4 )
       self.name=ATOM3String('', 20)
       self.generatedAttributes = {'ID': ('ATOM3String', ),
-                                  'description': ('ATOM3String', ),
+                                  'description': ('ATOM3Text', ),
                                   'name': ('ATOM3String', )      }
       self.realOrder = ['ID','description','name']
       self.directEditing = [1,1,1]

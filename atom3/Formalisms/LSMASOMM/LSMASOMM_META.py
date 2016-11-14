@@ -3,7 +3,7 @@ __LSMASOMM_META.py_____________________________________________________
 
 Automatically generated AToM3 Model File (Do not modify directly)
 Author: bogdan
-Modified: Mon Nov 14 16:13:04 2016
+Modified: Mon Nov 14 16:48:19 2016
 _______________________________________________________________________
 """
 from stickylink import *
@@ -858,6 +858,40 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
     self.globalAndLocalPostcondition(self.obj44, rootNode)
     self.obj44.postAction( rootNode.CREATE )
 
+    self.obj45=ButtonConfig(self)
+    self.obj45.isGraphObjectVisual = True
+
+    if(hasattr(self.obj45, '_setHierarchicalLink')):
+      self.obj45._setHierarchicalLink(False)
+
+    # Action
+    self.obj45.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\nfrom CustomCode import *\nroot = self.ASGroot.getASGbyName(\'LSMASOMM_META\')\nroot.traverse(printNodeAttrs)\n\n'))
+
+    # Drawing_Mode
+    self.obj45.Drawing_Mode.setValue((' ', 0))
+    self.obj45.Drawing_Mode.config = 0
+
+    # Contents
+    self.obj45.Contents.Text.setValue('Traverse')
+    self.obj45.Contents.Image.setValue('')
+    self.obj45.Contents.Image.setNone()
+    self.obj45.Contents.lastSelected= "Text"
+
+    self.obj45.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       new_obj = graph_ButtonConfig(300.0,220.0,self.obj45)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj45.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj45)
+    self.globalAndLocalPostcondition(self.obj45, rootNode)
+    self.obj45.postAction( rootNode.CREATE )
+
     # Connections for obj21 (graphObject_: Obj0) of type ButtonConfig
     self.drawConnections(
  )
@@ -928,6 +962,9 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
     self.drawConnections(
  )
     # Connections for obj44 (graphObject_: Obj23) of type ButtonConfig
+    self.drawConnections(
+ )
+    # Connections for obj45 (graphObject_: Obj24) of type ButtonConfig
     self.drawConnections(
  )
 

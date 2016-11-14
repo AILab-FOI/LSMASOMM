@@ -3,7 +3,7 @@ __Objective.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Nov  9 16:40:09 2016
+Modified: Mon Nov 14 17:13:22 2016
 ___________________________________________________________________
 """
 from ASGNode import *
@@ -27,14 +27,14 @@ class Objective(ASGNode, ATOM3Type):
       self.parent = parent
       self.ID=ATOM3String('STR', 20)
       self.keyword_= self.ID
-      self.Measurement=ATOM3Text('\n', 80,5 )
-      self.Reward=ATOM3Text('\n', 80,5 )
-      self.description=ATOM3String('', 20)
+      self.Measurement=ATOM3Text('\n', 80,4 )
+      self.Reward=ATOM3Text('\n', 80,4 )
+      self.description=ATOM3Text('\n', 80,4 )
       self.name=ATOM3String('', 20)
       self.generatedAttributes = {'ID': ('ATOM3String', ),
                                   'Measurement': ('ATOM3Text', ),
                                   'Reward': ('ATOM3Text', ),
-                                  'description': ('ATOM3String', ),
+                                  'description': ('ATOM3Text', ),
                                   'name': ('ATOM3String', )      }
       self.realOrder = ['ID','Measurement','Reward','description','name']
       self.directEditing = [1,1,1,1,1]
