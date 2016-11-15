@@ -614,6 +614,51 @@ class ASGNode(HierarchicalASGNode):
       cloneObject.GGset2Any = self.GGset2Any
       cloneObject.editGGLabel = self.editGGLabel
       cloneObject.containerFrame= self.containerFrame
+      cloneObject.keyword_ = self.keyword_
+
+  def cloneNode(self, cloneObject):
+      "clones the common attributes into cloneObject"
+      cloneObject.graphClass_   = self.graphClass_
+      cloneObject.graphObject_  = self.graphObject_
+      cloneObject.rootNode      = self.rootNode
+      cloneObject.objectNumber  = self.objectNumber
+      import copy
+      cloneObject.in_connections_  = copy.copy(self.in_connections_)
+      cloneObject.out_connections_  = copy.copy(self.out_connections_)
+      if self.GGLabel: cloneObject.GGLabel = self.GGLabel.clone()
+      cloneObject.GGset2Any = self.GGset2Any
+      cloneObject.editGGLabel = self.editGGLabel
+      cloneObject.containerFrame= self.containerFrame
+      cloneObject.keyword_ = self.keyword_
+
+      return cloneObject
+
+  def copyCoreAttributes(self):
+      inConn = {}
+      outConn = {}
+      for con in self.in_connections_:
+          try:
+            inConn[con.getClass()].append(con.objectNumber)
+          except Exception:
+            inConn[con.getClass()] = [con.objectNumber]
+      for con in self.out_connections_:
+          try:
+            outConn[con.getClass()].append(con.objectNumber)
+          except Exception:
+            outConn[con.getClass()] = [con.objectNumber]
+      return [
+          self.graphClass_,
+          self.graphObject_,
+          inConn,
+          outConn,
+          self.containerFrame,
+          self.keyword_,
+          self.editGGLabel,
+          self.GGset2Any,
+          self.GGLabel,
+          self.rootNode,
+          self.objectNumber
+      ]
 
   def copy(self, other):
       "copies the common attributes from other into self"

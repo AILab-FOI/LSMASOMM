@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 # hubs em9NZf))r(D*I#af
 
+from ASGNode import *
+from Role import *
+from CustomCodeDB import *
+
 
 def canAccessKnArtCheckConnections(self):
     '''
@@ -218,16 +222,6 @@ def printAllNodeNames(self):
                     print e
 
 
-def printNodeAttrs(node):
-    for attr in node.realOrder:
-        try:
-            print "{} -- {}".format(attr, node.getAttrValue(attr).getValue())
-        except Exception as e:
-            print e
-    a = node.getValue()
-    print a
-
-
 def printSpecificNodeClassNames(self, className):
     """Work with nodes of a specific class specified by className."""
     # get the current model
@@ -319,44 +313,42 @@ def SaveAll(self):
     import BTrees.OOBTree
 
     # open DB connection to file mydata.fs; check if conn is open already
-    try:
-        conn = db.open()
-    except Exception as e:
-        storage = ZODB.FileStorage.FileStorage('mydata.fs')
-        db = ZODB.DB(storage)
-        conn = db.open()
-        root = conn.root
+    storage = ZODB.FileStorage.FileStorage('mydata.fs')
+    db = ZODB.DB(storage)
+    conn = db.open()
 
-
-    # get the current model
     Root = self.ASGroot.getASGbyName('LSMASOMM_META')
+    nodeTypeList = Root.listNodes.keys()
 
-    print "#### DB running..."
+    # go through all the nodes
+    for nodeType in nodeTypeList:
+        nodeList = Root.listNodes[nodeType]
+        for node in nodeList:
+            # save node to DB
+            SaveNode(node, conn)
 
-    root.role = BTrees.OOBTree.BTree()
-
-    for node in Root.listNodes['Role']:
-        try:
-            root.role[node.name.getValue()] = node
-            transaction.commit()
-            print "DB add for {}".format(node.name.getValue())
-        except Exception as e:
-            print "No can do: {}".format(e)
     db.close()
 
-    # # traverse all nodes of the graph
-    # nodeTypeList = Root.listNodes.keys()
-    # print os.getcwd()
-    # for nodeType in nodeTypeList:
-    #     # make room for the new nodeType in the DB
-    #     conn.root.nodeType = BTrees.OOBTree.BTree()
-    #     # root[nodeType] = {}
-    #     # take a list of all the nodes of nodeType, and proceed
-    #     nodeList = Root.listNodes[nodeType]
-    #     for node in nodeList:
-    #         try:
-    #             root[nodeType][node.name.getValue()] = node
-    #             print "Success for {}.".format(node.name.getValue())
-    #             transaction.commit()
-    #         except Exception as e:
-    #             print e
+
+def SaveNode(node, conn):
+    import ZODB, ZODB.FileStorage
+    import transaction
+    import BTrees.OOBTree
+
+    # create placeholder object of the node, and fill it with attribute values
+    nodeNew = savedNode(node.copyCoreAttributes())
+    nodeNew.saveAttributes(
+        node.realOrder,
+        node.getValue()
+        )
+
+    # if Node Class is not yet saved, create it in DB
+    try:
+        nodeClass = conn.root()[node.getClass()]
+    except Exception:
+        conn.root()[node.getClass()] = {}
+        nodeClass = conn.root()[node.getClass()]
+
+    # finally save the node
+    nodeClass[nodeNew.objectNumber] = nodeNew
+    transaction.commit()

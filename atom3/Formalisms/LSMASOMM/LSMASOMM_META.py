@@ -3,7 +3,7 @@ __LSMASOMM_META.py_____________________________________________________
 
 Automatically generated AToM3 Model File (Do not modify directly)
 Author: bogdan
-Modified: Mon Nov 14 16:48:19 2016
+Modified: Tue Nov 15 19:43:15 2016
 _______________________________________________________________________
 """
 from stickylink import *
@@ -865,7 +865,7 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
       self.obj45._setHierarchicalLink(False)
 
     # Action
-    self.obj45.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\nfrom CustomCode import *\nroot = self.ASGroot.getASGbyName(\'LSMASOMM_META\')\nroot.traverse(printNodeAttrs)\n\n'))
+    self.obj45.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\nfrom CustomCode import *\nimport ZODB, ZODB.FileStorage\nimport transaction\nimport BTrees.OOBTree\n\n# open DB connection to file mydata.fs; check if conn is open already\nstorage = ZODB.FileStorage.FileStorage(\'mydata.fs\')\ndb = ZODB.DB(storage)\nconn = db.open()\nroot = conn.root\n\nroot = self.ASGroot.getASGbyName(\'LSMASOMM_META\')\nroot.traverse(printNodeAttrs)\n\ntransaction.commit()\ndb.close()\n\n'))
 
     # Drawing_Mode
     self.obj45.Drawing_Mode.setValue((' ', 0))
