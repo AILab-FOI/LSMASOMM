@@ -3,7 +3,7 @@ __genericAssociation.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Mon Nov 14 17:13:22 2016
+Modified: Wed Nov 16 13:34:54 2016
 ____________________________________________________________________________
 """
 from ASGNode import *

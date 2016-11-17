@@ -3,16 +3,16 @@ __OrgUnit.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Mon Nov 14 17:13:22 2016
+Modified: Wed Nov 16 13:34:54 2016
 _________________________________________________________________
 """
 from ASGNode import *
 
 from ATOM3Type import *
 
+from ATOM3String import *
 from ATOM3Boolean import *
 from ATOM3List import *
-from ATOM3String import *
 from graph_OrgUnit import *
 class OrgUnit(ASGNode, ATOM3Type):
 
@@ -26,6 +26,8 @@ class OrgUnit(ASGNode, ATOM3Type):
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(True)
       self.parent = parent
+      self.ID=ATOM3String('', 20)
+      self.keyword_= self.ID
       self.Individual=ATOM3Boolean()
       self.Individual.setValue((None, 1))
       self.Individual.config = 0
@@ -36,16 +38,18 @@ class OrgUnit(ASGNode, ATOM3Type):
       self.UnitActions.setValue(lcobj0)
       self.UnitSize=ATOM3String('Individual', 20)
       self.name=ATOM3String('orgUnitName', 20)
-      self.generatedAttributes = {'Individual': ('ATOM3Boolean', ),
+      self.generatedAttributes = {'ID': ('ATOM3String', ),
+                                  'Individual': ('ATOM3Boolean', ),
                                   'UnitActions': ('ATOM3List', 'ATOM3String'),
                                   'UnitSize': ('ATOM3String', ),
                                   'name': ('ATOM3String', )      }
-      self.realOrder = ['Individual','UnitActions','UnitSize','name']
-      self.directEditing = [1,1,1,1]
+      self.realOrder = ['ID','Individual','UnitActions','UnitSize','name']
+      self.directEditing = [1,1,1,1,1]
    def clone(self):
       cloneObject = OrgUnit( self.parent )
       for atr in self.realOrder:
          cloneObject.setAttrValue(atr, self.getAttrValue(atr).clone() )
+      cloneObject.keyword_ = cloneObject.ID
       ASGNode.cloneActions(self, cloneObject)
 
       return cloneObject
@@ -53,6 +57,7 @@ class OrgUnit(ASGNode, ATOM3Type):
       ATOM3Type.copy(self, other)
       for atr in self.realOrder:
          self.setAttrValue(atr, other.getAttrValue(atr) )
+      self.keyword_ = self.ID
       ASGNode.copy(self, other)
 
    def preCondition (self, actionID, * params):
@@ -83,6 +88,8 @@ class OrgUnit(ASGNode, ATOM3Type):
    def postAction (self, actionID, * params):
       if actionID == self.CONNECT or actionID == self.SELECT:
          self.determineSize(params)
+      if actionID == self.CREATE:
+         self.setNodeID(params)
       if self.graphObject_:
          return self.graphObject_.postAction(actionID, params)
       else: return None
@@ -113,6 +120,13 @@ class OrgUnit(ASGNode, ATOM3Type):
       self.UnitSize.setValue(res)
       self.graphObject_.ModifyAttribute('UnitSize', res)
       
+      
+
+   def setNodeID(self, params):
+      from CustomCode import *
+      
+      res = setNodeID(self)
+      self.graphObject_.ModifyAttribute('ID', res)
       
 
 

@@ -3,7 +3,7 @@ __Process.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Mon Nov 14 17:13:22 2016
+Modified: Wed Nov 16 13:34:54 2016
 _________________________________________________________________
 """
 from ASGNode import *
@@ -25,15 +25,19 @@ class Process(ASGNode, ATOM3Type):
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(False)
       self.parent = parent
-      self.ID=ATOM3String('PRCS', 20)
+      self.ID=ATOM3String('STR', 20)
       self.keyword_= self.ID
       self.Activities=ATOM3Text('\n', 80,10 )
       self.Name=ATOM3String('', 20)
+      self.description=ATOM3Text('\n', 80,4 )
+      self.name=ATOM3String('', 20)
       self.generatedAttributes = {'Activities': ('ATOM3Text', ),
                                   'ID': ('ATOM3String', ),
-                                  'Name': ('ATOM3String', )      }
-      self.realOrder = ['Activities','ID','Name']
-      self.directEditing = [1,1,1]
+                                  'Name': ('ATOM3String', ),
+                                  'description': ('ATOM3Text', ),
+                                  'name': ('ATOM3String', )      }
+      self.realOrder = ['Activities','ID','Name','description','name']
+      self.directEditing = [1,1,1,1,1]
    def clone(self):
       cloneObject = Process( self.parent )
       for atr in self.realOrder:

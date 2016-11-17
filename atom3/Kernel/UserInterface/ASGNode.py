@@ -648,7 +648,7 @@ class ASGNode(HierarchicalASGNode):
             outConn[con.getClass()] = [con.objectNumber]
       return [
           self.graphClass_,
-          self.graphObject_,
+          self.getClass(),
           inConn,
           outConn,
           self.containerFrame,

@@ -5,6 +5,16 @@
 from ASGNode import *
 from Role import *
 from CustomCodeDB import *
+import ZODB
+import ZODB.FileStorage
+import transaction
+import BTrees.OOBTree
+
+def setNodeID(self):
+    ID = "{}{}".format(self.getClass(), self.objectNumber)
+    self.ID.setValue(ID)
+    return ID
+
 
 
 def canAccessKnArtCheckConnections(self):
@@ -196,13 +206,6 @@ countNodes -- count / nodes -- returns count of nodes or nodes
     return eOuts
 
 
-def saveToFile(filename, content):
-    """Write content into a filename."""
-    file = open(filename, 'w')
-    file.write(str(content))
-    file.close()
-
-
 def printAllNodeNames(self):
     '''
     '''
@@ -222,6 +225,13 @@ def printAllNodeNames(self):
                     print e
 
 
+def saveToFile(filename, content):
+    """Write content into a filename."""
+    file = open(filename, 'w')
+    file.write(str(content))
+    file.close()
+
+
 def printSpecificNodeClassNames(self, className):
     """Work with nodes of a specific class specified by className."""
     # get the current model
@@ -229,7 +239,7 @@ def printSpecificNodeClassNames(self, className):
 
     nodeList = Root.listNodes[className]
 
-# aux elements
+    # aux elements
     # store elements for code generating
     elements = {}
 
@@ -308,10 +318,7 @@ class {0}(spade.Agent.Agent):
 
 
 def SaveAll(self):
-    import ZODB, ZODB.FileStorage
-    import transaction
-    import BTrees.OOBTree
-
+    """Traverse all the nodes of the graph, and save each to the DB."""
     # open DB connection to file mydata.fs; check if conn is open already
     storage = ZODB.FileStorage.FileStorage('mydata.fs')
     db = ZODB.DB(storage)
@@ -331,10 +338,7 @@ def SaveAll(self):
 
 
 def SaveNode(node, conn):
-    import ZODB, ZODB.FileStorage
-    import transaction
-    import BTrees.OOBTree
-
+    """Save one particular Node [node] to the already open DB [conn]."""
     # create placeholder object of the node, and fill it with attribute values
     nodeNew = savedNode(node.copyCoreAttributes())
     nodeNew.saveAttributes(
