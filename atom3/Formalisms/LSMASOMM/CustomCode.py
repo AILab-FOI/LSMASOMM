@@ -8,13 +8,14 @@ from CustomCodeDB import *
 import ZODB
 import ZODB.FileStorage
 import transaction
-import BTrees.OOBTree
+import os
+# from os import mkdir, getcwd, isdir
+
 
 def setNodeID(self):
     ID = "{}{}".format(self.getClass(), self.objectNumber)
     self.ID.setValue(ID)
     return ID
-
 
 
 def canAccessKnArtCheckConnections(self):
@@ -121,12 +122,12 @@ def RoleInheritance(self):
                     metaRoles.append(mR)
 
         for mR in metaRoles:
-            [inheritActions.append(a) for a in mR.roleActions.getValue()]
+            [inheritActions.append(a) for a in mR.hasActions.getValue()]
 
         for a in inheritActions:
-            self.roleActions.newItem(item=a)
+            self.hasActions.newItem(item=a)
 
-        # self.roleActions.setValue([self.roleActions.getValue().append(a) for a in inheritActions])
+        # self.hasActions.setValue([self.hasActions.getValue().append(a) for a in inheritActions])
 
         return inheritActions
 
@@ -141,7 +142,7 @@ def RoleInheritanceAllRoles(self):
             print role
             RoleInheritance(role)
             role.updateAppearanceAttributes()
-            # role.graphObject_.ModifyAttribute('roleActions', role.roleActions.toString())
+            # role.graphObject_.ModifyAttribute('hasActions', role.hasActions.toString())
 
 
 def RoleCheckOutputs(self):
@@ -231,97 +232,72 @@ def saveToFile(filename, content):
     file.write(str(content))
     file.close()
 
+def openDB():
+    # open DB connection to file mydata.fs; check if conn is open already
+    storage = ZODB.FileStorage.FileStorage('mydata.fs')
+    db = ZODB.DB(storage)
+    return db
 
-def printSpecificNodeClassNames(self, className):
-    """Work with nodes of a specific class specified by className."""
-    # get the current model
-    Root = self.ASGroot.getASGbyName('LSMASOMM_META')
 
-    nodeList = Root.listNodes[className]
+def generateNodeCode(self):
+    # print os.getcwd()
+    db = openDB()
+    conn = db.open()
 
-    # aux elements
-    # store elements for code generating
-    elements = {}
+    if not os.path.isdir("./Code"):
+        os.mkdir("./Code")
 
-    # beginning of generated code
-    code = 'import spade \n'
+    # writing start of the role behaviour file
+    filename = './Code/RoleBehaviours.py'
 
-    # templates for agents ang behaviours
-    agent = ["""
-class {0}(spade.Agent.Agent):
-    '''Bear skeleton for agent type {0}'''
-""", """
-    def _setup(self):
-        print '{0}: running'
-"""]
+    if os.path.isfile(filename):
+        os.rename(filename, '{}.bckp'.format(filename))
 
-    behaviour = """
-    class {0}(spade.Behaviour.OneShotBehaviour):
-        '''Bare skeleton for behaviour {0}'''
-        def _process(self):
-            print '{0}: behaving'
-"""
+    file = open(filename, 'w')
+    file.write("""import spade
+class ChangeRole(spade.Behaviour.OneShotBehaviour):
+    '''Basic Behaviour for changing Roles.'''
+    def _process(self):
+        print 'I would like to change...'
+""")
+    file.close()
 
-    # OrgUnits
-    if className is 'OrgUnit':
-        for node in nodeList:
-            # save name of the node
-            if node.UnitSize.getValue() is 'Individual':
-                nodeName = node.name.getValue()
-            elif node.UnitSize.getValue() is 'Group':
-                nodeName = "OrgUnit{}".format(node.name.getValue())
+    agents = []
 
-            elements[nodeName] = {}
-            elements[nodeName]['behavs'] = []
-            # add declaration of the agent
-            elements[nodeName]['code'] = [agent[0].format(nodeName)]
+    # generate code for OrgUnits
+    for k, v in conn.root()['OrgUnit'].items():
+        agents.append(v.generateCodeSPADE())
 
-            # work with the behaviours of the agent/role
-            for behav in node.UnitActions.getValue():
-                elements[nodeName]['behavs'].append(
-                    behav.getValue())
-                elements[nodeName]['code'].append(
-                    behaviour.format(behav.getValue()))
+    for k, v in conn.root()['Role'].items():
+        v.generateCodeSPADE()
 
-            # add the default method of an agent (_setup)
-            elements[nodeName]['code'].append(agent[1].format(nodeName))
+    db.close()
 
-        print elements
+    # writing the agent system file
+    filename = './Code/TheSystem.py'
 
-        for el in elements.keys():
-            print elements[el]['code']
-            code = code + ''.join(elements[el]['code'])
-        saveToFile('./OrgUnit.txt', code)
+    if os.path.isfile(filename):
+        os.rename(filename, '{}.bckp'.format(filename))
 
-    # Roles
-    if className is 'Role':
-        for node in nodeList:
-            nodeName = "Role{}".format(node.name.getValue())
-            if node.isMetaRole.toString() is 'False':
-                elements[nodeName] = {}
-                elements[nodeName]['behavs'] = []
-                elements[nodeName]['code'] = [agent[0].format(nodeName)]
+    file = open(filename, 'w')
+    file.write("import spade\nfrom RoleBehaviours import *\n")
+    for agT in agents:
+        file.write("from {} import *\n".format(agT))
 
-                for behav in node.roleActions.getValue():
-                    elements[nodeName]['behavs'].append(behav.getValue())
-                    elements[nodeName]['code'].append(
-                        behaviour.format(behav.getValue()))
+    file.write('\nif __name__ == "__main__":\n')
 
-                elements[nodeName]['code'].append(agent[1].format(nodeName))
+    for x in range(0, len(agents)):
+        file.write("""
+    agent{0} = {1}("Agent{0}@127.0.0.1", "secret")
+    agent{0}.start()
+""".format(x, agents[x]))
 
-        print elements
-
-        for el in elements.keys():
-            print elements[el]['code']
-            code = code + ''.join(elements[el]['code'])
-        saveToFile('./Roles.txt', code)
+    file.close()
 
 
 def SaveAll(self):
     """Traverse all the nodes of the graph, and save each to the DB."""
-    # open DB connection to file mydata.fs; check if conn is open already
-    storage = ZODB.FileStorage.FileStorage('mydata.fs')
-    db = ZODB.DB(storage)
+    db = openDB()
     conn = db.open()
 
     Root = self.ASGroot.getASGbyName('LSMASOMM_META')
@@ -329,10 +305,13 @@ def SaveAll(self):
 
     # go through all the nodes
     for nodeType in nodeTypeList:
+        conn.root()[nodeType] = {}
         nodeList = Root.listNodes[nodeType]
         for node in nodeList:
             # save node to DB
             SaveNode(node, conn)
+
+    transaction.commit()
 
     db.close()
 
@@ -344,15 +323,12 @@ def SaveNode(node, conn):
     nodeNew.saveAttributes(
         node.realOrder,
         node.getValue()
-        )
+    )
 
-    # if Node Class is not yet saved, create it in DB
-    try:
-        nodeClass = conn.root()[node.getClass()]
-    except Exception:
-        conn.root()[node.getClass()] = {}
-        nodeClass = conn.root()[node.getClass()]
+    conn.root()[node.getClass()].update(
+        {nodeNew.objectNumber:nodeNew})
 
-    # finally save the node
-    nodeClass[nodeNew.objectNumber] = nodeNew
-    transaction.commit()
+    # print conn.root()[node.getClass()][nodeNew.objectNumber]
+
+    # if hasattr(node, 'name'):
+    #     print "Node {} saved.".format(node.name.getValue())
