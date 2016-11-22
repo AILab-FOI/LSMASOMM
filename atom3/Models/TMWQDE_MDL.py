@@ -78,12 +78,12 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj43.Individual.setValue((None, 1))
     self.obj43.Individual.config = 0
 
-    # UnitActions
-    self.obj43.UnitActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj43.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('ChangeRole', 20)
     lcobj2.append(cobj2)
-    self.obj43.UnitActions.setValue(lcobj2)
+    self.obj43.hasActions.setValue(lcobj2)
 
     # UnitSize
     self.obj43.UnitSize.setValue('Group')
@@ -117,12 +117,12 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj44.Individual.setValue((None, 1))
     self.obj44.Individual.config = 0
 
-    # UnitActions
-    self.obj44.UnitActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj44.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('ChangeRole', 20)
     lcobj2.append(cobj2)
-    self.obj44.UnitActions.setValue(lcobj2)
+    self.obj44.hasActions.setValue(lcobj2)
 
     # UnitSize
     self.obj44.UnitSize.setValue('Individual')
@@ -156,12 +156,12 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj45.Individual.setValue((None, 1))
     self.obj45.Individual.config = 0
 
-    # UnitActions
-    self.obj45.UnitActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj45.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('ChangeRole', 20)
     lcobj2.append(cobj2)
-    self.obj45.UnitActions.setValue(lcobj2)
+    self.obj45.hasActions.setValue(lcobj2)
 
     # UnitSize
     self.obj45.UnitSize.setValue('Individual')
@@ -195,14 +195,14 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj46.isMetaRole.setValue(('isMetaRole', 1))
     self.obj46.isMetaRole.config = 0
 
-    # roleActions
-    self.obj46.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj46.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('LookForItem', 20)
     lcobj2.append(cobj2)
     cobj2=ATOM3String('GatherItem', 20)
     lcobj2.append(cobj2)
-    self.obj46.roleActions.setValue(lcobj2)
+    self.obj46.hasActions.setValue(lcobj2)
 
     # ID
     self.obj46.ID.setValue('Role0001')
@@ -236,8 +236,8 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj47.isMetaRole.setValue(('isMetaRole', 0))
     self.obj47.isMetaRole.config = 0
 
-    # roleActions
-    self.obj47.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj47.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('PickItemUp', 20)
     lcobj2.append(cobj2)
@@ -245,7 +245,7 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     lcobj2.append(cobj2)
     cobj2=ATOM3String('DropItem', 20)
     lcobj2.append(cobj2)
-    self.obj47.roleActions.setValue(lcobj2)
+    self.obj47.hasActions.setValue(lcobj2)
 
     # ID
     self.obj47.ID.setValue('Role0003')
@@ -279,12 +279,12 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj48.isMetaRole.setValue(('isMetaRole', 1))
     self.obj48.isMetaRole.config = 0
 
-    # roleActions
-    self.obj48.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj48.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('MakeItem', 20)
     lcobj2.append(cobj2)
-    self.obj48.roleActions.setValue(lcobj2)
+    self.obj48.hasActions.setValue(lcobj2)
 
     # ID
     self.obj48.ID.setValue('Role0002')
@@ -318,8 +318,8 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj49.isMetaRole.setValue(('isMetaRole', 0))
     self.obj49.isMetaRole.config = 0
 
-    # roleActions
-    self.obj49.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj49.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('Wander', 20)
     lcobj2.append(cobj2)
@@ -327,7 +327,7 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     lcobj2.append(cobj2)
     cobj2=ATOM3String('LookForItem', 20)
     lcobj2.append(cobj2)
-    self.obj49.roleActions.setValue(lcobj2)
+    self.obj49.hasActions.setValue(lcobj2)
 
     # ID
     self.obj49.ID.setValue('Role0005')
@@ -361,8 +361,8 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj50.isMetaRole.setValue(('isMetaRole', 0))
     self.obj50.isMetaRole.config = 0
 
-    # roleActions
-    self.obj50.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj50.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('Attack', 20)
     lcobj2.append(cobj2)
@@ -370,7 +370,7 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     lcobj2.append(cobj2)
     cobj2=ATOM3String('Retreat', 20)
     lcobj2.append(cobj2)
-    self.obj50.roleActions.setValue(lcobj2)
+    self.obj50.hasActions.setValue(lcobj2)
 
     # ID
     self.obj50.ID.setValue('Role0004')
@@ -404,8 +404,8 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj51.isMetaRole.setValue(('isMetaRole', 1))
     self.obj51.isMetaRole.config = 0
 
-    # roleActions
-    self.obj51.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj51.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('LookForQuest', 20)
     lcobj2.append(cobj2)
@@ -413,7 +413,7 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     lcobj2.append(cobj2)
     cobj2=ATOM3String('FinishQuest', 20)
     lcobj2.append(cobj2)
-    self.obj51.roleActions.setValue(lcobj2)
+    self.obj51.hasActions.setValue(lcobj2)
 
     # ID
     self.obj51.ID.setValue('Role0006')
@@ -447,12 +447,12 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj52.isMetaRole.setValue(('isMetaRole', 0))
     self.obj52.isMetaRole.config = 0
 
-    # roleActions
-    self.obj52.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj52.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('IdentifyHerb', 20)
     lcobj2.append(cobj2)
-    self.obj52.roleActions.setValue(lcobj2)
+    self.obj52.hasActions.setValue(lcobj2)
 
     # ID
     self.obj52.ID.setValue('Role000101')
@@ -486,14 +486,14 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj53.isMetaRole.setValue(('isMetaRole', 0))
     self.obj53.isMetaRole.config = 0
 
-    # roleActions
-    self.obj53.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj53.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('TrackMob', 20)
     lcobj2.append(cobj2)
     cobj2=ATOM3String('TanSkin', 20)
     lcobj2.append(cobj2)
-    self.obj53.roleActions.setValue(lcobj2)
+    self.obj53.hasActions.setValue(lcobj2)
 
     # ID
     self.obj53.ID.setValue('Role000102')
@@ -527,12 +527,12 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj54.isMetaRole.setValue(('isMetaRole', 0))
     self.obj54.isMetaRole.config = 0
 
-    # roleActions
-    self.obj54.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj54.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('EnhancePotion', 20)
     lcobj2.append(cobj2)
-    self.obj54.roleActions.setValue(lcobj2)
+    self.obj54.hasActions.setValue(lcobj2)
 
     # ID
     self.obj54.ID.setValue('Role000201')
@@ -566,8 +566,8 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj55.isMetaRole.setValue(('isMetaRole', 0))
     self.obj55.isMetaRole.config = 0
 
-    # roleActions
-    self.obj55.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj55.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3String('EnhanceWeapon', 20)
     lcobj2.append(cobj2)
@@ -575,7 +575,7 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     lcobj2.append(cobj2)
     cobj2=ATOM3String('RepairItem', 20)
     lcobj2.append(cobj2)
-    self.obj55.roleActions.setValue(lcobj2)
+    self.obj55.hasActions.setValue(lcobj2)
 
     # ID
     self.obj55.ID.setValue('Role000202')
@@ -609,10 +609,10 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj56.isMetaRole.setValue(('isMetaRole', 0))
     self.obj56.isMetaRole.config = 0
 
-    # roleActions
-    self.obj56.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj56.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
-    self.obj56.roleActions.setValue(lcobj2)
+    self.obj56.hasActions.setValue(lcobj2)
 
     # ID
     self.obj56.ID.setValue('RoleID000601')
@@ -646,10 +646,10 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj57.isMetaRole.setValue(('isMetaRole', 1))
     self.obj57.isMetaRole.config = 0
 
-    # roleActions
-    self.obj57.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj57.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
-    self.obj57.roleActions.setValue(lcobj2)
+    self.obj57.hasActions.setValue(lcobj2)
 
     # ID
     self.obj57.ID.setValue('Role00')
@@ -683,10 +683,10 @@ def TMWQDE_MDL(self, rootNode, LSMASOMMRootNode=None):
     self.obj58.isMetaRole.setValue(('isMetaRole', 0))
     self.obj58.isMetaRole.config = 0
 
-    # roleActions
-    self.obj58.roleActions.setActionFlags([ 1, 1, 1, 0])
+    # hasActions
+    self.obj58.hasActions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
-    self.obj58.roleActions.setValue(lcobj2)
+    self.obj58.hasActions.setValue(lcobj2)
 
     # ID
     self.obj58.ID.setValue('Role01')

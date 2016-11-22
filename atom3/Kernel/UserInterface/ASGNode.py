@@ -551,7 +551,7 @@ class ASGNode(HierarchicalASGNode):
      
       atrList = []
       for atr in self.realOrder:
-         print 'atr is', atr, type(atr)
+         # print 'atr is', atr, type(atr)
          atrList.append(self.getAttrValue(atr).getValue())
       return tuple(atrList)
 
@@ -636,16 +636,24 @@ class ASGNode(HierarchicalASGNode):
   def copyCoreAttributes(self):
       inConn = {}
       outConn = {}
-      for con in self.in_connections_:
-          try:
-            inConn[con.getClass()].append(con.objectNumber)
-          except Exception:
-            inConn[con.getClass()] = [con.objectNumber]
-      for con in self.out_connections_:
-          try:
-            outConn[con.getClass()].append(con.objectNumber)
-          except Exception:
-            outConn[con.getClass()] = [con.objectNumber]
+
+      try:
+        for con in self.in_connections_:
+            try:
+              inConn[con.getClass()].append(con.objectNumber)
+            except Exception:
+              inConn[con.getClass()] = [con.objectNumber]
+      except Exception:
+        inConn = {}
+      try:
+        for con in self.out_connections_:
+            try:
+              outConn[con.getClass()].append(con.objectNumber)
+            except Exception:
+              outConn[con.getClass()] = [con.objectNumber]
+      except Exception:
+        outConn = {}
+
       return [
           self.graphClass_,
           self.getClass(),

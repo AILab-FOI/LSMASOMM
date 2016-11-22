@@ -3,7 +3,7 @@ __LSMASOMM_META.py_____________________________________________________
 
 Automatically generated AToM3 Model File (Do not modify directly)
 Author: bogdan
-Modified: Tue Nov 15 19:43:15 2016
+Modified: Thu Nov 17 19:01:45 2016
 _______________________________________________________________________
 """
 from stickylink import *
@@ -797,7 +797,7 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
       self.obj43._setHierarchicalLink(False)
 
     # Action
-    self.obj43.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\nfrom CustomCode import *\nRoleInheritanceAllRoles(self)\nprintAllNodeNames(self)\nprintSpecificNodeClassNames(self, \'OrgUnit\')\nprintSpecificNodeClassNames(self, \'Role\')\n\n'))
+    self.obj43.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\nfrom CustomCode import *\n#RoleInheritanceAllRoles(self)\n#printAllNodeNames(self)\n#printSpecificNodeClassNames(self, \'OrgUnit\')\n#printSpecificNodeClassNames(self, \'Role\')\ngenerateNodeCode(self)\n'))
 
     # Drawing_Mode
     self.obj43.Drawing_Mode.setValue((' ', 0))

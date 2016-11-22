@@ -3,7 +3,7 @@ __Role.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Nov 16 13:34:54 2016
+Modified: Tue Nov 22 17:27:50 2016
 ______________________________________________________________
 """
 from ASGNode import *
@@ -11,8 +11,8 @@ from ASGNode import *
 from ATOM3Type import *
 
 from ATOM3String import *
-from ATOM3Boolean import *
 from ATOM3List import *
+from ATOM3Boolean import *
 from graph_Role import *
 class Role(ASGNode, ATOM3Type):
 
@@ -27,24 +27,18 @@ class Role(ASGNode, ATOM3Type):
         self._setHierarchicalNode(True)
       self.parent = parent
       self.ID=ATOM3String('RoleID', 20)
+      self.hasActions=ATOM3List([ 1, 1, 1, 0],ATOM3String)
+      lcobj0=[]
+      self.hasActions.setValue(lcobj0)
       self.isMetaRole=ATOM3Boolean()
       self.isMetaRole.setValue((None, 0))
       self.isMetaRole.config = 0
       self.name=ATOM3String('role name', 20)
-      self.roleActions=ATOM3List([ 1, 1, 1, 0],ATOM3String)
-      lcobj0=[]
-      cobj0=ATOM3String('RoleAction1', 20)
-      lcobj0.append(cobj0)
-      cobj0=ATOM3String('RoleAction2', 20)
-      lcobj0.append(cobj0)
-      cobj0=ATOM3String('RoleActionN', 20)
-      lcobj0.append(cobj0)
-      self.roleActions.setValue(lcobj0)
       self.generatedAttributes = {'ID': ('ATOM3String', ),
+                                  'hasActions': ('ATOM3List', 'ATOM3String'),
                                   'isMetaRole': ('ATOM3Boolean', ),
-                                  'name': ('ATOM3String', ),
-                                  'roleActions': ('ATOM3List', 'ATOM3String')      }
-      self.realOrder = ['ID','isMetaRole','name','roleActions']
+                                  'name': ('ATOM3String', )      }
+      self.realOrder = ['ID','hasActions','isMetaRole','name']
       self.directEditing = [1,1,1,1]
    def clone(self):
       cloneObject = Role( self.parent )

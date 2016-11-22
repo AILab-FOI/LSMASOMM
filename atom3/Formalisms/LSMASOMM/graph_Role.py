@@ -42,11 +42,11 @@ class graph_Role(graphEntity):
         self.gf23 = GraphicalForm(drawing, h, 'gf23', fontObject=font)
         self.graphForms.append(self.gf23)
 
-        if self.semanticObject: drawText = self.semanticObject.roleActions.toString()
-        else: drawText = "<roleActions>"
+        if self.semanticObject: drawText = self.semanticObject.hasActions.toString()
+        else: drawText = "<hasActions>"
         font = tkFont.Font( family='Helvetica', size=10, weight='normal', slant='roman', underline=0)
         h = drawing.create_text(self.translate([60.0, 18.0, 60.0, 10.0])[:2], tags = self.tag, font=font, fill = 'black', anchor = 'nw', text = drawText, width = '0', justify= 'left', stipple='' )
-        self.attr_display["roleActions"] = h
+        self.attr_display["hasActions"] = h
         self.gf24 = GraphicalForm(drawing, h, 'gf24', fontObject=font)
         self.graphForms.append(self.gf24)
 

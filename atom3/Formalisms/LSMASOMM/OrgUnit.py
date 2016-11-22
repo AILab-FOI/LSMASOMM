@@ -3,7 +3,7 @@ __OrgUnit.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Nov 16 13:34:54 2016
+Modified: Tue Nov 22 17:27:50 2016
 _________________________________________________________________
 """
 from ASGNode import *
@@ -31,19 +31,19 @@ class OrgUnit(ASGNode, ATOM3Type):
       self.Individual=ATOM3Boolean()
       self.Individual.setValue((None, 1))
       self.Individual.config = 0
-      self.UnitActions=ATOM3List([ 1, 1, 1, 0],ATOM3String)
+      self.UnitSize=ATOM3String('Individual', 20)
+      self.hasActions=ATOM3List([ 1, 1, 1, 0],ATOM3String)
       lcobj0=[]
       cobj0=ATOM3String('ChangeRole', 20)
       lcobj0.append(cobj0)
-      self.UnitActions.setValue(lcobj0)
-      self.UnitSize=ATOM3String('Individual', 20)
+      self.hasActions.setValue(lcobj0)
       self.name=ATOM3String('orgUnitName', 20)
       self.generatedAttributes = {'ID': ('ATOM3String', ),
                                   'Individual': ('ATOM3Boolean', ),
-                                  'UnitActions': ('ATOM3List', 'ATOM3String'),
                                   'UnitSize': ('ATOM3String', ),
+                                  'hasActions': ('ATOM3List', 'ATOM3String'),
                                   'name': ('ATOM3String', )      }
-      self.realOrder = ['ID','Individual','UnitActions','UnitSize','name']
+      self.realOrder = ['ID','Individual','UnitSize','hasActions','name']
       self.directEditing = [1,1,1,1,1]
    def clone(self):
       cloneObject = OrgUnit( self.parent )

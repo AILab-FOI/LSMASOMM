@@ -3,7 +3,7 @@ __ASG_LSMASOMM.py_____________________________________________________
 
 Automatically generated AToM3 ASGroot node (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Nov 16 13:34:54 2016
+Modified: Tue Nov 22 17:27:52 2016
 ______________________________________________________________________
 """
 from ASG import *

@@ -3,7 +3,7 @@ __answersToOrgUnit.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Nov 16 13:34:54 2016
+Modified: Tue Nov 22 17:27:50 2016
 __________________________________________________________________________
 """
 from ASGNode import *
