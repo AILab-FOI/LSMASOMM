@@ -232,6 +232,7 @@ def saveToFile(filename, content):
     file.write(str(content))
     file.close()
 
+
 def openDB():
     # open DB connection to file mydata.fs; check if conn is open already
     storage = ZODB.FileStorage.FileStorage('mydata.fs')
@@ -251,7 +252,7 @@ def generateNodeCode(self):
     filename = './Code/RoleBehaviours.py'
 
     if os.path.isfile(filename):
-        os.rename(filename, '{}.bckp'.format(filename))
+        os.rename(filename, '{}.old'.format(filename))
 
     file = open(filename, 'w')
     file.write("""import spade
@@ -264,10 +265,31 @@ class ChangeRole(spade.Behaviour.OneShotBehaviour):
 
     agents = []
 
+    # generate Director Role
+    DirectorAgent = GenerateAgentSPADE(
+        'DirectorAgent',
+        behavs=[
+            'ReceiveRequest',
+            'FindSuitableRole',
+            'AnswerRequest'],
+        KB=conn.root()['KB']['RoleProcessGoal'])
+    agents.append(DirectorAgent.generateCode())
+
+    # generate Teacher Agent
+    TeacherAgent = GenerateAgentSPADE(
+        'TeacherAgent',
+        behavs=[
+            'ReceiveRequest',
+            'FindSuitableBehaviours',
+            'AnswerRequest'],
+        KB=conn.root()['KB']['RoleActions'])
+    agents.append(TeacherAgent.generateCode())
+
     # generate code for OrgUnits
     for k, v in conn.root()['OrgUnit'].items():
         agents.append(v.generateCodeSPADE())
 
+    # generate code for Roles
     for k, v in conn.root()['Role'].items():
         v.generateCodeSPADE()
 
@@ -277,7 +299,7 @@ class ChangeRole(spade.Behaviour.OneShotBehaviour):
     filename = './Code/TheSystem.py'
 
     if os.path.isfile(filename):
-        os.rename(filename, '{}.bckp'.format(filename))
+        os.rename(filename, '{}.old'.format(filename))
 
     file = open(filename, 'w')
     file.write("import spade\nfrom RoleBehaviours import *\n")
@@ -288,13 +310,14 @@ class ChangeRole(spade.Behaviour.OneShotBehaviour):
 
     for x in range(0, len(agents)):
         file.write("""
-    agent{0} = {1}("Agent{0}@127.0.0.1", "secret")
+    agent{0} = {1}("{1}{0}@127.0.0.1", "secret")
     agent{0}.start()
 """.format(x, agents[x]))
 
     file.close()
 
 
+# dasdasdsadasd
 def SaveAll(self):
     """Traverse all the nodes of the graph, and save each to the DB."""
     db = openDB()
@@ -313,8 +336,45 @@ def SaveAll(self):
 
     transaction.commit()
 
+    KB = {}
+    rules = []
+
+    for process in Root.listNodes['Process']:
+        # if 'RoleProcessGoals' not in KB.keys():
+        #     KB['RoleProcessGoals'] = []
+
+        for prevLink in process.in_connections_:
+            for prevNode in prevLink.in_connections_:
+                for postLink in process.out_connections_:
+                    for postNode in postLink.out_connections_:
+                        rules.append((prevNode.name.getValue(), 'canReachGoal', postNode.name.getValue()))
+
+    KB['RoleProcessGoal'] = rules
+
+    print rules
+
+    transaction.commit()
+    rules = []
+
+    for role in Root.listNodes['Role']:
+        for b in role.getValue()[role.realOrder.index('hasActions')]:
+            rules.append((role.name.getValue(), 'hasAction', b.getValue()))
+
+    KB['RoleActions'] = rules
+    # conn.root()['KB'].update({"RoleActions":rules})
+    print rules
+
+    conn.root()['KB'] = KB
+
+    transaction.commit()
+
     db.close()
 
+
+    try:
+        pass
+    except Exception as e:
+        raise e
 
 def SaveNode(node, conn):
     """Save one particular Node [node] to the already open DB [conn]."""
