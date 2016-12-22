@@ -3,7 +3,7 @@ __OrgUnit.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Tue Nov 22 17:27:50 2016
+Modified: Fri Dec  9 17:57:43 2016
 _________________________________________________________________
 """
 from ASGNode import *
@@ -29,7 +29,7 @@ class OrgUnit(ASGNode, ATOM3Type):
       self.ID=ATOM3String('', 20)
       self.keyword_= self.ID
       self.Individual=ATOM3Boolean()
-      self.Individual.setValue((None, 1))
+      self.Individual.setValue(('1', 0))
       self.Individual.config = 0
       self.UnitSize=ATOM3String('Individual', 20)
       self.hasActions=ATOM3List([ 1, 1, 1, 0],ATOM3String)
@@ -44,7 +44,7 @@ class OrgUnit(ASGNode, ATOM3Type):
                                   'hasActions': ('ATOM3List', 'ATOM3String'),
                                   'name': ('ATOM3String', )      }
       self.realOrder = ['ID','Individual','UnitSize','hasActions','name']
-      self.directEditing = [1,1,1,1,1]
+      self.directEditing = [1,1,0,1,1]
    def clone(self):
       cloneObject = OrgUnit( self.parent )
       for atr in self.realOrder:

@@ -3,7 +3,7 @@ __LSMASOMM_MDL.py_____________________________________________________
 
 Automatically generated AToM3 Model File (Do not modify directly)
 Author: bogdan
-Modified: Tue Nov 22 17:27:43 2016
+Modified: Fri Dec  9 17:57:42 2016
 ______________________________________________________________________
 """
 from stickylink import *
@@ -118,12 +118,12 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     cobj2=ATOM3Attribute(self.types)
     cobj2.setValue(('Individual', 'Boolean', None, ('Key', 0), ('Direct Editing', 1)))
     cobj2.initialValue=ATOM3Boolean()
-    cobj2.initialValue.setValue((None, 1))
+    cobj2.initialValue.setValue(('1', 0))
     cobj2.initialValue.config = 1
     cobj2.isDerivedAttribute = False
     lcobj2.append(cobj2)
     cobj2=ATOM3Attribute(self.types)
-    cobj2.setValue(('UnitSize', 'String', None, ('Key', 0), ('Direct Editing', 1)))
+    cobj2.setValue(('UnitSize', 'String', None, ('Key', 0), ('Direct Editing', 0)))
     cobj2.initialValue=ATOM3String('Individual', 20)
     cobj2.isDerivedAttribute = False
     lcobj2.append(cobj2)
@@ -2281,10 +2281,10 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 
     # Connections for obj26 (graphObject_: Obj0) named OrgUnit
     self.drawConnections(
-(self.obj26,self.obj35,[1368.8125, 220.52459016393442, 1387.9955983980042, 65.8097262245276, 1387.9955984, 65.80972622499999],"true", 3),
+(self.obj26,self.obj35,[1368.8125, 221.22950819672127, 1387.9955983980042, 65.8097262245276, 1387.9955984, 65.809726225],"true", 3),
 (self.obj26,self.obj36,[1241.14453125, 515.5737704918033, 967.8422485527899, 481.40176688146084, 971.7601868, 527.680947659],"true", 3),
 (self.obj26,self.obj38,[1241.14453125, 515.5737704918033, 997.8287423035672, 492.3266545159663, 1106.462784, 821.548234957],"true", 3),
-(self.obj26,self.obj44,[1241.14453125, 323.8032786885246, 1130.0, 231.0, 1113.0, 79.0], 0, 3) )
+(self.obj26,self.obj44,[1280.0, 221.22950819672127, 1130.0, 231.0, 1113.0, 79.0], 0, 3) )
     # Connections for obj27 (graphObject_: Obj1) named Role
     self.drawConnections(
 (self.obj27,self.obj37,[660.0, 791.0, 541.1631302538499, 883.356649681594, 503.161248615, 952.001803815],"true", 3),
@@ -2319,7 +2319,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 (self.obj34,self.obj49,[280.93359375, 199.2295081967213, 135.466796875, 193.786885246],"true", 2) )
     # Connections for obj35 (graphObject_: Obj9) named isPartOfOrgUnit
     self.drawConnections(
-(self.obj35,self.obj26,[1387.9955984, 65.80972622499999, 1387.9955983980042, 65.8097262245276, 1368.8125, 220.52459016393442],"true", 3) )
+(self.obj35,self.obj26,[1387.9955984, 65.809726225, 1387.9955983980042, 65.8097262245276, 1368.8125, 221.22950819672127],"true", 3) )
     # Connections for obj36 (graphObject_: Obj11) named canHaveRole
     self.drawConnections(
 (self.obj36,self.obj27,[971.7601868, 527.680947659, 975.67812505129, 573.9601284363068, 832.921875, 620.5901639344263],"true", 3) )
@@ -2347,7 +2347,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 (self.obj43,self.obj34,[470.4921875, 411.163934426, 471.65625, 255.0], 0, 2) )
     # Connections for obj44 (graphObject_: Obj27) named answersToOrgUnit
     self.drawConnections(
-(self.obj44,self.obj26,[1113.0, 79.0, 1279.0, 145.0, 1280.0, 220.52459016393442], 0, 3) )
+(self.obj44,self.obj26,[1113.0, 79.0, 1279.0, 145.0, 1280.0, 221.22950819672127], 0, 3) )
     # Connections for obj45 (graphObject_: Obj29) named isPartOfRole
     self.drawConnections(
 (self.obj45,self.obj27,[675.0, 160.0, 660.0, 260.8360655737705],"true", 2) )

@@ -3,7 +3,7 @@ __isPartOfObjective.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Tue Nov 22 17:27:50 2016
+Modified: Fri Dec  9 17:57:43 2016
 ___________________________________________________________________________
 """
 from ASGNode import *

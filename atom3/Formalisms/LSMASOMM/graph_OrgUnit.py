@@ -14,7 +14,7 @@ class graph_OrgUnit(graphEntity):
 
     def __init__(self, x, y, semObject = None):
         self.semanticObject = semObject
-        self.sizeX, self.sizeY = 122, 50
+        self.sizeX, self.sizeY = 105, 51
         graphEntity.__init__(self, x, y)
         self.ChangesAtRunTime = 0
         self.constraintList = []
@@ -36,11 +36,27 @@ class graph_OrgUnit(graphEntity):
 
         if self.semanticObject: drawText = self.semanticObject.UnitSize.toString()
         else: drawText = "<UnitSize>"
-        font = tkFont.Font( family='Helvetica', size=12, weight='bold', slant='roman', underline=0)
-        h = drawing.create_text(self.translate([80.0, 40.0, 80.0, 23.0])[:2], tags = self.tag, font=font, fill = 'black', anchor = 'center', text = drawText, width = '0', justify= 'left', stipple='' )
+        font = tkFont.Font( family='Helvetica', size=8, weight='normal', slant='italic', underline=0)
+        h = drawing.create_text(self.translate([40.0, 44.0, 40.0, 16.0])[:2], tags = self.tag, font=font, fill = 'black', anchor = 'w', text = drawText, width = '0', justify= 'left', stipple='' )
         self.attr_display["UnitSize"] = h
         self.gf24 = GraphicalForm(drawing, h, 'gf24', fontObject=font)
         self.graphForms.append(self.gf24)
+
+        if self.semanticObject: drawText = self.semanticObject.ID.toString()
+        else: drawText = "<ID>"
+        font = tkFont.Font( family='Helvetica', size=8, weight='normal', slant='roman', underline=0)
+        h = drawing.create_text(self.translate([40.0, 9.0, 40.0, -103.0])[:2], tags = self.tag, font=font, fill = 'black', anchor = 'w', text = drawText, width = '0', justify= 'left', stipple='' )
+        self.attr_display["ID"] = h
+        self.gf33 = GraphicalForm(drawing, h, 'gf33', fontObject=font)
+        self.graphForms.append(self.gf33)
+
+        if self.semanticObject: drawText = self.semanticObject.name.toString()
+        else: drawText = "<name>"
+        font = tkFont.Font( family='Helvetica', size=12, weight='bold', slant='roman', underline=0)
+        h = drawing.create_text(self.translate([40.0, 25.0, 40.0, -149.0])[:2], tags = self.tag, font=font, fill = 'black', anchor = 'w', text = drawText, width = '0', justify= 'left', stipple='' )
+        self.attr_display["name"] = h
+        self.gf34 = GraphicalForm(drawing, h, 'gf34', fontObject=font)
+        self.graphForms.append(self.gf34)
 
 
 
