@@ -3,7 +3,7 @@ __LSMASOMM_META.py_____________________________________________________
 
 Automatically generated AToM3 Model File (Do not modify directly)
 Author: bogdan
-Modified: Thu Nov 17 19:01:45 2016
+Modified: Sat Jan 21 14:58:00 2017
 _______________________________________________________________________
 """
 from stickylink import *
@@ -165,7 +165,7 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
 
     self.obj24.graphClass_= graph_ButtonConfig
     if self.genGraphics:
-       new_obj = graph_ButtonConfig(10,10,self.obj24)
+       new_obj = graph_ButtonConfig(320.0,100.0,self.obj24)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
@@ -267,7 +267,7 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
 
     self.obj27.graphClass_= graph_ButtonConfig
     if self.genGraphics:
-       new_obj = graph_ButtonConfig(10,10,self.obj27)
+       new_obj = graph_ButtonConfig(440.0,100.0,self.obj27)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
@@ -369,7 +369,7 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
 
     self.obj30.graphClass_= graph_ButtonConfig
     if self.genGraphics:
-       new_obj = graph_ButtonConfig(10,10,self.obj30)
+       new_obj = graph_ButtonConfig(620.0,100.0,self.obj30)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
@@ -471,7 +471,7 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
 
     self.obj33.graphClass_= graph_ButtonConfig
     if self.genGraphics:
-       new_obj = graph_ButtonConfig(10,10,self.obj33)
+       new_obj = graph_ButtonConfig(620.0,20.0,self.obj33)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
@@ -573,7 +573,7 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
 
     self.obj36.graphClass_= graph_ButtonConfig
     if self.genGraphics:
-       new_obj = graph_ButtonConfig(10,10,self.obj36)
+       new_obj = graph_ButtonConfig(460.0,20.0,self.obj36)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
@@ -675,7 +675,7 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
 
     self.obj39.graphClass_= graph_ButtonConfig
     if self.genGraphics:
-       new_obj = graph_ButtonConfig(10,10,self.obj39)
+       new_obj = graph_ButtonConfig(200.0,20.0,self.obj39)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
@@ -777,7 +777,7 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
 
     self.obj42.graphClass_= graph_ButtonConfig
     if self.genGraphics:
-       new_obj = graph_ButtonConfig(10,10,self.obj42)
+       new_obj = graph_ButtonConfig(340.0,20.0,self.obj42)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
@@ -892,6 +892,40 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
     self.globalAndLocalPostcondition(self.obj45, rootNode)
     self.obj45.postAction( rootNode.CREATE )
 
+    self.obj46=ButtonConfig(self)
+    self.obj46.isGraphObjectVisual = True
+
+    if(hasattr(self.obj46, '_setHierarchicalLink')):
+      self.obj46._setHierarchicalLink(False)
+
+    # Action
+    self.obj46.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\nfrom CustomCode import *\n\nnewWindow = ClassSelectionWindow(self, wherex, wherey)\n\n'))
+
+    # Drawing_Mode
+    self.obj46.Drawing_Mode.setValue((' ', 0))
+    self.obj46.Drawing_Mode.config = 0
+
+    # Contents
+    self.obj46.Contents.Text.setValue('LoadConcept')
+    self.obj46.Contents.Image.setValue('')
+    self.obj46.Contents.Image.setNone()
+    self.obj46.Contents.lastSelected= "Text"
+
+    self.obj46.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       new_obj = graph_ButtonConfig(440.0,220.0,self.obj46)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj46.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj46)
+    self.globalAndLocalPostcondition(self.obj46, rootNode)
+    self.obj46.postAction( rootNode.CREATE )
+
     # Connections for obj21 (graphObject_: Obj0) of type ButtonConfig
     self.drawConnections(
  )
@@ -965,6 +999,9 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
     self.drawConnections(
  )
     # Connections for obj45 (graphObject_: Obj24) of type ButtonConfig
+    self.drawConnections(
+ )
+    # Connections for obj46 (graphObject_: Obj25) of type ButtonConfig
     self.drawConnections(
  )
 
