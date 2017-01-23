@@ -663,7 +663,7 @@ class ASGNode(HierarchicalASGNode):
           self.keyword_,
           self.editGGLabel,
           self.GGset2Any,
-          self.GGLabel,
+          self.GGLabel.getValue(),
           self.rootNode,
           self.objectNumber
       ]
