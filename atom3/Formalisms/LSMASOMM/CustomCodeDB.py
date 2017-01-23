@@ -7,18 +7,17 @@ class savedNode(persistent.Persistent):
 
     def __init__(self, coreAttrs):
         """Initialise the savedNode object with values for all the default attributes."""
-        for attr in coreAttrs:
-            self.graphClass_ = coreAttrs[0]
-            self.isClass = coreAttrs[1]
-            self.in_connections_ = coreAttrs[2]
-            self.out_connections_ = coreAttrs[3]
-            self.containerFrame = coreAttrs[4]
-            self.keyword_ = coreAttrs[5]
-            self.editGGLabel = coreAttrs[6]
-            self.GGset2Any = coreAttrs[7]
-            self.GGLabel = coreAttrs[8]
-            # self.rootNode = coreAttrs[9]
-            self.objectNumber = coreAttrs[10]
+        self.graphClass_ = coreAttrs[0]
+        self.isClass = coreAttrs[1]
+        self.in_connections_ = coreAttrs[2]
+        self.out_connections_ = coreAttrs[3]
+        self.containerFrame = coreAttrs[4]
+        self.keyword_ = coreAttrs[5]
+        self.editGGLabel = coreAttrs[6]
+        self.GGset2Any = coreAttrs[7]
+        self.GGLabel = coreAttrs[8]
+        # self.rootNode = coreAttrs[9]
+        self.objectNumber = coreAttrs[10]
 
     def saveAttributes(self, order, attrValues):
         """Save custom attributes of the Node."""
@@ -26,6 +25,10 @@ class savedNode(persistent.Persistent):
         self.attrs = attrValues
 
         print self.attrs
+
+    def getAttribute(self, attrName):
+        if hasattr(self, attrName):
+            return self.attrs[self.realOrder.index(attrName)]
 
     def generateCodeSPADE(self):
         """Generate code for the Node."""

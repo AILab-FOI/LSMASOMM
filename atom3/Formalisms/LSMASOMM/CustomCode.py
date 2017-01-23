@@ -11,6 +11,16 @@ import transaction
 import os
 # from os import mkdir, getcwd, isdir
 
+from ASG_LSMASOMM import *
+from graph_ASG_ERmetaMetaModel import *
+from Tkinter import *
+from ATOM3TypeInfo import *
+from ATOM3String import *
+from StatusBar import *
+from ATOM3TypeDialog import *
+
+from Role import *
+
 
 def setNodeID(self):
     ID = "{}{}".format(self.getClass(), self.objectNumber)
@@ -250,7 +260,6 @@ def generateNodeCode(self):
 
     # writing start of the role behaviour file
     filename = './Code/RoleBehaviours.py'
-
     if os.path.isfile(filename):
         os.rename(filename, '{}.old'.format(filename))
 
@@ -370,25 +379,248 @@ def SaveAll(self):
 
     db.close()
 
-
-    try:
-        pass
-    except Exception as e:
-        raise e
-
 def SaveNode(node, conn):
     """Save one particular Node [node] to the already open DB [conn]."""
     # create placeholder object of the node, and fill it with attribute values
     nodeNew = savedNode(node.copyCoreAttributes())
     nodeNew.saveAttributes(
         node.realOrder,
-        node.getValue()
+        node.getValue(),
     )
 
     conn.root()[node.getClass()].update(
-        {nodeNew.objectNumber:nodeNew})
+        {nodeNew.objectNumber: nodeNew})
 
-    # print conn.root()[node.getClass()][nodeNew.objectNumber]
+#
+#
+# GRAPHICS / LOADING CONCEPTS
+#
+#
 
-    # if hasattr(node, 'name'):
-    #     print "Node {} saved.".format(node.name.getValue())
+
+class ClassSelectionWindow:
+    """docstring for ClassSelectionWindow"""
+    def __init__(self, parent, wherex, wherey):
+        self.wherex = wherex
+        self.wherey = wherey
+
+        db = openDB()
+        self.conn = db.open()
+        self.nodeTypeList = self.conn.root().keys()
+        db.close()
+
+        self.parent = parent
+        # print self.parent
+
+        self.win = Toplevel()
+        self.win.geometry("200x320")
+        self.win.title('Select Concept Type')
+
+        # Lable
+        self.winlabel = Label(
+            self.win,
+            text='Select concept type:',
+            relief=RIDGE,
+            height=1)
+        self.winlabel.pack(
+            side=TOP,
+            fill=X,
+            expand=NO)
+
+        # List of Concepts
+        self.concList = Listbox(
+            self.win)
+
+        for x in sorted(self.nodeTypeList):
+            self.concList.insert(END, x)
+
+        self.concList.pack(
+            side=TOP,
+            fill=BOTH,
+            expand=YES)
+
+        self.concList.activate(0)
+
+        # Button
+        self.btn = Button(
+            self.win,
+            command=self.PrintSelection,
+            text="Continue",
+            background="green",
+            height=1)
+
+        self.btn.pack(
+            side=TOP,
+            fill=X,
+            expand=NO)
+
+    def PrintSelection(self):
+        selection = None
+        try:
+            selection = self.concList.curselection()
+        except Exception as e:
+            tkMessageBox.showinfo(
+                "Error",
+                "No concept selected!\n{}".format(e))
+
+        if selection is not None:
+            # print self.wherex, self.wherey
+            selectConcept = ConceptSelectWindow(self.concList.get(selection), self.parent, self.wherex, self.wherey)
+
+
+class ConceptSelectWindow:
+    """docstring for ConceptSelectWindow"""
+    def __init__(self, concType, parent, wherex=100, wherey=100):
+        self.concType = concType
+        db = openDB()
+
+        self.wherex = wherex
+        self.wherey = wherey
+        self.parent = parent
+        # print self.wherex, self.wherey, self.parent
+
+        self.conn = db.open()
+        self.concepts = self.conn.root()[concType].items()
+
+        self.win = Toplevel()
+        self.win.geometry("200x320")
+        self.win.title(
+            'Select {} Concept'.format(concType))
+
+        # Lable
+        self.winlabel = Label(
+            self.win,
+            text='Select {} concept:'.format(concType),
+            relief=RIDGE,
+            height=1)
+        self.winlabel.pack(
+            side=TOP,
+            fill=X,
+            expand=NO)
+
+        # List of Concepts
+        self.concList = Listbox(
+            self.win)
+
+        for k, v in sorted(self.concepts):
+            self.concList.insert(END, v.attrs[v.realOrder.index('name')])
+
+        db.close()
+
+        self.concList.pack(
+            side=TOP,
+            fill=BOTH,
+            expand=YES)
+
+        self.concList.activate(0)
+
+        # Button
+        self.btn = Button(
+            self.win,
+            command=self.CreateElement,
+            text="Select",
+            background="green",
+            height=1)
+
+        self.btn.pack(
+            side=TOP,
+            fill=X,
+            expand=NO)
+
+        # print concType
+
+    def CreateElement(self):
+        db = openDB()
+
+        root = self.parent
+
+        # dynamic creation function calling, depending on the class
+        funcCalls = {
+            'Role': root.createNewRole,
+            'OrgUnit': root.createNewOrgUnit
+        }
+
+        newElement = funcCalls[self.concType](root, 100, 100)
+
+        print "####{}\n{}\n{}\n{}\n{}".format(
+            newElement.__class__.__name__,
+            newElement,
+            newElement.graphClass_,
+            newElement.objectNumber,
+            newElement.getValue())
+
+        # newRole = Role(root)
+        # newRole.doPrint()
+
+        # retrieve the selected concept
+        selectConcept = self.concList.get(self.concList.curselection())
+
+        # identify the selected concept in the database
+        for k, v in sorted(self.concepts):
+            if v.attrs[v.realOrder.index('name')] == selectConcept:
+                savedElement = v
+                nr = k
+
+        try:
+            newElement.keyword_.setValue(
+                savedElement.keyword_.getValue())
+        except:
+            print "No keyword_ set."
+
+        print "###{}\n{}\n{}\n{}\n{}".format(
+            savedElement.__class__.__name__,
+            savedElement,
+            savedElement.keyword_,
+            savedElement.graphClass_,
+            savedElement.objectNumber
+            )
+
+        newElement.keyword_ = savedElement.keyword_
+        # newElement.editGGLabel = savedElement.editGGLabel
+        # newElement.GGset2Any = savedElement.GGset2Any
+        newElement.GGLabel.setValue(savedElement.GGLabel)
+        newElement.objectNumber = savedElement.objectNumber
+
+        # copy attribute values to the new node from the saved node
+        newElement.setValue(savedElement.attrs)
+
+        for attr in newElement.realOrder:
+            if newElement.getAttrValue(attr).__class__.__name__ == 'ATOM3List':
+                newElement.graphObject_.ModifyAttribute(attr, newElement.getAttrValue(attr).toString())
+            else:
+                newElement.graphObject_.ModifyAttribute(attr, newElement.getAttrValue(attr).getValue())
+
+        # newElement.graphObject_.ModifyAttribute('name', newElement.name.getValue())
+        # newElement.graphObject_.ModifyAttribute('ID', newElement.ID.getValue())
+        # newElement.graphObject_.ModifyAttribute('UnitSize', newElement.UnitSize.getValue())
+        # newElement.graphObject_.ModifyAttribute('hasActions', newElement.hasActions.toString())
+
+        print "##\n{}\n{}".format(
+            newElement.copyCoreAttributes(),
+            newElement.getValue())
+
+        # atom3i = self.parent
+        # Root = atom3i.ASGroot.getASGbyName('LSMASOMM_META')
+        # # self.parent.ASGroot.getASGbyName('LSMASOMM_META')
+
+        # new_semantic_obj = Role(Root)
+
+
+        # for k, v in sorted(self.concepts):
+        #     if v.attrs[v.realOrder.index('name')] == selectConcept:
+        #         nr = k
+
+        db.close()
+
+        # new_obj = graph_Role(self.wherex, self.wherey, new_semantic_obj)
+        # new_obj.DrawObject(Root.UMLmodel, Root.editGGLabel)
+        # Root.UMLmodel.addtag_withtag("Role", new_obj.tag)
+        # new_semantic_obj.graphObject_ = new_obj
+        # Root.ASGroot.addNode(new_semantic_obj)
+
+        # Root.mode = Root.IDLEMODE
+        # if Root.editGGLabel:
+        #     Root.statusbar.event(StatusBar.TRANSFORMATION, StatusBar.CREATE)
+        # else:
+        #     Root.statusbar.event(StatusBar.MODEL, StatusBar.CREATE)
+        # return new_semantic_obj
