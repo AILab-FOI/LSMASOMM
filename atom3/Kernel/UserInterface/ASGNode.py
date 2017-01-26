@@ -14,16 +14,22 @@
 #   - 16 July 2002: Added a list called realOrder which stores the string names of the attributes in the order they've
 #                   been created.
 #   - 06 August 2002: Added method isSubType.
+#   - 26 January 2017: Modified method removeNode, added DB connection to it
 # _____________________________________________________________________________________________________________________
 from types import *
 import string
 from ATOM3Integer import *
 from ATOM3Boolean import *
-from AttrCalc     import *
+from AttrCalc import *
 from ATOM3Type import isSubTypeOfByDenis
 
-from ModelSpecificCode        import isConnectionLink
+from ModelSpecificCode import isConnectionLink
 from HierarchicalASGNode import HierarchicalASGNode
+
+import ZODB
+import ZODB.FileStorage
+import transaction
+import os
 
 
 class ASGNode(HierarchicalASGNode):
@@ -333,28 +339,50 @@ class ASGNode(HierarchicalASGNode):
 
   def removeNode (self ):
       "removes specified node (removes itself from neighbors connections)"
+      # update DB if it exists by Bogdan, 26 Jan 2017
+      db = None
+      # if DB already exists (i.e. was saved before), open it
+      if os.path.isfile('{}.fs'.format(self.rootNode.name.getValue())):
+        storage = ZODB.FileStorage.FileStorage('{}.fs'.format(self.rootNode.name.getValue()))
+        db = ZODB.DB(storage)
+        conn = db.open()
+
       # walk through input connections and remove 'node' from each element
       for element in self.in_connections_:
-         #todo: Existance check added by Denis, Aug 30 2005, was having problems in some GG rule
-         if(self in element.out_connections_):
-           element.out_connections_.remove(self)
-         # now try and see if this object is in the other's named connector... (Added Oct 15, 2002)
-         self.__removeFromNeighbourNamedConnectors(element)
+        #todo: Existance check added by Denis, Aug 30 2005, was having problems in some GG rule
+        if(self in element.out_connections_):
+          element.out_connections_.remove(self)
+          if db:
+            # B: remove the deleted node from element DBnode out_connections_
+            print 'Out connections of DBnode: {}'.format(conn.root()[element.__class__.__name__][element.objectNumber].out_connections_)
+            conn.root()[element.__class__.__name__][element.objectNumber].out_connections_[self.__class__.__name__].remove(self.objectNumber)
+            transaction.commit()
+            print 'Out connections of DBnode: {}'.format(conn.root()[element.__class__.__name__][element.objectNumber].out_connections_)
+        # now try and see if this object is in the other's named connector... (Added Oct 15, 2002)
+        self.__removeFromNeighbourNamedConnectors(element)
       # walk through output connections and remove 'node' from each element
       for element in self.out_connections_:
-         #todo: Existance check added by Denis, Aug 30 2005, was having problems in some GG rule
-         if(self in element.in_connections_):
-           element.in_connections_.remove(self)
-         # now try and see if this object is in the other's named connector... (Added Oct 15, 2002)
-         self.__removeFromNeighbourNamedConnectors(element)
+        #todo: Existance check added by Denis, Aug 30 2005, was having problems in some GG rule
+        if(self in element.in_connections_):
+          element.in_connections_.remove(self)
+          if db:
+            # B: remove the deleted node from element DBnode in_connections_
+            print 'In connections of DBnode: {}'.format(conn.root()[element.__class__.__name__][element.objectNumber].in_connections_)
+            conn.root()[element.__class__.__name__][element.objectNumber].in_connections_[self.__class__.__name__].remove(self.objectNumber)
+            transaction.commit()
+            print 'In connections of DBnode: {}'.format(conn.root()[element.__class__.__name__][element.objectNumber].in_connections_)
+        # now try and see if this object is in the other's named connector... (Added Oct 15, 2002)
+        self.__removeFromNeighbourNamedConnectors(element)
+
+        if db:
+          db.close()
          
       try:
         self.rootNode.listNodes[self.getClass()].remove(self)		# now remove itself from the list of nodes of the graph
       except:
         print "WARNING in ASGNode.removeNode():", self, "already removed from", self.rootNode.listNodes[self.getClass()]
 
-           
-      
+
   def __removeFromNeighbourNamedConnectors(self, element):
       """
          Method added: Oct 15 2002.
