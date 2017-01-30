@@ -8,6 +8,7 @@ from CustomCodeDB import *
 import ZODB
 import ZODB.FileStorage
 import transaction
+from persistent.mapping import PersistentMapping
 import os
 # from os import mkdir, getcwd, isdir
 
@@ -242,17 +243,144 @@ def saveToFile(filename, content):
     file.write(str(content))
     file.close()
 
+#
+#
+# SAVING CONCEPTS
+#
+#
 
-def openDB():
+
+def openDB(DBname='LSMASOMM'):
     # open DB connection to file mydata.fs; check if conn is open already
-    storage = ZODB.FileStorage.FileStorage('mydata.fs')
+    storage = ZODB.FileStorage.FileStorage('{}.fs'.format(DBname))
     db = ZODB.DB(storage)
     return db
 
 
+# saving process - creating DB and saving individual nodes
+def SaveAll(self):
+    """Traverse all the nodes of the graph, and save each to the DB."""
+    Root = self.ASGroot.getASGbyName('LSMASOMM_META')
+
+    db = openDB(Root.name.getValue())
+    conn = db.open()
+
+    # go through all the node types
+    for nodeType in Root.listNodes.keys():
+        try:
+            dbRoot = conn.root()[nodeType]
+        except Exception as e:
+            print e
+            # conn.root()[nodeType] = {}
+            conn.root()[nodeType] = PersistentMapping()
+            dbRoot = conn.root()[nodeType]
+
+        # go through all the nodes of a specific type
+        for node in Root.listNodes[nodeType]:
+            if node.objectNumber in dbRoot.keys():
+                # update already existing node
+                SaveNode(node, conn, True)
+            else:
+                # save node to DB
+                SaveNode(node, conn)
+
+    transaction.commit()
+
+    KB = {}
+    rules = []
+
+    for process in Root.listNodes['Process']:
+        # if 'RoleProcessGoals' not in KB.keys():
+        #     KB['RoleProcessGoals'] = []
+
+        for prevLink in process.in_connections_:
+            for prevNode in prevLink.in_connections_:
+                for postLink in process.out_connections_:
+                    for postNode in postLink.out_connections_:
+                        rules.append((prevNode.name.getValue(), 'canReachGoal', postNode.name.getValue()))
+
+    KB['RoleProcessGoal'] = rules
+
+    print rules
+
+    transaction.commit()
+    rules = []
+
+    for role in Root.listNodes['Role']:
+        for b in role.getValue()[role.realOrder.index('hasActions')]:
+            rules.append((role.name.getValue(), 'hasAction', b.getValue()))
+
+    KB['RoleActions'] = rules
+    # conn.root()['KB'].update({"RoleActions":rules})
+    print rules
+
+    conn.root()['KB'] = KB
+
+    transaction.commit()
+
+    db.close()
+
+
+def SaveNode(node, conn, update=False):
+    """Save one particular Node [node] to the already open DB [conn]."""
+    if update:
+        DBnode = conn.root()[node.__class__.__name__][node.objectNumber]
+        DBnode.updateAttributes(
+            node.getValue(),
+            node.copyCoreAttributes()[2:4])
+
+    else:
+        # create placeholder object of the node,
+        # and fill it with attribute values
+        DBnode = savedNode(node.copyCoreAttributes())
+        DBnode.saveAttributes(
+            node.realOrder,
+            node.getValue())
+
+        conn.root()[node.getClass()].update(
+            {DBnode.objectNumber: DBnode})
+
+
+def addConnectionToDB(self):
+    if os.path.isfile('{}.fs'.format(self.name.getValue())):
+
+        db = openDB(self.name.getValue())
+        conn = db.open()
+
+        for nodeType in self.listNodes.keys():
+            for node in self.listNodes[nodeType]:
+                if node.objectNumber in conn.root()[nodeType].keys():
+                    if len(node.in_connections_):
+                        print "{} in nodes: {}".format(
+                            node.objectNumber,
+                            [x.objectNumber for x in node.in_connections_])
+                        inNode = node.in_connections_[-1]
+                        DBnode = conn.root()[nodeType][node.objectNumber]
+                        if inNode.objectNumber not in DBnode.in_connections_[inNode.__class__.__name__]:
+                            SaveNode(node, conn, True)
+                            DBnode.in_connections_._p_changed = 1
+                            transaction.commit()
+                    if len(node.out_connections_):
+                        print "{} in nodes: {}".format(
+                            node.objectNumber,
+                            [x.objectNumber for x in node.out_connections_])
+                        outNode = node.out_connections_[-1]
+                        DBnode = conn.root()[nodeType][node.objectNumber]
+                        if outNode.objectNumber not in DBnode.out_connections_[outNode.__class__.__name__]:
+                            SaveNode(node, conn, True)
+                            DBnode.out_connections_._p_changed = 1
+                            transaction.commit()
+                else:
+                    SaveNode(node, conn)
+                    transaction.commit()
+
+        print conn.root()['canStartProcess']
+        db.close()
+
+
 def generateNodeCode(self):
-    # print os.getcwd()
-    db = openDB()
+    Root = parent.ASGroot.getASGbyName('LSMASOMM_META')
+    db = openDB(Root.name.getValue())
     conn = db.open()
 
     if not os.path.isdir("./Code"):
@@ -325,86 +453,19 @@ class ChangeRole(spade.Behaviour.OneShotBehaviour):
 
     file.close()
 
-
-# dasdasdsadasd
-def SaveAll(self):
-    """Traverse all the nodes of the graph, and save each to the DB."""
-    db = openDB()
-    conn = db.open()
-
-    Root = self.ASGroot.getASGbyName('LSMASOMM_META')
-    nodeTypeList = Root.listNodes.keys()
-
-    # go through all the nodes
-    for nodeType in nodeTypeList:
-        conn.root()[nodeType] = {}
-        nodeList = Root.listNodes[nodeType]
-        for node in nodeList:
-            # save node to DB
-            SaveNode(node, conn)
-
-    transaction.commit()
-
-    KB = {}
-    rules = []
-
-    for process in Root.listNodes['Process']:
-        # if 'RoleProcessGoals' not in KB.keys():
-        #     KB['RoleProcessGoals'] = []
-
-        for prevLink in process.in_connections_:
-            for prevNode in prevLink.in_connections_:
-                for postLink in process.out_connections_:
-                    for postNode in postLink.out_connections_:
-                        rules.append((prevNode.name.getValue(), 'canReachGoal', postNode.name.getValue()))
-
-    KB['RoleProcessGoal'] = rules
-
-    print rules
-
-    transaction.commit()
-    rules = []
-
-    for role in Root.listNodes['Role']:
-        for b in role.getValue()[role.realOrder.index('hasActions')]:
-            rules.append((role.name.getValue(), 'hasAction', b.getValue()))
-
-    KB['RoleActions'] = rules
-    # conn.root()['KB'].update({"RoleActions":rules})
-    print rules
-
-    conn.root()['KB'] = KB
-
-    transaction.commit()
-
-    db.close()
-
-def SaveNode(node, conn):
-    """Save one particular Node [node] to the already open DB [conn]."""
-    # create placeholder object of the node, and fill it with attribute values
-    nodeNew = savedNode(node.copyCoreAttributes())
-    nodeNew.saveAttributes(
-        node.realOrder,
-        node.getValue(),
-    )
-
-    conn.root()[node.getClass()].update(
-        {nodeNew.objectNumber: nodeNew})
-
 #
 #
-# GRAPHICS / LOADING CONCEPTS
+# LOADING CONCEPTS
 #
 #
 
 
 class ClassSelectionWindow:
     """docstring for ClassSelectionWindow"""
-    def __init__(self, parent, wherex, wherey):
-        self.wherex = wherex
-        self.wherey = wherey
+    def __init__(self, parent):
+        Root = parent.ASGroot.getASGbyName('LSMASOMM_META')
+        db = openDB(Root.name.getValue())
 
-        db = openDB()
         self.conn = db.open()
         self.nodeTypeList = self.conn.root().keys()
         db.close()
@@ -465,19 +526,17 @@ class ClassSelectionWindow:
 
         if selection is not None:
             # print self.wherex, self.wherey
-            selectConcept = ConceptSelectWindow(self.concList.get(selection), self.parent, self.wherex, self.wherey)
+            selectConcept = ConceptSelectWindow(self.concList.get(selection), self.parent)
 
 
 class ConceptSelectWindow:
     """docstring for ConceptSelectWindow"""
-    def __init__(self, concType, parent, wherex=100, wherey=100):
+    def __init__(self, concType, parent):
         self.concType = concType
-        db = openDB()
+        self.Root = parent.ASGroot.getASGbyName('LSMASOMM_META')
+        db = openDB(self.Root.name.getValue())
 
-        self.wherex = wherex
-        self.wherey = wherey
         self.parent = parent
-        # print self.wherex, self.wherey, self.parent
 
         self.conn = db.open()
         self.concepts = self.conn.root()[concType].items()
@@ -518,7 +577,7 @@ class ConceptSelectWindow:
         self.btn = Button(
             self.win,
             command=self.CreateElement,
-            text="Select",
+            text="Load",
             background="green",
             height=1)
 
@@ -527,30 +586,29 @@ class ConceptSelectWindow:
             fill=X,
             expand=NO)
 
-        # print concType
-
     def CreateElement(self):
-        db = openDB()
+        db = openDB(self.Root.name.getValue())
 
         root = self.parent
 
         # dynamic creation function calling, depending on the class
         funcCalls = {
             'Role': root.createNewRole,
-            'OrgUnit': root.createNewOrgUnit
+            'OrgUnit': root.createNewOrgUnit,
+            'Objective': root.createNewObjective,
+            'Process': root.createNewProcess,
+            'IndividualKnArt': root.createNewIndividualKnArt,
+            'OrganisationalKnArt': root.createNewOrganisationalKnArt
         }
 
         newElement = funcCalls[self.concType](root, 100, 100)
 
-        print "####{}\n{}\n{}\n{}\n{}".format(
+        print "\n####{}\n{}\n{}\n{}\n{}".format(
             newElement.__class__.__name__,
             newElement,
             newElement.graphClass_,
             newElement.objectNumber,
             newElement.getValue())
-
-        # newRole = Role(root)
-        # newRole.doPrint()
 
         # retrieve the selected concept
         selectConcept = self.concList.get(self.concList.curselection())
@@ -580,6 +638,8 @@ class ConceptSelectWindow:
         # newElement.GGset2Any = savedElement.GGset2Any
         newElement.GGLabel.setValue(savedElement.GGLabel)
         newElement.objectNumber = savedElement.objectNumber
+        # newElement.in_connections_ = savedElement.in_connections_
+        # newElement.out_connections_ = savedElement.out_connections_
 
         # copy attribute values to the new node from the saved node
         newElement.setValue(savedElement.attrs)
@@ -590,37 +650,10 @@ class ConceptSelectWindow:
             else:
                 newElement.graphObject_.ModifyAttribute(attr, newElement.getAttrValue(attr).getValue())
 
-        # newElement.graphObject_.ModifyAttribute('name', newElement.name.getValue())
-        # newElement.graphObject_.ModifyAttribute('ID', newElement.ID.getValue())
-        # newElement.graphObject_.ModifyAttribute('UnitSize', newElement.UnitSize.getValue())
-        # newElement.graphObject_.ModifyAttribute('hasActions', newElement.hasActions.toString())
-
-        print "##\n{}\n{}".format(
+        print "##\n{}\n{}\n{}\n{}".format(
             newElement.copyCoreAttributes(),
-            newElement.getValue())
-
-        # atom3i = self.parent
-        # Root = atom3i.ASGroot.getASGbyName('LSMASOMM_META')
-        # # self.parent.ASGroot.getASGbyName('LSMASOMM_META')
-
-        # new_semantic_obj = Role(Root)
-
-
-        # for k, v in sorted(self.concepts):
-        #     if v.attrs[v.realOrder.index('name')] == selectConcept:
-        #         nr = k
+            newElement.getValue(),
+            newElement.in_connections_,
+            newElement.out_connections_)
 
         db.close()
-
-        # new_obj = graph_Role(self.wherex, self.wherey, new_semantic_obj)
-        # new_obj.DrawObject(Root.UMLmodel, Root.editGGLabel)
-        # Root.UMLmodel.addtag_withtag("Role", new_obj.tag)
-        # new_semantic_obj.graphObject_ = new_obj
-        # Root.ASGroot.addNode(new_semantic_obj)
-
-        # Root.mode = Root.IDLEMODE
-        # if Root.editGGLabel:
-        #     Root.statusbar.event(StatusBar.TRANSFORMATION, StatusBar.CREATE)
-        # else:
-        #     Root.statusbar.event(StatusBar.MODEL, StatusBar.CREATE)
-        # return new_semantic_obj

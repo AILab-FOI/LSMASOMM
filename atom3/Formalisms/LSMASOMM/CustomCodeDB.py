@@ -26,6 +26,51 @@ class savedNode(persistent.Persistent):
 
         print self.attrs
 
+    def updateAttributes(self, attrValues, connections):
+        """Update custom attributes of the Node."""
+        self.attrs = attrValues
+
+        modelInCs = connections[0]
+        modelOutCs = connections[1]
+
+        for nodeType in modelInCs.keys():
+            newConn = [
+                x for x in modelInCs[nodeType]
+                if x not in self.in_connections_[nodeType]]
+            if len(newConn):
+                self.in_connections_[nodeType].append(newConn[0])
+                print '{} added to {}'.format(newConn, self.attrs[self.realOrder.index('name')])
+
+        for nodeType in modelOutCs.keys():
+            newConn = [
+                x for x in modelOutCs[nodeType]
+                if x not in self.out_connections_[nodeType]]
+            if len(newConn):
+                self.out_connections_[nodeType].append(newConn[0])
+                print '{} added to {}'.format(newConn, self.attrs[self.realOrder.index('name')])
+
+        # if len(modelInCs) == len(self.in_connections_) and len(modelOutCs) == len(self.out_connections_):
+        #     return
+
+        # # if the model has more connections than DB node
+        # # add the missing connection to DB node
+        # # since it was added only now, it is [-1]
+        # if len(modelInCs) > self.in_connections_:
+        #     self.in_connections_.append(modelInCs[-1])
+        # elif len(modelOutCs) > self.out_connections_:
+        #     self.out_connections_.append(modelOutCs[-1])
+
+        # # if the model has less connections than DB node
+        # # remove the extra connection from DB node
+        # elif len(modelInCs) < self.in_connections_:
+        #     self.in_connections_.remove(
+        #         [x for x in self.in_connections_ if x not in modelInCs][0])
+        # elif len(modelOutCs) < self.out_connections_:
+        #     self.out_connections_.remove(
+        #         [x for x in self.out_connections_ if x not in modelOutCs][0])
+
+        print self.attrs
+
     def getAttribute(self, attrName):
         if hasattr(self, attrName):
             return self.attrs[self.realOrder.index(attrName)]
