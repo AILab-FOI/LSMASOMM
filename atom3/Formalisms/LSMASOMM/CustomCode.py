@@ -252,7 +252,7 @@ def saveToFile(filename, content):
 
 def openDB(DBname='LSMASOMM'):
     # open DB connection to file mydata.fs; check if conn is open already
-    storage = ZODB.FileStorage.FileStorage('{}.fs'.format(DBname))
+    storage = ZODB.FileStorage.FileStorage("./DB/{}.fs".format(DBname))
     db = ZODB.DB(storage)
     return db
 
