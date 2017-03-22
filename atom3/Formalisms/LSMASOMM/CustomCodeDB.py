@@ -30,6 +30,8 @@ class savedNode(persistent.Persistent):
         """Update custom attributes of the Node."""
         self.attrs = attrValues
 
+        print connections
+
         modelInCs = connections[0]
         modelOutCs = connections[1]
 
@@ -39,7 +41,7 @@ class savedNode(persistent.Persistent):
                 if x not in self.in_connections_[nodeType]]
             if len(newConn):
                 self.in_connections_[nodeType].append(newConn[0])
-                print '{} added to {}'.format(newConn, self.attrs[self.realOrder.index('name')])
+                # print '{} added to {}'.format(newConn, self.attrs[self.realOrder.index('name')])
 
         for nodeType in modelOutCs.keys():
             newConn = [
@@ -47,7 +49,7 @@ class savedNode(persistent.Persistent):
                 if x not in self.out_connections_[nodeType]]
             if len(newConn):
                 self.out_connections_[nodeType].append(newConn[0])
-                print '{} added to {}'.format(newConn, self.attrs[self.realOrder.index('name')])
+                # print '{} added to {}'.format(newConn, self.attrs[self.realOrder.index('name')])
 
         # if len(modelInCs) == len(self.in_connections_) and len(modelOutCs) == len(self.out_connections_):
         #     return
@@ -108,7 +110,7 @@ class {0}(spade.Agent.Agent):
                 self.objectNumber,
                 self.attrs[self.realOrder.index('name')])
 
-            file = open("./Code/{}.txt".format(nodeName), 'w')
+            file = open("./Code/{}.py".format(nodeName), 'w')
 
             # nodeName = "{}{}".format(
             #     self.isClass,
@@ -201,7 +203,7 @@ class {0}(spade.Agent.Agent):
                 code.append("""
         self.addBelieve('{0[1]}({0[0]},{0[2]})')""".format(x))
 
-        filename = "./Code/{}.txt".format(self.name)
+        filename = "./Code/{}.py".format(self.name)
 
         if os.path.isfile(filename):
             os.rename(filename, '{}.old'.format(filename))
