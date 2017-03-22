@@ -32,11 +32,12 @@ import transaction
 import os
 from persistent.mapping import PersistentMapping
 # from CustomCodeDB import *
+import time
 
 
 class ASGNode(HierarchicalASGNode):
   # static variable to count the number of objects created so far
-  numObjects = 0
+  # numObjects = int(time.time())
   # Some useful static constants
   EDIT       = 0
   SAVE       = 1
@@ -55,35 +56,34 @@ class ASGNode(HierarchicalASGNode):
   INMODEL    = 0		# This means that the node is not being edited in a Graph Grammar
 
   def __init__(self):
-     self.processed    = 0 				# flag if we are using the visitor pattern...
-     self.objectNumber = ASGNode.numObjects		# get a unique object number
-     ASGNode.numObjects= ASGNode.numObjects+1		# increase the total number of object of this class
+    self.processed    = 0         # flag if we are using the visitor pattern...
+    self.objectNumber = int(str(int(time.time()*100000))[3:])    # get a unique object number
+    print self.objectNumber
 
-     self.graphClass_    = None				# <graphClass_> class of the graphical object, may be None
-     self.graphObject_   = None				# <graphObject_> graphical object, may be None
-     
-     self.in_connections_  = []				# incoming connections, may be empty
-     self.out_connections_ = []				# outgoing connections, may be empty
-     self.keyword_       = None       # Pointer to the attribute that is the keyword...
-     self.containerFrame = None				# Frame that will be used to edit the class
+    self.graphClass_    = None        # <graphClass_> class of the graphical object, may be None
+    self.graphObject_   = None        # <graphObject_> graphical object, may be None
 
-     self.generatedAttributes = {}			# dicitionary that will contain all the generated attributes
-     self.realOrder = []                                # list with the real order in which the attributes have been specified (changed 16 July 2002)
-     self.directEditing = []                            # list with the directEditing flag...
+    self.in_connections_  = []        # incoming connections, may be empty
+    self.out_connections_ = []        # outgoing connections, may be empty
+    self.keyword_       = None       # Pointer to the attribute that is the keyword...
+    self.containerFrame = None        # Frame that will be used to edit the class
 
-     self.GGLabel  = ATOM3Integer()                     # Label for Graph Grammar stuff (positive integer)
-     self.GGLabel.setValue(-1)				# initialize it to invalid value
+    self.generatedAttributes = {}     # dicitionary that will contain all the generated attributes
+    self.realOrder = []                                # list with the real order in which the attributes have been specified (changed 16 July 2002)
+    self.directEditing = []                            # list with the directEditing flag...
 
-     self.GGset2Any= {}					# Dictionary that will contain an ATOM3Boolean object for each widget. They will indicate if they must be set to None
-     self.editGGLabel = 0				# Flag that indicates if the Graph Grammar Label must be edited
-     self.rootNode = None				# this is the parent node
-     
-     self.parent = None # Instance of ATOM3. The value is set elsewhere.
-     
-     # Built-in hierarchy tracking by Denis Dube, Sept 2005
-     HierarchicalASGNode.__init__(self)
-       
-          
+    self.GGLabel  = ATOM3Integer()                     # Label for Graph Grammar stuff (positive integer)
+    self.GGLabel.setValue(-1)       # initialize it to invalid value
+
+    self.GGset2Any= {}          # Dictionary that will contain an ATOM3Boolean object for each widget. They will indicate if they must be set to None
+    self.editGGLabel = 0        # Flag that indicates if the Graph Grammar Label must be edited
+    self.rootNode = None        # this is the parent node
+
+    self.parent = None # Instance of ATOM3. The value is set elsewhere.
+
+    # Built-in hierarchy tracking by Denis Dube, Sept 2005
+    HierarchicalASGNode.__init__(self)
+
   def getLastObjectNumber(self):
     """
        Returns the object number of the last created object
@@ -344,8 +344,8 @@ class ASGNode(HierarchicalASGNode):
       # update DB if it exists by Bogdan, 26 Jan 2017
       db = False
       # if DB already exists (i.e. was saved before), open it
-      if os.path.isfile('{}.fs'.format(self.rootNode.name.getValue())):
-        storage = ZODB.FileStorage.FileStorage('{}.fs'.format(self.rootNode.name.getValue()))
+      if os.path.isfile('~/DB/{}.fs'.format(self.rootNode.name.getValue())):
+        storage = ZODB.FileStorage.FileStorage('~/DB/{}.fs'.format(self.rootNode.name.getValue()))
         db = ZODB.DB(storage)
         conn = db.open()
 
