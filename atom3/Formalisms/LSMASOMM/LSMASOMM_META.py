@@ -3,7 +3,7 @@ __LSMASOMM_META.py_____________________________________________________
 
 Automatically generated AToM3 Model File (Do not modify directly)
 Author: bogdan
-Modified: Sat Jan 21 14:58:00 2017
+Modified: Tue Jan 24 19:42:25 2017
 _______________________________________________________________________
 """
 from stickylink import *
@@ -899,7 +899,7 @@ def LSMASOMM_META(self, rootNode, ButtonsRootNode=None):
       self.obj46._setHierarchicalLink(False)
 
     # Action
-    self.obj46.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\nfrom CustomCode import *\n\nnewWindow = ClassSelectionWindow(self, wherex, wherey)\n\n'))
+    self.obj46.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\nfrom CustomCode import *\n\nnewWindow = ClassSelectionWindow(self)\n\n'))
 
     # Drawing_Mode
     self.obj46.Drawing_Mode.setValue((' ', 0))

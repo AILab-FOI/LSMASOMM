@@ -14,7 +14,7 @@ class graph_Process(graphEntity):
 
     def __init__(self, x, y, semObject = None):
         self.semanticObject = semObject
-        self.sizeX, self.sizeY = 50, 29
+        self.sizeX, self.sizeY = 56, 61
         graphEntity.__init__(self, x, y)
         self.ChangesAtRunTime = 0
         self.constraintList = []
@@ -26,13 +26,29 @@ class graph_Process(graphEntity):
     def DrawObject(self, drawing, showGG = 0):
         self.dc = drawing
         if showGG and self.semanticObject: self.drawGGLabel(drawing)
-        self.image_gf176 = PhotoImage(format='gif',data=self.imageDict['Process2.gif' ])
-        h = drawing.create_image(self.translate([25.0, 14.0]), tags = self.tag, image = self.image_gf176)
-        self.gf176 = GraphicalForm(drawing, h, 'gf176', 'Process2.gif')
-        self.graphForms.append(self.gf176)
-
-        h = drawing.create_oval(self.translate([24.0, 16.0, 24.0, 16.0]), tags = (self.tag, 'connector'), outline = '', fill = '' )
+        h = drawing.create_oval(self.translate([28.0, 41.0, 28.0, 41.0]), tags = (self.tag, 'connector'), outline = '', fill = '' )
         self.connectors.append( h )
+
+        self.image_gf199 = PhotoImage(format='gif',data=self.imageDict['ProcessNew.gif' ])
+        h = drawing.create_image(self.translate([28.0, 41.0]), tags = self.tag, image = self.image_gf199)
+        self.gf199 = GraphicalForm(drawing, h, 'gf199', 'ProcessNew.gif')
+        self.graphForms.append(self.gf199)
+
+        if self.semanticObject: drawText = self.semanticObject.name.toString()
+        else: drawText = "<name>"
+        font = tkFont.Font( family='FreeSans', size=10, weight='normal', slant='roman', underline=0)
+        h = drawing.create_text(self.translate([28.0, 7.0, 28.0, -155.0])[:2], tags = self.tag, font=font, fill = 'black', anchor = 'center', text = drawText, width = '0', justify= 'left', stipple='' )
+        self.attr_display["name"] = h
+        self.gf201 = GraphicalForm(drawing, h, 'gf201', fontObject=font)
+        self.graphForms.append(self.gf201)
+
+        if self.semanticObject: drawText = self.semanticObject.ID.toString()
+        else: drawText = "<ID>"
+        font = tkFont.Font( family='FreeSans', size=8, weight='normal', slant='roman', underline=0)
+        h = drawing.create_text(self.translate([28.0, 54.0, 28.0, -201.0])[:2], tags = self.tag, font=font, fill = 'white', anchor = 'center', text = drawText, width = '0', justify= 'left', stipple='' )
+        self.attr_display["ID"] = h
+        self.gf202 = GraphicalForm(drawing, h, 'gf202', fontObject=font)
+        self.graphForms.append(self.gf202)
 
 
 
@@ -83,6 +99,10 @@ class graph_Process(graphEntity):
 '+lWwxtSqW8XqT51aVqG+k6pTJasbuBpSgt7UrE0lqR2g+lK7plWtPeXrWNm6VKauVatvxWtWCWsGuEZV'+\
 'qlela10Ze1fDJhWxYlBsXtFaWMcOlrJeAEc48inRwLo1sZJ9LGZJq9mw0nSznK2CZ7vqwMuetrKlbeho'+\
 'O/vauIqxr36tqmD/Cti9pha4wc3scH0Te1stePazsoWsGpYL29hO9hgFAAA7'        
+
+        imageDict[ 'ProcessNew.gif' ] = ''+\
+'R0lGODlhKAAoAPAAAABVAAAAACH5BAAAAAAALAAAAAAoACgAAAInhI+py+0Po5y02ouz3rz7D4biSJbm'+\
+'iabqyrbuC8fyTNf2jef6ziMFADs='        
 
         return imageDict
 

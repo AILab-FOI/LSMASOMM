@@ -14,7 +14,7 @@ class graph_answersToOrgUnit_Center(graphEntity):
 
     def __init__(self, x, y, semObject = None):
         self.semanticObject = semObject
-        self.sizeX, self.sizeY = 62, 106
+        self.sizeX, self.sizeY = 20, 20
         graphEntity.__init__(self, x, y)
         self.ChangesAtRunTime = 0
         self.constraintList = []
@@ -26,35 +26,13 @@ class graph_answersToOrgUnit_Center(graphEntity):
     def DrawObject(self, drawing, showGG = 0):
         self.dc = drawing
         if showGG and self.semanticObject: self.drawGGLabel(drawing)
-        h = drawing.create_oval(self.translate([-5.391608391608486, 50.511363636362375, -5.391608391608486, 50.511363636362375]), tags = (self.tag, 'connector'), outline = '', fill = '' )
+        self.image_gf168 = PhotoImage(format='gif',data=self.imageDict['answersToOrgUnitNew.gif' ])
+        h = drawing.create_image(self.translate([0.0, 0.0]), tags = self.tag, image = self.image_gf168)
+        self.gf168 = GraphicalForm(drawing, h, 'gf168', 'answersToOrgUnitNew.gif')
+        self.graphForms.append(self.gf168)
+
+        h = drawing.create_oval(self.translate([0.0, 0.0, 0.0, 0.0]), tags = (self.tag, 'connector'), outline = '', fill = '' )
         self.connectors.append( h )
-
-        h = drawing.create_oval(self.translate([-1.4108391608411353, -51.1791958041959, -1.4108391608411353, -51.1791958041959]), tags = (self.tag, 'connector'), outline = '', fill = '' )
-        self.connectors.append( h )
-
-        h = drawing.create_rectangle(self.translate([-21.314685314685505, -9.923951048951892, 11.255244755246736, 51.597027972028]), tags = self.tag, stipple = '', width = 1, outline = 'black', fill = 'grey45')
-        self.gf116 = GraphicalForm(drawing, h, "gf116")
-        self.graphForms.append(self.gf116)
-
-        h = drawing.create_oval(self.translate([-30.0, -51.902972027972, 28.625874125872997, 6.722902097901056]), tags = self.tag, stipple = '', width = 1, outline = 'black', fill = 'orange')
-        self.gf117 = GraphicalForm(drawing, h, "gf117")
-        self.graphForms.append(self.gf117)
-
-        h = drawing.create_oval(self.translate([3.293706293706805, -28.01835664335698, 12.702797202797171, -18.609265734264852]), tags = self.tag, stipple = '', width = 1, outline = 'black', fill = 'white')
-        self.gf118 = GraphicalForm(drawing, h, "gf118")
-        self.graphForms.append(self.gf118)
-
-        h = drawing.create_oval(self.translate([20.664335664334317, -30.189685314684823, 30.073426573425422, -20.780594405595593]), tags = self.tag, stipple = '', width = 1, outline = 'black', fill = 'white')
-        self.gf120 = GraphicalForm(drawing, h, "gf120")
-        self.graphForms.append(self.gf120)
-
-        h = drawing.create_line(self.translate([-5.753496503495967, 15.046328671329377, -5.753496503495967, 15.046328671329377]), tags = self.tag, stipple = '', width = 1, fill = 'white', smooth = 'False', splinesteps =  '12', capstyle = 'butt', joinstyle = 'round', arrow = 'none', arrowshape = (15,15,3))
-        self.gf121 = GraphicalForm(drawing, h, "gf121")
-        self.graphForms.append(self.gf121)
-
-        h = drawing.create_line(self.translate([-5.753496503495967, 16.49388111888294, 2.20804195804385, 30.245629370628706]), tags = self.tag, stipple = '', width = 5, fill = 'black', smooth = 'False', splinesteps =  '12', capstyle = 'butt', joinstyle = 'round', arrow = 'none', arrowshape = (15,15,3))
-        self.gf122 = GraphicalForm(drawing, h, "gf122")
-        self.graphForms.append(self.gf122)
 
 
 
@@ -66,6 +44,10 @@ class graph_answersToOrgUnit_Center(graphEntity):
 
     def getImageDict( self ):
         imageDict = dict()
+
+        imageDict[ 'answersToOrgUnitNew.gif' ] = ''+\
+'R0lGODlhFAAUAPAAAP/MAAAAACH5BAEAAAEALAAAAAAUABQAAAIghI+py+0Po5y02hay3rz7v2GBlZFj'+\
+'VaInlbLr1MJvUgAAOw=='        
 
         return imageDict
 

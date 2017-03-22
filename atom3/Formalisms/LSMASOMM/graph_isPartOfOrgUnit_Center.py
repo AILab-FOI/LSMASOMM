@@ -14,7 +14,7 @@ class graph_isPartOfOrgUnit_Center(graphEntity):
 
     def __init__(self, x, y, semObject = None):
         self.semanticObject = semObject
-        self.sizeX, self.sizeY = 50, 52
+        self.sizeX, self.sizeY = 20, 20
         graphEntity.__init__(self, x, y)
         self.ChangesAtRunTime = 0
         self.constraintList = []
@@ -26,12 +26,12 @@ class graph_isPartOfOrgUnit_Center(graphEntity):
     def DrawObject(self, drawing, showGG = 0):
         self.dc = drawing
         if showGG and self.semanticObject: self.drawGGLabel(drawing)
-        self.image_gf160 = PhotoImage(format='gif',data=self.imageDict['isPartOfOrgUnit.gif' ])
-        h = drawing.create_image(self.translate([0.0, 0.0]), tags = self.tag, image = self.image_gf160)
-        self.gf160 = GraphicalForm(drawing, h, 'gf160', 'isPartOfOrgUnit.gif')
-        self.graphForms.append(self.gf160)
+        self.image_gf164 = PhotoImage(format='gif',data=self.imageDict['isPartOfOrgUnitNew.gif' ])
+        h = drawing.create_image(self.translate([0.0, 0.0]), tags = self.tag, image = self.image_gf164)
+        self.gf164 = GraphicalForm(drawing, h, 'gf164', 'isPartOfOrgUnitNew.gif')
+        self.graphForms.append(self.gf164)
 
-        h = drawing.create_oval(self.translate([-6.0, 4.0, -6.0, 4.0]), tags = (self.tag, 'connector'), outline = '', fill = '' )
+        h = drawing.create_oval(self.translate([-1.0, 0.0, -1.0, 0.0]), tags = (self.tag, 'connector'), outline = '', fill = '' )
         self.connectors.append( h )
 
 
@@ -44,6 +44,10 @@ class graph_isPartOfOrgUnit_Center(graphEntity):
 
     def getImageDict( self ):
         imageDict = dict()
+
+        imageDict[ 'isPartOfOrgUnitNew.gif' ] = ''+\
+'R0lGODlhFAAUAPAAAP/MAAAAACH5BAEAAAEALAAAAAAUABQAAAIqhH8RyJ3rolFS0uouZno/z0HgJDbK'+\
+'iabqyqZWCXYx7Mk1vdk5juk9DygAADs='        
 
         imageDict[ 'isPartOfOrgUnit.gif' ] = ''+\
 'R0lGODlhMgA0AOMIAP/dK//dLP/dLf/eK//eLP/eLf/fK//fLP//////////////////////////////'+\

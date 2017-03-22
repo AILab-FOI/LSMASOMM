@@ -14,7 +14,7 @@ class graph_canAccessKnArt_Center(graphEntity):
 
     def __init__(self, x, y, semObject = None):
         self.semanticObject = semObject
-        self.sizeX, self.sizeY = 24, 24
+        self.sizeX, self.sizeY = 20, 20
         graphEntity.__init__(self, x, y)
         self.ChangesAtRunTime = 0
         self.constraintList = []
@@ -26,14 +26,12 @@ class graph_canAccessKnArt_Center(graphEntity):
     def DrawObject(self, drawing, showGG = 0):
         self.dc = drawing
         if showGG and self.semanticObject: self.drawGGLabel(drawing)
-        h = drawing.create_oval(self.translate([0.0, 0.0, 0.0, 0.0]), tags = (self.tag, 'connector'), outline = '', fill = '' )
-        self.connectors.append( h )
+        self.image_gf188 = PhotoImage(format='gif',data=self.imageDict['canAccessKnArtNew.gif' ])
+        h = drawing.create_image(self.translate([0.0, 0.0]), tags = self.tag, image = self.image_gf188)
+        self.gf188 = GraphicalForm(drawing, h, 'gf188', 'canAccessKnArtNew.gif')
+        self.graphForms.append(self.gf188)
 
-        h = drawing.create_rectangle(self.translate([-11.0, -11.0, 11.0, 11.0]), tags = self.tag, stipple = '', width = 1, outline = 'black', fill = 'white')
-        self.gf7 = GraphicalForm(drawing, h, "gf7")
-        self.graphForms.append(self.gf7)
-
-        h = drawing.create_oval(self.translate([0.0, 0.0, 0.0, 0.0]), tags = (self.tag, 'connector'), outline = '', fill = '' )
+        h = drawing.create_oval(self.translate([0.0, -1.0, 0.0, -1.0]), tags = (self.tag, 'connector'), outline = '', fill = '' )
         self.connectors.append( h )
 
 
@@ -46,6 +44,10 @@ class graph_canAccessKnArt_Center(graphEntity):
 
     def getImageDict( self ):
         imageDict = dict()
+
+        imageDict[ 'canAccessKnArtNew.gif' ] = ''+\
+'R0lGODlhFAAUAPEAAAAAAP/MAICz/wAAACH5BAEAAAMALAAAAAAUABQAAAI8lH8zwN0IlZsQyfmquRjo'+\
+'vXTex2GfUFJk2J2po8Ty28y2CAT6vtMMD/TlgD0WhljEIXXCZaC5hCKlRGEBADs='        
 
         return imageDict
 

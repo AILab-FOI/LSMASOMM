@@ -14,7 +14,7 @@ class graph_isPartOfRole_Center(graphEntity):
 
     def __init__(self, x, y, semObject = None):
         self.semanticObject = semObject
-        self.sizeX, self.sizeY = 50, 52
+        self.sizeX, self.sizeY = 20, 20
         graphEntity.__init__(self, x, y)
         self.ChangesAtRunTime = 0
         self.constraintList = []
@@ -26,12 +26,12 @@ class graph_isPartOfRole_Center(graphEntity):
     def DrawObject(self, drawing, showGG = 0):
         self.dc = drawing
         if showGG and self.semanticObject: self.drawGGLabel(drawing)
-        self.image_gf151 = PhotoImage(format='gif',data=self.imageDict['isPartOfRole.gif' ])
-        h = drawing.create_image(self.translate([0.0, 0.0]), tags = self.tag, image = self.image_gf151)
-        self.gf151 = GraphicalForm(drawing, h, 'gf151', 'isPartOfRole.gif')
-        self.graphForms.append(self.gf151)
+        self.image_gf178 = PhotoImage(format='gif',data=self.imageDict['isPartOfRoleNew.gif' ])
+        h = drawing.create_image(self.translate([0.0, 0.0]), tags = self.tag, image = self.image_gf178)
+        self.gf178 = GraphicalForm(drawing, h, 'gf178', 'isPartOfRoleNew.gif')
+        self.graphForms.append(self.gf178)
 
-        h = drawing.create_oval(self.translate([-5.0, 5.0, -5.0, 5.0]), tags = (self.tag, 'connector'), outline = '', fill = '' )
+        h = drawing.create_oval(self.translate([1.0, 0.0, 1.0, 0.0]), tags = (self.tag, 'connector'), outline = '', fill = '' )
         self.connectors.append( h )
 
 
@@ -44,6 +44,10 @@ class graph_isPartOfRole_Center(graphEntity):
 
     def getImageDict( self ):
         imageDict = dict()
+
+        imageDict[ 'isPartOfRoleNew.gif' ] = ''+\
+'R0lGODlhFAAUAPAAAICz/wAAACH5BAEAAAEALAAAAAAUABQAAAIohI+By9nvIFTy0coujpt3o3XBSJbm'+\
+'iZJTuI3f4b5A/NKfLbIY3upGAQA7'        
 
         imageDict[ 'isPartOfRole.gif' ] = ''+\
 'R0lGODlhMgA0AOMIACy//y2//yvA/yzA/y3A/yvB/yzB/y3B////////////////////////////////'+\

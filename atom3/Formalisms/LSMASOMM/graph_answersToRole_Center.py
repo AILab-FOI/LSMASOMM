@@ -14,7 +14,7 @@ class graph_answersToRole_Center(graphEntity):
 
     def __init__(self, x, y, semObject = None):
         self.semanticObject = semObject
-        self.sizeX, self.sizeY = 35, 62
+        self.sizeX, self.sizeY = 20, 20
         graphEntity.__init__(self, x, y)
         self.ChangesAtRunTime = 0
         self.constraintList = []
@@ -26,27 +26,12 @@ class graph_answersToRole_Center(graphEntity):
     def DrawObject(self, drawing, showGG = 0):
         self.dc = drawing
         if showGG and self.semanticObject: self.drawGGLabel(drawing)
-        h = drawing.create_rectangle(self.translate([-14.795158628277818, -8.289473684210435, 3.2774619475516147, 30.0]), tags = self.tag, stipple = '', width = 1, outline = 'black', fill = 'grey45')
-        self.gf146 = GraphicalForm(drawing, h, "gf146")
-        self.graphForms.append(self.gf146)
+        self.image_gf175 = PhotoImage(format='gif',data=self.imageDict['answersToRoleNew.gif' ])
+        h = drawing.create_image(self.translate([0.0, 0.0]), tags = self.tag, image = self.image_gf175)
+        self.gf175 = GraphicalForm(drawing, h, 'gf175', 'answersToRoleNew.gif')
+        self.graphForms.append(self.gf175)
 
-        h = drawing.create_oval(self.translate([-16.0, -30.0, 16.932330827067517, 2.3684210526317884]), tags = self.tag, stipple = '', width = 1, outline = 'black', fill = 'skyblue1')
-        self.gf147 = GraphicalForm(drawing, h, "gf147")
-        self.graphForms.append(self.gf147)
-
-        h = drawing.create_oval(self.translate([0.46616541353392904, -15.0, 6.088758481570153, -9.473684210526187]), tags = self.tag, stipple = '', width = 1, outline = 'black', fill = 'white')
-        self.gf148 = GraphicalForm(drawing, h, "gf148")
-        self.graphForms.append(self.gf148)
-
-        h = drawing.create_oval(self.translate([11.309737759031464, -17.763157894736764, 15.727489455345676, -13.421052631579045]), tags = self.tag, stipple = '', width = 1, outline = 'black', fill = 'white')
-        self.gf149 = GraphicalForm(drawing, h, "gf149")
-        self.graphForms.append(self.gf149)
-
-        h = drawing.create_line(self.translate([-9.17256556024222, 8.684210526316008, -0.7386759581879687, 13.026315789473756]), tags = self.tag, stipple = '', width = 4, fill = 'black', smooth = '0', splinesteps =  '12', capstyle = 'butt', joinstyle = 'round', arrow = 'none', arrowshape = (15,15,3))
-        self.gf150 = GraphicalForm(drawing, h, "gf150")
-        self.graphForms.append(self.gf150)
-
-        h = drawing.create_oval(self.translate([-5.0, 12.0, -5.0, 12.0]), tags = (self.tag, 'connector'), outline = '', fill = '' )
+        h = drawing.create_oval(self.translate([0.0, 0.0, 0.0, 0.0]), tags = (self.tag, 'connector'), outline = '', fill = '' )
         self.connectors.append( h )
 
 
@@ -59,6 +44,10 @@ class graph_answersToRole_Center(graphEntity):
 
     def getImageDict( self ):
         imageDict = dict()
+
+        imageDict[ 'answersToRoleNew.gif' ] = ''+\
+'R0lGODlhFAAUAPAAAICz/wAAACH5BAEAAAEALAAAAAAUABQAAAIghI+py+0Po5y02hay3rz7v2GBlZFj'+\
+'VaInlbLr1MJvUgAAOw=='        
 
         return imageDict
 
