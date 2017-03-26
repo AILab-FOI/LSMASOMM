@@ -37,7 +37,7 @@ import time
 
 class ASGNode(HierarchicalASGNode):
   # static variable to count the number of objects created so far
-  # numObjects = int(time.time())
+  numObjects = 0
   # Some useful static constants
   EDIT       = 0
   SAVE       = 1
@@ -58,7 +58,8 @@ class ASGNode(HierarchicalASGNode):
   def __init__(self):
     self.processed    = 0         # flag if we are using the visitor pattern...
     self.objectNumber = int(str(int(time.time()*100000))[3:])    # get a unique object number
-    print self.objectNumber
+    ASGNode.numObjects += 1
+    print "{} - {}".format(ASGNode.numObjects, self.objectNumber)
 
     self.graphClass_    = None        # <graphClass_> class of the graphical object, may be None
     self.graphObject_   = None        # <graphObject_> graphical object, may be None
