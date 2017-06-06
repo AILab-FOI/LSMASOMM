@@ -3,7 +3,7 @@ __KnowledgeArtifacts.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Mar 22 18:38:23 2017
+Modified: Tue Jun  6 19:48:51 2017
 ____________________________________________________________________________
 """
 from ASGNode import *
@@ -24,7 +24,7 @@ class KnowledgeArtifacts(ASGNode, ATOM3Type):
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(False)
       self.parent = parent
-      self.ID=ATOM3String('KnArtID', 20)
+      self.ID=ATOM3String('KA|', 20)
       self.keyword_= self.ID
       self.description=ATOM3String('KnArtDesc', 20)
       self.name=ATOM3String('KnArtName', 20)
@@ -61,8 +61,6 @@ class KnowledgeArtifacts(ASGNode, ATOM3Type):
          return self.graphObject_.preAction(actionID, params)
       else: return None
    def postAction (self, actionID, * params):
-      if actionID == self.CREATE:
-         self.setNodeID(params)
       if self.graphObject_:
          return self.graphObject_.postAction(actionID, params)
       else: return None
@@ -85,13 +83,6 @@ class KnowledgeArtifacts(ASGNode, ATOM3Type):
       oc.fixedWidth(self.graphObject_, self.graphObject_.sizeX)
       oc.fixedHeight(self.graphObject_, self.graphObject_.sizeY)
       
-      
-
-   def setNodeID(self, params):
-      from CustomCode import *
-      
-      res = setNodeID(self)
-      self.graphObject_.ModifyAttribute('ID', res)
       
 
 

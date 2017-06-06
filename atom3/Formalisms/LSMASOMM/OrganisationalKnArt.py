@@ -3,7 +3,7 @@ __OrganisationalKnArt.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Mar 22 18:38:23 2017
+Modified: Tue Jun  6 19:48:51 2017
 _____________________________________________________________________________
 """
 from ASGNode import *
@@ -25,7 +25,7 @@ class OrganisationalKnArt(ASGNode, ATOM3Type):
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(False)
       self.parent = parent
-      self.ID=ATOM3String('KnArtID', 20)
+      self.ID=ATOM3String('KA|', 20)
       self.keyword_= self.ID
       self.KnArtContent=ATOM3Text('#content of the artifact\n', 80,15 )
       self.description=ATOM3String('KnArtDesc', 20)

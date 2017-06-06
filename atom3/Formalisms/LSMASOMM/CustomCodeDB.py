@@ -18,6 +18,7 @@ class savedNode(persistent.Persistent):
         self.GGLabel = coreAttrs[8]
         # self.rootNode = coreAttrs[9]
         self.objectNumber = coreAttrs[10]
+        self.ID = coreAttrs[11]
 
     def saveAttributes(self, order, attrValues):
         """Save custom attributes of the Node."""
@@ -105,9 +106,8 @@ class {0}(spade.Agent.Agent):
             # beginning of generated code
             code = "import spade\nfrom RoleBehaviours import *\n"
 
-            nodeName = "{}{}{}".format(
-                self.isClass,
-                self.objectNumber,
+            nodeName = "OU{}{}".format(
+                self.ID,
                 self.attrs[self.realOrder.index('name')])
 
             file = open("./Code/{}.py".format(nodeName), 'w')

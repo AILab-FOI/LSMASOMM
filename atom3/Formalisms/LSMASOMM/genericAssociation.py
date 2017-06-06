@@ -3,7 +3,7 @@ __genericAssociation.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Mar 22 18:38:23 2017
+Modified: Tue Jun  6 19:48:51 2017
 ____________________________________________________________________________
 """
 from ASGNode import *
@@ -25,16 +25,20 @@ class genericAssociation(ASGNode, ATOM3Type):
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(False)
       self.parent = parent
-      self.Name=ATOM3String('', 20)
+      self.ID=ATOM3String('genR|', 20)
+      self.keyword_= self.ID
+      self.name=ATOM3String('', 20)
       self.Description=ATOM3Text('\n', 80,10 )
-      self.generatedAttributes = {'Name': ('ATOM3String', ),
-                                  'Description': ('ATOM3Text', )      }
-      self.realOrder = ['Name','Description']
-      self.directEditing = [1,1]
+      self.generatedAttributes = {'name': ('ATOM3String', ),
+                                  'Description': ('ATOM3Text', ),
+                                  'ID': ('ATOM3String', )      }
+      self.realOrder = ['name','Description','ID']
+      self.directEditing = [1,1,1]
    def clone(self):
       cloneObject = genericAssociation( self.parent )
       for atr in self.realOrder:
          cloneObject.setAttrValue(atr, self.getAttrValue(atr).clone() )
+      cloneObject.keyword_ = cloneObject.ID
       ASGNode.cloneActions(self, cloneObject)
 
       return cloneObject
@@ -42,6 +46,7 @@ class genericAssociation(ASGNode, ATOM3Type):
       ATOM3Type.copy(self, other)
       for atr in self.realOrder:
          self.setAttrValue(atr, other.getAttrValue(atr) )
+      self.keyword_ = self.ID
       ASGNode.copy(self, other)
 
    def preCondition (self, actionID, * params):

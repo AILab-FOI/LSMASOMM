@@ -3,7 +3,7 @@ __OrgUnit.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Mar 22 18:38:23 2017
+Modified: Tue Jun  6 19:48:51 2017
 _________________________________________________________________
 """
 from ASGNode import *
@@ -26,7 +26,7 @@ class OrgUnit(ASGNode, ATOM3Type):
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(True)
       self.parent = parent
-      self.ID=ATOM3String('', 20)
+      self.ID=ATOM3String('OU|', 20)
       self.keyword_= self.ID
       self.Individual=ATOM3Boolean()
       self.Individual.setValue(('1', 0))
@@ -37,7 +37,7 @@ class OrgUnit(ASGNode, ATOM3Type):
       cobj0=ATOM3String('ChangeRole', 20)
       lcobj0.append(cobj0)
       self.hasActions.setValue(lcobj0)
-      self.name=ATOM3String('orgUnitName', 20)
+      self.name=ATOM3String('OUname', 20)
       self.generatedAttributes = {'ID': ('ATOM3String', ),
                                   'Individual': ('ATOM3Boolean', ),
                                   'UnitSize': ('ATOM3String', ),
@@ -88,8 +88,6 @@ class OrgUnit(ASGNode, ATOM3Type):
    def postAction (self, actionID, * params):
       if actionID == self.CONNECT or actionID == self.SELECT:
          self.determineSize(params)
-      if actionID == self.CREATE:
-         self.setNodeID(params)
       if self.graphObject_:
          return self.graphObject_.postAction(actionID, params)
       else: return None
@@ -120,13 +118,6 @@ class OrgUnit(ASGNode, ATOM3Type):
       self.UnitSize.setValue(res)
       self.graphObject_.ModifyAttribute('UnitSize', res)
       
-      
-
-   def setNodeID(self, params):
-      from CustomCode import *
-      
-      res = setNodeID(self)
-      self.graphObject_.ModifyAttribute('ID', res)
       
 
 

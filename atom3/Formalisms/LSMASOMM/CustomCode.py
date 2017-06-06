@@ -24,11 +24,52 @@ from ATOM3TypeDialog import *
 from Role import *
 
 
-def setNodeID(self):
-    ID = "{}{}".format(self.getClass(), self.objectNumber)
-    self.ID.setValue(ID)
-    return ID
+def checkUniqueID(self):
+    """Check if node ID values specified in the model are unique.
+    If two identical values are found in the current model, error occurs.
+    If some of the node ID values are in the DB already, user is informed. """
+    try:
+        Root = self
+        db = openDB(Root.name.getValue())
+        conn = db.open()
 
+        # Nodes and ID values of all the nodes present in the model
+        MDnodes = sum(Root.listNodes.values(), [])
+        MDnodesID = [n.ID.getValue() for n in MDnodes]
+        # ID values of all the nodes present in the DB file
+        DBnodesID = sum([n.keys() for n in conn.root().values()], [])
+
+        db.close()
+
+        print "\nNodes in model: {}".format(MDnodesID)
+        print "Nodes in DB: {}".format(DBnodesID)
+
+        # if there are duplicate ID values in the model
+        if len(MDnodesID) != len(set(MDnodesID)):
+            nodeID = [n for n in set(MDnodesID) if MDnodesID.count(n) > 1][0]
+            # return True to AToM3 to raise error
+            return (MDnodes[MDnodesID.index(nodeID)].graphObject_, nodeID)
+
+        # check for every node in the model
+        existID = []
+        for node in MDnodes:
+            nodeID = node.ID.getValue()
+            print "check.ID: {}".format(nodeID)
+
+            # check if the node ID values exists in the DB already
+            if nodeID in DBnodesID:
+                # inform the user that the ID is a duplicate
+                existID.append(nodeID)
+        if existID:
+            tkMessageBox.showinfo(
+                "Duplicate ID(s)",
+                "The following ID(s) already exist in the DB: {}".format(str(existID).strip('[]'))
+            )
+
+        return False
+    except Exception as e:
+        print e
+        return False
 
 def canAccessKnArtCheckConnections(self):
     '''
@@ -278,7 +319,7 @@ def SaveAll(self):
 
         # go through all the nodes of a specific type
         for node in Root.listNodes[nodeType]:
-            if node.objectNumber in dbRoot.keys():
+            if node.ID.getValue() in dbRoot.keys():
                 # update already existing node
                 SaveNode(node, conn, True)
             else:
@@ -325,7 +366,7 @@ def SaveAll(self):
 def SaveNode(node, conn, update=False):
     """Save one particular Node [node] to the already open DB [conn]."""
     if update:
-        DBnode = conn.root()[node.__class__.__name__][node.objectNumber]
+        DBnode = conn.root()[node.__class__.__name__][node.ID.getValue()]
         DBnode.updateAttributes(
             node.getValue(),
             node.copyCoreAttributes()[2:4])
@@ -339,7 +380,7 @@ def SaveNode(node, conn, update=False):
             node.getValue())
 
         conn.root()[node.getClass()].update(
-            {DBnode.objectNumber: DBnode})
+            {DBnode.ID: DBnode})
 
 
 def addConnectionToDB(self):
@@ -483,7 +524,7 @@ class ClassSelectionWindow:
         db = openDB(Root.name.getValue())
 
         self.conn = db.open()
-        self.nodeTypeList = self.conn.root().keys()
+        self.nodeTypeList = [(k, len(v)) for k, v in self.conn.root().items()]
         db.close()
 
         self.parent = parent
@@ -509,7 +550,8 @@ class ClassSelectionWindow:
             self.win)
 
         for x in sorted(self.nodeTypeList):
-            self.concList.insert(END, x)
+            if x[1]:
+                self.concList.insert(END, "{x[0]} ({x[1]})".format(x=x))
 
         self.concList.pack(
             side=TOP,
@@ -521,7 +563,7 @@ class ClassSelectionWindow:
         # Button
         self.btn = Button(
             self.win,
-            command=self.PrintSelection,
+            command=self.SelectValue,
             text="Continue",
             background="green",
             height=1)
@@ -531,7 +573,7 @@ class ClassSelectionWindow:
             fill=X,
             expand=NO)
 
-    def PrintSelection(self):
+    def SelectValue(self):
         selection = None
         try:
             selection = self.concList.curselection()
@@ -542,7 +584,7 @@ class ClassSelectionWindow:
 
         if selection is not None:
             # print self.wherex, self.wherey
-            selectConcept = ConceptSelectWindow(self.concList.get(selection), self.parent)
+            selectConcept = ConceptSelectWindow(self.concList.get(selection).split(' (',1)[0], self.parent)
 
 
 class ConceptSelectWindow:
@@ -555,20 +597,24 @@ class ConceptSelectWindow:
         self.parent = parent
 
         self.conn = db.open()
-        self.concepts = self.conn.root()[concType].items()
+        # nodes of concepts stored in DB
+        self.DBconcepts = self.conn.root()[concType].items()
 
-        for k, v in self.concepts:
-            print "Koncepti:{} ({}) - {}, {}".format(k, v.objectNumber, v.in_connections_, v.out_connections_)
+
+        print "DBconcepts: {}".format(self.DBconcepts)
+
+        for k, v in self.DBconcepts:
+            print "Koncepti:{} - {}, {}".format(k, v.in_connections_, v.out_connections_)
 
         self.win = Toplevel()
         self.win.geometry("200x320")
         self.win.title(
-            'Select {} Concept'.format(concType))
+            'Select a {} Concept'.format(concType))
 
         # Lable
         self.winlabel = Label(
             self.win,
-            text='Select {} concept:'.format(concType),
+            text='Select a {} concept:'.format(concType),
             relief=RIDGE,
             height=1)
         self.winlabel.pack(
@@ -580,15 +626,17 @@ class ConceptSelectWindow:
         self.concList = Listbox(
             self.win)
 
-        modelNodes = self.Root.listNodes[concType]
+        MDnodes = self.Root.listNodes[concType]
+        MDnodesID = [x.ID.getValue() for x in MDnodes]
+
         try:
-            for k, v in sorted(self.concepts):
-                if v.objectNumber not in [x.objectNumber for x in modelNodes] and v.attrs[v.realOrder.index('name')] not in [x.name.getValue() for x in modelNodes]:
-                    self.concList.insert(END, v.attrs[v.realOrder.index('name')])
+            for k, v in sorted(self.DBconcepts):
+                if k not in MDnodesID: #v.objectNumber not in [x.objectNumber for x in MDnodes] and v.attrs[v.realOrder.index('name')] not in [x.name.getValue() for x in MDnodes]:
+                    self.concList.insert(END, "{:9} // {}".format(k, v.attrs[v.realOrder.index('name')]))
         except Exception:
-            for k, v in sorted(self.concepts):
-                if v.objectNumber not in [x.objectNumber for x in modelNodes]:
-                    self.concList.insert(END, "{}".format(v.objectNumber))
+            for k, v in sorted(self.DBconcepts):
+                if k not in MDnodesID:
+                    self.concList.insert(END, "{:9} // no name".format(k))
 
         db.close()
 
@@ -617,7 +665,7 @@ class ConceptSelectWindow:
         selectConcept = self.concList.get(self.concList.curselection())
 
         # check if node exists in the model already
-        self.CreateElement(selectConcept, self.concType)
+        self.CreateElement(selectConcept.split(' //', 1)[0].strip(), self.concType)
 
         self.win.destroy()
         # self.CreateElement(selectConcept, self.concType)
@@ -670,19 +718,20 @@ class ConceptSelectWindow:
             newElement.__class__.__name__,
             newElement,
             newElement.graphClass_,
-            newElement.objectNumber,
+            newElement.ID.getValue(),
             newElement.getValue())
 
         # identify the selected concept in the database
-        for k, v in sorted(concepts):
+        for k, v in sorted(self.DBconcepts):
             try:
-                if v.attrs[v.realOrder.index('name')] == nodeID:
+                if k == nodeID:
                     savedElement = v
-                    nr = k
-            except Exception:
-                if v.objectNumber == int(nodeID):
-                    savedElement = v
-                    nr = k
+                    # nr = k
+            except Exception as e:
+                print e
+                # if v.objectNumber == int(nodeID):
+                #     savedElement = v
+                    # nr = k
 
         try:
             newElement.keyword_.setValue(
@@ -693,9 +742,9 @@ class ConceptSelectWindow:
         print "###{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
             savedElement.__class__.__name__,
             savedElement,
+            savedElement.ID,
             savedElement.keyword_,
             savedElement.graphClass_,
-            savedElement.objectNumber,
             savedElement.in_connections_,
             savedElement.out_connections_
             )
@@ -730,10 +779,10 @@ class ConceptSelectWindow:
                 print "Connection set: {}".format(conSet)
                 for conNode in conSet[1]:
                     # if connection node exists on canvas already
-                    if conNode in [x.objectNumber for x in modelNodes]:
+                    if conNode in [x.ID.getValue() for x in modelNodes]:
                         for x in modelNodes:
-                            print "{} vs. {}".format(conNode, x.objectNumber)
-                            if conNode == x.objectNumber:
+                            print "{} vs. {}".format(conNode, x.ID.getValue())
+                            if conNode == x.ID.getValue():
                             # create connection
                                 print "Bingo!"
                                 DrawConnections.simpleConnection(self.parent, x, newElement)
@@ -745,7 +794,7 @@ class ConceptSelectWindow:
                         print "Far nodes: {}".format(farNodes)
                         for farNode in farNodes:
                             # if an INnode of connection node exists in the model
-                            if farNode in [x.objectNumber for x in modelNodes]:
+                            if farNode in [x.ID.getValue() for x in modelNodes]:
                                 # create connection node
                                 self.CreateElement(conNode, conSet[0], conn=conn)
                                 # create connection
@@ -757,10 +806,10 @@ class ConceptSelectWindow:
                 print "Connection set: {}".format(conSet)
                 for conNode in conSet[1]:
                     # if connection node exists on canvas already
-                    if conNode in [x.objectNumber for x in modelNodes]:
+                    if conNode in [x.ID.getValue() for x in modelNodes]:
                         for x in modelNodes:
-                            print "{} vs. {}".format(conNode, x.objectNumber)
-                            if conNode == x.objectNumber:
+                            print "{} vs. {}".format(conNode, x.ID.getValue())
+                            if conNode == x.ID.getValue():
                             # create connection
                                 print "Bingo!"
                                 DrawConnections.simpleConnection(self.parent, newElement, x)
@@ -772,7 +821,7 @@ class ConceptSelectWindow:
                         print "Far nodes: {}".format(farNodes)
                         for farNode in farNodes:
                             # if an INnode of connection node exists in the model
-                            if farNode in [x.objectNumber for x in modelNodes]:
+                            if farNode in [x.ID.getValue() for x in modelNodes]:
                                 # create connection node
                                 self.CreateElement(conNode, conSet[0], conn=conn)
                                 # create connection

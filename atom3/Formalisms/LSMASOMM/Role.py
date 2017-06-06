@@ -3,7 +3,7 @@ __Role.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Mar 22 18:38:23 2017
+Modified: Tue Jun  6 19:48:51 2017
 ______________________________________________________________
 """
 from ASGNode import *
@@ -26,7 +26,8 @@ class Role(ASGNode, ATOM3Type):
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(True)
       self.parent = parent
-      self.ID=ATOM3String('RoleID', 20)
+      self.ID=ATOM3String('R|', 20)
+      self.keyword_= self.ID
       self.hasActions=ATOM3List([ 1, 1, 1, 0],ATOM3String)
       lcobj0=[]
       self.hasActions.setValue(lcobj0)
@@ -44,6 +45,7 @@ class Role(ASGNode, ATOM3Type):
       cloneObject = Role( self.parent )
       for atr in self.realOrder:
          cloneObject.setAttrValue(atr, self.getAttrValue(atr).clone() )
+      cloneObject.keyword_ = cloneObject.ID
       ASGNode.cloneActions(self, cloneObject)
 
       return cloneObject
@@ -51,6 +53,7 @@ class Role(ASGNode, ATOM3Type):
       ATOM3Type.copy(self, other)
       for atr in self.realOrder:
          self.setAttrValue(atr, other.getAttrValue(atr) )
+      self.keyword_ = self.ID
       ASGNode.copy(self, other)
 
    def preCondition (self, actionID, * params):
@@ -85,8 +88,6 @@ class Role(ASGNode, ATOM3Type):
    def postAction (self, actionID, * params):
       if actionID == self.CONNECT or actionID == self.DISCONNECT or actionID == self.SELECT:
          self.checkMetaRole(params)
-      if actionID == self.CREATE:
-         self.setNodeID(params)
       if self.graphObject_:
          return self.graphObject_.postAction(actionID, params)
       else: return None
@@ -116,14 +117,6 @@ class Role(ASGNode, ATOM3Type):
       res = RoleHierarchy(self)
       self.isMetaRole.setValue(('isMetaRole',res))
       self.graphObject_.ModifyAttribute('isMetaRole', res)
-      
-      
-
-   def setNodeID(self, params):
-      from CustomCode import *
-      
-      res = setNodeID(self)
-      self.graphObject_.ModifyAttribute('ID', res)
       
       
 

@@ -3,7 +3,7 @@ __Action.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Mar 22 18:38:23 2017
+Modified: Tue Jun  6 19:48:51 2017
 ________________________________________________________________
 """
 from ASGNode import *
@@ -25,16 +25,20 @@ class Action(ASGNode, ATOM3Type):
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(False)
       self.parent = parent
+      self.ID=ATOM3String('A|', 20)
+      self.keyword_= self.ID
       self.ActionCode=ATOM3Text('#action code placeholder or description\n#\n', 80,15 )
       self.name=ATOM3String('ActionName', 20)
       self.generatedAttributes = {'ActionCode': ('ATOM3Text', ),
+                                  'ID': ('ATOM3String', ),
                                   'name': ('ATOM3String', )      }
-      self.realOrder = ['ActionCode','name']
-      self.directEditing = [1,1]
+      self.realOrder = ['ActionCode','ID','name']
+      self.directEditing = [1,1,1]
    def clone(self):
       cloneObject = Action( self.parent )
       for atr in self.realOrder:
          cloneObject.setAttrValue(atr, self.getAttrValue(atr).clone() )
+      cloneObject.keyword_ = cloneObject.ID
       ASGNode.cloneActions(self, cloneObject)
 
       return cloneObject
@@ -42,6 +46,7 @@ class Action(ASGNode, ATOM3Type):
       ATOM3Type.copy(self, other)
       for atr in self.realOrder:
          self.setAttrValue(atr, other.getAttrValue(atr) )
+      self.keyword_ = self.ID
       ASGNode.copy(self, other)
 
    def preCondition (self, actionID, * params):

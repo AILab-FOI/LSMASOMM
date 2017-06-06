@@ -3,7 +3,7 @@ __ASG_LSMASOMM.py_____________________________________________________
 
 Automatically generated AToM3 ASGroot node (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Mar 22 18:38:24 2017
+Modified: Tue Jun  6 19:48:52 2017
 ______________________________________________________________________
 """
 from ASG import *
@@ -49,6 +49,9 @@ class ASG_LSMASOMM(ASG, ATOM3Type):
       if actionID == self.CONNECT:
          res = self.addConnectionsToDB(params)
          if res: return res
+      if actionID == self.EDIT or actionID == self.CREATE:
+         res = self.CheckUniqueID(params)
+         if res: return res
       if self.graphObject_:
          return self.graphObject_.postCondition(actionID, params)
       else: return None
@@ -57,12 +60,22 @@ class ASG_LSMASOMM(ASG, ATOM3Type):
       
       SaveAll(self)
       
+      
 
    def addConnectionsToDB(self, params):
       from CustomCode import *
       
-      addConnectionToDB(self)
+      #addConnectionToDB(self)
       
+      
+
+   def CheckUniqueID(self, params):
+      from CustomCode import *
+      
+      res = checkUniqueID(self)
+      
+      if res:
+        return ("Duplicate ID: {}! Specify another.".format(res[1]), res[0])
       
       
 

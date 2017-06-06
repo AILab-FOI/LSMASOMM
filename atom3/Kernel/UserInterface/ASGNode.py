@@ -57,9 +57,8 @@ class ASGNode(HierarchicalASGNode):
 
   def __init__(self):
     self.processed    = 0         # flag if we are using the visitor pattern...
-    self.objectNumber = int(str(int(time.time()*100000))[3:])    # get a unique object number
+    self.objectNumber = ASGNode.numObjects    # get a unique object number
     ASGNode.numObjects += 1
-    print "{} - {}".format(ASGNode.numObjects, self.objectNumber)
 
     self.graphClass_    = None        # <graphClass_> class of the graphical object, may be None
     self.graphObject_   = None        # <graphObject_> graphical object, may be None
@@ -654,6 +653,7 @@ class ASGNode(HierarchicalASGNode):
       cloneObject.editGGLabel = self.editGGLabel
       cloneObject.containerFrame= self.containerFrame
       cloneObject.keyword_ = self.keyword_
+      # cloneObject.ID = self.ID
 
   def cloneNode(self, cloneObject):
       "clones the common attributes into cloneObject"
@@ -669,6 +669,7 @@ class ASGNode(HierarchicalASGNode):
       cloneObject.editGGLabel = self.editGGLabel
       cloneObject.containerFrame= self.containerFrame
       cloneObject.keyword_ = self.keyword_
+      # cloneObject.ID = self.ID
 
       return cloneObject
 
@@ -679,17 +680,17 @@ class ASGNode(HierarchicalASGNode):
       try:
         for con in self.in_connections_:
             try:
-              inConn[con.getClass()].append(con.objectNumber)
+              inConn[con.getClass()].append(con.ID.getValue())
             except Exception:
-              inConn[con.getClass()] = [con.objectNumber]
+              inConn[con.getClass()] = [con.ID.getValue()]
       except Exception:
         inConn = {}
       try:
         for con in self.out_connections_:
             try:
-              outConn[con.getClass()].append(con.objectNumber)
+              outConn[con.getClass()].append(con.ID.getValue())
             except Exception:
-              outConn[con.getClass()] = [con.objectNumber]
+              outConn[con.getClass()] = [con.ID.getValue()]
       except Exception:
         outConn = {}
 
@@ -704,7 +705,8 @@ class ASGNode(HierarchicalASGNode):
           self.GGset2Any,
           self.GGLabel.getValue(),
           self.rootNode,
-          self.objectNumber
+          self.objectNumber,
+          self.ID.getValue()
       ]
 
   def copy(self, other):
@@ -720,6 +722,7 @@ class ASGNode(HierarchicalASGNode):
       self.GGLabel          = other.GGLabel
       self.rootNode         = other.rootNode
       self.objectNumber     = other.objectNumber
+      # self.ID               = other.ID
 
   def preAction(self, actionID, * params):
       pass

@@ -3,7 +3,7 @@ __Strategy.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Mar 22 18:38:23 2017
+Modified: Tue Jun  6 19:48:51 2017
 __________________________________________________________________
 """
 from ASGNode import *
@@ -18,7 +18,7 @@ class Strategy(ASGNode, ATOM3Type):
       ASGNode.__init__(self)
       ATOM3Type.__init__(self)
       self.parent = parent
-      self.ID=ATOM3String('STR', 20)
+      self.ID=ATOM3String('OP|', 20)
       self.keyword_= self.ID
       self.description=ATOM3Text('\n', 80,4 )
       self.name=ATOM3String('', 20)
@@ -55,8 +55,6 @@ class Strategy(ASGNode, ATOM3Type):
          return self.graphObject_.preAction(actionID, params)
       else: return None
    def postAction (self, actionID, * params):
-      if actionID == self.CREATE:
-         self.setNodeID(params)
       if self.graphObject_:
          return self.graphObject_.postAction(actionID, params)
       else: return None
@@ -79,13 +77,6 @@ class Strategy(ASGNode, ATOM3Type):
       oc.fixedWidth(self.graphObject_, self.graphObject_.sizeX)
       oc.fixedHeight(self.graphObject_, self.graphObject_.sizeY)
       
-      
-
-   def setNodeID(self, params):
-      from CustomCode import *
-      
-      res = setNodeID(self)
-      self.graphObject_.ModifyAttribute('ID', res)
       
 
 

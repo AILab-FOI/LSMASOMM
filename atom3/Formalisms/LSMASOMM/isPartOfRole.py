@@ -3,13 +3,14 @@ __isPartOfRole.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Wed Mar 22 18:38:23 2017
+Modified: Tue Jun  6 19:48:51 2017
 ______________________________________________________________________
 """
 from ASGNode import *
 
 from ATOM3Type import *
 
+from ATOM3String import *
 from graph_isPartOfRole import *
 class isPartOfRole(ASGNode, ATOM3Type):
 
@@ -23,13 +24,16 @@ class isPartOfRole(ASGNode, ATOM3Type):
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(False)
       self.parent = parent
-      self.generatedAttributes = {      }
-      self.realOrder = []
-      self.directEditing = []
+      self.ID=ATOM3String('pR|', 20)
+      self.keyword_= self.ID
+      self.generatedAttributes = {'ID': ('ATOM3String', )      }
+      self.realOrder = ['ID']
+      self.directEditing = [1]
    def clone(self):
       cloneObject = isPartOfRole( self.parent )
       for atr in self.realOrder:
          cloneObject.setAttrValue(atr, self.getAttrValue(atr).clone() )
+      cloneObject.keyword_ = cloneObject.ID
       ASGNode.cloneActions(self, cloneObject)
 
       return cloneObject
@@ -37,6 +41,7 @@ class isPartOfRole(ASGNode, ATOM3Type):
       ATOM3Type.copy(self, other)
       for atr in self.realOrder:
          self.setAttrValue(atr, other.getAttrValue(atr) )
+      self.keyword_ = self.ID
       ASGNode.copy(self, other)
 
    def preCondition (self, actionID, * params):
