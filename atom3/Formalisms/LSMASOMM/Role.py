@@ -3,7 +3,7 @@ __Role.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Tue Jun  6 19:48:51 2017
+Modified: Tue Jun  6 23:36:30 2017
 ______________________________________________________________
 """
 from ASGNode import *

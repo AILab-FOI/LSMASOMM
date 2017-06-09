@@ -3,7 +3,7 @@ __LSMASOMM_MDL.py_____________________________________________________
 
 Automatically generated AToM3 Model File (Do not modify directly)
 Author: bogdan
-Modified: Tue Jun  6 19:48:50 2017
+Modified: Tue Jun  6 23:36:29 2017
 ______________________________________________________________________
 """
 from stickylink import *
@@ -97,7 +97,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
         cobj1.setValue(('saveModelElements', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]), 'from CustomCode import *\n\nSaveAll(self)\n\n'))
         lcobj1.append(cobj1)
         cobj1=ATOM3Constraint()
-        cobj1.setValue(('addConnectionsToDB', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]), 'from CustomCode import *\n\n#addConnectionToDB(self)\n\n'))
+        cobj1.setValue(('addConnectionsToDB', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]), 'from CustomCode import *\n\naddConnectionToDB(self)\n\n'))
         lcobj1.append(cobj1)
         cobj1=ATOM3Constraint()
         cobj1.setValue(('CheckUniqueID', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]), 'from CustomCode import *\n\nres = checkUniqueID(self)\n\nif res:\n  return ("Duplicate ID: {}! Specify another.".format(res[1]), res[0])\n\n'))
