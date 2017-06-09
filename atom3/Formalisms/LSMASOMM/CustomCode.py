@@ -152,7 +152,7 @@ def RoleHierarchy(self):
     """Check if a Role is a MetaRole, i.e. it has some subRoles."""
     eIns = NodeOutputsInputs(self, 'in', 'count')
 
-    if 'isPartOfRole' in eIns:
+    if 'isPartOfRole' in eIns.keys():
         print eIns
         return 1
     else:
@@ -245,14 +245,14 @@ countNodes -- count / nodes -- returns count of nodes or nodes
 
     if countNodes is 'count':
         for eOut in nodes:
-            if eOut.getClass() in eOuts:
+            if eOut.getClass() in eOuts.keys():
                 eOuts[eOut.getClass()] += 1
             else:
                 eOuts[eOut.getClass()] = 1
 
     elif countNodes is 'nodes':
         for eOut in nodes:
-            if eOut.getClass() in eOuts:
+            if eOut.getClass() in eOuts.keys():
                 eOuts[eOut.getClass()].append(eOut)
             else:
                 eOuts[eOut.getClass()] = [eOut]
@@ -396,34 +396,34 @@ def addConnectionToDB(self):
 
         for nodeType in self.listNodes.keys():
             for node in self.listNodes[nodeType]:
-                if node.objectNumber in conn.root()[nodeType].keys():
+                if node.ID.getValue() in conn.root()[nodeType].keys():
                     # IN connecctions
                     if len(node.in_connections_):
                         print "{} in nodes: {}".format(
-                            node.objectNumber,
-                            [x.objectNumber for x in node.in_connections_])
+                            node.ID.getValue(),
+                            [x.ID.getValue() for x in node.in_connections_])
                         inNode = node.in_connections_[-1]
-                        DBnode = conn.root()[nodeType][node.objectNumber]
+                        DBnode = conn.root()[nodeType][node.ID.getValue()]
                         # if INnode class is not present, add it
                         if inNode.__class__.__name__ not in DBnode.in_connections_:
                             DBnode.in_connections_[inNode.__class__.__name__] = []
                         # if INnode class is present, add the node to DB
-                        if inNode.objectNumber not in DBnode.in_connections_[inNode.__class__.__name__]:
+                        if inNode.ID.getValue() not in DBnode.in_connections_[inNode.__class__.__name__]:
                             SaveNode(node, conn, True)
                             DBnode.in_connections_._p_changed = 1
                             transaction.commit()
                     # OUT connections
                     if len(node.out_connections_):
                         print "{} out nodes: {}".format(
-                            node.objectNumber,
-                            [x.objectNumber for x in node.out_connections_])
+                            node.ID.getValue(),
+                            [x.ID.getValue() for x in node.out_connections_])
                         outNode = node.out_connections_[-1]
-                        DBnode = conn.root()[nodeType][node.objectNumber]
+                        DBnode = conn.root()[nodeType][node.ID.getValue()]
                         # if OUTnode class is not present, add it
                         if outNode.__class__.__name__ not in DBnode.out_connections_:
                             DBnode.out_connections_[outNode.__class__.__name__] = []
                         # if OUTnode class is present, add the node to DB
-                        if outNode.objectNumber not in DBnode.out_connections_[outNode.__class__.__name__]:
+                        if outNode.ID.getValue() not in DBnode.out_connections_[outNode.__class__.__name__]:
                             SaveNode(node, conn, True)
                             DBnode.out_connections_._p_changed = 1
                             transaction.commit()
@@ -431,7 +431,7 @@ def addConnectionToDB(self):
                     SaveNode(node, conn)
                     transaction.commit()
 
-        print conn.root()['canStartProcess']
+        # print conn.root()['canStartProcess']
         db.close()
 
 
@@ -525,7 +525,6 @@ class ClassSelectionWindow:
 
         self.conn = db.open()
         self.nodeTypeList = [(k, len(v)) for k, v in self.conn.root().items()]
-        db.close()
 
         self.parent = parent
         # print self.parent
@@ -552,6 +551,8 @@ class ClassSelectionWindow:
         for x in sorted(self.nodeTypeList):
             if x[1]:
                 self.concList.insert(END, "{x[0]} ({x[1]})".format(x=x))
+
+        db.close()
 
         self.concList.pack(
             side=TOP,
@@ -638,7 +639,6 @@ class ConceptSelectWindow:
                 if k not in MDnodesID:
                     self.concList.insert(END, "{:9} // no name".format(k))
 
-        db.close()
 
         self.concList.pack(
             side=TOP,
@@ -646,6 +646,8 @@ class ConceptSelectWindow:
             expand=YES)
 
         self.concList.activate(0)
+
+        db.close()
 
         # Button
         self.btn = Button(
@@ -722,7 +724,7 @@ class ConceptSelectWindow:
             newElement.getValue())
 
         # identify the selected concept in the database
-        for k, v in sorted(self.DBconcepts):
+        for k, v in sorted(concepts):
             try:
                 if k == nodeID:
                     savedElement = v
@@ -771,7 +773,8 @@ class ConceptSelectWindow:
             newElement.getValue())
 
         modelNodes = sum(self.Root.listNodes.values(), [])
-        print "Nodes in model: {}".format(modelNodes)
+        modelNodesID = [x.ID.getValue() for x in modelNodes]
+        print "Nodes in model: {}\n Node IDs: {}".format(modelNodes, modelNodesID)
 
         if savedElement.in_connections_:
             # check for all connection nodes by class name
@@ -779,7 +782,7 @@ class ConceptSelectWindow:
                 print "Connection set: {}".format(conSet)
                 for conNode in conSet[1]:
                     # if connection node exists on canvas already
-                    if conNode in [x.ID.getValue() for x in modelNodes]:
+                    if conNode in modelNodesID:
                         for x in modelNodes:
                             print "{} vs. {}".format(conNode, x.ID.getValue())
                             if conNode == x.ID.getValue():
@@ -794,40 +797,50 @@ class ConceptSelectWindow:
                         print "Far nodes: {}".format(farNodes)
                         for farNode in farNodes:
                             # if an INnode of connection node exists in the model
-                            if farNode in [x.ID.getValue() for x in modelNodes]:
-                                # create connection node
-                                self.CreateElement(conNode, conSet[0], conn=conn)
-                                # create connection
-                                print "Bingo2!"
+                            if farNode in modelNodesID:
+                                # if connection node exists on canvas already
+                                if conNode in [x.ID.getValue() for x in sum(self.Root.listNodes.values(), [])]:
+                                    continue
+                                else:
+                                    # create connection node
+                                    self.CreateElement(conNode, conSet[0], conn=conn)
+                                    # create connection
+                                    print "Bingo2b!"
 
         if savedElement.out_connections_:
             # check for all connection nodes by class name
             for conSet in savedElement.out_connections_.items():
                 print "Connection set: {}".format(conSet)
                 for conNode in conSet[1]:
+                    print "{} -- {}".format(conNode, modelNodesID)
                     # if connection node exists on canvas already
-                    if conNode in [x.ID.getValue() for x in modelNodes]:
+                    if conNode in modelNodesID:
                         for x in modelNodes:
                             print "{} vs. {}".format(conNode, x.ID.getValue())
                             if conNode == x.ID.getValue():
-                            # create connection
+                                # create connection
                                 print "Bingo!"
                                 DrawConnections.simpleConnection(self.parent, newElement, x)
+                                break
 
                     # if it does not exist
                     else:
-                        # get all objectNumbers of INnodes of the connection node
+                        # get all objectNumbers of OUTnodes of the connection node
                         farNodes = sum(conn.root()[conSet[0]][conNode].out_connections_.values(), [])
                         print "Far nodes: {}".format(farNodes)
                         for farNode in farNodes:
-                            # if an INnode of connection node exists in the model
-                            if farNode in [x.ID.getValue() for x in modelNodes]:
-                                # create connection node
-                                self.CreateElement(conNode, conSet[0], conn=conn)
-                                # create connection
-                                print "Bingo2!"
+                            # if an OUTnode of connection node exists in the model
+                            if farNode in modelNodesID:
+                                # if connection node exists on canvas already
+                                if conNode in [x.ID.getValue() for x in sum(self.Root.listNodes.values(), [])]:
+                                    continue
+                                else:
+                                    # create connection node
+                                    self.CreateElement(conNode, conSet[0], conn=conn)
+                                    # create connection
+                                    print "Bingo2b!"
 
         try:
             db.close()
-        except Exception:
-            pass
+        except Exception as e:
+            print e
