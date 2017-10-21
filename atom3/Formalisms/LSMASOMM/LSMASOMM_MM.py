@@ -3,7 +3,7 @@ __LSMASOMM_MM.py______________________________________________________
 
 Automatically generated AToM3 MetaModel (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Tue Jun  6 23:36:31 2017
+Modified: Sat Oct 21 18:15:30 2017
 ______________________________________________________________________
 """
 from ASG_LSMASOMM import *
@@ -34,6 +34,7 @@ from answersToRole       import *
 from canStartProcess       import *
 from answersToOrgUnit       import *
 from isPartOfRole       import *
+from isPartOfProcess       import *
 def createNewASGroot(self):
    return ASG_LSMASOMM(self, None)
 
@@ -59,9 +60,33 @@ def createModelMenu(self, modelMenu):
     modelMenu.add_command(label="New canStartProcess", command=lambda x=self: x.createNewcanStartProcess(x, 100, 100) )
     modelMenu.add_command(label="New answersToOrgUnit", command=lambda x=self: x.createNewanswersToOrgUnit(x, 100, 100) )
     modelMenu.add_command(label="New isPartOfRole", command=lambda x=self: x.createNewisPartOfRole(x, 100, 100) )
+    modelMenu.add_command(label="New isPartOfProcess", command=lambda x=self: x.createNewisPartOfProcess(x, 100, 100) )
 def setConnectivity(self):
+    self.ConnectivityMap['isPartOfProcess']={
+           'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'OrganisationalKnArt': []
+          ,'hasObjective': [( 'Process', self.createNewProcess)]
+          ,'OrgUnit': []
+          ,'Process': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'IndividualKnArt': []
+          ,'answersToOrgUnit': []
+          ,'Strategy': []
+          ,'isPartOfProcess': []
+          ,'Action': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'genericAssociation': []
+          ,'canHaveRole': []
+          ,'Objective': []
+          ,'canAccessKnArt': []
+          ,'KnowledgeArtifacts': []
+          ,'answersToRole': [] }
     self.ConnectivityMap['OrganisationalKnArt']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -71,7 +96,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -83,6 +108,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['hasActions']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -92,7 +118,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': [( 'Action', self.createNewAction)]
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -104,6 +130,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['hasObjective']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': [( 'Objective', self.createNewObjective)]
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -113,7 +140,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': [( 'Objective', self.createNewObjective)]
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -125,6 +152,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['Process']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -134,7 +162,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -146,6 +174,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['Strategy']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -155,7 +184,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -167,6 +196,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['canHaveRole']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': [( 'Role', self.createNewRole)]
           ,'OrgUnit': []
@@ -176,7 +206,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': [( 'Role', self.createNewRole)]
           ,'Role': []
@@ -188,6 +218,7 @@ def setConnectivity(self):
           ,'answersToRole': [( 'Role', self.createNewRole)] }
     self.ConnectivityMap['isPartOfRole']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': [( 'Role', self.createNewRole)]
           ,'OrgUnit': []
@@ -197,7 +228,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': [( 'Role', self.createNewRole)]
           ,'Role': []
@@ -209,6 +240,7 @@ def setConnectivity(self):
           ,'answersToRole': [( 'Role', self.createNewRole)] }
     self.ConnectivityMap['IndividualKnArt']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -218,7 +250,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -230,6 +262,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['answersToOrgUnit']={
            'isPartOfOrgUnit': [( 'OrgUnit', self.createNewOrgUnit)]
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -239,7 +272,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': [( 'OrgUnit', self.createNewOrgUnit)]
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -251,6 +284,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['KnowledgeArtifacts']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -260,7 +294,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -272,6 +306,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['isPartOfObjective']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': [( 'Objective', self.createNewObjective)]
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -281,7 +316,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': [( 'Objective', self.createNewObjective)]
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -293,6 +328,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['Objective']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -302,7 +338,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -314,6 +350,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['canStartProcess']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': [( 'Process', self.createNewProcess)]
           ,'OrgUnit': []
@@ -323,7 +360,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -335,6 +372,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['Role']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': [( 'canAccessKnArt', self.createNewcanAccessKnArt)]
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -344,7 +382,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': [( 'canAccessKnArt', self.createNewcanAccessKnArt)]
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': [( 'hasActions', self.createNewhasActions)]
           ,'canStartProcess': []
           ,'Role': [( 'genericAssociation', self.createNewgenericAssociation), ( 'answersToRole', self.createNewanswersToRole), ( 'isPartOfRole', self.createNewisPartOfRole)]
@@ -356,6 +394,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['isPartOfOrgUnit']={
            'isPartOfOrgUnit': [( 'OrgUnit', self.createNewOrgUnit)]
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -365,7 +404,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': [( 'OrgUnit', self.createNewOrgUnit)]
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -377,16 +416,17 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['Action']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
-          ,'Process': []
+          ,'Process': [( 'isPartOfProcess', self.createNewisPartOfProcess)]
           ,'hasActions': []
           ,'isPartOfRole': []
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -398,6 +438,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['canAccessKnArt']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': []
           ,'OrgUnit': []
@@ -407,7 +448,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
@@ -419,6 +460,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['OrgUnit']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': [( 'canAccessKnArt', self.createNewcanAccessKnArt)]
           ,'hasObjective': []
           ,'OrgUnit': [( 'isPartOfOrgUnit', self.createNewisPartOfOrgUnit), ( 'answersToOrgUnit', self.createNewanswersToOrgUnit)]
@@ -428,7 +470,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': [( 'canAccessKnArt', self.createNewcanAccessKnArt)]
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': []
           ,'Role': [( 'canHaveRole', self.createNewcanHaveRole)]
@@ -440,6 +482,7 @@ def setConnectivity(self):
           ,'answersToRole': [] }
     self.ConnectivityMap['answersToRole']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': [( 'Role', self.createNewRole)]
           ,'OrgUnit': []
@@ -449,7 +492,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': [( 'Role', self.createNewRole)]
           ,'Role': []
@@ -461,6 +504,7 @@ def setConnectivity(self):
           ,'answersToRole': [( 'Role', self.createNewRole)] }
     self.ConnectivityMap['genericAssociation']={
            'isPartOfOrgUnit': []
+          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
           ,'hasObjective': [( 'Role', self.createNewRole)]
           ,'OrgUnit': []
@@ -470,7 +514,7 @@ def setConnectivity(self):
           ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfObjective': []
+          ,'isPartOfProcess': []
           ,'Action': []
           ,'canStartProcess': [( 'Role', self.createNewRole)]
           ,'Role': []
@@ -501,7 +545,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': [('0', 'N', 'Source'), ('0', 'N', 'Destination')]
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['Role']={
           'OrgUnit': []
           ,'Role': []
@@ -522,7 +567,8 @@ def setConnectivity(self):
           ,'answersToRole': [('0', 'N', 'Source'), ('0', 'N', 'Destination')]
           ,'canStartProcess': [('0', 'N', 'Source')]
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [('0', 'N', 'Source'), ('0', 'N', 'Destination')] }
+          ,'isPartOfRole': [('0', 'N', 'Source'), ('0', 'N', 'Destination')]
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['Action']={
           'OrgUnit': []
           ,'Role': []
@@ -543,7 +589,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [('0', 'N', 'Source')] }
     self.CardinalityTable['KnowledgeArtifacts']={
           'OrgUnit': []
           ,'Role': []
@@ -564,7 +611,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['OrganisationalKnArt']={
           'OrgUnit': []
           ,'Role': []
@@ -585,7 +633,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['IndividualKnArt']={
           'OrgUnit': []
           ,'Role': []
@@ -606,7 +655,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['Strategy']={
           'OrgUnit': []
           ,'Role': []
@@ -627,7 +677,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['Objective']={
           'OrgUnit': []
           ,'Role': []
@@ -648,7 +699,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['Process']={
           'OrgUnit': []
           ,'Role': []
@@ -669,7 +721,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': [('0', 'N', 'Destination')]
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [('0', 'N', 'Destination')] }
     self.CardinalityTable['isPartOfOrgUnit']={
           'OrgUnit': [('1', 'N', 'Destination'), ('1', 'N', 'Source')]
           ,'Role': []
@@ -690,7 +743,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['canHaveRole']={
           'OrgUnit': [('0', 'N', 'Destination')]
           ,'Role': [('0', 'N', 'Source')]
@@ -711,7 +765,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['hasActions']={
           'OrgUnit': []
           ,'Role': [('1', '1', 'Destination')]
@@ -732,7 +787,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['canAccessKnArt']={
           'OrgUnit': [('0', 'N', 'Destination')]
           ,'Role': [('0', 'N', 'Destination')]
@@ -753,7 +809,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['isPartOfObjective']={
           'OrgUnit': []
           ,'Role': []
@@ -774,7 +831,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['hasObjective']={
           'OrgUnit': []
           ,'Role': [('0', 'N', 'Destination')]
@@ -795,7 +853,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['genericAssociation']={
           'OrgUnit': []
           ,'Role': [('1', 'N', 'Source'), ('1', 'N', 'Destination')]
@@ -816,7 +875,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['answersToRole']={
           'OrgUnit': []
           ,'Role': [('1', 'N', 'Destination'), ('1', 'N', 'Source')]
@@ -837,7 +897,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['canStartProcess']={
           'OrgUnit': []
           ,'Role': [('0', 'N', 'Destination')]
@@ -858,7 +919,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['answersToOrgUnit']={
           'OrgUnit': [('1', 'N', 'Source'), ('1', 'N', 'Destination')]
           ,'Role': []
@@ -879,7 +941,8 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     self.CardinalityTable['isPartOfRole']={
           'OrgUnit': []
           ,'Role': [('0', 'N', 'Destination'), ('0', 'N', 'Source')]
@@ -900,9 +963,32 @@ def setConnectivity(self):
           ,'answersToRole': []
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
-          ,'isPartOfRole': [] }
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
+    self.CardinalityTable['isPartOfProcess']={
+          'OrgUnit': []
+          ,'Role': []
+          ,'Action': [('0', 'N', 'Destination')]
+          ,'KnowledgeArtifacts': []
+          ,'OrganisationalKnArt': []
+          ,'IndividualKnArt': []
+          ,'Strategy': []
+          ,'Objective': []
+          ,'Process': [('0', 'N', 'Source')]
+          ,'isPartOfOrgUnit': []
+          ,'canHaveRole': []
+          ,'hasActions': []
+          ,'canAccessKnArt': []
+          ,'isPartOfObjective': []
+          ,'hasObjective': []
+          ,'genericAssociation': []
+          ,'answersToRole': []
+          ,'canStartProcess': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': [] }
     
-    self.entitiesInMetaModel['LSMASOMM']=["OrgUnit", "Role", "Action", "KnowledgeArtifacts", "OrganisationalKnArt", "IndividualKnArt", "Strategy", "Objective", "Process", "isPartOfOrgUnit", "canHaveRole", "hasActions", "canAccessKnArt", "isPartOfObjective", "hasObjective", "genericAssociation", "answersToRole", "canStartProcess", "answersToOrgUnit", "isPartOfRole"]
+    self.entitiesInMetaModel['LSMASOMM']=["OrgUnit", "Role", "Action", "KnowledgeArtifacts", "OrganisationalKnArt", "IndividualKnArt", "Strategy", "Objective", "Process", "isPartOfOrgUnit", "canHaveRole", "hasActions", "canAccessKnArt", "isPartOfObjective", "hasObjective", "genericAssociation", "answersToRole", "canStartProcess", "answersToOrgUnit", "isPartOfRole", "isPartOfProcess"]
 
     
 def createNewOrgUnit(self, wherex, wherey, screenCoordinates = 1):
@@ -1784,6 +1870,51 @@ def createNewisPartOfRole(self, wherex, wherey, screenCoordinates = 1):
       new_obj = graph_isPartOfRole(wherex, wherey, new_semantic_obj)
    new_obj.DrawObject(self.UMLmodel, self.editGGLabel)
    self.UMLmodel.addtag_withtag("isPartOfRole", new_obj.tag)
+   new_semantic_obj.graphObject_ = new_obj
+   self.ASGroot.addNode(new_semantic_obj)
+   res = self.ASGroot.postCondition(ASG.CREATE)
+   if res:
+      self.constraintViolation(res)
+      self.mode=self.IDLEMODE
+      return
+
+   res = new_semantic_obj.postCondition(ASGNode.CREATE)
+   if res:
+      self.constraintViolation(res)
+      self.mode=self.IDLEMODE
+      return
+   new_semantic_obj.postAction(ASGNode.CREATE)
+
+   self.mode=self.IDLEMODE
+   if self.editGGLabel :
+      self.statusbar.event(StatusBar.TRANSFORMATION, StatusBar.CREATE)
+   else:
+      self.statusbar.event(StatusBar.MODEL, StatusBar.CREATE)
+   return new_semantic_obj
+def createNewisPartOfProcess(self, wherex, wherey, screenCoordinates = 1):
+   self.fromClass = None
+   self.toClass = None
+   # try the global constraints...
+   res = self.ASGroot.preCondition(ASG.CREATE)
+   if res:
+      self.constraintViolation(res)
+      self.mode=self.IDLEMODE
+      return
+
+   new_semantic_obj = isPartOfProcess(self)
+   res = new_semantic_obj.preCondition ( ASGNode.CREATE )
+   if res: return self.constraintViolation(res)
+   new_semantic_obj.preAction ( ASGNode.CREATE ) 
+
+   ne = len(self.ASGroot.listNodes["isPartOfProcess"])
+   if new_semantic_obj.keyword_:
+      new_semantic_obj.keyword_.setValue(new_semantic_obj.keyword_.toString()+str(ne))
+   if screenCoordinates:
+      new_obj = graph_isPartOfProcess(self.UMLmodel.canvasx(wherex), self.UMLmodel.canvasy(wherey), new_semantic_obj)
+   else: # already in canvas coordinates
+      new_obj = graph_isPartOfProcess(wherex, wherey, new_semantic_obj)
+   new_obj.DrawObject(self.UMLmodel, self.editGGLabel)
+   self.UMLmodel.addtag_withtag("isPartOfProcess", new_obj.tag)
    new_semantic_obj.graphObject_ = new_obj
    self.ASGroot.addNode(new_semantic_obj)
    res = self.ASGroot.postCondition(ASG.CREATE)

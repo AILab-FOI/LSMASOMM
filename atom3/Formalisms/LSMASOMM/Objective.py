@@ -3,7 +3,7 @@ __Objective.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Tue Jun  6 23:36:30 2017
+Modified: Sat Oct 21 18:15:29 2017
 ___________________________________________________________________
 """
 from ASGNode import *
@@ -25,7 +25,7 @@ class Objective(ASGNode, ATOM3Type):
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(True)
       self.parent = parent
-      self.ID=ATOM3String('OP|', 20)
+      self.ID=ATOM3String('O|', 20)
       self.keyword_= self.ID
       self.Measurement=ATOM3Text('\n', 80,4 )
       self.Reward=ATOM3Text('\n', 80,4 )

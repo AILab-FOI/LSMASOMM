@@ -3,17 +3,18 @@ __ASG_LSMASOMM.py_____________________________________________________
 
 Automatically generated AToM3 ASGroot node (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Tue Jun  6 23:36:31 2017
+Modified: Sat Oct 21 18:15:30 2017
 ______________________________________________________________________
 """
 from ASG import *
 from ATOM3Type       import *
 from ATOM3String import *
 from ATOM3Text import *
+from ATOM3Enum import *
 class ASG_LSMASOMM(ASG, ATOM3Type):
 
    def __init__(self, parent= None, ASGroot = None):
-      ASG.__init__(self, 'LSMASOMM', ASGroot, ['ASG_LSMASOMM' ,'OrgUnit' ,'Role' ,'Action' ,'KnowledgeArtifacts' ,'OrganisationalKnArt' ,'IndividualKnArt' ,'Strategy' ,'Objective' ,'Process' ,'isPartOfOrgUnit' ,'canHaveRole' ,'hasActions' ,'canAccessKnArt' ,'isPartOfObjective' ,'hasObjective' ,'genericAssociation' ,'answersToRole' ,'canStartProcess' ,'answersToOrgUnit' ,'isPartOfRole'])
+      ASG.__init__(self, 'LSMASOMM', ASGroot, ['ASG_LSMASOMM' ,'OrgUnit' ,'Role' ,'Action' ,'KnowledgeArtifacts' ,'OrganisationalKnArt' ,'IndividualKnArt' ,'Strategy' ,'Objective' ,'Process' ,'isPartOfOrgUnit' ,'canHaveRole' ,'hasActions' ,'canAccessKnArt' ,'isPartOfObjective' ,'hasObjective' ,'genericAssociation' ,'answersToRole' ,'canStartProcess' ,'answersToOrgUnit' ,'isPartOfRole' ,'isPartOfProcess'])
 
       ATOM3Type.__init__(self)
       self.parent = parent
@@ -21,12 +22,14 @@ class ASG_LSMASOMM(ASG, ATOM3Type):
       self.author=ATOM3String('Annonymous', 20)
       self.description=ATOM3Text('\n', 60,15 )
       self.title=ATOM3String('', 20)
+      self.agentImplementation=ATOM3Enum(['SPADE', 'Enmasse', 'EveJS'], 0, 0)
       self.generatedAttributes = {'name': ('ATOM3String', ),
                                   'author': ('ATOM3String', ),
                                   'description': ('ATOM3Text', ),
-                                  'title': ('ATOM3String', )      }
-      self.realOrder = ['name','author','description','title']
-      self.directEditing = [1,1,1,1]
+                                  'title': ('ATOM3String', ),
+                                  'agentImplementation': ('ATOM3Enum', )      }
+      self.realOrder = ['name','author','description','title','agentImplementation']
+      self.directEditing = [1,1,1,1,1]
    def clone(self):
       return self
    def copy(self, other):
@@ -49,7 +52,7 @@ class ASG_LSMASOMM(ASG, ATOM3Type):
       if actionID == self.CONNECT:
          res = self.addConnectionsToDB(params)
          if res: return res
-      if actionID == self.EDIT or actionID == self.CREATE:
+      if actionID == self.EDIT or actionID == self.SAVE:
          res = self.CheckUniqueID(params)
          if res: return res
       if self.graphObject_:

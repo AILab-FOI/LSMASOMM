@@ -3,35 +3,31 @@ __Strategy.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Tue Jun  6 23:36:30 2017
+Modified: Sat Oct 21 18:15:29 2017
 __________________________________________________________________
 """
 from ASGNode import *
 
 from ATOM3Type import *
 
-from ATOM3String import *
 from ATOM3Text import *
+from ATOM3String import *
 class Strategy(ASGNode, ATOM3Type):
 
    def __init__(self, parent = None):
       ASGNode.__init__(self)
       ATOM3Type.__init__(self)
       self.parent = parent
-      self.ID=ATOM3String('OP|', 20)
-      self.keyword_= self.ID
       self.description=ATOM3Text('\n', 80,4 )
       self.name=ATOM3String('', 20)
-      self.generatedAttributes = {'ID': ('ATOM3String', ),
-                                  'description': ('ATOM3Text', ),
+      self.generatedAttributes = {'description': ('ATOM3Text', ),
                                   'name': ('ATOM3String', )      }
-      self.realOrder = ['ID','description','name']
-      self.directEditing = [1,1,1]
+      self.realOrder = ['description','name']
+      self.directEditing = [1,1]
    def clone(self):
       cloneObject = Strategy( self.parent )
       for atr in self.realOrder:
          cloneObject.setAttrValue(atr, self.getAttrValue(atr).clone() )
-      cloneObject.keyword_ = cloneObject.ID
       ASGNode.cloneActions(self, cloneObject)
 
       return cloneObject
@@ -39,7 +35,6 @@ class Strategy(ASGNode, ATOM3Type):
       ATOM3Type.copy(self, other)
       for atr in self.realOrder:
          self.setAttrValue(atr, other.getAttrValue(atr) )
-      self.keyword_ = self.ID
       ASGNode.copy(self, other)
 
    def preCondition (self, actionID, * params):

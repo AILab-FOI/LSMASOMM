@@ -3,7 +3,7 @@ __LSMASOMM_MDL.py_____________________________________________________
 
 Automatically generated AToM3 Model File (Do not modify directly)
 Author: bogdan
-Modified: Tue Jun  6 23:36:29 2017
+Modified: Sat Oct 21 18:15:28 2017
 ______________________________________________________________________
 """
 from stickylink import *
@@ -88,6 +88,20 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
         cobj1.initialValue=ATOM3String('', 20)
         cobj1.isDerivedAttribute = False
         lcobj1.append(cobj1)
+        cobj1=ATOM3Attribute(self.types)
+        cobj1.setValue(('agentImplementation', 'Enum', None, ('Key', 0), ('Direct Editing', 1)))
+        cobj1.initialValue=ATOM3Enum(['SPADE', 'Enmasse', 'EveJS'],0,1)
+        cobj1.initialValue.configItems.setActionFlags([ 1, 1, 1, 0])
+        lcobj2 =[]
+        cobj2=ATOM3String('SPADE', 20)
+        lcobj2.append(cobj2)
+        cobj2=ATOM3String('Enmasse', 20)
+        lcobj2.append(cobj2)
+        cobj2=ATOM3String('EveJS', 20)
+        lcobj2.append(cobj2)
+        cobj1.initialValue.configItems.setValue(lcobj2)
+        cobj1.isDerivedAttribute = False
+        lcobj1.append(cobj1)
         CD_ClassDiagramsV3RootNode.attributes.setValue(lcobj1)
 
         # constraints
@@ -100,7 +114,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
         cobj1.setValue(('addConnectionsToDB', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]), 'from CustomCode import *\n\naddConnectionToDB(self)\n\n'))
         lcobj1.append(cobj1)
         cobj1=ATOM3Constraint()
-        cobj1.setValue(('CheckUniqueID', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]), 'from CustomCode import *\n\nres = checkUniqueID(self)\n\nif res:\n  return ("Duplicate ID: {}! Specify another.".format(res[1]), res[0])\n\n'))
+        cobj1.setValue(('CheckUniqueID', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]), 'from CustomCode import *\n\nres = checkUniqueID(self)\n\nif res:\n  return ("Duplicate ID: {}! Specify another.".format(res[1]), res[0])\n\n'))
         lcobj1.append(cobj1)
         CD_ClassDiagramsV3RootNode.constraints.setValue(lcobj1)
     # --- ASG attributes over ---
@@ -307,7 +321,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.obj27.cardinality.setValue(lcobj2)
 
     # display
-    self.obj27.display.setValue('Attributes:\n  - ID :: String\n  - hasActions :: List\n  - isMetaRole :: Boolean\n  - name :: String\nConstraints:\n  > RoleConstraintKnArt\nActions:\n  > checkMetaRole\nMultiplicities:\n  - From canHaveRole: 0 to N\n  - To hasActions: 0 to N\n  - To canAccessKnArt: 0 to N\n  - To hasObjective: 0 to N\n  - To genericAssociation: 0 to N\n  - From genericAssociation: 0 to N\n  - To answersToRole: 0 to N\n  - From answersToRole: 0 to N\n  - To canStartProcess: 0 to N\n  - To isPartOfRole: 0 to N\n  - From isPartOfRole: 0 to N\n')
+    self.obj27.display.setValue('Attributes:\n  - ID :: String\n  - hasActions :: List\n  - isMetaRole :: Boolean\n  - name :: String\nConstraints:\n  > RoleConstraintKnArt\nActions:\n  > checkMetaRole\n  > updateRoleActions\nMultiplicities:\n  - From canHaveRole: 0 to N\n  - To hasActions: 0 to N\n  - To canAccessKnArt: 0 to N\n  - To hasObjective: 0 to N\n  - To genericAssociation: 0 to N\n  - From genericAssociation: 0 to N\n  - To answersToRole: 0 to N\n  - From answersToRole: 0 to N\n  - To canStartProcess: 0 to N\n  - To isPartOfRole: 0 to N\n  - From isPartOfRole: 0 to N\n')
     self.obj27.display.setHeight(15)
 
     # Actions
@@ -315,6 +329,9 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     lcobj2 =[]
     cobj2=ATOM3Action()
     cobj2.setValue(('checkMetaRole', (['Python', 'OCL'], 1), (['PREaction', 'POSTaction'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0]), 'from CustomCode import RoleHierarchy\nres = RoleHierarchy(self)\nself.isMetaRole.setValue((\'isMetaRole\',res))\nself.graphObject_.ModifyAttribute(\'isMetaRole\', res)\n\n'))
+    lcobj2.append(cobj2)
+    cobj2=ATOM3Action()
+    cobj2.setValue(('updateRoleActions', (['Python', 'OCL'], 1), (['PREaction', 'POSTaction'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0]), 'from CustomCode import UpdateRoleActions\n\nactions = UpdateRoleActions(self)\n\nif actions:\n    for a in actions:\n        self.hasActions.newItem(a)\n\nself.graphObject_.ModifyAttribute(\'hasActions\', self.hasActions.toString())\n\n'))
     lcobj2.append(cobj2)
     self.obj27.Actions.setValue(lcobj2)
 
@@ -333,7 +350,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
        self.UMLmodel.addtag_withtag("CD_Class3", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
        new_obj.layConstraints['Text Scale'] = 0.85
-       new_obj.layConstraints['scale'] = [1.115625, 3.6147540983606556]
+       new_obj.layConstraints['scale'] = [1.115625, 3.7868852459016393]
     else: new_obj = None
     self.obj27.graphObject_ = new_obj
 
@@ -387,15 +404,21 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     cobj2=ATOM3Connection()
     cobj2.setValue(('hasActions', (('Source', 'Destination'), 1), '0', 'N'))
     lcobj2.append(cobj2)
+    cobj2=ATOM3Connection()
+    cobj2.setValue(('isPartOfProcess', (('Source', 'Destination'), 0), '0', 'N'))
+    lcobj2.append(cobj2)
     self.obj28.cardinality.setValue(lcobj2)
 
     # display
-    self.obj28.display.setValue('Attributes:\n  - ActionCode :: Text\n  - ID :: String\n  - name :: String\nMultiplicities:\n  - From hasActions: 0 to N\n')
+    self.obj28.display.setValue('Attributes:\n  - ActionCode :: Text\n  - ID :: String\n  - name :: String\nActions:\n  > initialActionCodeTemplate\nMultiplicities:\n  - From hasActions: 0 to N\n  - To isPartOfProcess: 0 to N\n')
     self.obj28.display.setHeight(15)
 
     # Actions
     self.obj28.Actions.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
+    cobj2=ATOM3Action()
+    cobj2.setValue(('initialActionCodeTemplate', (['Python', 'OCL'], 1), (['PREaction', 'POSTaction'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]), 'from CustomCode import ActionCodeTemplate\n\nres = ActionCodeTemplate(self)\n\nself.setAttrValue(\'ActionCode\', res)\n\n\n'))
+    lcobj2.append(cobj2)
     self.obj28.Actions.setValue(lcobj2)
 
     # Constraints
@@ -410,7 +433,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
        self.UMLmodel.addtag_withtag("CD_Class3", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
        new_obj.layConstraints['Text Scale'] = 1.06
-       new_obj.layConstraints['scale'] = [1.02265625, 1.239344262295082]
+       new_obj.layConstraints['scale'] = [1.1484375, 1.8590163934426231]
     else: new_obj = None
     self.obj28.graphObject_ = new_obj
 
@@ -673,11 +696,6 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.obj32.attributes.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
     cobj2=ATOM3Attribute(self.types)
-    cobj2.setValue(('ID', 'String', None, ('Key', 1), ('Direct Editing', 1)))
-    cobj2.initialValue=ATOM3String('OP|', 20)
-    cobj2.isDerivedAttribute = False
-    lcobj2.append(cobj2)
-    cobj2=ATOM3Attribute(self.types)
     cobj2.setValue(('description', 'Text', None, ('Key', 0), ('Direct Editing', 1)))
     cobj2.initialValue=ATOM3Text('\n', 80,4 )
     cobj2.isDerivedAttribute = False
@@ -699,7 +717,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.obj32.cardinality.setValue(lcobj2)
 
     # display
-    self.obj32.display.setValue('Attributes:\n  - ID :: String\n  - description :: Text\n  - name :: String\n')
+    self.obj32.display.setValue('Attributes:\n  - description :: Text\n  - name :: String\n')
     self.obj32.display.setHeight(15)
 
     # Actions
@@ -747,8 +765,8 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     lcobj2 =[]
     cobj2=ATOM3Attribute(self.types)
     cobj2.setValue(('ID', 'String', None, ('Key', 1), ('Direct Editing', 1)))
-    cobj2.initialValue=ATOM3String('OP|', 20)
-    cobj2.isDerivedAttribute = True
+    cobj2.initialValue=ATOM3String('O|', 20)
+    cobj2.isDerivedAttribute = False
     lcobj2.append(cobj2)
     cobj2=ATOM3Attribute(self.types)
     cobj2.setValue(('Measurement', 'Text', None, ('Key', 0), ('Direct Editing', 1)))
@@ -791,7 +809,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.obj33.cardinality.setValue(lcobj2)
 
     # display
-    self.obj33.display.setValue('Attributes:\n  - Measurement :: Text\n  - Reward :: Text\nMultiplicities:\n  - To isPartOfObjective: 0 to N\n  - From isPartOfObjective: 0 to N\n  - From hasObjective: 0 to N\n')
+    self.obj33.display.setValue('Attributes:\n  - ID :: String\n  - Measurement :: Text\n  - Reward :: Text\nMultiplicities:\n  - To isPartOfObjective: 0 to N\n  - From isPartOfObjective: 0 to N\n  - From hasObjective: 0 to N\n')
     self.obj33.display.setHeight(15)
 
     # Actions
@@ -810,7 +828,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("CD_Class3", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
-       new_obj.layConstraints['scale'] = [1.26875, 1.4459016393442625]
+       new_obj.layConstraints['scale'] = [1.26875, 1.6524590163934427]
     else: new_obj = None
     self.obj33.graphObject_ = new_obj
 
@@ -844,8 +862,8 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     lcobj2.append(cobj2)
     cobj2=ATOM3Attribute(self.types)
     cobj2.setValue(('ID', 'String', None, ('Key', 1), ('Direct Editing', 1)))
-    cobj2.initialValue=ATOM3String('OP|', 20)
-    cobj2.isDerivedAttribute = True
+    cobj2.initialValue=ATOM3String('P|', 20)
+    cobj2.isDerivedAttribute = False
     lcobj2.append(cobj2)
     cobj2=ATOM3Attribute(self.types)
     cobj2.setValue(('Name', 'String', None, ('Key', 0), ('Direct Editing', 1)))
@@ -877,10 +895,13 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     cobj2=ATOM3Connection()
     cobj2.setValue(('hasObjective', (('Source', 'Destination'), 0), '0', 'N'))
     lcobj2.append(cobj2)
+    cobj2=ATOM3Connection()
+    cobj2.setValue(('isPartOfProcess', (('Source', 'Destination'), 1), '0', 'N'))
+    lcobj2.append(cobj2)
     self.obj34.cardinality.setValue(lcobj2)
 
     # display
-    self.obj34.display.setValue('Attributes:\n  - Activities :: Text\n  - Name :: String\nMultiplicities:\n  - From canStartProcess: 0 to N\n  - To hasObjective: 0 to N\n')
+    self.obj34.display.setValue('Attributes:\n  - Activities :: Text\n  - ID :: String\n  - Name :: String\nMultiplicities:\n  - From canStartProcess: 0 to N\n  - To hasObjective: 0 to N\n  - From isPartOfProcess: 0 to N\n')
     self.obj34.display.setHeight(15)
 
     # Actions
@@ -895,11 +916,11 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 
     self.obj34.graphClass_= graph_CD_Class3
     if self.genGraphics:
-       new_obj = graph_CD_Class3(240.0,120.0,self.obj34)
+       new_obj = graph_CD_Class3(220.0,80.0,self.obj34)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("CD_Class3", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
-       new_obj.layConstraints['scale'] = [1.23046875, 1.239344262295082]
+       new_obj.layConstraints['scale'] = [1.23046875, 1.6524590163934427]
     else: new_obj = None
     self.obj34.graphObject_ = new_obj
 
@@ -1258,7 +1279,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 
     self.obj37.graphClass_= graph_CD_Association3
     if self.genGraphics:
-       new_obj = graph_CD_Association3(532.161248615,913.001803815,self.obj37)
+       new_obj = graph_CD_Association3(517.161248615,904.001803815,self.obj37)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("CD_Association3", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
@@ -2261,18 +2282,114 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.globalAndLocalPostcondition(self.obj45, rootNode)
     self.obj45.postAction( rootNode.CREATE )
 
-    self.obj46=CD_Inheritance3(self)
+    self.obj46=CD_Association3(self)
     self.obj46.isGraphObjectVisual = True
 
     if(hasattr(self.obj46, '_setHierarchicalLink')):
       self.obj46._setHierarchicalLink(False)
 
-    self.obj46.graphClass_= graph_CD_Inheritance3
+    # QOCA
+    self.obj46.QOCA.setValue(('QOCA', (['Python', 'OCL'], 1), (['PREaction', 'POSTaction'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '"""\nQOCA Constraint Template\nNOTE: DO NOT select a POST/PRE action trigger\nConstraints will be added/removed in a logical manner by other mechanisms.\n"""\nreturn # <--- Remove this if you want to use QOCA\n\n# Get the high level constraint helper and solver\nfrom Qoca.atom3constraints.OffsetConstraints import OffsetConstraints\noc = OffsetConstraints(self.parent.qocaSolver)  \n\n# Constraint only makes sense if there exists 2 objects connected to this link\nif(not (self.in_connections_ and self.out_connections_)): return\n\n# Get the graphical objects (subclass of graphEntity/graphLink) \ngraphicalObjectLink = self.graphObject_\ngraphicalObjectSource = self.in_connections_[0].graphObject_\ngraphicalObjectTarget = self.out_connections_[0].graphObject_\nobjTuple = (graphicalObjectSource, graphicalObjectTarget, graphicalObjectLink)\n\n"""\nExample constraint, see Kernel/QOCA/atom3constraints/OffsetConstraints.py\nFor more types of constraints\n"""\noc.LeftExactDistance(objTuple, 20)\noc.resolve() # Resolve immediately after creating entity & constraint \n\n'))
+
+    # Graphical_Appearance
+    self.obj46.Graphical_Appearance.setValue( ('isPartOfProcess', self.obj46))
+    self.obj46.Graphical_Appearance.linkInfo=linkEditor(self,self.obj46.Graphical_Appearance.semObject, "isPartOfProcess")
+    self.obj46.Graphical_Appearance.linkInfo.FirstLink= stickylink()
+    self.obj46.Graphical_Appearance.linkInfo.FirstLink.arrow=ATOM3Boolean()
+    self.obj46.Graphical_Appearance.linkInfo.FirstLink.arrow.setValue((' ', 0))
+    self.obj46.Graphical_Appearance.linkInfo.FirstLink.arrow.config = 0
+    self.obj46.Graphical_Appearance.linkInfo.FirstLink.arrowShape1=ATOM3Integer(8)
+    self.obj46.Graphical_Appearance.linkInfo.FirstLink.arrowShape2=ATOM3Integer(10)
+    self.obj46.Graphical_Appearance.linkInfo.FirstLink.arrowShape3=ATOM3Integer(3)
+    self.obj46.Graphical_Appearance.linkInfo.FirstLink.decoration=ATOM3Appearance()
+    self.obj46.Graphical_Appearance.linkInfo.FirstLink.decoration.setValue( ('isPartOfProcess_1stLink', self.obj46.Graphical_Appearance.linkInfo.FirstLink))
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment= widthXfillXdecoration()
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.width=ATOM3Integer(2)
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.fill=ATOM3String('black', 20)
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.stipple=ATOM3String('', 20)
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.arrow=ATOM3Boolean()
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.arrow.setValue((' ', 0))
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.arrow.config = 0
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.arrowShape1=ATOM3Integer(8)
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.arrowShape2=ATOM3Integer(10)
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.arrowShape3=ATOM3Integer(3)
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.decoration=ATOM3Appearance()
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.decoration.setValue( ('isPartOfProcess_1stSegment', self.obj46.Graphical_Appearance.linkInfo.FirstSegment))
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.decoration_Position=ATOM3Enum(['Up', 'Down', 'Middle', 'No decoration'],3,0)
+    self.obj46.Graphical_Appearance.linkInfo.Center=ATOM3Appearance()
+    self.obj46.Graphical_Appearance.linkInfo.Center.setValue( ('isPartOfProcess_Center', self.obj46.Graphical_Appearance.linkInfo))
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment= widthXfillXdecoration()
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.width=ATOM3Integer(2)
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.fill=ATOM3String('black', 20)
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.stipple=ATOM3String('', 20)
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.arrow=ATOM3Boolean()
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.arrow.setValue((' ', 0))
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.arrow.config = 0
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.arrowShape1=ATOM3Integer(8)
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.arrowShape2=ATOM3Integer(10)
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.arrowShape3=ATOM3Integer(3)
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.decoration=ATOM3Appearance()
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.decoration.setValue( ('isPartOfProcess_2ndSegment', self.obj46.Graphical_Appearance.linkInfo.SecondSegment))
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.decoration_Position=ATOM3Enum(['Up', 'Down', 'Middle', 'No decoration'],3,0)
+    self.obj46.Graphical_Appearance.linkInfo.SecondLink= stickylink()
+    self.obj46.Graphical_Appearance.linkInfo.SecondLink.arrow=ATOM3Boolean()
+    self.obj46.Graphical_Appearance.linkInfo.SecondLink.arrow.setValue((' ', 1))
+    self.obj46.Graphical_Appearance.linkInfo.SecondLink.arrow.config = 0
+    self.obj46.Graphical_Appearance.linkInfo.SecondLink.arrowShape1=ATOM3Integer(8)
+    self.obj46.Graphical_Appearance.linkInfo.SecondLink.arrowShape2=ATOM3Integer(10)
+    self.obj46.Graphical_Appearance.linkInfo.SecondLink.arrowShape3=ATOM3Integer(3)
+    self.obj46.Graphical_Appearance.linkInfo.SecondLink.decoration=ATOM3Appearance()
+    self.obj46.Graphical_Appearance.linkInfo.SecondLink.decoration.setValue( ('isPartOfProcess_2ndLink', self.obj46.Graphical_Appearance.linkInfo.SecondLink))
+    self.obj46.Graphical_Appearance.linkInfo.FirstLink.decoration.semObject=self.obj46.Graphical_Appearance.semObject
+    self.obj46.Graphical_Appearance.linkInfo.FirstSegment.decoration.semObject=self.obj46.Graphical_Appearance.semObject
+    self.obj46.Graphical_Appearance.linkInfo.Center.semObject=self.obj46.Graphical_Appearance.semObject
+    self.obj46.Graphical_Appearance.linkInfo.SecondSegment.decoration.semObject=self.obj46.Graphical_Appearance.semObject
+    self.obj46.Graphical_Appearance.linkInfo.SecondLink.decoration.semObject=self.obj46.Graphical_Appearance.semObject
+
+    # name
+    self.obj46.name.setValue('isPartOfProcess')
+
+    # displaySelect
+    self.obj46.displaySelect.setValue( (['attributes', 'constraints', 'actions', 'cardinality'], [0, 0, 0, 0]) )
+    self.obj46.displaySelect.config = 0
+
+    # attributes
+    self.obj46.attributes.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    self.obj46.attributes.setValue(lcobj2)
+
+    # cardinality
+    self.obj46.cardinality.setActionFlags([ 0, 1, 0, 0])
+    lcobj2 =[]
+    cobj2=ATOM3Connection()
+    cobj2.setValue(('Action', (('Source', 'Destination'), 1), '0', 'N'))
+    lcobj2.append(cobj2)
+    cobj2=ATOM3Connection()
+    cobj2.setValue(('Process', (('Source', 'Destination'), 0), '0', 'N'))
+    lcobj2.append(cobj2)
+    self.obj46.cardinality.setValue(lcobj2)
+
+    # display
+    self.obj46.display.setValue('Multiplicities:\n  - From Action: 0 to N\n  - To Process: 0 to N\n')
+    self.obj46.display.setHeight(15)
+
+    # Actions
+    self.obj46.Actions.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    self.obj46.Actions.setValue(lcobj2)
+
+    # Constraints
+    self.obj46.Constraints.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    self.obj46.Constraints.setValue(lcobj2)
+
+    self.obj46.graphClass_= graph_CD_Association3
     if self.genGraphics:
-       new_obj = graph_CD_Inheritance3(863.21888986,1199.92763695,self.obj46)
+       new_obj = graph_CD_Association3(319.0,939.0,self.obj46)
        new_obj.DrawObject(self.UMLmodel)
-       self.UMLmodel.addtag_withtag("CD_Inheritance3", new_obj.tag)
+       self.UMLmodel.addtag_withtag("CD_Association3", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.071, 1.0]
     else: new_obj = None
     self.obj46.graphObject_ = new_obj
 
@@ -2289,7 +2406,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 
     self.obj47.graphClass_= graph_CD_Inheritance3
     if self.genGraphics:
-       new_obj = graph_CD_Inheritance3(1278.90914946,1212.75085967,self.obj47)
+       new_obj = graph_CD_Inheritance3(863.21888986,1199.92763695,self.obj47)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("CD_Inheritance3", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
@@ -2309,7 +2426,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 
     self.obj48.graphClass_= graph_CD_Inheritance3
     if self.genGraphics:
-       new_obj = graph_CD_Inheritance3(152.858254695,586.846159545,self.obj48)
+       new_obj = graph_CD_Inheritance3(1278.90914946,1212.75085967,self.obj48)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("CD_Inheritance3", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
@@ -2329,7 +2446,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 
     self.obj49.graphClass_= graph_CD_Inheritance3
     if self.genGraphics:
-       new_obj = graph_CD_Inheritance3(135.466796875,193.786885246,self.obj49)
+       new_obj = graph_CD_Inheritance3(152.858254695,586.846159545,self.obj49)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("CD_Inheritance3", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
@@ -2341,6 +2458,26 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.globalAndLocalPostcondition(self.obj49, rootNode)
     self.obj49.postAction( rootNode.CREATE )
 
+    self.obj50=CD_Inheritance3(self)
+    self.obj50.isGraphObjectVisual = True
+
+    if(hasattr(self.obj50, '_setHierarchicalLink')):
+      self.obj50._setHierarchicalLink(False)
+
+    self.obj50.graphClass_= graph_CD_Inheritance3
+    if self.genGraphics:
+       new_obj = graph_CD_Inheritance3(135.466796875,193.786885246,self.obj50)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("CD_Inheritance3", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+    else: new_obj = None
+    self.obj50.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj50)
+    self.globalAndLocalPostcondition(self.obj50, rootNode)
+    self.obj50.postAction( rootNode.CREATE )
+
     # Connections for obj26 (graphObject_: Obj0) named OrgUnit
     self.drawConnections(
 (self.obj26,self.obj35,[1368.8125, 221.22950819672127, 1386.9955983980042, 65.8097262245276, 1386.9955984, 65.809726225],"true", 3),
@@ -2349,36 +2486,36 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 (self.obj26,self.obj44,[1280.0, 221.22950819672127, 1130.0, 231.0, 1113.0, 79.0], 0, 3) )
     # Connections for obj27 (graphObject_: Obj1) named Role
     self.drawConnections(
-(self.obj27,self.obj37,[660.0, 791.0, 570.1631302538499, 844.356649681594, 532.161248615, 913.001803815],"true", 3),
+(self.obj27,self.obj37,[660.0, 791.0, 555.1631302538499, 835.356649681594, 532.161248615, 913.001803815],"true", 3),
 (self.obj27,self.obj38,[832.921875, 715.2622950819672, 1043.5805784296024, 726.1457487347751, 1126.462784, 833.548234957],"true", 3),
-(self.obj27,self.obj40,[620.953125, 518.344262295082, 522.0012232889502, 553.7739542825374, 436.73445957, 632.859445861],"true", 3),
+(self.obj27,self.obj40,[620.953125, 506.7377049180328, 522.0012232889502, 553.7739542825374, 436.73445957, 632.859445861],"true", 3),
 (self.obj27,self.obj41,[832.921875, 412.3114754098361, 1028.0, 327.0], 0, 2),
 (self.obj27,self.obj42,[793.875, 260.8360655737705, 887.0, 133.0], 0, 2),
-(self.obj27,self.obj43,[620.953125, 412.3114754098361, 470.4921875, 411.163934426], 0, 2),
+(self.obj27,self.obj43,[620.953125, 405.5245901639344, 470.4921875, 411.163934426], 0, 2),
 (self.obj27,self.obj45,[660.0, 260.8360655737705, 675.0, 160.0],"true", 2) )
     # Connections for obj28 (graphObject_: Obj2) named Action
     self.drawConnections(
- )
+(self.obj28,self.obj46,[419.0, 1051.655737704918, 319.0, 939.0],"true", 2) )
     # Connections for obj29 (graphObject_: Obj3) named KnowledgeArtifacts
     self.drawConnections(
  )
     # Connections for obj30 (graphObject_: Obj4) named OrganisationalKnArt
     self.drawConnections(
-(self.obj30,self.obj46,[852.3125, 1107.0, 863.21888986, 1199.92763695],"true", 2) )
+(self.obj30,self.obj47,[852.3125, 1107.0, 863.21888986, 1199.92763695],"true", 2) )
     # Connections for obj31 (graphObject_: Obj5) named IndividualKnArt
     self.drawConnections(
-(self.obj31,self.obj47,[1264.0, 1147.0, 1278.90914946, 1212.75085967],"true", 2) )
+(self.obj31,self.obj48,[1264.0, 1147.0, 1278.90914946, 1212.75085967],"true", 2) )
     # Connections for obj32 (graphObject_: Obj6) named Strategy
     self.drawConnections(
  )
     # Connections for obj33 (graphObject_: Obj7) named Objective
     self.drawConnections(
-(self.obj33,self.obj48,[135.75, 600.5737704918033, 152.858254695, 586.846159545],"true", 2),
+(self.obj33,self.obj49,[135.75, 600.5737704918033, 152.858254695, 586.846159545],"true", 2),
 (self.obj33,self.obj39,[139.75, 803.0, 131.94404651894035, 946.9122308488277, 131.944046519, 946.91223085],"true", 3) )
     # Connections for obj34 (graphObject_: Obj8) named Process
     self.drawConnections(
-(self.obj34,self.obj40,[333.21875, 295.0, 333.0, 453.0, 436.73445957, 632.859445861],"true", 3),
-(self.obj34,self.obj49,[240.93359375, 205.7672131147541, 135.466796875, 193.786885246],"true", 2) )
+(self.obj34,self.obj40,[313.21875, 283.0, 333.0, 453.0, 436.73445957, 632.859445861],"true", 3),
+(self.obj34,self.obj50,[220.93359375, 178.89508196721312, 135.466796875, 193.786885246],"true", 2) )
     # Connections for obj35 (graphObject_: Obj9) named isPartOfOrgUnit
     self.drawConnections(
 (self.obj35,self.obj26,[1386.9955984, 65.809726225, 1386.9955983980042, 65.8097262245276, 1368.8125, 221.22950819672127],"true", 3) )
@@ -2397,7 +2534,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 (self.obj39,self.obj33,[131.944046519, 946.91223085, 131.94404651894035, 946.9122308488277, 139.75, 803.0],"true", 3) )
     # Connections for obj40 (graphObject_: Obj19) named hasObjective
     self.drawConnections(
-(self.obj40,self.obj33,[436.73445957, 632.859445861, 351.4676958509182, 711.9449374392455, 281.65625, 698.8950819672131],"true", 3) )
+(self.obj40,self.obj33,[436.73445957, 632.859445861, 351.4676958509182, 711.9449374392455, 281.65625, 713.0229508196721],"true", 3) )
     # Connections for obj41 (graphObject_: Obj21) named genericAssociation
     self.drawConnections(
 (self.obj41,self.obj27,[1028.0, 327.0, 832.921875, 412.3114754098361], 0, 2) )
@@ -2406,25 +2543,28 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 (self.obj42,self.obj27,[887.0, 133.0, 793.875, 260.8360655737705], 0, 2) )
     # Connections for obj43 (graphObject_: Obj25) named canStartProcess
     self.drawConnections(
-(self.obj43,self.obj34,[470.4921875, 411.163934426, 431.65625, 295.0], 0, 2) )
+(self.obj43,self.obj34,[470.4921875, 411.163934426, 411.65625, 283.0], 0, 2) )
     # Connections for obj44 (graphObject_: Obj27) named answersToOrgUnit
     self.drawConnections(
 (self.obj44,self.obj26,[1113.0, 79.0, 1279.0, 145.0, 1280.0, 221.22950819672127], 0, 3) )
     # Connections for obj45 (graphObject_: Obj29) named isPartOfRole
     self.drawConnections(
 (self.obj45,self.obj27,[675.0, 160.0, 660.0, 260.8360655737705],"true", 2) )
-    # Connections for obj46 (graphObject_: Obj31) of type CD_Inheritance3
+    # Connections for obj46 (graphObject_: Obj31) named isPartOfProcess
     self.drawConnections(
-(self.obj46,self.obj29,[863.21888986, 1199.92763695, 981.0, 1199.2295081967213],"true", 2) )
+(self.obj46,self.obj34,[319.0, 939.0, 313.21875, 312.0],"true", 2) )
     # Connections for obj47 (graphObject_: Obj33) of type CD_Inheritance3
     self.drawConnections(
-(self.obj47,self.obj29,[1278.90914946, 1212.75085967, 1171.0, 1199.2295081967213],"true", 2) )
+(self.obj47,self.obj29,[863.21888986, 1199.92763695, 981.0, 1199.2295081967213],"true", 2) )
     # Connections for obj48 (graphObject_: Obj35) of type CD_Inheritance3
     self.drawConnections(
-(self.obj48,self.obj32,[152.858254695, 586.846159545, 156.0, 495.0],"true", 2) )
+(self.obj48,self.obj29,[1278.90914946, 1212.75085967, 1171.0, 1199.2295081967213],"true", 2) )
     # Connections for obj49 (graphObject_: Obj37) of type CD_Inheritance3
     self.drawConnections(
-(self.obj49,self.obj32,[135.466796875, 193.786885246, 116.0, 321.4918032786885],"true", 2) )
+(self.obj49,self.obj32,[152.858254695, 586.846159545, 156.0, 495.0],"true", 2) )
+    # Connections for obj50 (graphObject_: Obj39) of type CD_Inheritance3
+    self.drawConnections(
+(self.obj50,self.obj32,[135.466796875, 193.786885246, 116.0, 320.6363636363636],"true", 2) )
 
 newfunction = LSMASOMM_MDL
 

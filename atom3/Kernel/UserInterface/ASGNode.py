@@ -593,6 +593,18 @@ class ASGNode(HierarchicalASGNode):
          atrList.append(self.getAttrValue(atr).getValue())
       return tuple(atrList)
 
+  def getStringValue(self):
+      """
+         Method gets the value of the object. Returns a tuple containing the value of each
+         attribute of the object.
+      """
+     
+      atrList = []
+      for atr in self.realOrder:
+         # print 'atr is', atr, type(atr)
+         atrList.append(self.getAttrValue(atr).toString())
+      return tuple(atrList)
+
   def setValue(self, value):
       """
          Method sets the value of the object. It receives a tuple containing the value of each

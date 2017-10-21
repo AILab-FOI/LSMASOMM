@@ -3,7 +3,7 @@ __Role.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Tue Jun  6 23:36:30 2017
+Modified: Sat Oct 21 18:15:29 2017
 ______________________________________________________________
 """
 from ASGNode import *
@@ -88,6 +88,8 @@ class Role(ASGNode, ATOM3Type):
    def postAction (self, actionID, * params):
       if actionID == self.CONNECT or actionID == self.DISCONNECT or actionID == self.SELECT:
          self.checkMetaRole(params)
+      if actionID == self.EDIT or actionID == self.SAVE or actionID == self.CONNECT or actionID == self.DISCONNECT:
+         self.updateRoleActions(params)
       if self.graphObject_:
          return self.graphObject_.postAction(actionID, params)
       else: return None
@@ -117,6 +119,19 @@ class Role(ASGNode, ATOM3Type):
       res = RoleHierarchy(self)
       self.isMetaRole.setValue(('isMetaRole',res))
       self.graphObject_.ModifyAttribute('isMetaRole', res)
+      
+      
+
+   def updateRoleActions(self, params):
+      from CustomCode import UpdateRoleActions
+      
+      actions = UpdateRoleActions(self)
+      
+      if actions:
+          for a in actions:
+              self.hasActions.newItem(a)
+      
+      self.graphObject_.ModifyAttribute('hasActions', self.hasActions.toString())
       
       
 

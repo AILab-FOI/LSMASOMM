@@ -3,7 +3,7 @@ __Process.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Tue Jun  6 23:36:30 2017
+Modified: Sat Oct 21 18:15:29 2017
 _________________________________________________________________
 """
 from ASGNode import *
@@ -25,7 +25,7 @@ class Process(ASGNode, ATOM3Type):
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(False)
       self.parent = parent
-      self.ID=ATOM3String('OP|', 20)
+      self.ID=ATOM3String('P|', 20)
       self.keyword_= self.ID
       self.Activities=ATOM3Text('\n', 80,10 )
       self.Name=ATOM3String('', 20)

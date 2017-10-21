@@ -3,7 +3,7 @@ __KnowledgeArtifacts.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Tue Jun  6 23:36:30 2017
+Modified: Sat Oct 21 18:15:29 2017
 ____________________________________________________________________________
 """
 from ASGNode import *

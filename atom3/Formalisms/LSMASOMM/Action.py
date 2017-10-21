@@ -3,7 +3,7 @@ __Action.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Tue Jun  6 23:36:30 2017
+Modified: Sat Oct 21 18:15:29 2017
 ________________________________________________________________
 """
 from ASGNode import *
@@ -62,6 +62,8 @@ class Action(ASGNode, ATOM3Type):
          return self.graphObject_.preAction(actionID, params)
       else: return None
    def postAction (self, actionID, * params):
+      if actionID == self.CREATE:
+         self.initialActionCodeTemplate(params)
       if self.graphObject_:
          return self.graphObject_.postAction(actionID, params)
       else: return None
@@ -83,6 +85,16 @@ class Action(ASGNode, ATOM3Type):
       """
       oc.fixedWidth(self.graphObject_, self.graphObject_.sizeX)
       oc.fixedHeight(self.graphObject_, self.graphObject_.sizeY)
+      
+      
+
+   def initialActionCodeTemplate(self, params):
+      from CustomCode import ActionCodeTemplate
+      
+      res = ActionCodeTemplate(self)
+      
+      self.setAttrValue('ActionCode', res)
+      
       
       
 

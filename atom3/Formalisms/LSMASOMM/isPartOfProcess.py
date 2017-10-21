@@ -1,46 +1,35 @@
 """
-__OrganisationalKnArt.py_____________________________________________________
+__isPartOfProcess.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
 Modified: Sat Oct 21 18:15:29 2017
-_____________________________________________________________________________
+_________________________________________________________________________
 """
 from ASGNode import *
 
 from ATOM3Type import *
 
-from ATOM3String import *
-from ATOM3Text import *
-from graph_OrganisationalKnArt import *
-class OrganisationalKnArt(ASGNode, ATOM3Type):
+from graph_isPartOfProcess import *
+class isPartOfProcess(ASGNode, ATOM3Type):
 
    def __init__(self, parent = None):
       ASGNode.__init__(self)
       ATOM3Type.__init__(self)
-      self.graphClass_ = graph_OrganisationalKnArt
+      self.graphClass_ = graph_isPartOfProcess
       self.isGraphObjectVisual = True
       if(hasattr(self, '_setHierarchicalLink')):
         self._setHierarchicalLink(False)
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(False)
       self.parent = parent
-      self.ID=ATOM3String('KA|', 20)
-      self.keyword_= self.ID
-      self.KnArtContent=ATOM3Text('#content of the artifact\n', 80,15 )
-      self.description=ATOM3String('KnArtDesc', 20)
-      self.name=ATOM3String('KnArtName', 20)
-      self.generatedAttributes = {'ID': ('ATOM3String', ),
-                                  'KnArtContent': ('ATOM3Text', ),
-                                  'description': ('ATOM3String', ),
-                                  'name': ('ATOM3String', )      }
-      self.realOrder = ['ID','KnArtContent','description','name']
-      self.directEditing = [1,1,1,1]
+      self.generatedAttributes = {      }
+      self.realOrder = []
+      self.directEditing = []
    def clone(self):
-      cloneObject = OrganisationalKnArt( self.parent )
+      cloneObject = isPartOfProcess( self.parent )
       for atr in self.realOrder:
          cloneObject.setAttrValue(atr, self.getAttrValue(atr).clone() )
-      cloneObject.keyword_ = cloneObject.ID
       ASGNode.cloneActions(self, cloneObject)
 
       return cloneObject
@@ -48,7 +37,6 @@ class OrganisationalKnArt(ASGNode, ATOM3Type):
       ATOM3Type.copy(self, other)
       for atr in self.realOrder:
          self.setAttrValue(atr, other.getAttrValue(atr) )
-      self.keyword_ = self.ID
       ASGNode.copy(self, other)
 
    def preCondition (self, actionID, * params):
@@ -73,18 +61,27 @@ class OrganisationalKnArt(ASGNode, ATOM3Type):
       NOTE: DO NOT select a POST/PRE action trigger
       Constraints will be added/removed in a logical manner by other mechanisms.
       """
-      return # <---- Remove this to use QOCA
+      return # <--- Remove this if you want to use QOCA
       
-      """ Get the high level constraint helper and solver """
+      # Get the high level constraint helper and solver
       from Qoca.atom3constraints.OffsetConstraints import OffsetConstraints
       oc = OffsetConstraints(self.parent.qocaSolver)  
+      
+      # Constraint only makes sense if there exists 2 objects connected to this link
+      if(not (self.in_connections_ and self.out_connections_)): return
+      
+      # Get the graphical objects (subclass of graphEntity/graphLink) 
+      graphicalObjectLink = self.graphObject_
+      graphicalObjectSource = self.in_connections_[0].graphObject_
+      graphicalObjectTarget = self.out_connections_[0].graphObject_
+      objTuple = (graphicalObjectSource, graphicalObjectTarget, graphicalObjectLink)
       
       """
       Example constraint, see Kernel/QOCA/atom3constraints/OffsetConstraints.py
       For more types of constraints
       """
-      oc.fixedWidth(self.graphObject_, self.graphObject_.sizeX)
-      oc.fixedHeight(self.graphObject_, self.graphObject_.sizeY)
+      oc.LeftExactDistance(objTuple, 20)
+      oc.resolve() # Resolve immediately after creating entity & constraint 
       
       
 
