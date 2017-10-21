@@ -18,10 +18,9 @@ from graph_ASG_ERmetaMetaModel import *
 from Tkinter import *
 from ATOM3TypeInfo import *
 from ATOM3String import *
+# from ATOM3Boolean import *
 from StatusBar import *
 from ATOM3TypeDialog import *
-
-from Role import *
 
 
 def checkUniqueID(self):
@@ -146,6 +145,48 @@ def OrgUnitDetermineSize(self):
         return 'Individual'
 
     return
+
+
+def UpdateRoleActions(self):
+    eOuts = NodeOutputsInputs(self, 'out', 'nodes')
+
+    actions = []
+
+    if 'hasActions' in eOuts:
+        for link in eOuts['hasActions']:
+            eOutsLink = NodeOutputsInputs(link, 'out', 'nodes')
+            if 'Action' in eOutsLink:
+                for a in eOutsLink['Action']:
+                    actions.append(ATOM3String(a.name.getValue(), 20))
+                    # actions.append(a.name.getValue())
+        return actions
+
+    else:
+        return 0
+
+
+def ActionCodeTemplate(self):
+    '''Fill in ActionCode field with a Behav template, according to the chosen implementation framework'''
+    Root = self.parent.ASGroot.getASGbyName('LSMASOMM_META')
+
+    t, s = Root.agentImplementation.getValue()
+
+    # print "Agent implementation framework: {}".format(t[s])
+
+    if t[s] == 'SPADE':
+
+        codeString = u'''#action code template
+class BehaviourNamePlaceholder(spade.Behaviour.OneShotBehaviour):
+    """Behaviour available to agents."""
+    def _process(self):
+        pass
+'''
+    else:
+        codeString = ''
+
+    codeTemplate = ATOM3Text(codeString, 80, 15)
+
+    return codeTemplate
 
 
 def RoleHierarchy(self):
@@ -285,11 +326,12 @@ def saveToFile(filename, content):
     file.write(str(content))
     file.close()
 
-#
+
+######### #########
 #
 # SAVING CONCEPTS
 #
-#
+######### #########
 
 
 def openDB(DBname='LSMASOMM'):
@@ -350,7 +392,7 @@ def SaveAll(self):
 
     for role in Root.listNodes['Role']:
         for b in role.getValue()[role.realOrder.index('hasActions')]:
-            rules.append((role.name.getValue(), 'hasAction', b.getValue()))
+            rules.append((role.name.getValue(), 'hasAction', b.toString()))
 
     KB['RoleActions'] = rules
     # conn.root()['KB'].update({"RoleActions":rules})
@@ -368,7 +410,7 @@ def SaveNode(node, conn, update=False):
     if update:
         DBnode = conn.root()[node.__class__.__name__][node.ID.getValue()]
         DBnode.updateAttributes(
-            node.getValue(),
+            node.getStringValue(),
             node.copyCoreAttributes()[2:4])
 
     else:
@@ -377,7 +419,7 @@ def SaveNode(node, conn, update=False):
         DBnode = savedNode(node.copyCoreAttributes())
         DBnode.saveAttributes(
             node.realOrder,
-            node.getValue())
+            node.getStringValue())
 
         conn.root()[node.getClass()].update(
             {DBnode.ID: DBnode})
@@ -395,44 +437,54 @@ def addConnectionToDB(self):
             return
 
         for nodeType in self.listNodes.keys():
-            for node in self.listNodes[nodeType]:
-                if node.ID.getValue() in conn.root()[nodeType].keys():
-                    # IN connecctions
-                    if len(node.in_connections_):
-                        print "{} in nodes: {}".format(
-                            node.ID.getValue(),
-                            [x.ID.getValue() for x in node.in_connections_])
-                        inNode = node.in_connections_[-1]
-                        DBnode = conn.root()[nodeType][node.ID.getValue()]
-                        # if INnode class is not present, add it
-                        if inNode.__class__.__name__ not in DBnode.in_connections_:
-                            DBnode.in_connections_[inNode.__class__.__name__] = []
-                        # if INnode class is present, add the node to DB
-                        if inNode.ID.getValue() not in DBnode.in_connections_[inNode.__class__.__name__]:
-                            SaveNode(node, conn, True)
-                            DBnode.in_connections_._p_changed = 1
-                            transaction.commit()
-                    # OUT connections
-                    if len(node.out_connections_):
-                        print "{} out nodes: {}".format(
-                            node.ID.getValue(),
-                            [x.ID.getValue() for x in node.out_connections_])
-                        outNode = node.out_connections_[-1]
-                        DBnode = conn.root()[nodeType][node.ID.getValue()]
-                        # if OUTnode class is not present, add it
-                        if outNode.__class__.__name__ not in DBnode.out_connections_:
-                            DBnode.out_connections_[outNode.__class__.__name__] = []
-                        # if OUTnode class is present, add the node to DB
-                        if outNode.ID.getValue() not in DBnode.out_connections_[outNode.__class__.__name__]:
-                            SaveNode(node, conn, True)
-                            DBnode.out_connections_._p_changed = 1
-                            transaction.commit()
-                else:
-                    SaveNode(node, conn)
-                    transaction.commit()
+            try:
+                for node in self.listNodes[nodeType]:
+                    if node.ID.getValue() in conn.root()[nodeType].keys():
+                        # IN connecctions
+                        if len(node.in_connections_):
+                            print "{} in nodes: {}".format(
+                                node.ID.getValue(),
+                                [x.ID.getValue() for x in node.in_connections_])
+                            inNode = node.in_connections_[-1]
+                            DBnode = conn.root()[nodeType][node.ID.getValue()]
+                            # if INnode class is not present, add it
+                            if inNode.__class__.__name__ not in DBnode.in_connections_:
+                                DBnode.in_connections_[inNode.__class__.__name__] = []
+                            # if INnode class is present, add the node to DB
+                            if inNode.ID.getValue() not in DBnode.in_connections_[inNode.__class__.__name__]:
+                                SaveNode(node, conn, True)
+                                DBnode.in_connections_._p_changed = 1
+                                transaction.commit()
+                        # OUT connections
+                        if len(node.out_connections_):
+                            print "{} out nodes: {}".format(
+                                node.ID.getValue(),
+                                [x.ID.getValue() for x in node.out_connections_])
+                            outNode = node.out_connections_[-1]
+                            DBnode = conn.root()[nodeType][node.ID.getValue()]
+                            # if OUTnode class is not present, add it
+                            if outNode.__class__.__name__ not in DBnode.out_connections_:
+                                DBnode.out_connections_[outNode.__class__.__name__] = []
+                            # if OUTnode class is present, add the node to DB
+                            if outNode.ID.getValue() not in DBnode.out_connections_[outNode.__class__.__name__]:
+                                SaveNode(node, conn, True)
+                                DBnode.out_connections_._p_changed = 1
+                                transaction.commit()
+                    else:
+                        SaveNode(node, conn)
+                        transaction.commit()
+            except Exception:
+                pass
 
         # print conn.root()['canStartProcess']
         db.close()
+
+
+######### #########
+#
+# GENERATING CODE TEMPLATE
+#
+######### #########
 
 
 def generateNodeCode(self):
@@ -449,43 +501,19 @@ def generateNodeCode(self):
         os.rename(filename, '{}.old'.format(filename))
 
     file = open(filename, 'w')
-    file.write("""import spade
-class ChangeRole(spade.Behaviour.OneShotBehaviour):
-    '''Basic Behaviour for changing Roles.'''
-    def _process(self):
-        print 'I would like to change...'
-""")
+
+    for k,v in conn.root()['Action'].items():
+        file.write("\n{}".format(v.attrs[0]))
     file.close()
 
     agents = []
 
-    # generate Director Role
-    DirectorAgent = GenerateAgentSPADE(
-        'DirectorAgent',
-        behavs=[
-            'ReceiveRequest',
-            'FindSuitableRole',
-            'AnswerRequest'],
-        KB=conn.root()['KB']['RoleProcessGoal'])
-    agents.append(DirectorAgent.generateCode())
 
-    # generate Teacher Agent
-    TeacherAgent = GenerateAgentSPADE(
-        'TeacherAgent',
-        behavs=[
-            'ReceiveRequest',
-            'FindSuitableBehaviours',
-            'AnswerRequest'],
-        KB=conn.root()['KB']['RoleActions'])
-    agents.append(TeacherAgent.generateCode())
+    KB = conn.root()['KB']['RoleProcessGoal'] + conn.root()['KB']['RoleActions']
 
     # generate code for OrgUnits
     for k, v in conn.root()['OrgUnit'].items():
-        agents.append(v.generateCodeSPADE())
-
-    # generate code for Roles
-    for k, v in conn.root()['Role'].items():
-        v.generateCodeSPADE()
+        agents.append(v.generateCodeSPADE(KB))
 
     db.close()
 
@@ -549,7 +577,7 @@ class ClassSelectionWindow:
             self.win)
 
         for x in sorted(self.nodeTypeList):
-            if x[1]:
+            if x[1] and x[0] != 'KB':
                 self.concList.insert(END, "{x[0]} ({x[1]})".format(x=x))
 
         db.close()
@@ -605,7 +633,13 @@ class ConceptSelectWindow:
         print "DBconcepts: {}".format(self.DBconcepts)
 
         for k, v in self.DBconcepts:
-            print "Koncepti:{} - {}, {}".format(k, v.in_connections_, v.out_connections_)
+            try:
+                print "Koncepti:{} - {}, {}".format(k, v.in_connections_, v.out_connections_)
+            except:
+                try:
+                    print "Koncepti:{} - {}, {}".format(k, None, v.out_connections_)
+                except:
+                    print "Koncepti:{} - {}, {}".format(k, v.in_connections_, None)
 
         self.win = Toplevel()
         self.win.geometry("200x320")
@@ -666,181 +700,214 @@ class ConceptSelectWindow:
         # retrieve the selected concept
         selectConcept = self.concList.get(self.concList.curselection())
 
-        # check if node exists in the model already
-        self.CreateElement(selectConcept.split(' //', 1)[0].strip(), self.concType)
+        # create the retrieved concept in the model canvas
+        CreateElement(
+            self,
+            selectConcept.split(' //', 1)[0].strip(),
+            self.concType)
 
         self.win.destroy()
-        # self.CreateElement(selectConcept, self.concType)
 
-    # def CheckNodeExist(self, nodeID, nodeClass):
-    #     modelNodes = self.Root.listNodes[nodeClass]
-    #     print "New node: {} vs. {}".format(nodeID, [x.objectNumber for x in modelNodes])
+    def prepareAttributeValue(self, attr, value):
+        print 'Attribute type processed: {}'.format(attr)
+        attribute = None
 
-    #     if nodeID in [x.objectNumber for x in modelNodes] and nodeID in [x.name.getValue() for x in modelNodes]:
-    #         return
-    #     else:
-    #         self.CreateElement(nodeID, nodeClass)
-    #     # modelNodes = sum(self.Root.listNodes.values(), [])
+        if attr == 'ATOM3String':
+            attribute = ATOM3String(value, 20)
+        elif attr == 'ATOM3Text':
+            attribute = ATOM3Text(value, 80, 15)
+        elif attr == 'ATOM3List':
+            attribute = ATOM3List([1, 1, 1, 0], ATOM3String)
+            vals = []
+            for v in value.split():
+                vals.append(ATOM3String(v, 20))
+            attribute.setValue(vals)
+        elif attr == 'ATOM3Boolean':
+            attribute = ATOM3Boolean()
+            attribute.setValue(0)
+            attribute.config = 0
 
-    #     # if nodeNumber in [x.objectNumber for x in modelNodes]:
+        return attribute
 
 
-    def CreateElement(self, nodeID, nodeClass, conn=None):
-        if not conn:
-            db = openDB(self.Root.name.getValue())
-            conn = db.open()
+def CreateElement(self, nodeID, nodeClass, conn=None):
+    """Create an element on the given canvas, where
+    nodeID and nodeClass are of the node to be created,
+    conn is connection to the DB."""
+    if not conn:
+        db = openDB(self.Root.name.getValue())
+        conn = db.open()
 
-        concepts = conn.root()[nodeClass].items()
+    concepts = conn.root()[nodeClass].items()
 
-        root = self.parent
+    root = self.parent
 
-        # dynamic creation function calling, depending on the class
-        funcCalls = {
-            'Role': root.createNewRole,
-            'OrgUnit': root.createNewOrgUnit,
-            'Objective': root.createNewObjective,
-            'Process': root.createNewProcess,
-            'IndividualKnArt': root.createNewIndividualKnArt,
-            'OrganisationalKnArt': root.createNewOrganisationalKnArt,
-            'canAccessKnArt': root.createNewcanAccessKnArt,
-            'canHaveRole': root.createNewcanHaveRole,
-            'isPartOfRole': root.createNewisPartOfRole,
-            'isPartOfOrgUnit': root.createNewisPartOfOrgUnit,
-            'isPartOfObjective': root.createNewisPartOfObjective,
-            'answersToOrgUnit': root.createNewanswersToOrgUnit,
-            'canStartProcess': root.createNewcanStartProcess,
-            'hasObjective': root.createNewhasObjective,
-            'genericAssociation': root.createNewgenericAssociation,
-            'answersToRole': root.createNewanswersToRole
-        }
+    # dynamic creation function calling, depending on the class
+    funcCalls = {
+        'Role': root.createNewRole,
+        'OrgUnit': root.createNewOrgUnit,
+        'Objective': root.createNewObjective,
+        'Process': root.createNewProcess,
+        'IndividualKnArt': root.createNewIndividualKnArt,
+        'OrganisationalKnArt': root.createNewOrganisationalKnArt,
+        'Action': root.createNewAction,
+        'canAccessKnArt': root.createNewcanAccessKnArt,
+        'canHaveRole': root.createNewcanHaveRole,
+        'isPartOfRole': root.createNewisPartOfRole,
+        'isPartOfOrgUnit': root.createNewisPartOfOrgUnit,
+        'isPartOfObjective': root.createNewisPartOfObjective,
+        'isPartOfProcess': root.createNewisPartOfProcess,
+        'answersToOrgUnit': root.createNewanswersToOrgUnit,
+        'canStartProcess': root.createNewcanStartProcess,
+        'hasObjective': root.createNewhasObjective,
+        'hasActions': root.createNewhasActions,
+        'genericAssociation': root.createNewgenericAssociation,
+        'answersToRole': root.createNewanswersToRole
+    }
 
-        newElement = funcCalls[nodeClass](root, 100, 100)
+    self.newElement = funcCalls[nodeClass](root, 100, 100)
 
-        print "\n####{}\n{}\n{}\n{}\n{}".format(
-            newElement.__class__.__name__,
-            newElement,
-            newElement.graphClass_,
-            newElement.ID.getValue(),
-            newElement.getValue())
+    print "\n####{}\n{}\n{}\n{}\n{}".format(
+        self.newElement.__class__.__name__,
+        self.newElement,
+        self.newElement.graphClass_,
+        self.newElement.ID.getValue(),
+        self.newElement.getValue())
 
-        # identify the selected concept in the database
-        for k, v in sorted(concepts):
-            try:
-                if k == nodeID:
-                    savedElement = v
-                    # nr = k
-            except Exception as e:
-                print e
-                # if v.objectNumber == int(nodeID):
-                #     savedElement = v
-                    # nr = k
-
+    # identify the selected concept in the database
+    for k, v in sorted(concepts):
         try:
-            newElement.keyword_.setValue(
-                savedElement.keyword_.getValue())
-        except:
-            print "No keyword_ set."
-
-        print "###{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
-            savedElement.__class__.__name__,
-            savedElement,
-            savedElement.ID,
-            savedElement.keyword_,
-            savedElement.graphClass_,
-            savedElement.in_connections_,
-            savedElement.out_connections_
-            )
-
-        newElement.keyword_ = savedElement.keyword_
-        # newElement.editGGLabel = savedElement.editGGLabel
-        # newElement.GGset2Any = savedElement.GGset2Any
-        newElement.GGLabel.setValue(savedElement.GGLabel)
-        newElement.objectNumber = savedElement.objectNumber
-        # newElement.in_connections_ = savedElement.in_connections_ # won't work because only objectNumber is given
-        # newElement.out_connections_ = savedElement.out_connections_
-
-        # copy attribute values to the new node from the saved node
-        newElement.setValue(savedElement.attrs)
-
-        for attr in newElement.realOrder:
-            if newElement.getAttrValue(attr).__class__.__name__ == 'ATOM3List':
-                newElement.graphObject_.ModifyAttribute(attr, newElement.getAttrValue(attr).toString())
-            else:
-                newElement.graphObject_.ModifyAttribute(attr, newElement.getAttrValue(attr).getValue())
-
-        print "##\n{}\n{}".format(
-            newElement.copyCoreAttributes(),
-            newElement.getValue())
-
-        modelNodes = sum(self.Root.listNodes.values(), [])
-        modelNodesID = [x.ID.getValue() for x in modelNodes]
-        print "Nodes in model: {}\n Node IDs: {}".format(modelNodes, modelNodesID)
-
-        if savedElement.in_connections_:
-            # check for all connection nodes by class name
-            for conSet in savedElement.in_connections_.items():
-                print "Connection set: {}".format(conSet)
-                for conNode in conSet[1]:
-                    # if connection node exists on canvas already
-                    if conNode in modelNodesID:
-                        for x in modelNodes:
-                            print "{} vs. {}".format(conNode, x.ID.getValue())
-                            if conNode == x.ID.getValue():
-                            # create connection
-                                print "Bingo!"
-                                DrawConnections.simpleConnection(self.parent, x, newElement)
-
-                    # if it does not exist
-                    else:
-                        # get all objectNumbers of INnodes of the connection node
-                        farNodes = sum(conn.root()[conSet[0]][conNode].in_connections_.values(), [])
-                        print "Far nodes: {}".format(farNodes)
-                        for farNode in farNodes:
-                            # if an INnode of connection node exists in the model
-                            if farNode in modelNodesID:
-                                # if connection node exists on canvas already
-                                if conNode in [x.ID.getValue() for x in sum(self.Root.listNodes.values(), [])]:
-                                    continue
-                                else:
-                                    # create connection node
-                                    self.CreateElement(conNode, conSet[0], conn=conn)
-                                    # create connection
-                                    print "Bingo2b!"
-
-        if savedElement.out_connections_:
-            # check for all connection nodes by class name
-            for conSet in savedElement.out_connections_.items():
-                print "Connection set: {}".format(conSet)
-                for conNode in conSet[1]:
-                    print "{} -- {}".format(conNode, modelNodesID)
-                    # if connection node exists on canvas already
-                    if conNode in modelNodesID:
-                        for x in modelNodes:
-                            print "{} vs. {}".format(conNode, x.ID.getValue())
-                            if conNode == x.ID.getValue():
-                                # create connection
-                                print "Bingo!"
-                                DrawConnections.simpleConnection(self.parent, newElement, x)
-                                break
-
-                    # if it does not exist
-                    else:
-                        # get all objectNumbers of OUTnodes of the connection node
-                        farNodes = sum(conn.root()[conSet[0]][conNode].out_connections_.values(), [])
-                        print "Far nodes: {}".format(farNodes)
-                        for farNode in farNodes:
-                            # if an OUTnode of connection node exists in the model
-                            if farNode in modelNodesID:
-                                # if connection node exists on canvas already
-                                if conNode in [x.ID.getValue() for x in sum(self.Root.listNodes.values(), [])]:
-                                    continue
-                                else:
-                                    # create connection node
-                                    self.CreateElement(conNode, conSet[0], conn=conn)
-                                    # create connection
-                                    print "Bingo2b!"
-
-        try:
-            db.close()
+            if k == nodeID:
+                self.savedElement = v
+                # nr = k
         except Exception as e:
             print e
+            # if v.objectNumber == int(nodeID):
+            #     self.savedElement = v
+                # nr = k
+
+    try:
+        self.newElement.keyword_.setValue(
+            self.savedElement.keyword_.getValue())
+    except:
+        print "No keyword_ set."
+
+    print "###{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
+        self.savedElement.__class__.__name__,
+        self.savedElement,
+        self.savedElement.ID,
+        self.savedElement.keyword_,
+        self.savedElement.graphClass_,
+        self.savedElement.in_connections_,
+        self.savedElement.out_connections_
+        )
+
+    self.newElement.keyword_ = self.savedElement.keyword_
+    # self.newElement.editGGLabel = self.savedElement.editGGLabel
+    # self.newElement.GGset2Any = self.savedElement.GGset2Any
+    self.newElement.GGLabel.setValue(self.savedElement.GGLabel)
+    self.newElement.objectNumber = self.savedElement.objectNumber
+    self.newElement.ID.setValue(self.savedElement.ID)
+    # self.newElement.in_connections_ = self.savedElement.in_connections_ # won't work because only objectNumber is given
+    # self.newElement.out_connections_ = self.savedElement.out_connections_
+
+    # copy attribute values to the new node from the saved node
+
+    # self.newElement.setValue(self.savedElement.attrs)
+
+    # try:
+    #     self.newElement.setValue(self.savedElement.attrs)
+    # except:
+    #     counter = 0
+    #     for a in self.newElement.realOrder:
+    #         self.newElement.setAttrValue(a, self.savedElement.attrs[counter])
+
+    counter = 0
+    for a in self.newElement.realOrder:
+        attribute = self.prepareAttributeValue(self.newElement.getAttrValue(a).__class__.__name__, self.savedElement.attrs[counter])
+        self.newElement.setAttrValue(a, attribute)
+        counter += 1
+
+    for attr in self.newElement.realOrder:
+        print "Attribute type for {}: {}".format(attr, self.newElement.getAttrValue(attr).__class__.__name__)
+        if self.newElement.getAttrValue(attr).__class__.__name__ == 'ATOM3List':
+            self.newElement.graphObject_.ModifyAttribute(attr, self.newElement.getAttrValue(attr).toString())
+        else:
+            self.newElement.graphObject_.ModifyAttribute(attr, self.newElement.getAttrValue(attr).getValue())
+
+    print "##\n{}\n{}".format(
+        self.newElement.copyCoreAttributes(),
+        self.newElement.getValue())
+
+    modelNodes = sum(self.Root.listNodes.values(), [])
+    modelNodesID = [x.ID.getValue() for x in modelNodes]
+    print "Nodes in model: {}\n Node IDs: {}".format(modelNodes, modelNodesID)
+
+    if self.savedElement.in_connections_:
+        # check for all connection nodes by class name
+        for conSet in self.savedElement.in_connections_.items():
+            print "Connection set: {}".format(conSet)
+            for conNode in conSet[1]:
+                # if connection node exists on canvas already
+                if conNode in modelNodesID:
+                    for x in modelNodes:
+                        print "{} vs. {}".format(conNode, x.ID.getValue())
+                        if conNode == x.ID.getValue():
+                        # create connection
+                            print "Bingo!"
+                            DrawConnections.simpleConnection(self.parent, x, self.newElement)
+
+                # if it does not exist
+                else:
+                    # get all objectNumbers of INnodes of the connection node
+                    farNodes = sum(conn.root()[conSet[0]][conNode].in_connections_.values(), [])
+                    print "Far nodes: {}".format(farNodes)
+                    for farNode in farNodes:
+                        # if an INnode of connection node exists in the model
+                        if farNode in modelNodesID:
+                            # if connection node exists on canvas already
+                            if conNode in [x.ID.getValue() for x in sum(self.Root.listNodes.values(), [])]:
+                                continue
+                            else:
+                                # create connection node
+                                CreateElement(self, conNode, conSet[0], conn=conn)
+                                # create connection
+                                print "Bingo2b!"
+
+    if self.savedElement.out_connections_:
+        # check for all connection nodes by class name
+        for conSet in self.savedElement.out_connections_.items():
+            print "Connection set: {}".format(conSet)
+            for conNode in conSet[1]:
+                print "{} -- {}".format(conNode, modelNodesID)
+                # if connection node exists on canvas already
+                if conNode in modelNodesID:
+                    for x in modelNodes:
+                        print "{} vs. {}".format(conNode, x.ID.getValue())
+                        if conNode == x.ID.getValue():
+                            # create connection
+                            print "Bingo!"
+                            DrawConnections.simpleConnection(self.parent, self.newElement, x)
+                            break
+
+                # if it does not exist
+                else:
+                    # get all objectNumbers of OUTnodes of the connection node
+                    farNodes = sum(conn.root()[conSet[0]][conNode].out_connections_.values(), [])
+                    print "Far nodes: {}".format(farNodes)
+                    for farNode in farNodes:
+                        # if an OUTnode of connection node exists in the model
+                        if farNode in modelNodesID:
+                            # if connection node exists on canvas already
+                            if conNode in [x.ID.getValue() for x in sum(self.Root.listNodes.values(), [])]:
+                                continue
+                            else:
+                                # create connection node
+                                CreateElement(self, conNode, conSet[0], conn=conn)
+                                # create connection
+                                print "Bingo2b!"
+
+    try:
+        db.close()
+    except Exception as e:
+        print e

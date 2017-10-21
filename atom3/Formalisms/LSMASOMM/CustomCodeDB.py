@@ -52,33 +52,13 @@ class savedNode(persistent.Persistent):
                 self.out_connections_[nodeType].append(newConn[0])
                 # print '{} added to {}'.format(newConn, self.attrs[self.realOrder.index('name')])
 
-        # if len(modelInCs) == len(self.in_connections_) and len(modelOutCs) == len(self.out_connections_):
-        #     return
-
-        # # if the model has more connections than DB node
-        # # add the missing connection to DB node
-        # # since it was added only now, it is [-1]
-        # if len(modelInCs) > self.in_connections_:
-        #     self.in_connections_.append(modelInCs[-1])
-        # elif len(modelOutCs) > self.out_connections_:
-        #     self.out_connections_.append(modelOutCs[-1])
-
-        # # if the model has less connections than DB node
-        # # remove the extra connection from DB node
-        # elif len(modelInCs) < self.in_connections_:
-        #     self.in_connections_.remove(
-        #         [x for x in self.in_connections_ if x not in modelInCs][0])
-        # elif len(modelOutCs) < self.out_connections_:
-        #     self.out_connections_.remove(
-        #         [x for x in self.out_connections_ if x not in modelOutCs][0])
-
         print self.attrs
 
     def getAttribute(self, attrName):
         if hasattr(self, attrName):
             return self.attrs[self.realOrder.index(attrName)]
 
-    def generateCodeSPADE(self):
+    def generateCodeSPADE(self, KB=None):
         """Generate code for the Node."""
 
         print "Generating stuff...", self.isClass
@@ -120,14 +100,22 @@ class {0}(spade.Agent.Agent):
 
             print self.attrs[self.realOrder.index('hasActions')]
 
-            for behav in self.attrs[self.realOrder.index('hasActions')]:
+            for behav in self.attrs[self.realOrder.index('hasActions')].split("\n")[:-1]:
                 # code = code + "\n{}\n".format(behav.getValue())
                 code = code + behaviour.format(
-                    behav.getValue(),
+                    behav,
                     self.attrs[self.realOrder.index('name')],
                     self.isClass)
 
             code = code + agent[1].format(nodeName)
+
+
+            if KB:
+                code = code + """
+        self.configureKB('SWI', None, 'swipl')"""
+                for x in KB:
+                    code = code + """
+        self.addBelieve('{0[1]}({0[0]},{0[2]})')""".format(x)
 
             file.write(code)
             file.close()
@@ -135,82 +123,3 @@ class {0}(spade.Agent.Agent):
             print nodeName
 
             return nodeName
-
-        # generate a file with all the Role behaviours
-        if hasattr(self, 'isClass') and self.isClass in ['Role']:
-            behaviour = """
-class {0}(spade.Behaviour.OneShotBehaviour):
-    '''Behaviour {0} of {2} {1}'''
-    def _process(self):
-        print '{1}: behaving {0}'
-"""
-            file = open('./Code/RoleBehaviours.py', 'a')
-
-            for behav in self.attrs[self.realOrder.index('hasActions')]:
-                file.write(behaviour.format(
-                    behav.getValue(),
-                    self.attrs[self.realOrder.index('name')],
-                    self.isClass))
-
-            file.close()
-
-
-class GenerateAgentSPADE():
-    """Class used for generating SPADE agent code"""
-    def __init__(self, name, behavs=None, KB=None):
-        self.name = name
-        self.behavs = behavs
-        self.KB = KB
-
-        # templates for agents and behaviours
-        self.agent = [
-"""
-class {0}(spade.Agent.Agent):
-'''Bare skeleton for agent type {0}'''""",
-"""
-    def _setup(self):
-        print '{0}: running'"""]
-        self.behaviour = """
-    class {0}(spade.Behaviour.OneShotBehaviour):
-        '''Behaviour {0} of {2} {1}'''
-        def _process(self):
-            print '{1}: behaving {0}'"""
-
-    def generateCode(self):
-        # beginning of generated code
-        code = ["import spade\nfrom RoleBehaviours import *\n"]
-
-        # generate agent initialisation
-        code.append(self.agent[0].format(self.name))
-
-        if self.behavs:
-            # generate agent behaviours
-            for b in self.behavs:
-                code.append(self.behaviour.format(b, self.name, "Agent"))
-
-        code.append(self.agent[1].format(self.name))
-
-        if self.behavs:
-            for b in self.behavs:
-                code.append("""
-        self.addBehaviour(self.{}(), None)""".format(b))
-
-        code.append("""
-        self.configureKB('SWI', None, 'swipl')""")
-
-        if self.KB:
-            for x in self.KB:
-                code.append("""
-        self.addBelieve('{0[1]}({0[0]},{0[2]})')""".format(x))
-
-        filename = "./Code/{}.py".format(self.name)
-
-        if os.path.isfile(filename):
-            os.rename(filename, '{}.old'.format(filename))
-
-        file = open(filename, 'w')
-
-        file.write("\n".join(code))
-        file.close()
-
-        return self.name
