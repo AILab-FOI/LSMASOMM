@@ -22,14 +22,17 @@ from ATOM3String import *
 from StatusBar import *
 from ATOM3TypeDialog import *
 
+DBpath = './DB'
+DBname = 'LSMASOMM'
 
 def checkUniqueID(self):
+    global DBname
     """Check if node ID values specified in the model are unique.
     If two identical values are found in the current model, error occurs.
     If some of the node ID values are in the DB already, user is informed. """
     try:
         Root = self
-        db = openDB(Root.name.getValue())
+        db = openDB(DBname)
         conn = db.open()
 
         # Nodes and ID values of all the nodes present in the model
@@ -147,22 +150,45 @@ def OrgUnitDetermineSize(self):
     return
 
 
-def UpdateRoleActions(self):
+# update list of Actions, to be called by a link element
+def UpdateActions(self):
     eOuts = NodeOutputsInputs(self, 'out', 'nodes')
+    eIns = NodeOutputsInputs(self, 'in', 'nodes')
 
     actions = []
 
-    if 'hasActions' in eOuts:
-        for link in eOuts['hasActions']:
-            eOutsLink = NodeOutputsInputs(link, 'out', 'nodes')
-            if 'Action' in eOutsLink:
-                for a in eOutsLink['Action']:
-                    actions.append(ATOM3String(a.name.getValue(), 20))
-                    # actions.append(a.name.getValue())
-        return actions
+    # for updating Action list of a Role (hasActions)
+    if 'Action' in eOuts:
+        for a in eOuts['Action']:
+            actions.append(prepareAttributeValue('ATOM3String', a.name.getValue()))
 
-    else:
-        return 0
+    if 'Role' in eIns:
+        for r in eIns['Role']:
+            for a in actions:
+                r.hasActions.newItem(a)
+            r.graphObject_.ModifyAttribute('hasActions', r.hasActions.toString())
+        return 1
+
+    # for updating Action list of an Objective (ofActions)
+    if 'Action' in eIns:
+        for a in eIns['Action']:
+            actions.append(prepareAttributeValue('ATOM3String', a.name.getValue()))
+
+    if 'Objective' in eOuts:
+        for o in eOuts['Objective']:
+            for a in actions:
+                o.ofActions.newItem(a)
+        return 1
+
+    # for updating Action list of a Process (hasActions)
+    if 'Process' in eOuts:
+        for p in eOuts['Process']:
+            for a in actions:
+                p.hasActions.newItem(a)
+            p.graphObject_.ModifyAttribute('hasActions', r.hasActions.toString())
+        return 1
+
+    return 0
 
 
 def ActionCodeTemplate(self):
@@ -184,7 +210,8 @@ class BehaviourNamePlaceholder(spade.Behaviour.OneShotBehaviour):
     else:
         codeString = ''
 
-    codeTemplate = ATOM3Text(codeString, 80, 15)
+    codeTemplate = prepareAttributeValue('ATOM3Text', codeString)
+    # codeTemplate = ATOM3Text(codeString, 80, 15)
 
     return codeTemplate
 
@@ -195,8 +222,16 @@ def RoleHierarchy(self):
 
     if 'isPartOfRole' in eIns.keys():
         print eIns
+
+        self.isMetaRole.setValue(1)
+        self.isMetaRole.config = 0
+
         return 1
+
     else:
+        self.isMetaRole.setValue(0)
+        self.isMetaRole.config = 0
+
         return 0
 
 
@@ -334,19 +369,21 @@ def saveToFile(filename, content):
 ######### #########
 
 
-def openDB(DBname='LSMASOMM'):
+def openDB(DBnamed='LSMASOMM'):
+    global DBname
     # open DB connection to file mydata.fs; check if conn is open already
-    storage = ZODB.FileStorage.FileStorage("./DB/{}.fs".format(DBname))
+    storage = ZODB.FileStorage.FileStorage("{}/{}.fs".format(DBpath,DBname))
     db = ZODB.DB(storage)
     return db
 
 
 # saving process - creating DB and saving individual nodes
 def SaveAll(self):
+    global DBname
     """Traverse all the nodes of the graph, and save each to the DB."""
     Root = self.ASGroot.getASGbyName('LSMASOMM_META')
 
-    db = openDB(Root.name.getValue())
+    db = openDB(DBname)
     conn = db.open()
 
     # go through all the node types
@@ -370,37 +407,50 @@ def SaveAll(self):
 
     transaction.commit()
 
-    KB = {}
-    rules = []
+    if not 'KB' in conn.root():
+        conn.root()['KB'] = {'ActionGoal': [], 'RoleAction': []}
 
-    for process in Root.listNodes['Process']:
-        # if 'RoleProcessGoals' not in KB.keys():
-        #     KB['RoleProcessGoals'] = []
+    # rules = []
 
-        for prevLink in process.in_connections_:
-            for prevNode in prevLink.in_connections_:
-                for postLink in process.out_connections_:
-                    for postNode in postLink.out_connections_:
-                        rules.append((prevNode.name.getValue(), 'canReachGoal', postNode.name.getValue()))
+    # for action in Root.listNodes['Action']:
+    #     for postLink in action.out_connections_:
+    #         for goal in postLink.out_connections_:
+    #             if goal.__class__.__name__ == 'Objective':
+    #                 conn.root()['KB']['ActionGoal'].append((action.name.getValue(), 'canReachGoal', goal.name.getValue()))
 
-    KB['RoleProcessGoal'] = rules
+    for goal in conn.root()['Objective'].values():
+        for a in goal.attrs.split('\n'):
+            conn.root()['KB']['ActionGoal'].append((a, 'canReachGoal', goal.attrs[goal.realOrder.index('name')]))
 
-    print rules
+
+    # for process in Root.listNodes['Process']:
+    #     # if 'RoleProcessGoals' not in KB.keys():
+    #     #     KB['RoleProcessGoals'] = []
+
+    #     for prevLink in process.in_connections_:
+    #         for prevNode in prevLink.in_connections_:
+    #             for postLink in process.out_connections_:
+    #                 for postNode in postLink.out_connections_:
+    #                     rules.append((prevNode.name.getValue(), 'canReachGoal', postNode.name.getValue()))
+
+    # KB['RoleProcessGoal'] = rules
+
+    # print rules
 
     transaction.commit()
-    rules = []
+    # rules = []
 
-    for role in Root.listNodes['Role']:
-        for b in role.getValue()[role.realOrder.index('hasActions')]:
-            rules.append((role.name.getValue(), 'hasAction', b.toString()))
+    # for role in Root.listNodes['Role']:
+    #     for b in role.getValue()[role.realOrder.index('hasActions')]:
+    #         rules.append((role.name.getValue(), 'hasAction', b.toString()))
 
-    KB['RoleActions'] = rules
-    # conn.root()['KB'].update({"RoleActions":rules})
-    print rules
+    # KB['RoleActions'] = rules
+    # # conn.root()['KB'].update({"RoleActions":rules})
+    # print rules
 
-    conn.root()['KB'] = KB
+    # conn.root()['KB'] = KB
 
-    transaction.commit()
+    # transaction.commit()
 
     db.close()
 
@@ -426,10 +476,11 @@ def SaveNode(node, conn, update=False):
 
 
 def addConnectionToDB(self):
+    global DBname
     if os.path.isfile("./DB/{}.fs".format(self.name.getValue())):
 
         try:
-            db = openDB(self.name.getValue())
+            db = openDB(DBname)
             conn = db.open()
         except Exception:
             # exception usually raised by Loading a node from DB, because reasons...
@@ -488,8 +539,9 @@ def addConnectionToDB(self):
 
 
 def generateNodeCode(self):
+    global DBname
     Root = self.ASGroot.getASGbyName('LSMASOMM_META')
-    db = openDB(Root.name.getValue())
+    db = openDB(DBname)
     conn = db.open()
 
     if not os.path.isdir("./Code"):
@@ -548,13 +600,12 @@ def generateNodeCode(self):
 class ClassSelectionWindow:
     """docstring for ClassSelectionWindow"""
     def __init__(self, parent):
-        Root = parent.ASGroot.getASGbyName('LSMASOMM_META')
-        db = openDB(Root.name.getValue())
-
-        self.conn = db.open()
-        self.nodeTypeList = [(k, len(v)) for k, v in self.conn.root().items()]
-
+        global DBname
+        # Root = parent.ASGroot.getASGbyName('LSMASOMM_META')
+        # self.DBname = Root.name.getValue()
         self.parent = parent
+        self.DBname = StringVar()
+        self.DBname.set(DBname)
         # print self.parent
 
         self.win = Toplevel()
@@ -572,15 +623,55 @@ class ClassSelectionWindow:
             fill=X,
             expand=NO)
 
+        # List of available DBs
+        self.availableDBs = Listbox(
+            self.win,
+            height=3)
+
+        files = [file for file in os.listdir(DBpath)
+                 if os.path.isfile(os.path.join(DBpath, file))]
+        names = [e.split('.fs')[0] for e in files if e[-2:] == 'fs']
+
+        for n in sorted(names):
+            if n:
+                self.availableDBs.insert(END, n)
+
+        self.availableDBs.pack(
+            side=TOP,
+            fill=X,
+            expand=NO)
+
+        self.availableDBs.activate(0)
+
+        # Refresh Button
+        self.btnR = Button(
+            self.win,
+            command=self.RefreshList,
+            text="Load Selected DB",
+            background="green",
+            height=1)
+
+        self.btnR.pack(
+            side=TOP,
+            fill=X,
+            expand=NO)
+
+        # Lable DB
+        self.winlabelDB = Label(
+            self.win,
+            textvariable=self.DBname,
+            relief=RIDGE,
+            height=1)
+        self.winlabelDB.pack(
+            side=TOP,
+            fill=X,
+            expand=NO)
+
         # List of Concepts
         self.concList = Listbox(
             self.win)
 
-        for x in sorted(self.nodeTypeList):
-            if x[1] and x[0] != 'KB':
-                self.concList.insert(END, "{x[0]} ({x[1]})".format(x=x))
-
-        db.close()
+        self.FillList()
 
         self.concList.pack(
             side=TOP,
@@ -602,6 +693,32 @@ class ClassSelectionWindow:
             fill=X,
             expand=NO)
 
+    def FillList(self):
+        global DBname
+        db = openDB(DBname)
+
+        self.conn = db.open()
+        self.nodeTypeList = [(k, len(v)) for k, v in self.conn.root().items()]
+
+        for x in sorted(self.nodeTypeList):
+            if x[1] and x[0] != 'KB':
+                self.concList.insert(END, "{x[0]} ({x[1]})".format(x=x))
+
+        db.close()
+
+    def RefreshList(self):
+        global DBname
+        try:
+            DBname = self.availableDBs.get(self.availableDBs.curselection())
+            self.DBname.set(DBname)
+        except Exception as e:
+            tkMessageBox.showinfo(
+                "Error",
+                "No concept selected!\n{}".format(e))
+
+        self.concList.delete(0, END)
+        self.FillList()
+
     def SelectValue(self):
         selection = None
         try:
@@ -619,9 +736,11 @@ class ClassSelectionWindow:
 class ConceptSelectWindow:
     """docstring for ConceptSelectWindow"""
     def __init__(self, concType, parent):
+        global DBname
+        # self.name = name
         self.concType = concType
         self.Root = parent.ASGroot.getASGbyName('LSMASOMM_META')
-        db = openDB(self.Root.name.getValue())
+        db = openDB(DBname)
 
         self.parent = parent
 
@@ -679,9 +798,9 @@ class ConceptSelectWindow:
             fill=BOTH,
             expand=YES)
 
-        self.concList.activate(0)
-
         db.close()
+
+        self.concList.activate(1)
 
         # Button
         self.btn = Button(
@@ -696,9 +815,26 @@ class ConceptSelectWindow:
             fill=X,
             expand=NO)
 
+        # Button
+        self.btn2 = Button(
+            self.win,
+            command=self.CreateAllElements,
+            text="Load All",
+            background="green",
+            height=1)
+
+        self.btn2.pack(
+            side=TOP,
+            fill=X,
+            expand=NO)
+
     def ConceptSelectFeedback(self):
         # retrieve the selected concept
         selectConcept = self.concList.get(self.concList.curselection())
+
+        self.concList.delete(self.concList.curselection())
+
+        self.concList.activate(0)
 
         # create the retrieved concept in the model canvas
         CreateElement(
@@ -706,36 +842,62 @@ class ConceptSelectWindow:
             selectConcept.split(' //', 1)[0].strip(),
             self.concType)
 
+        # self.win.destroy()
+
+    def CreateAllElements(self):
+        # retrieve all the concepts
+
+        while self.concList.size():
+            selectConcept = self.concList.get(0)
+
+            self.concList.delete(0)
+
+            self.concList.activate(0)
+
+            # create the retrieved concept in the model canvas
+            CreateElement(
+                self,
+                selectConcept.split(' //', 1)[0].strip(),
+                self.concType)
+
         self.win.destroy()
 
-    def prepareAttributeValue(self, attr, value):
-        print 'Attribute type processed: {}'.format(attr)
-        attribute = None
 
-        if attr == 'ATOM3String':
-            attribute = ATOM3String(value, 20)
-        elif attr == 'ATOM3Text':
-            attribute = ATOM3Text(value, 80, 15)
-        elif attr == 'ATOM3List':
-            attribute = ATOM3List([1, 1, 1, 0], ATOM3String)
-            vals = []
-            for v in value.split():
-                vals.append(ATOM3String(v, 20))
-            attribute.setValue(vals)
-        elif attr == 'ATOM3Boolean':
-            attribute = ATOM3Boolean()
+def prepareAttributeValue(attr, value):
+    print 'Attribute type processed: {}; {} ({})'.format(
+        attr,
+        value,
+        type(value))
+    attribute = None
+
+    if attr == 'ATOM3String':
+        attribute = ATOM3String(value, 20)
+    elif attr == 'ATOM3Text':
+        attribute = ATOM3Text(value, 80, 15)
+    elif attr == 'ATOM3List':
+        attribute = ATOM3List([1, 1, 1, 0], ATOM3String)
+        vals = []
+        for v in value.split():
+            vals.append(ATOM3String(v, 20))
+        attribute.setValue(vals)
+    elif attr == 'ATOM3Boolean':
+        attribute = ATOM3Boolean()
+        if value == 'True':
+            attribute.setValue(1)
+        elif value == 'False':
             attribute.setValue(0)
-            attribute.config = 0
+        attribute.config = 0
 
-        return attribute
+    return attribute
 
 
 def CreateElement(self, nodeID, nodeClass, conn=None):
     """Create an element on the given canvas, where
     nodeID and nodeClass are of the node to be created,
     conn is connection to the DB."""
+    global DBname
     if not conn:
-        db = openDB(self.Root.name.getValue())
+        db = openDB(DBname)
         conn = db.open()
 
     concepts = conn.root()[nodeClass].items()
@@ -824,7 +986,7 @@ def CreateElement(self, nodeID, nodeClass, conn=None):
 
     counter = 0
     for a in self.newElement.realOrder:
-        attribute = self.prepareAttributeValue(self.newElement.getAttrValue(a).__class__.__name__, self.savedElement.attrs[counter])
+        attribute = prepareAttributeValue(self.newElement.getAttrValue(a).__class__.__name__, self.savedElement.attrs[counter])
         self.newElement.setAttrValue(a, attribute)
         counter += 1
 
