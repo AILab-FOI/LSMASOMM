@@ -3,15 +3,16 @@ __Process.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Sat Oct 21 18:15:29 2017
+Modified: Sun Oct 22 23:29:30 2017
 _________________________________________________________________
 """
 from ASGNode import *
 
 from ATOM3Type import *
 
-from ATOM3Text import *
 from ATOM3String import *
+from ATOM3Text import *
+from ATOM3List import *
 from graph_Process import *
 class Process(ASGNode, ATOM3Type):
 
@@ -27,16 +28,18 @@ class Process(ASGNode, ATOM3Type):
       self.parent = parent
       self.ID=ATOM3String('P|', 20)
       self.keyword_= self.ID
-      self.Activities=ATOM3Text('\n', 80,10 )
       self.Name=ATOM3String('', 20)
       self.description=ATOM3Text('\n', 80,4 )
+      self.hasActions=ATOM3List([ 0, 0, 1, 0],ATOM3String)
+      lcobj0=[]
+      self.hasActions.setValue(lcobj0)
       self.name=ATOM3String('', 20)
-      self.generatedAttributes = {'Activities': ('ATOM3Text', ),
-                                  'ID': ('ATOM3String', ),
+      self.generatedAttributes = {'ID': ('ATOM3String', ),
                                   'Name': ('ATOM3String', ),
                                   'description': ('ATOM3Text', ),
+                                  'hasActions': ('ATOM3List', 'ATOM3String'),
                                   'name': ('ATOM3String', )      }
-      self.realOrder = ['Activities','ID','Name','description','name']
+      self.realOrder = ['ID','Name','description','hasActions','name']
       self.directEditing = [1,1,1,1,1]
    def clone(self):
       cloneObject = Process( self.parent )

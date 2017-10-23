@@ -3,7 +3,7 @@ __LSMASOMM_MM.py______________________________________________________
 
 Automatically generated AToM3 MetaModel (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Sat Oct 21 18:15:30 2017
+Modified: Sun Oct 22 23:29:31 2017
 ______________________________________________________________________
 """
 from ASG_LSMASOMM import *
@@ -110,7 +110,7 @@ def setConnectivity(self):
            'isPartOfOrgUnit': []
           ,'isPartOfObjective': []
           ,'OrganisationalKnArt': []
-          ,'hasObjective': []
+          ,'hasObjective': [( 'Action', self.createNewAction)]
           ,'OrgUnit': []
           ,'Process': []
           ,'hasActions': []
@@ -432,7 +432,7 @@ def setConnectivity(self):
           ,'Role': []
           ,'genericAssociation': []
           ,'canHaveRole': []
-          ,'Objective': []
+          ,'Objective': [( 'hasObjective', self.createNewhasObjective)]
           ,'canAccessKnArt': []
           ,'KnowledgeArtifacts': []
           ,'answersToRole': [] }
@@ -584,7 +584,7 @@ def setConnectivity(self):
           ,'hasActions': [('0', 'N', 'Destination')]
           ,'canAccessKnArt': []
           ,'isPartOfObjective': []
-          ,'hasObjective': []
+          ,'hasObjective': [('0', 'N', 'Source')]
           ,'genericAssociation': []
           ,'answersToRole': []
           ,'canStartProcess': []
@@ -836,7 +836,7 @@ def setConnectivity(self):
     self.CardinalityTable['hasObjective']={
           'OrgUnit': []
           ,'Role': [('0', 'N', 'Destination')]
-          ,'Action': []
+          ,'Action': [('0', 'N', 'Destination')]
           ,'KnowledgeArtifacts': []
           ,'OrganisationalKnArt': []
           ,'IndividualKnArt': []

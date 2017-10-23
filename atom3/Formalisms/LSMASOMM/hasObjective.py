@@ -3,7 +3,7 @@ __hasObjective.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Sat Oct 21 18:15:29 2017
+Modified: Sun Oct 22 23:29:30 2017
 ______________________________________________________________________
 """
 from ASGNode import *
@@ -57,6 +57,8 @@ class hasObjective(ASGNode, ATOM3Type):
          return self.graphObject_.preAction(actionID, params)
       else: return None
    def postAction (self, actionID, * params):
+      if actionID == self.CONNECT or actionID == self.DISCONNECT:
+         self.updateObjectiveActions(params)
       if self.graphObject_:
          return self.graphObject_.postAction(actionID, params)
       else: return None
@@ -88,6 +90,12 @@ class hasObjective(ASGNode, ATOM3Type):
       oc.LeftExactDistance(objTuple, 20)
       oc.resolve() # Resolve immediately after creating entity & constraint 
       
+      
+
+   def updateObjectiveActions(self, params):
+      from CustomCode import UpdateActions
+      
+      res = UpdateActions(self)
       
 
 

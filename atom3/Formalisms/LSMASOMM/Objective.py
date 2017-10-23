@@ -3,7 +3,7 @@ __Objective.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Sat Oct 21 18:15:29 2017
+Modified: Sun Oct 22 23:29:30 2017
 ___________________________________________________________________
 """
 from ASGNode import *
@@ -12,6 +12,7 @@ from ATOM3Type import *
 
 from ATOM3String import *
 from ATOM3Text import *
+from ATOM3List import *
 from graph_Objective import *
 class Objective(ASGNode, ATOM3Type):
 
@@ -31,13 +32,17 @@ class Objective(ASGNode, ATOM3Type):
       self.Reward=ATOM3Text('\n', 80,4 )
       self.description=ATOM3Text('\n', 80,4 )
       self.name=ATOM3String('', 20)
+      self.ofActions=ATOM3List([ 0, 0, 1, 0],ATOM3String)
+      lcobj0=[]
+      self.ofActions.setValue(lcobj0)
       self.generatedAttributes = {'ID': ('ATOM3String', ),
                                   'Measurement': ('ATOM3Text', ),
                                   'Reward': ('ATOM3Text', ),
                                   'description': ('ATOM3Text', ),
-                                  'name': ('ATOM3String', )      }
-      self.realOrder = ['ID','Measurement','Reward','description','name']
-      self.directEditing = [1,1,1,1,1]
+                                  'name': ('ATOM3String', ),
+                                  'ofActions': ('ATOM3List', 'ATOM3String')      }
+      self.realOrder = ['ID','Measurement','Reward','description','name','ofActions']
+      self.directEditing = [1,1,1,1,1,1]
    def clone(self):
       cloneObject = Objective( self.parent )
       for atr in self.realOrder:

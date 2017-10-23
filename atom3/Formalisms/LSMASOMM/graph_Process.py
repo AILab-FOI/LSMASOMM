@@ -14,7 +14,7 @@ class graph_Process(graphEntity):
 
     def __init__(self, x, y, semObject = None):
         self.semanticObject = semObject
-        self.sizeX, self.sizeY = 56, 61
+        self.sizeX, self.sizeY = 172, 63
         graphEntity.__init__(self, x, y)
         self.ChangesAtRunTime = 0
         self.constraintList = []
@@ -36,8 +36,8 @@ class graph_Process(graphEntity):
 
         if self.semanticObject: drawText = self.semanticObject.name.toString()
         else: drawText = "<name>"
-        font = tkFont.Font( family='FreeSans', size=10, weight='normal', slant='roman', underline=0)
-        h = drawing.create_text(self.translate([28.0, 7.0, 28.0, -155.0])[:2], tags = self.tag, font=font, fill = 'black', anchor = 'center', text = drawText, width = '0', justify= 'left', stipple='' )
+        font = tkFont.Font( family='FreeSans', size=12, weight='normal', slant='roman', underline=0)
+        h = drawing.create_text(self.translate([28.0, 7.0, 28.0, 10.0])[:2], tags = self.tag, font=font, fill = 'black', anchor = 'center', text = drawText, width = '0', justify= 'left', stipple='' )
         self.attr_display["name"] = h
         self.gf201 = GraphicalForm(drawing, h, 'gf201', fontObject=font)
         self.graphForms.append(self.gf201)
@@ -45,10 +45,18 @@ class graph_Process(graphEntity):
         if self.semanticObject: drawText = self.semanticObject.ID.toString()
         else: drawText = "<ID>"
         font = tkFont.Font( family='FreeSans', size=8, weight='normal', slant='roman', underline=0)
-        h = drawing.create_text(self.translate([28.0, 54.0, 28.0, -201.0])[:2], tags = self.tag, font=font, fill = 'white', anchor = 'center', text = drawText, width = '0', justify= 'left', stipple='' )
+        h = drawing.create_text(self.translate([28.0, 54.0, 28.0, 8.0])[:2], tags = self.tag, font=font, fill = 'white', anchor = 'center', text = drawText, width = '0', justify= 'left', stipple='' )
         self.attr_display["ID"] = h
         self.gf202 = GraphicalForm(drawing, h, 'gf202', fontObject=font)
         self.graphForms.append(self.gf202)
+
+        if self.semanticObject: drawText = self.semanticObject.hasActions.toString()
+        else: drawText = "<hasActions>"
+        font = tkFont.Font( family='Helvetica', size=12, weight='normal', slant='roman', underline=0)
+        h = drawing.create_text(self.translate([60.0, 20.0, 60.0, -180.0])[:2], tags = self.tag, font=font, fill = 'black', anchor = 'nw', text = drawText, width = '0', justify= 'left', stipple='' )
+        self.attr_display["hasActions"] = h
+        self.gf203 = GraphicalForm(drawing, h, 'gf203', fontObject=font)
+        self.graphForms.append(self.gf203)
 
 
 

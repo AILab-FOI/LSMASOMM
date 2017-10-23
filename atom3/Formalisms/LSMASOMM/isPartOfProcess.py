@@ -3,13 +3,14 @@ __isPartOfProcess.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Sat Oct 21 18:15:29 2017
+Modified: Sun Oct 22 23:29:30 2017
 _________________________________________________________________________
 """
 from ASGNode import *
 
 from ATOM3Type import *
 
+from ATOM3String import *
 from graph_isPartOfProcess import *
 class isPartOfProcess(ASGNode, ATOM3Type):
 
@@ -23,13 +24,16 @@ class isPartOfProcess(ASGNode, ATOM3Type):
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(False)
       self.parent = parent
-      self.generatedAttributes = {      }
-      self.realOrder = []
-      self.directEditing = []
+      self.ID=ATOM3String('AP|', 20)
+      self.keyword_= self.ID
+      self.generatedAttributes = {'ID': ('ATOM3String', )      }
+      self.realOrder = ['ID']
+      self.directEditing = [1]
    def clone(self):
       cloneObject = isPartOfProcess( self.parent )
       for atr in self.realOrder:
          cloneObject.setAttrValue(atr, self.getAttrValue(atr).clone() )
+      cloneObject.keyword_ = cloneObject.ID
       ASGNode.cloneActions(self, cloneObject)
 
       return cloneObject
@@ -37,6 +41,7 @@ class isPartOfProcess(ASGNode, ATOM3Type):
       ATOM3Type.copy(self, other)
       for atr in self.realOrder:
          self.setAttrValue(atr, other.getAttrValue(atr) )
+      self.keyword_ = self.ID
       ASGNode.copy(self, other)
 
    def preCondition (self, actionID, * params):
@@ -52,6 +57,8 @@ class isPartOfProcess(ASGNode, ATOM3Type):
          return self.graphObject_.preAction(actionID, params)
       else: return None
    def postAction (self, actionID, * params):
+      if actionID == self.CONNECT or actionID == self.DISCONNECT:
+         self.updateProcessActions(params)
       if self.graphObject_:
          return self.graphObject_.postAction(actionID, params)
       else: return None
@@ -82,6 +89,14 @@ class isPartOfProcess(ASGNode, ATOM3Type):
       """
       oc.LeftExactDistance(objTuple, 20)
       oc.resolve() # Resolve immediately after creating entity & constraint 
+      
+      
+
+   def updateProcessActions(self, params):
+      from CustomCode import UpdateActions
+      
+      res = UpdateActions(self)
+      
       
       
 

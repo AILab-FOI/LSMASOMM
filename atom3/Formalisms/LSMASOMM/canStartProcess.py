@@ -3,7 +3,7 @@ __canStartProcess.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Sat Oct 21 18:15:29 2017
+Modified: Sun Oct 22 23:29:30 2017
 _________________________________________________________________________
 """
 from ASGNode import *

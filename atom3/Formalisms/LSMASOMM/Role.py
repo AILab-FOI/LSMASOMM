@@ -3,7 +3,7 @@ __Role.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Sat Oct 21 18:15:29 2017
+Modified: Sun Oct 22 23:29:30 2017
 ______________________________________________________________
 """
 from ASGNode import *
@@ -28,7 +28,7 @@ class Role(ASGNode, ATOM3Type):
       self.parent = parent
       self.ID=ATOM3String('R|', 20)
       self.keyword_= self.ID
-      self.hasActions=ATOM3List([ 1, 1, 1, 0],ATOM3String)
+      self.hasActions=ATOM3List([ 0, 0, 1, 0],ATOM3String)
       lcobj0=[]
       self.hasActions.setValue(lcobj0)
       self.isMetaRole=ATOM3Boolean()
@@ -88,8 +88,6 @@ class Role(ASGNode, ATOM3Type):
    def postAction (self, actionID, * params):
       if actionID == self.CONNECT or actionID == self.DISCONNECT or actionID == self.SELECT:
          self.checkMetaRole(params)
-      if actionID == self.EDIT or actionID == self.SAVE or actionID == self.CONNECT or actionID == self.DISCONNECT:
-         self.updateRoleActions(params)
       if self.graphObject_:
          return self.graphObject_.postAction(actionID, params)
       else: return None
@@ -117,21 +115,6 @@ class Role(ASGNode, ATOM3Type):
    def checkMetaRole(self, params):
       from CustomCode import RoleHierarchy
       res = RoleHierarchy(self)
-      self.isMetaRole.setValue(('isMetaRole',res))
-      self.graphObject_.ModifyAttribute('isMetaRole', res)
-      
-      
-
-   def updateRoleActions(self, params):
-      from CustomCode import UpdateRoleActions
-      
-      actions = UpdateRoleActions(self)
-      
-      if actions:
-          for a in actions:
-              self.hasActions.newItem(a)
-      
-      self.graphObject_.ModifyAttribute('hasActions', self.hasActions.toString())
       
       
 
