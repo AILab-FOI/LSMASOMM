@@ -3,7 +3,7 @@ __ASG_LSMASOMM.py_____________________________________________________
 
 Automatically generated AToM3 ASGroot node (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Sun Oct 22 23:29:31 2017
+Modified: Fri Feb  2 01:44:24 2018
 ______________________________________________________________________
 """
 from ASG import *
@@ -14,7 +14,7 @@ from ATOM3Enum import *
 class ASG_LSMASOMM(ASG, ATOM3Type):
 
    def __init__(self, parent= None, ASGroot = None):
-      ASG.__init__(self, 'LSMASOMM', ASGroot, ['ASG_LSMASOMM' ,'OrgUnit' ,'Role' ,'Action' ,'KnowledgeArtifacts' ,'OrganisationalKnArt' ,'IndividualKnArt' ,'Strategy' ,'Objective' ,'Process' ,'isPartOfOrgUnit' ,'canHaveRole' ,'hasActions' ,'canAccessKnArt' ,'isPartOfObjective' ,'hasObjective' ,'genericAssociation' ,'answersToRole' ,'canStartProcess' ,'answersToOrgUnit' ,'isPartOfRole' ,'isPartOfProcess'])
+      ASG.__init__(self, 'LSMASOMM', ASGroot, ['ASG_LSMASOMM' ,'OrgUnit' ,'Role' ,'Action' ,'KnowledgeArtifacts' ,'OrganisationalKnArt' ,'IndividualKnArt' ,'Strategy' ,'Objective' ,'Process' ,'isPartOfOrgUnit' ,'canHaveRole' ,'hasActions' ,'canAccessKnArt' ,'isPartOfObjective' ,'hasObjective' ,'genericAssociation' ,'answersToRole' ,'canStartProcess' ,'answersToOrgUnit' ,'isPartOfRole' ,'isPartOfProcess' ,'precedentTo'])
 
       ATOM3Type.__init__(self)
       self.parent = parent

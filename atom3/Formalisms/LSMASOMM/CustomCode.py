@@ -25,6 +25,14 @@ from ATOM3TypeDialog import *
 DBpath = './DB'
 DBname = 'LSMASOMM'
 
+def InitialDBName(self):
+    global DBname
+
+    Root = self.ASGroot.getASGbyName('LSMASOMM_META')
+    DBname = Root.name.getValue()
+
+    return True
+
 def checkUniqueID(self):
     global DBname
     """Check if node ID values specified in the model are unique.
@@ -162,31 +170,31 @@ def UpdateActions(self):
         for a in eOuts['Action']:
             actions.append(prepareAttributeValue('ATOM3String', a.name.getValue()))
 
-    if 'Role' in eIns:
-        for r in eIns['Role']:
-            for a in actions:
-                r.hasActions.newItem(a)
-            r.graphObject_.ModifyAttribute('hasActions', r.hasActions.toString())
-        return 1
+        if 'Role' in eIns:
+            for r in eIns['Role']:
+                for a in actions:
+                    r.hasActions.newItem(a)
+                r.graphObject_.ModifyAttribute('hasActions', r.hasActions.toString())
+            return 1
 
     # for updating Action list of an Objective (ofActions)
     if 'Action' in eIns:
         for a in eIns['Action']:
             actions.append(prepareAttributeValue('ATOM3String', a.name.getValue()))
 
-    if 'Objective' in eOuts:
-        for o in eOuts['Objective']:
-            for a in actions:
-                o.ofActions.newItem(a)
-        return 1
+        if 'Objective' in eOuts:
+            for o in eOuts['Objective']:
+                for a in actions:
+                    o.ofActions.newItem(a)
+            return 1
 
-    # for updating Action list of a Process (hasActions)
-    if 'Process' in eOuts:
-        for p in eOuts['Process']:
-            for a in actions:
-                p.hasActions.newItem(a)
-            p.graphObject_.ModifyAttribute('hasActions', r.hasActions.toString())
-        return 1
+        # for updating Action list of a Process (hasActions)
+        if 'Process' in eOuts:
+            for p in eOuts['Process']:
+                for a in actions:
+                    p.hasActions.newItem(a)
+                p.graphObject_.ModifyAttribute('hasActions', r.hasActions.toString())
+            return 1
 
     return 0
 
@@ -379,9 +387,11 @@ def openDB(DBnamed='LSMASOMM'):
 
 # saving process - creating DB and saving individual nodes
 def SaveAll(self):
-    global DBname
     """Traverse all the nodes of the graph, and save each to the DB."""
+    global DBname
     Root = self.ASGroot.getASGbyName('LSMASOMM_META')
+
+    DBname = Root.name.getValue()
 
     db = openDB(DBname)
     conn = db.open()
@@ -407,50 +417,37 @@ def SaveAll(self):
 
     transaction.commit()
 
-    if not 'KB' in conn.root():
-        conn.root()['KB'] = {'ActionGoal': [], 'RoleAction': []}
+    if 'KB' not in conn.root():
+        KB = {
+            'ActionGoal': {},
+            'RoleAction': {},
+            'UnitRole': {}}
+    else:
+        KB = conn.root()['KB']
 
-    # rules = []
 
-    # for action in Root.listNodes['Action']:
-    #     for postLink in action.out_connections_:
-    #         for goal in postLink.out_connections_:
-    #             if goal.__class__.__name__ == 'Objective':
-    #                 conn.root()['KB']['ActionGoal'].append((action.name.getValue(), 'canReachGoal', goal.name.getValue()))
-
+    # saving KB for Objectives reachable by certain Actions
     for goal in conn.root()['Objective'].values():
-        for a in goal.attrs.split('\n'):
-            conn.root()['KB']['ActionGoal'].append((a, 'canReachGoal', goal.attrs[goal.realOrder.index('name')]))
+        for a in goal.attrs[5].split('\n'):
+            if a:  # to avoid empty strings
+                KB['ActionGoal'][(a, 'canReachGoal', goal.attrs[goal.realOrder.index('name')])] = True
+            # KB['ActionGoal'].append((a, 'canReachGoal', goal.attrs[goal.realOrder.index('name')]))
 
+    # saving KB for Actions provided by each Role
+    for role in conn.root()['Role'].values():
+        for a in role.attrs[1].split('\n'):
+            if a:  # to avoid empty strings
+                KB['RoleAction'][(role.attrs[role.realOrder.index('name')], 'hasAction', a)] = True
 
-    # for process in Root.listNodes['Process']:
-    #     # if 'RoleProcessGoals' not in KB.keys():
-    #     #     KB['RoleProcessGoals'] = []
+    # saving KB for Roles playable by each OrgUnit
+    for link in conn.root()['canHaveRole'].values():
+        if 'OrgUnit' in link.in_connections_ and 'Role' in link.out_connections_:
+            for o in link.in_connections_['OrgUnit']:
+                for r in link.out_connections_['Role']:
+                    KB['UnitRole'][(o, 'canHaveRole', r)] = True
 
-    #     for prevLink in process.in_connections_:
-    #         for prevNode in prevLink.in_connections_:
-    #             for postLink in process.out_connections_:
-    #                 for postNode in postLink.out_connections_:
-    #                     rules.append((prevNode.name.getValue(), 'canReachGoal', postNode.name.getValue()))
-
-    # KB['RoleProcessGoal'] = rules
-
-    # print rules
-
+    conn.root()['KB'] = KB
     transaction.commit()
-    # rules = []
-
-    # for role in Root.listNodes['Role']:
-    #     for b in role.getValue()[role.realOrder.index('hasActions')]:
-    #         rules.append((role.name.getValue(), 'hasAction', b.toString()))
-
-    # KB['RoleActions'] = rules
-    # # conn.root()['KB'].update({"RoleActions":rules})
-    # print rules
-
-    # conn.root()['KB'] = KB
-
-    # transaction.commit()
 
     db.close()
 

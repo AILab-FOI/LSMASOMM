@@ -3,7 +3,7 @@ __LSMASOMM_MM.py______________________________________________________
 
 Automatically generated AToM3 MetaModel (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Sun Oct 22 23:29:31 2017
+Modified: Fri Feb  2 01:44:24 2018
 ______________________________________________________________________
 """
 from ASG_LSMASOMM import *
@@ -35,6 +35,7 @@ from canStartProcess       import *
 from answersToOrgUnit       import *
 from isPartOfRole       import *
 from isPartOfProcess       import *
+from precedentTo       import *
 def createNewASGroot(self):
    return ASG_LSMASOMM(self, None)
 
@@ -61,469 +62,514 @@ def createModelMenu(self, modelMenu):
     modelMenu.add_command(label="New answersToOrgUnit", command=lambda x=self: x.createNewanswersToOrgUnit(x, 100, 100) )
     modelMenu.add_command(label="New isPartOfRole", command=lambda x=self: x.createNewisPartOfRole(x, 100, 100) )
     modelMenu.add_command(label="New isPartOfProcess", command=lambda x=self: x.createNewisPartOfProcess(x, 100, 100) )
+    modelMenu.add_command(label="New precedentTo", command=lambda x=self: x.createNewprecedentTo(x, 100, 100) )
 def setConnectivity(self):
-    self.ConnectivityMap['isPartOfProcess']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': [( 'Process', self.createNewProcess)]
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': []
-          ,'Objective': []
-          ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['OrganisationalKnArt']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': []
-          ,'Objective': []
-          ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['hasActions']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': [( 'Action', self.createNewAction)]
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': [( 'Action', self.createNewAction)]
-          ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': []
-          ,'Objective': []
-          ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
     self.ConnectivityMap['hasObjective']={
-           'isPartOfOrgUnit': []
+           'hasObjective': []
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
           ,'isPartOfObjective': [( 'Objective', self.createNewObjective)]
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
           ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
+          ,'answersToRole': []
           ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
+          ,'KnowledgeArtifacts': []
           ,'genericAssociation': []
-          ,'canHaveRole': []
-          ,'Objective': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
           ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['Process']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': []
-          ,'Objective': [( 'hasObjective', self.createNewhasObjective)]
-          ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['Strategy']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': []
-          ,'Objective': []
-          ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['canHaveRole']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': [( 'Role', self.createNewRole)]
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': [( 'Role', self.createNewRole)]
-          ,'isPartOfRole': [( 'Role', self.createNewRole)]
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': [( 'Role', self.createNewRole)]
-          ,'Role': []
-          ,'genericAssociation': [( 'Role', self.createNewRole)]
-          ,'canHaveRole': []
-          ,'Objective': []
-          ,'canAccessKnArt': [( 'Role', self.createNewRole)]
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [( 'Role', self.createNewRole)] }
-    self.ConnectivityMap['isPartOfRole']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': [( 'Role', self.createNewRole)]
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': [( 'Role', self.createNewRole)]
-          ,'isPartOfRole': [( 'Role', self.createNewRole)]
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': [( 'Role', self.createNewRole)]
-          ,'Role': []
-          ,'genericAssociation': [( 'Role', self.createNewRole)]
-          ,'canHaveRole': []
-          ,'Objective': []
-          ,'canAccessKnArt': [( 'Role', self.createNewRole)]
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [( 'Role', self.createNewRole)] }
-    self.ConnectivityMap['IndividualKnArt']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': []
-          ,'Objective': []
-          ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['answersToOrgUnit']={
-           'isPartOfOrgUnit': [( 'OrgUnit', self.createNewOrgUnit)]
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': [( 'OrgUnit', self.createNewOrgUnit)]
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
-          ,'genericAssociation': []
+          ,'precedentTo': [( 'Objective', self.createNewObjective)] }
+    self.ConnectivityMap['isPartOfOrgUnit']={
+           'hasObjective': []
           ,'canHaveRole': [( 'OrgUnit', self.createNewOrgUnit)]
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': [( 'OrgUnit', self.createNewOrgUnit)]
           ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': [( 'OrgUnit', self.createNewOrgUnit)]
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
           ,'canAccessKnArt': [( 'OrgUnit', self.createNewOrgUnit)]
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['KnowledgeArtifacts']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
+          ,'precedentTo': [] }
+    self.ConnectivityMap['Strategy']={
+           'hasObjective': []
+          ,'canHaveRole': []
           ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': []
+          ,'isPartOfOrgUnit': []
           ,'Objective': []
-          ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['isPartOfObjective']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': [( 'Objective', self.createNewObjective)]
           ,'OrganisationalKnArt': []
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': []
           ,'hasActions': []
           ,'isPartOfRole': []
-          ,'IndividualKnArt': []
           ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': []
-          ,'Objective': []
-          ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['Objective']={
-           'isPartOfOrgUnit': []
           ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
           ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
+          ,'answersToRole': []
           ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': []
-          ,'Objective': [( 'isPartOfObjective', self.createNewisPartOfObjective)]
-          ,'canAccessKnArt': []
           ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': []
+          ,'precedentTo': [] }
     self.ConnectivityMap['canStartProcess']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': [( 'Process', self.createNewProcess)]
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
+           'hasObjective': [( 'Process', self.createNewProcess)]
+          ,'canHaveRole': []
           ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
           ,'canStartProcess': []
           ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': []
+          ,'isPartOfOrgUnit': []
           ,'Objective': []
-          ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['Role']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': [( 'canAccessKnArt', self.createNewcanAccessKnArt)]
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': [( 'canStartProcess', self.createNewcanStartProcess)]
+          ,'OrganisationalKnArt': []
           ,'hasActions': []
           ,'isPartOfRole': []
-          ,'IndividualKnArt': [( 'canAccessKnArt', self.createNewcanAccessKnArt)]
           ,'answersToOrgUnit': []
-          ,'Strategy': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
           ,'isPartOfProcess': []
-          ,'Action': [( 'hasActions', self.createNewhasActions)]
+          ,'canAccessKnArt': []
+          ,'precedentTo': [] }
+    self.ConnectivityMap['Role']={
+           'hasObjective': []
+          ,'canHaveRole': []
+          ,'Strategy': []
           ,'canStartProcess': []
           ,'Role': [( 'genericAssociation', self.createNewgenericAssociation), ( 'answersToRole', self.createNewanswersToRole), ( 'isPartOfRole', self.createNewisPartOfRole)]
-          ,'genericAssociation': []
-          ,'canHaveRole': []
+          ,'isPartOfOrgUnit': []
           ,'Objective': [( 'hasObjective', self.createNewhasObjective)]
-          ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['isPartOfOrgUnit']={
-           'isPartOfOrgUnit': [( 'OrgUnit', self.createNewOrgUnit)]
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': [( 'OrgUnit', self.createNewOrgUnit)]
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': [( 'OrgUnit', self.createNewOrgUnit)]
-          ,'Objective': []
-          ,'canAccessKnArt': [( 'OrgUnit', self.createNewOrgUnit)]
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['Action']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': [( 'isPartOfProcess', self.createNewisPartOfProcess)]
-          ,'hasActions': []
-          ,'isPartOfRole': []
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': []
-          ,'Objective': [( 'hasObjective', self.createNewhasObjective)]
-          ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['canAccessKnArt']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': []
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': []
-          ,'isPartOfRole': []
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': []
-          ,'Role': []
-          ,'genericAssociation': []
-          ,'canHaveRole': []
-          ,'Objective': []
-          ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['OrgUnit']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
           ,'OrganisationalKnArt': [( 'canAccessKnArt', self.createNewcanAccessKnArt)]
-          ,'hasObjective': []
-          ,'OrgUnit': [( 'isPartOfOrgUnit', self.createNewisPartOfOrgUnit), ( 'answersToOrgUnit', self.createNewanswersToOrgUnit)]
-          ,'Process': []
           ,'hasActions': []
           ,'isPartOfRole': []
-          ,'IndividualKnArt': [( 'canAccessKnArt', self.createNewcanAccessKnArt)]
           ,'answersToOrgUnit': []
-          ,'Strategy': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': [( 'canAccessKnArt', self.createNewcanAccessKnArt)]
+          ,'answersToRole': []
+          ,'Action': [( 'hasActions', self.createNewhasActions)]
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': [( 'canStartProcess', self.createNewcanStartProcess)]
+          ,'OrgUnit': []
           ,'isPartOfProcess': []
+          ,'canAccessKnArt': []
+          ,'precedentTo': [] }
+    self.ConnectivityMap['canHaveRole']={
+           'hasObjective': [( 'Role', self.createNewRole)]
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': [( 'Role', self.createNewRole)]
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': [( 'Role', self.createNewRole)]
+          ,'isPartOfRole': [( 'Role', self.createNewRole)]
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': [( 'Role', self.createNewRole)]
           ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': [( 'Role', self.createNewRole)]
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': [( 'Role', self.createNewRole)]
+          ,'precedentTo': [] }
+    self.ConnectivityMap['Objective']={
+           'hasObjective': []
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': [( 'isPartOfObjective', self.createNewisPartOfObjective), ( 'precedentTo', self.createNewprecedentTo)]
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': []
+          ,'precedentTo': [] }
+    self.ConnectivityMap['OrganisationalKnArt']={
+           'hasObjective': []
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': []
+          ,'precedentTo': [] }
+    self.ConnectivityMap['hasActions']={
+           'hasObjective': [( 'Action', self.createNewAction)]
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': [( 'Action', self.createNewAction)]
+          ,'canAccessKnArt': []
+          ,'precedentTo': [] }
+    self.ConnectivityMap['isPartOfRole']={
+           'hasObjective': [( 'Role', self.createNewRole)]
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': [( 'Role', self.createNewRole)]
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': [( 'Role', self.createNewRole)]
+          ,'isPartOfRole': [( 'Role', self.createNewRole)]
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': [( 'Role', self.createNewRole)]
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': [( 'Role', self.createNewRole)]
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': [( 'Role', self.createNewRole)]
+          ,'precedentTo': [] }
+    self.ConnectivityMap['answersToOrgUnit']={
+           'hasObjective': []
+          ,'canHaveRole': [( 'OrgUnit', self.createNewOrgUnit)]
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': [( 'OrgUnit', self.createNewOrgUnit)]
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': [( 'OrgUnit', self.createNewOrgUnit)]
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': [( 'OrgUnit', self.createNewOrgUnit)]
+          ,'precedentTo': [] }
+    self.ConnectivityMap['isPartOfObjective']={
+           'hasObjective': []
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': [( 'Objective', self.createNewObjective)]
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': []
+          ,'precedentTo': [( 'Objective', self.createNewObjective)] }
+    self.ConnectivityMap['IndividualKnArt']={
+           'hasObjective': []
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': []
+          ,'precedentTo': [] }
+    self.ConnectivityMap['answersToRole']={
+           'hasObjective': [( 'Role', self.createNewRole)]
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': [( 'Role', self.createNewRole)]
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': [( 'Role', self.createNewRole)]
+          ,'isPartOfRole': [( 'Role', self.createNewRole)]
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': [( 'Role', self.createNewRole)]
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': [( 'Role', self.createNewRole)]
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': [( 'Role', self.createNewRole)]
+          ,'precedentTo': [] }
+    self.ConnectivityMap['Action']={
+           'hasObjective': []
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': [( 'hasObjective', self.createNewhasObjective)]
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': [( 'isPartOfProcess', self.createNewisPartOfProcess)]
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': []
+          ,'precedentTo': [] }
+    self.ConnectivityMap['KnowledgeArtifacts']={
+           'hasObjective': []
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': []
+          ,'precedentTo': [] }
+    self.ConnectivityMap['genericAssociation']={
+           'hasObjective': [( 'Role', self.createNewRole)]
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': [( 'Role', self.createNewRole)]
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': [( 'Role', self.createNewRole)]
+          ,'isPartOfRole': [( 'Role', self.createNewRole)]
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': [( 'Role', self.createNewRole)]
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': [( 'Role', self.createNewRole)]
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': [( 'Role', self.createNewRole)]
+          ,'precedentTo': [] }
+    self.ConnectivityMap['Process']={
+           'hasObjective': []
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': [( 'hasObjective', self.createNewhasObjective)]
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': []
+          ,'precedentTo': [] }
+    self.ConnectivityMap['OrgUnit']={
+           'hasObjective': []
+          ,'canHaveRole': []
+          ,'Strategy': []
           ,'canStartProcess': []
           ,'Role': [( 'canHaveRole', self.createNewcanHaveRole)]
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': [( 'canAccessKnArt', self.createNewcanAccessKnArt)]
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': [( 'canAccessKnArt', self.createNewcanAccessKnArt)]
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
           ,'genericAssociation': []
-          ,'canHaveRole': []
-          ,'Objective': []
+          ,'Process': []
+          ,'OrgUnit': [( 'isPartOfOrgUnit', self.createNewisPartOfOrgUnit), ( 'answersToOrgUnit', self.createNewanswersToOrgUnit)]
+          ,'isPartOfProcess': []
           ,'canAccessKnArt': []
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [] }
-    self.ConnectivityMap['answersToRole']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': [( 'Role', self.createNewRole)]
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': [( 'Role', self.createNewRole)]
-          ,'isPartOfRole': [( 'Role', self.createNewRole)]
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
-          ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': [( 'Role', self.createNewRole)]
-          ,'Role': []
-          ,'genericAssociation': [( 'Role', self.createNewRole)]
+          ,'precedentTo': [] }
+    self.ConnectivityMap['isPartOfProcess']={
+           'hasObjective': [( 'Process', self.createNewProcess)]
           ,'canHaveRole': []
-          ,'Objective': []
-          ,'canAccessKnArt': [( 'Role', self.createNewRole)]
-          ,'KnowledgeArtifacts': []
-          ,'answersToRole': [( 'Role', self.createNewRole)] }
-    self.ConnectivityMap['genericAssociation']={
-           'isPartOfOrgUnit': []
-          ,'isPartOfObjective': []
-          ,'OrganisationalKnArt': []
-          ,'hasObjective': [( 'Role', self.createNewRole)]
-          ,'OrgUnit': []
-          ,'Process': []
-          ,'hasActions': [( 'Role', self.createNewRole)]
-          ,'isPartOfRole': [( 'Role', self.createNewRole)]
-          ,'IndividualKnArt': []
-          ,'answersToOrgUnit': []
           ,'Strategy': []
-          ,'isPartOfProcess': []
-          ,'Action': []
-          ,'canStartProcess': [( 'Role', self.createNewRole)]
+          ,'canStartProcess': []
           ,'Role': []
-          ,'genericAssociation': [( 'Role', self.createNewRole)]
-          ,'canHaveRole': []
+          ,'isPartOfOrgUnit': []
           ,'Objective': []
-          ,'canAccessKnArt': [( 'Role', self.createNewRole)]
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
           ,'KnowledgeArtifacts': []
-          ,'answersToRole': [( 'Role', self.createNewRole)] }
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': []
+          ,'precedentTo': [] }
+    self.ConnectivityMap['canAccessKnArt']={
+           'hasObjective': []
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': []
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': []
+          ,'precedentTo': [] }
+    self.ConnectivityMap['precedentTo']={
+           'hasObjective': []
+          ,'canHaveRole': []
+          ,'Strategy': []
+          ,'canStartProcess': []
+          ,'Role': []
+          ,'isPartOfOrgUnit': []
+          ,'Objective': []
+          ,'OrganisationalKnArt': []
+          ,'hasActions': []
+          ,'isPartOfRole': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfObjective': [( 'Objective', self.createNewObjective)]
+          ,'IndividualKnArt': []
+          ,'answersToRole': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'genericAssociation': []
+          ,'Process': []
+          ,'OrgUnit': []
+          ,'isPartOfProcess': []
+          ,'canAccessKnArt': []
+          ,'precedentTo': [( 'Objective', self.createNewObjective)] }
     
     self.CardinalityTable['OrgUnit']={
           'OrgUnit': []
@@ -546,7 +592,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': [('0', 'N', 'Source'), ('0', 'N', 'Destination')]
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['Role']={
           'OrgUnit': []
           ,'Role': []
@@ -568,7 +615,8 @@ def setConnectivity(self):
           ,'canStartProcess': [('0', 'N', 'Source')]
           ,'answersToOrgUnit': []
           ,'isPartOfRole': [('0', 'N', 'Source'), ('0', 'N', 'Destination')]
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['Action']={
           'OrgUnit': []
           ,'Role': []
@@ -590,7 +638,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [('0', 'N', 'Source')] }
+          ,'isPartOfProcess': [('0', 'N', 'Source')]
+          ,'precedentTo': [] }
     self.CardinalityTable['KnowledgeArtifacts']={
           'OrgUnit': []
           ,'Role': []
@@ -612,7 +661,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['OrganisationalKnArt']={
           'OrgUnit': []
           ,'Role': []
@@ -634,7 +684,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['IndividualKnArt']={
           'OrgUnit': []
           ,'Role': []
@@ -656,7 +707,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['Strategy']={
           'OrgUnit': []
           ,'Role': []
@@ -678,7 +730,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['Objective']={
           'OrgUnit': []
           ,'Role': []
@@ -700,7 +753,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [('0', 'N', 'Source'), ('0', 'N', 'Destination')] }
     self.CardinalityTable['Process']={
           'OrgUnit': []
           ,'Role': []
@@ -722,7 +776,8 @@ def setConnectivity(self):
           ,'canStartProcess': [('0', 'N', 'Destination')]
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [('0', 'N', 'Destination')] }
+          ,'isPartOfProcess': [('0', 'N', 'Destination')]
+          ,'precedentTo': [] }
     self.CardinalityTable['isPartOfOrgUnit']={
           'OrgUnit': [('1', 'N', 'Destination'), ('1', 'N', 'Source')]
           ,'Role': []
@@ -744,7 +799,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['canHaveRole']={
           'OrgUnit': [('0', 'N', 'Destination')]
           ,'Role': [('0', 'N', 'Source')]
@@ -766,7 +822,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['hasActions']={
           'OrgUnit': []
           ,'Role': [('1', '1', 'Destination')]
@@ -788,7 +845,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['canAccessKnArt']={
           'OrgUnit': [('0', 'N', 'Destination')]
           ,'Role': [('0', 'N', 'Destination')]
@@ -810,7 +868,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['isPartOfObjective']={
           'OrgUnit': []
           ,'Role': []
@@ -832,7 +891,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['hasObjective']={
           'OrgUnit': []
           ,'Role': [('0', 'N', 'Destination')]
@@ -854,7 +914,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['genericAssociation']={
           'OrgUnit': []
           ,'Role': [('1', 'N', 'Source'), ('1', 'N', 'Destination')]
@@ -876,7 +937,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['answersToRole']={
           'OrgUnit': []
           ,'Role': [('1', 'N', 'Destination'), ('1', 'N', 'Source')]
@@ -898,7 +960,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['canStartProcess']={
           'OrgUnit': []
           ,'Role': [('0', 'N', 'Destination')]
@@ -920,7 +983,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['answersToOrgUnit']={
           'OrgUnit': [('1', 'N', 'Source'), ('1', 'N', 'Destination')]
           ,'Role': []
@@ -942,7 +1006,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['isPartOfRole']={
           'OrgUnit': []
           ,'Role': [('0', 'N', 'Destination'), ('0', 'N', 'Source')]
@@ -964,7 +1029,8 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     self.CardinalityTable['isPartOfProcess']={
           'OrgUnit': []
           ,'Role': []
@@ -986,9 +1052,33 @@ def setConnectivity(self):
           ,'canStartProcess': []
           ,'answersToOrgUnit': []
           ,'isPartOfRole': []
-          ,'isPartOfProcess': [] }
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
+    self.CardinalityTable['precedentTo']={
+          'OrgUnit': []
+          ,'Role': []
+          ,'Action': []
+          ,'KnowledgeArtifacts': []
+          ,'OrganisationalKnArt': []
+          ,'IndividualKnArt': []
+          ,'Strategy': []
+          ,'Objective': [('0', 'N', 'Destination'), ('0', 'N', 'Source')]
+          ,'Process': []
+          ,'isPartOfOrgUnit': []
+          ,'canHaveRole': []
+          ,'hasActions': []
+          ,'canAccessKnArt': []
+          ,'isPartOfObjective': []
+          ,'hasObjective': []
+          ,'genericAssociation': []
+          ,'answersToRole': []
+          ,'canStartProcess': []
+          ,'answersToOrgUnit': []
+          ,'isPartOfRole': []
+          ,'isPartOfProcess': []
+          ,'precedentTo': [] }
     
-    self.entitiesInMetaModel['LSMASOMM']=["OrgUnit", "Role", "Action", "KnowledgeArtifacts", "OrganisationalKnArt", "IndividualKnArt", "Strategy", "Objective", "Process", "isPartOfOrgUnit", "canHaveRole", "hasActions", "canAccessKnArt", "isPartOfObjective", "hasObjective", "genericAssociation", "answersToRole", "canStartProcess", "answersToOrgUnit", "isPartOfRole", "isPartOfProcess"]
+    self.entitiesInMetaModel['LSMASOMM']=["OrgUnit", "Role", "Action", "KnowledgeArtifacts", "OrganisationalKnArt", "IndividualKnArt", "Strategy", "Objective", "Process", "isPartOfOrgUnit", "canHaveRole", "hasActions", "canAccessKnArt", "isPartOfObjective", "hasObjective", "genericAssociation", "answersToRole", "canStartProcess", "answersToOrgUnit", "isPartOfRole", "isPartOfProcess", "precedentTo"]
 
     
 def createNewOrgUnit(self, wherex, wherey, screenCoordinates = 1):
@@ -1915,6 +2005,51 @@ def createNewisPartOfProcess(self, wherex, wherey, screenCoordinates = 1):
       new_obj = graph_isPartOfProcess(wherex, wherey, new_semantic_obj)
    new_obj.DrawObject(self.UMLmodel, self.editGGLabel)
    self.UMLmodel.addtag_withtag("isPartOfProcess", new_obj.tag)
+   new_semantic_obj.graphObject_ = new_obj
+   self.ASGroot.addNode(new_semantic_obj)
+   res = self.ASGroot.postCondition(ASG.CREATE)
+   if res:
+      self.constraintViolation(res)
+      self.mode=self.IDLEMODE
+      return
+
+   res = new_semantic_obj.postCondition(ASGNode.CREATE)
+   if res:
+      self.constraintViolation(res)
+      self.mode=self.IDLEMODE
+      return
+   new_semantic_obj.postAction(ASGNode.CREATE)
+
+   self.mode=self.IDLEMODE
+   if self.editGGLabel :
+      self.statusbar.event(StatusBar.TRANSFORMATION, StatusBar.CREATE)
+   else:
+      self.statusbar.event(StatusBar.MODEL, StatusBar.CREATE)
+   return new_semantic_obj
+def createNewprecedentTo(self, wherex, wherey, screenCoordinates = 1):
+   self.fromClass = None
+   self.toClass = None
+   # try the global constraints...
+   res = self.ASGroot.preCondition(ASG.CREATE)
+   if res:
+      self.constraintViolation(res)
+      self.mode=self.IDLEMODE
+      return
+
+   new_semantic_obj = precedentTo(self)
+   res = new_semantic_obj.preCondition ( ASGNode.CREATE )
+   if res: return self.constraintViolation(res)
+   new_semantic_obj.preAction ( ASGNode.CREATE ) 
+
+   ne = len(self.ASGroot.listNodes["precedentTo"])
+   if new_semantic_obj.keyword_:
+      new_semantic_obj.keyword_.setValue(new_semantic_obj.keyword_.toString()+str(ne))
+   if screenCoordinates:
+      new_obj = graph_precedentTo(self.UMLmodel.canvasx(wherex), self.UMLmodel.canvasy(wherey), new_semantic_obj)
+   else: # already in canvas coordinates
+      new_obj = graph_precedentTo(wherex, wherey, new_semantic_obj)
+   new_obj.DrawObject(self.UMLmodel, self.editGGLabel)
+   self.UMLmodel.addtag_withtag("precedentTo", new_obj.tag)
    new_semantic_obj.graphObject_ = new_obj
    self.ASGroot.addNode(new_semantic_obj)
    res = self.ASGroot.postCondition(ASG.CREATE)
