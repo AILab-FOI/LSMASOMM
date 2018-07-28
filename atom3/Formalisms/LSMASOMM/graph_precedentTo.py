@@ -14,7 +14,7 @@ class graph_precedentTo(graphLink):
       self.semObject = semObject
       self.semanticObject = semObject
       from linkEditor import *
-      self.le=linkEditor(self,self.semObject, "Association_12")
+      self.le=linkEditor(self,self.semObject, "precedentTo")
       self.le.FirstLink= stickylink()
       self.le.FirstLink.arrow=ATOM3Boolean()
       self.le.FirstLink.arrow.setValue((' ', 0))
@@ -23,7 +23,7 @@ class graph_precedentTo(graphLink):
       self.le.FirstLink.arrowShape2=ATOM3Integer(10)
       self.le.FirstLink.arrowShape3=ATOM3Integer(3)
       self.le.FirstLink.decoration=ATOM3Appearance()
-      self.le.FirstLink.decoration.setValue( ('Association_12_1stLink', self.le.FirstLink))
+      self.le.FirstLink.decoration.setValue( ('precedentTo_1stLink', self.le.FirstLink))
       self.le.FirstSegment= widthXfillXdecoration()
       self.le.FirstSegment.width=ATOM3Integer(2)
       self.le.FirstSegment.fill=ATOM3String('black', 20)
@@ -35,10 +35,10 @@ class graph_precedentTo(graphLink):
       self.le.FirstSegment.arrowShape2=ATOM3Integer(10)
       self.le.FirstSegment.arrowShape3=ATOM3Integer(3)
       self.le.FirstSegment.decoration=ATOM3Appearance()
-      self.le.FirstSegment.decoration.setValue( ('Association_12_1stSegment', self.le.FirstSegment))
+      self.le.FirstSegment.decoration.setValue( ('precedentTo_1stSegment', self.le.FirstSegment))
       self.le.FirstSegment.decoration_Position=ATOM3Enum(['Up', 'Down', 'Middle', 'No decoration'],3,0)
       self.le.Center=ATOM3Appearance()
-      self.le.Center.setValue( ('Association_12_Center', self.le))
+      self.le.Center.setValue( ('precedentTo_Center', self.le))
       self.le.SecondSegment= widthXfillXdecoration()
       self.le.SecondSegment.width=ATOM3Integer(2)
       self.le.SecondSegment.fill=ATOM3String('black', 20)
@@ -50,7 +50,7 @@ class graph_precedentTo(graphLink):
       self.le.SecondSegment.arrowShape2=ATOM3Integer(10)
       self.le.SecondSegment.arrowShape3=ATOM3Integer(3)
       self.le.SecondSegment.decoration=ATOM3Appearance()
-      self.le.SecondSegment.decoration.setValue( ('Association_12_2ndSegment', self.le.SecondSegment))
+      self.le.SecondSegment.decoration.setValue( ('precedentTo_2ndSegment', self.le.SecondSegment))
       self.le.SecondSegment.decoration_Position=ATOM3Enum(['Up', 'Down', 'Middle', 'No decoration'],3,0)
       self.le.SecondLink= stickylink()
       self.le.SecondLink.arrow=ATOM3Boolean()
@@ -60,7 +60,7 @@ class graph_precedentTo(graphLink):
       self.le.SecondLink.arrowShape2=ATOM3Integer(10)
       self.le.SecondLink.arrowShape3=ATOM3Integer(3)
       self.le.SecondLink.decoration=ATOM3Appearance()
-      self.le.SecondLink.decoration.setValue( ('Association_12_2ndLink', self.le.SecondLink))
+      self.le.SecondLink.decoration.setValue( ('precedentTo_2ndLink', self.le.SecondLink))
       self.le.FirstLink.decoration.semObject=self.semObject
       self.le.FirstSegment.decoration.semObject=self.semObject
       self.le.Center.semObject=self.semObject

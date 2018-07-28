@@ -3,13 +3,14 @@ __precedentTo.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Fri Feb  2 01:44:24 2018
+Modified: Sat Apr 14 23:09:41 2018
 _____________________________________________________________________
 """
 from ASGNode import *
 
 from ATOM3Type import *
 
+from ATOM3String import *
 from graph_precedentTo import *
 class precedentTo(ASGNode, ATOM3Type):
 
@@ -19,17 +20,20 @@ class precedentTo(ASGNode, ATOM3Type):
       self.graphClass_ = graph_precedentTo
       self.isGraphObjectVisual = True
       if(hasattr(self, '_setHierarchicalLink')):
-        self._setHierarchicalLink(False)
+        self._setHierarchicalLink(True)
       if(hasattr(self, '_setHierarchicalNode')):
         self._setHierarchicalNode(False)
       self.parent = parent
-      self.generatedAttributes = {      }
-      self.realOrder = []
-      self.directEditing = []
+      self.ID=ATOM3String('OpO|', 20)
+      self.keyword_= self.ID
+      self.generatedAttributes = {'ID': ('ATOM3String', )      }
+      self.realOrder = ['ID']
+      self.directEditing = [1]
    def clone(self):
       cloneObject = precedentTo( self.parent )
       for atr in self.realOrder:
          cloneObject.setAttrValue(atr, self.getAttrValue(atr).clone() )
+      cloneObject.keyword_ = cloneObject.ID
       ASGNode.cloneActions(self, cloneObject)
 
       return cloneObject
@@ -37,6 +41,7 @@ class precedentTo(ASGNode, ATOM3Type):
       ATOM3Type.copy(self, other)
       for atr in self.realOrder:
          self.setAttrValue(atr, other.getAttrValue(atr) )
+      self.keyword_ = self.ID
       ASGNode.copy(self, other)
 
    def preCondition (self, actionID, * params):

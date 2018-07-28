@@ -3,7 +3,7 @@ __LSMASOMM_MM.py______________________________________________________
 
 Automatically generated AToM3 MetaModel (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Fri Feb  2 01:44:24 2018
+Modified: Sat Apr 14 23:09:42 2018
 ______________________________________________________________________
 """
 from ASG_LSMASOMM import *

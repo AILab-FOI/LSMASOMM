@@ -1,0 +1,277 @@
+"""
+__test_MDL.py_____________________________________________________
+
+Automatically generated AToM3 Model File (Do not modify directly)
+Author: bogdan
+Modified: Wed Jun  7 00:20:12 2017
+__________________________________________________________________
+"""
+from stickylink import *
+from widthXfillXdecoration import *
+from OrgUnit import *
+from Role import *
+from canHaveRole import *
+from isPartOfRole import *
+from graph_canHaveRole import *
+from graph_OrgUnit import *
+from graph_isPartOfRole import *
+from graph_Role import *
+from ATOM3Enum import *
+from ATOM3String import *
+from ATOM3BottomType import *
+from ATOM3Constraint import *
+from ATOM3Attribute import *
+from ATOM3Float import *
+from ATOM3List import *
+from ATOM3Link import *
+from ATOM3Connection import *
+from ATOM3Boolean import *
+from ATOM3Appearance import *
+from ATOM3Text import *
+from ATOM3Action import *
+from ATOM3Integer import *
+from ATOM3Port import *
+from ATOM3MSEnum import *
+
+def test_MDL(self, rootNode, LSMASOMMRootNode=None):
+
+    # --- Generating attributes code for ASG LSMASOMM ---
+    if( LSMASOMMRootNode ): 
+        # author
+        LSMASOMMRootNode.author.setValue('Annonymous')
+
+        # description
+        LSMASOMMRootNode.description.setValue('\n')
+        LSMASOMMRootNode.description.setHeight(15)
+
+        # name
+        LSMASOMMRootNode.name.setValue('LSMASOMM')
+
+        # title
+        LSMASOMMRootNode.title.setValue('')
+        LSMASOMMRootNode.title.setNone()
+    # --- ASG attributes over ---
+
+
+    self.obj47=OrgUnit(self)
+    self.obj47.isGraphObjectVisual = True
+
+    if(hasattr(self.obj47, '_setHierarchicalLink')):
+      self.obj47._setHierarchicalLink(False)
+
+    # Individual
+    self.obj47.Individual.setValue(('1', 0))
+    self.obj47.Individual.config = 0
+
+    # hasActions
+    self.obj47.hasActions.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    cobj2=ATOM3String('ChangeRole', 20)
+    lcobj2.append(cobj2)
+    self.obj47.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj47.ID.setValue('OU|0')
+
+    # name
+    self.obj47.name.setValue('Player')
+
+    # UnitSize
+    self.obj47.UnitSize.setValue('Individual')
+
+    self.obj47.graphClass_= graph_OrgUnit
+    if self.genGraphics:
+       new_obj = graph_OrgUnit(0,278,self.obj47)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("OrgUnit", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj47.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj47)
+    self.globalAndLocalPostcondition(self.obj47, rootNode)
+    self.obj47.postAction( rootNode.CREATE )
+
+    self.obj44=Role(self)
+    self.obj44.isGraphObjectVisual = True
+
+    if(hasattr(self.obj44, '_setHierarchicalLink')):
+      self.obj44._setHierarchicalLink(False)
+
+    # isMetaRole
+    self.obj44.isMetaRole.setValue(('isMetaRole', 0))
+    self.obj44.isMetaRole.config = 0
+
+    # hasActions
+    self.obj44.hasActions.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    self.obj44.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj44.ID.setValue('R|0')
+
+    # name
+    self.obj44.name.setValue('Wizard')
+
+    self.obj44.graphClass_= graph_Role
+    if self.genGraphics:
+       new_obj = graph_Role(170,417,self.obj44)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Role", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj44.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj44)
+    self.globalAndLocalPostcondition(self.obj44, rootNode)
+    self.obj44.postAction( rootNode.CREATE )
+
+    self.obj46=Role(self)
+    self.obj46.isGraphObjectVisual = True
+
+    if(hasattr(self.obj46, '_setHierarchicalLink')):
+      self.obj46._setHierarchicalLink(False)
+
+    # isMetaRole
+    self.obj46.isMetaRole.setValue(('isMetaRole', 1))
+    self.obj46.isMetaRole.config = 0
+
+    # hasActions
+    self.obj46.hasActions.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    self.obj46.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj46.ID.setValue('R|1')
+
+    # name
+    self.obj46.name.setValue('Warrior')
+
+    self.obj46.graphClass_= graph_Role
+    if self.genGraphics:
+       new_obj = graph_Role(349,139,self.obj46)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Role", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj46.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj46)
+    self.globalAndLocalPostcondition(self.obj46, rootNode)
+    self.obj46.postAction( rootNode.CREATE )
+
+    self.obj52=Role(self)
+    self.obj52.isGraphObjectVisual = True
+
+    if(hasattr(self.obj52, '_setHierarchicalLink')):
+      self.obj52._setHierarchicalLink(False)
+
+    # isMetaRole
+    self.obj52.isMetaRole.setValue(('isMetaRole', 0))
+    self.obj52.isMetaRole.config = 0
+
+    # hasActions
+    self.obj52.hasActions.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    self.obj52.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj52.ID.setValue('R|2')
+
+    # name
+    self.obj52.name.setValue('Melee')
+
+    self.obj52.graphClass_= graph_Role
+    if self.genGraphics:
+       new_obj = graph_Role(170,0,self.obj52)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Role", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj52.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj52)
+    self.globalAndLocalPostcondition(self.obj52, rootNode)
+    self.obj52.postAction( rootNode.CREATE )
+
+    self.obj48=canHaveRole(self)
+    self.obj48.isGraphObjectVisual = True
+
+    if(hasattr(self.obj48, '_setHierarchicalLink')):
+      self.obj48._setHierarchicalLink(True)
+
+    # ID
+    self.obj48.ID.setValue('OUR|0')
+
+    self.obj48.graphClass_= graph_canHaveRole
+    if self.genGraphics:
+       new_obj = graph_canHaveRole(111.0,310.0,self.obj48)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("canHaveRole", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj48.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj48)
+    self.globalAndLocalPostcondition(self.obj48, rootNode)
+    self.obj48.postAction( rootNode.CREATE )
+
+    self.obj53=isPartOfRole(self)
+    self.obj53.isGraphObjectVisual = True
+
+    if(hasattr(self.obj53, '_setHierarchicalLink')):
+      self.obj53._setHierarchicalLink(True)
+
+    # ID
+    self.obj53.ID.setValue('pR|0')
+
+    self.obj53.graphClass_= graph_isPartOfRole
+    if self.genGraphics:
+       new_obj = graph_isPartOfRole(294.633294761,113.60172833,self.obj53)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("isPartOfRole", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj53.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj53)
+    self.globalAndLocalPostcondition(self.obj53, rootNode)
+    self.obj53.postAction( rootNode.CREATE )
+
+    # Connections for obj47 (graphObject_: Obj2) named Player
+    self.drawConnections(
+(self.obj47,self.obj48,[23.0, 341.0, 70.32259422668119, 334.93188038541757, 111.0, 310.0],"true", 3) )
+    # Connections for obj44 (graphObject_: Obj0) named Wizard
+    self.drawConnections(
+ )
+    # Connections for obj46 (graphObject_: Obj1) named Warrior
+    self.drawConnections(
+ )
+    # Connections for obj52 (graphObject_: Obj5) named Melee
+    self.drawConnections(
+(self.obj52,self.obj53,[199.0, 52.0, 249.88329476073784, 78.85172832969732, 294.63329476073784, 113.60172832969732],"true", 3) )
+    # Connections for obj48 (graphObject_: Obj3) of type canHaveRole
+    self.drawConnections(
+(self.obj48,self.obj44,[111.0, 310.0, 146.25065158692985, 394.342406668869, 199.0, 469.0],"true", 3),
+(self.obj48,self.obj46,[111.0, 310.0, 219.0, 298.0, 378.0, 191.0],"true", 3) )
+    # Connections for obj53 (graphObject_: Obj6) of type isPartOfRole
+    self.drawConnections(
+(self.obj53,self.obj46,[294.63329476073784, 113.60172832969732, 339.38329476073784, 148.35172832969732, 378.0, 191.0],"true", 3) )
+
+newfunction = test_MDL
+
+loadedMMName = 'LSMASOMM_META'
+
+atom3version = '0.3'

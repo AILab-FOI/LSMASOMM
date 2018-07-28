@@ -1,0 +1,430 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/bogdan/ontologies/2017/4/MAMbO5ExampleScenario"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/bogdan/ontologies/2017/4/MAMbO5ExampleScenario">
+    <Prefix name="" IRI="http://www.semanticweb.org/bogdan/ontologies/2017/4/MAMbO5ExampleScenario"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="mambo5" IRI="http://www.semanticweb.org/bogdan/ontologies/2016/11/MAMbO5#"/>
+    <Import>http://www.dsic.upv.es/~carrasco/MAMbO5.owl</Import>
+    <Declaration>
+        <NamedIndividual IRI="#AElectricity"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Felipe"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OUSmartPVPanelRed6"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OUAcme"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#StructuralRelation"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OURoommates"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OUShop"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Consumer"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OURed"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Storage"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Bob"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#COInteraction"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#playsRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OUGreen"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OUGreen3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Alice"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OUSmartBatteryRed6"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OUSmartPVPanelGreen3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ABattery"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Clerk"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Child"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Parent"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OUSmartBatteryGreen3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Customer"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Charlie"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OURed6"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OUFamily"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#TopRole"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Producer"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OUNeighbourhood"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ATelevision"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OUBlue"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Edgar"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OUSmartTVRed6"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Roommate"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Diana"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Gonzalez"/>
+    </Declaration>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Physical_Artifact"/>
+        <NamedIndividual IRI="#ABattery"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Physical_Artifact"/>
+        <NamedIndividual IRI="#AElectricity"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Physical_Artifact"/>
+        <NamedIndividual IRI="#ATelevision"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Human_Immersed_Agent"/>
+        <NamedIndividual IRI="#Alice"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Human_Immersed_Agent"/>
+        <NamedIndividual IRI="#Bob"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#CriteriaOfOrganizing"/>
+        <NamedIndividual IRI="#COInteraction"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Human_Immersed_Agent"/>
+        <NamedIndividual IRI="#Charlie"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#Role"/>
+        <NamedIndividual IRI="#Child"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#Role"/>
+        <NamedIndividual IRI="#Clerk"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#Role"/>
+        <NamedIndividual IRI="#Consumer"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#Role"/>
+        <NamedIndividual IRI="#Customer"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Human_Immersed_Agent"/>
+        <NamedIndividual IRI="#Diana"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Human_Immersed_Agent"/>
+        <NamedIndividual IRI="#Edgar"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Human_Immersed_Agent"/>
+        <NamedIndividual IRI="#Felipe"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Human_Immersed_Agent"/>
+        <NamedIndividual IRI="#Gonzalez"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OUAcme"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OUBlue"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OUFamily"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OUGreen"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OUGreen3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OUNeighbourhood"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OURed"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OURed6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OURoommates"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OUShop"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OUSmartBatteryGreen3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OUSmartBatteryRed6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Agent"/>
+        <NamedIndividual IRI="#OUSmartBatteryRed6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#OrganizationalUnit"/>
+        <NamedIndividual IRI="#OUSmartPVPanelGreen3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Agent"/>
+        <NamedIndividual IRI="#OUSmartPVPanelRed6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://users.dsic.upv.es/%7ecarrasco/JaCalIVE_Ontology#Agent"/>
+        <NamedIndividual IRI="#OUSmartTVRed6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#Role"/>
+        <NamedIndividual IRI="#Parent"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#Role"/>
+        <NamedIndividual IRI="#Producer"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#Role"/>
+        <NamedIndividual IRI="#Roommate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#Role"/>
+        <NamedIndividual IRI="#Storage"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#StructuralRelation"/>
+        <NamedIndividual IRI="#StructuralRelation"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#Role"/>
+        <NamedIndividual IRI="#TopRole"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#definesRoles"/>
+        <NamedIndividual IRI="#OUFamily"/>
+        <NamedIndividual IRI="#Child"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#definesRoles"/>
+        <NamedIndividual IRI="#OUFamily"/>
+        <NamedIndividual IRI="#Parent"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#hasCriteriaOfOrganizing"/>
+        <NamedIndividual IRI="#OUFamily"/>
+        <NamedIndividual IRI="#COInteraction"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#hasRelation"/>
+        <NamedIndividual IRI="#OUFamily"/>
+        <NamedIndividual IRI="#StructuralRelation"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#hasRole"/>
+        <NamedIndividual IRI="#OUFamily"/>
+        <NamedIndividual IRI="#TopRole"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OUFamily"/>
+        <NamedIndividual IRI="#Alice"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OUFamily"/>
+        <NamedIndividual IRI="#Bob"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OUFamily"/>
+        <NamedIndividual IRI="#Charlie"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OUFamily"/>
+        <NamedIndividual IRI="#Diana"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#definesRoles"/>
+        <NamedIndividual IRI="#OUGreen3"/>
+        <NamedIndividual IRI="#Consumer"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#definesRoles"/>
+        <NamedIndividual IRI="#OUGreen3"/>
+        <NamedIndividual IRI="#Producer"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#definesRoles"/>
+        <NamedIndividual IRI="#OUGreen3"/>
+        <NamedIndividual IRI="#Storage"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#hasCriteriaOfOrganizing"/>
+        <NamedIndividual IRI="#OUGreen3"/>
+        <NamedIndividual IRI="#COInteraction"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#hasRelation"/>
+        <NamedIndividual IRI="#OUGreen3"/>
+        <NamedIndividual IRI="#StructuralRelation"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#hasRole"/>
+        <NamedIndividual IRI="#OUGreen3"/>
+        <NamedIndividual IRI="#Consumer"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OUGreen3"/>
+        <NamedIndividual IRI="#OURoommates"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OUGreen3"/>
+        <NamedIndividual IRI="#OUSmartBatteryGreen3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OUGreen3"/>
+        <NamedIndividual IRI="#OUSmartPVPanelGreen3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:isPartOf"/>
+        <NamedIndividual IRI="#OUGreen3"/>
+        <NamedIndividual IRI="#OUGreen"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#hasRole"/>
+        <NamedIndividual IRI="#OUNeighbourhood"/>
+        <NamedIndividual IRI="#TopRole"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OUNeighbourhood"/>
+        <NamedIndividual IRI="#OUAcme"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OUNeighbourhood"/>
+        <NamedIndividual IRI="#OUBlue"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OUNeighbourhood"/>
+        <NamedIndividual IRI="#OUGreen"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OUNeighbourhood"/>
+        <NamedIndividual IRI="#OURed"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OURoommates"/>
+        <NamedIndividual IRI="#Edgar"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="mambo5:consistsOf"/>
+        <NamedIndividual IRI="#OURoommates"/>
+        <NamedIndividual IRI="#Felipe"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#hasRole"/>
+        <NamedIndividual IRI="#OUSmartBatteryRed6"/>
+        <NamedIndividual IRI="#Storage"/>
+    </ObjectPropertyAssertion>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#playsRole"/>
+        <ObjectProperty IRI="http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#hasRole"/>
+    </SubObjectPropertyOf>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://ai.foi.hr/modelmmorpg/ooooaflsmas.owl#hasRole</IRI>
+        <Literal datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Defines which roles can be played by which agents, i.e. organizational units, depending on the organization they are a part of, i.e. at any given point in time.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#playsRole</IRI>
+        <Literal datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Defines which role is played by which agent at the moment of modelling.</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

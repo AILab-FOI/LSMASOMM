@@ -1,0 +1,878 @@
+"""
+__MinionWars_MDL.py_____________________________________________________
+
+Automatically generated AToM3 Model File (Do not modify directly)
+Author: bogdan
+Modified: Tue Jun 20 20:49:08 2017
+________________________________________________________________________
+"""
+from stickylink import *
+from widthXfillXdecoration import *
+from OrgUnit import *
+from Role import *
+from IndividualKnArt import *
+from Objective import *
+from canHaveRole import *
+from canAccessKnArt import *
+from isPartOfObjective import *
+from hasObjective import *
+from graph_canHaveRole import *
+from graph_canAccessKnArt import *
+from graph_isPartOfObjective import *
+from graph_hasObjective import *
+from graph_Role import *
+from graph_Objective import *
+from graph_OrgUnit import *
+from graph_IndividualKnArt import *
+from ATOM3Enum import *
+from ATOM3String import *
+from ATOM3BottomType import *
+from ATOM3Constraint import *
+from ATOM3Attribute import *
+from ATOM3Float import *
+from ATOM3List import *
+from ATOM3Link import *
+from ATOM3Connection import *
+from ATOM3Boolean import *
+from ATOM3Appearance import *
+from ATOM3Text import *
+from ATOM3Action import *
+from ATOM3Integer import *
+from ATOM3Port import *
+from ATOM3MSEnum import *
+
+def MinionWars_MDL(self, rootNode, LSMASOMMRootNode=None):
+
+    # --- Generating attributes code for ASG LSMASOMM ---
+    if( LSMASOMMRootNode ): 
+        # author
+        LSMASOMMRootNode.author.setValue('Bogdan')
+
+        # description
+        LSMASOMMRootNode.description.setValue('\n')
+        LSMASOMMRootNode.description.setHeight(15)
+
+        # name
+        LSMASOMMRootNode.name.setValue('MinionWars')
+
+        # title
+        LSMASOMMRootNode.title.setValue('')
+        LSMASOMMRootNode.title.setNone()
+    # --- ASG attributes over ---
+
+
+    self.obj44=OrgUnit(self)
+    self.obj44.isGraphObjectVisual = True
+
+    if(hasattr(self.obj44, '_setHierarchicalLink')):
+      self.obj44._setHierarchicalLink(False)
+
+    # Individual
+    self.obj44.Individual.setValue(('1', 0))
+    self.obj44.Individual.config = 0
+
+    # hasActions
+    self.obj44.hasActions.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    cobj2=ATOM3String('ChangeRole', 20)
+    lcobj2.append(cobj2)
+    self.obj44.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj44.ID.setValue('OU|0')
+
+    # name
+    self.obj44.name.setValue('Player')
+
+    # UnitSize
+    self.obj44.UnitSize.setValue('Individual')
+
+    self.obj44.graphClass_= graph_OrgUnit
+    if self.genGraphics:
+       new_obj = graph_OrgUnit(440.0,360.0,self.obj44)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("OrgUnit", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj44.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj44)
+    self.globalAndLocalPostcondition(self.obj44, rootNode)
+    self.obj44.postAction( rootNode.CREATE )
+
+    self.obj47=Role(self)
+    self.obj47.isGraphObjectVisual = True
+
+    if(hasattr(self.obj47, '_setHierarchicalLink')):
+      self.obj47._setHierarchicalLink(False)
+
+    # isMetaRole
+    self.obj47.isMetaRole.setValue(('isMetaRole', 0))
+    self.obj47.isMetaRole.config = 0
+
+    # hasActions
+    self.obj47.hasActions.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    cobj2=ATOM3String('VisitLocation', 20)
+    lcobj2.append(cobj2)
+    self.obj47.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj47.ID.setValue('R|0')
+
+    # name
+    self.obj47.name.setValue('Scout')
+
+    self.obj47.graphClass_= graph_Role
+    if self.genGraphics:
+       new_obj = graph_Role(300.0,180.0,self.obj47)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Role", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj47.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj47)
+    self.globalAndLocalPostcondition(self.obj47, rootNode)
+    self.obj47.postAction( rootNode.CREATE )
+
+    self.obj50=Role(self)
+    self.obj50.isGraphObjectVisual = True
+
+    if(hasattr(self.obj50, '_setHierarchicalLink')):
+      self.obj50._setHierarchicalLink(False)
+
+    # isMetaRole
+    self.obj50.isMetaRole.setValue(('isMetaRole', 0))
+    self.obj50.isMetaRole.config = 0
+
+    # hasActions
+    self.obj50.hasActions.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    cobj2=ATOM3String('Attack', 20)
+    lcobj2.append(cobj2)
+    cobj2=ATOM3String('Defend', 20)
+    lcobj2.append(cobj2)
+    self.obj50.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj50.ID.setValue('R|1')
+
+    # name
+    self.obj50.name.setValue('Warrior')
+
+    self.obj50.graphClass_= graph_Role
+    if self.genGraphics:
+       new_obj = graph_Role(440.0,180.0,self.obj50)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Role", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj50.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj50)
+    self.globalAndLocalPostcondition(self.obj50, rootNode)
+    self.obj50.postAction( rootNode.CREATE )
+
+    self.obj54=Role(self)
+    self.obj54.isGraphObjectVisual = True
+
+    if(hasattr(self.obj54, '_setHierarchicalLink')):
+      self.obj54._setHierarchicalLink(False)
+
+    # isMetaRole
+    self.obj54.isMetaRole.setValue(('isMetaRole', 0))
+    self.obj54.isMetaRole.config = 0
+
+    # hasActions
+    self.obj54.hasActions.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    cobj2=ATOM3String('ProcessInformation', 20)
+    lcobj2.append(cobj2)
+    cobj2=ATOM3String('Reason', 20)
+    lcobj2.append(cobj2)
+    self.obj54.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj54.ID.setValue('R|3')
+
+    # name
+    self.obj54.name.setValue('Student')
+
+    self.obj54.graphClass_= graph_Role
+    if self.genGraphics:
+       new_obj = graph_Role(580.0,180.0,self.obj54)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Role", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj54.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj54)
+    self.globalAndLocalPostcondition(self.obj54, rootNode)
+    self.obj54.postAction( rootNode.CREATE )
+
+    self.obj61=IndividualKnArt(self)
+    self.obj61.isGraphObjectVisual = True
+
+    if(hasattr(self.obj61, '_setHierarchicalLink')):
+      self.obj61._setHierarchicalLink(False)
+
+    # description
+    self.obj61.description.setValue('KnArtDesc')
+
+    # ID
+    self.obj61.ID.setValue('KA|0')
+
+    # name
+    self.obj61.name.setValue('KnArtName')
+
+    # KnArtContent
+    self.obj61.KnArtContent.setValue('#content of the artifact\n')
+    self.obj61.KnArtContent.setHeight(15)
+
+    self.obj61.graphClass_= graph_IndividualKnArt
+    if self.genGraphics:
+       new_obj = graph_IndividualKnArt(620.0,380.0,self.obj61)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("IndividualKnArt", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj61.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj61)
+    self.globalAndLocalPostcondition(self.obj61, rootNode)
+    self.obj61.postAction( rootNode.CREATE )
+
+    self.obj66=Objective(self)
+    self.obj66.isGraphObjectVisual = True
+
+    if(hasattr(self.obj66, '_setHierarchicalLink')):
+      self.obj66._setHierarchicalLink(False)
+
+    # description
+    self.obj66.description.setValue('\n')
+    self.obj66.description.setHeight(4)
+
+    # Reward
+    self.obj66.Reward.setValue('\n')
+    self.obj66.Reward.setHeight(4)
+
+    # ID
+    self.obj66.ID.setValue('OP|0')
+
+    # name
+    self.obj66.name.setValue('TowerOfLondon')
+
+    # Measurement
+    self.obj66.Measurement.setValue('\n')
+    self.obj66.Measurement.setHeight(4)
+
+    self.obj66.graphClass_= graph_Objective
+    if self.genGraphics:
+       new_obj = graph_Objective(820.0,80.0,self.obj66)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Objective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj66.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj66)
+    self.globalAndLocalPostcondition(self.obj66, rootNode)
+    self.obj66.postAction( rootNode.CREATE )
+
+    self.obj69=Objective(self)
+    self.obj69.isGraphObjectVisual = True
+
+    if(hasattr(self.obj69, '_setHierarchicalLink')):
+      self.obj69._setHierarchicalLink(False)
+
+    # description
+    self.obj69.description.setValue('\n')
+    self.obj69.description.setHeight(4)
+
+    # Reward
+    self.obj69.Reward.setValue('\n')
+    self.obj69.Reward.setHeight(4)
+
+    # ID
+    self.obj69.ID.setValue('OP|1')
+
+    # name
+    self.obj69.name.setValue('KillChief')
+
+    # Measurement
+    self.obj69.Measurement.setValue('\n')
+    self.obj69.Measurement.setHeight(4)
+
+    self.obj69.graphClass_= graph_Objective
+    if self.genGraphics:
+       new_obj = graph_Objective(740.0,100.0,self.obj69)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Objective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj69.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj69)
+    self.globalAndLocalPostcondition(self.obj69, rootNode)
+    self.obj69.postAction( rootNode.CREATE )
+
+    self.obj76=Objective(self)
+    self.obj76.isGraphObjectVisual = True
+
+    if(hasattr(self.obj76, '_setHierarchicalLink')):
+      self.obj76._setHierarchicalLink(False)
+
+    # description
+    self.obj76.description.setValue('\n')
+    self.obj76.description.setHeight(4)
+
+    # Reward
+    self.obj76.Reward.setValue('\n')
+    self.obj76.Reward.setHeight(4)
+
+    # ID
+    self.obj76.ID.setValue('OP|2')
+
+    # name
+    self.obj76.name.setValue('LearnBackstory')
+
+    # Measurement
+    self.obj76.Measurement.setValue('\n')
+    self.obj76.Measurement.setHeight(4)
+
+    self.obj76.graphClass_= graph_Objective
+    if self.genGraphics:
+       new_obj = graph_Objective(720.0,240.0,self.obj76)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Objective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj76.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj76)
+    self.globalAndLocalPostcondition(self.obj76, rootNode)
+    self.obj76.postAction( rootNode.CREATE )
+
+    self.obj79=Objective(self)
+    self.obj79.isGraphObjectVisual = True
+
+    if(hasattr(self.obj79, '_setHierarchicalLink')):
+      self.obj79._setHierarchicalLink(False)
+
+    # description
+    self.obj79.description.setValue('\n')
+    self.obj79.description.setHeight(4)
+
+    # Reward
+    self.obj79.Reward.setValue('\n')
+    self.obj79.Reward.setHeight(4)
+
+    # ID
+    self.obj79.ID.setValue('OP|3')
+
+    # name
+    self.obj79.name.setValue('ExploreLandmark')
+
+    # Measurement
+    self.obj79.Measurement.setValue('\n')
+    self.obj79.Measurement.setHeight(4)
+
+    self.obj79.graphClass_= graph_Objective
+    if self.genGraphics:
+       new_obj = graph_Objective(940.0,180.0,self.obj79)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Objective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj79.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj79)
+    self.globalAndLocalPostcondition(self.obj79, rootNode)
+    self.obj79.postAction( rootNode.CREATE )
+
+    self.obj82=Objective(self)
+    self.obj82.isGraphObjectVisual = True
+
+    if(hasattr(self.obj82, '_setHierarchicalLink')):
+      self.obj82._setHierarchicalLink(False)
+
+    # description
+    self.obj82.description.setValue('\n')
+    self.obj82.description.setHeight(4)
+
+    # Reward
+    self.obj82.Reward.setValue('\n')
+    self.obj82.Reward.setHeight(4)
+
+    # ID
+    self.obj82.ID.setValue('OP|4')
+
+    # name
+    self.obj82.name.setValue('VisitInnerWard')
+
+    # Measurement
+    self.obj82.Measurement.setValue('\n')
+    self.obj82.Measurement.setHeight(4)
+
+    self.obj82.graphClass_= graph_Objective
+    if self.genGraphics:
+       new_obj = graph_Objective(860.0,300.0,self.obj82)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Objective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj82.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj82)
+    self.globalAndLocalPostcondition(self.obj82, rootNode)
+    self.obj82.postAction( rootNode.CREATE )
+
+    self.obj83=Objective(self)
+    self.obj83.isGraphObjectVisual = True
+
+    if(hasattr(self.obj83, '_setHierarchicalLink')):
+      self.obj83._setHierarchicalLink(False)
+
+    # description
+    self.obj83.description.setValue('\n')
+    self.obj83.description.setHeight(4)
+
+    # Reward
+    self.obj83.Reward.setValue('\n')
+    self.obj83.Reward.setHeight(4)
+
+    # ID
+    self.obj83.ID.setValue('OP|5')
+
+    # name
+    self.obj83.name.setValue('VisitOuterWard')
+
+    # Measurement
+    self.obj83.Measurement.setValue('\n')
+    self.obj83.Measurement.setHeight(4)
+
+    self.obj83.graphClass_= graph_Objective
+    if self.genGraphics:
+       new_obj = graph_Objective(940.0,320.0,self.obj83)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Objective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj83.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj83)
+    self.globalAndLocalPostcondition(self.obj83, rootNode)
+    self.obj83.postAction( rootNode.CREATE )
+
+    self.obj84=Objective(self)
+    self.obj84.isGraphObjectVisual = True
+
+    if(hasattr(self.obj84, '_setHierarchicalLink')):
+      self.obj84._setHierarchicalLink(False)
+
+    # description
+    self.obj84.description.setValue('\n')
+    self.obj84.description.setHeight(4)
+
+    # Reward
+    self.obj84.Reward.setValue('\n')
+    self.obj84.Reward.setHeight(4)
+
+    # ID
+    self.obj84.ID.setValue('OP|6')
+
+    # name
+    self.obj84.name.setValue('VisitInnermostWard')
+
+    # Measurement
+    self.obj84.Measurement.setValue('\n')
+    self.obj84.Measurement.setHeight(4)
+
+    self.obj84.graphClass_= graph_Objective
+    if self.genGraphics:
+       new_obj = graph_Objective(1000.0,320.0,self.obj84)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Objective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj84.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj84)
+    self.globalAndLocalPostcondition(self.obj84, rootNode)
+    self.obj84.postAction( rootNode.CREATE )
+
+    self.obj92=Objective(self)
+    self.obj92.isGraphObjectVisual = True
+
+    if(hasattr(self.obj92, '_setHierarchicalLink')):
+      self.obj92._setHierarchicalLink(False)
+
+    # description
+    self.obj92.description.setValue('\n')
+    self.obj92.description.setHeight(4)
+
+    # Reward
+    self.obj92.Reward.setValue('\n')
+    self.obj92.Reward.setHeight(4)
+
+    # ID
+    self.obj92.ID.setValue('OP|7')
+
+    # name
+    self.obj92.name.setValue('KillMinions')
+
+    # Measurement
+    self.obj92.Measurement.setValue('\n')
+    self.obj92.Measurement.setHeight(4)
+
+    self.obj92.graphClass_= graph_Objective
+    if self.genGraphics:
+       new_obj = graph_Objective(900.0,120.0,self.obj92)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Objective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj92.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj92)
+    self.globalAndLocalPostcondition(self.obj92, rootNode)
+    self.obj92.postAction( rootNode.CREATE )
+
+    self.obj95=Objective(self)
+    self.obj95.isGraphObjectVisual = True
+
+    if(hasattr(self.obj95, '_setHierarchicalLink')):
+      self.obj95._setHierarchicalLink(False)
+
+    # description
+    self.obj95.description.setValue('\n')
+    self.obj95.description.setHeight(4)
+
+    # Reward
+    self.obj95.Reward.setValue('\n')
+    self.obj95.Reward.setHeight(4)
+
+    # ID
+    self.obj95.ID.setValue('OP|8')
+
+    # name
+    self.obj95.name.setValue('DecipherClues')
+
+    # Measurement
+    self.obj95.Measurement.setValue('\n')
+    self.obj95.Measurement.setHeight(4)
+
+    self.obj95.graphClass_= graph_Objective
+    if self.genGraphics:
+       new_obj = graph_Objective(840.0,220.0,self.obj95)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Objective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj95.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj95)
+    self.globalAndLocalPostcondition(self.obj95, rootNode)
+    self.obj95.postAction( rootNode.CREATE )
+
+    self.obj65=canHaveRole(self)
+    self.obj65.isGraphObjectVisual = True
+
+    if(hasattr(self.obj65, '_setHierarchicalLink')):
+      self.obj65._setHierarchicalLink(True)
+
+    # ID
+    self.obj65.ID.setValue('OUR|0')
+
+    self.obj65.graphClass_= graph_canHaveRole
+    if self.genGraphics:
+       new_obj = graph_canHaveRole(403.5,357.5,self.obj65)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("canHaveRole", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj65.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj65)
+    self.globalAndLocalPostcondition(self.obj65, rootNode)
+    self.obj65.postAction( rootNode.CREATE )
+
+    self.obj64=canAccessKnArt(self)
+    self.obj64.isGraphObjectVisual = True
+
+    if(hasattr(self.obj64, '_setHierarchicalLink')):
+      self.obj64._setHierarchicalLink(False)
+
+    # ID
+    self.obj64.ID.setValue('accKA|0')
+
+    self.obj64.graphClass_= graph_canAccessKnArt
+    if self.genGraphics:
+       new_obj = graph_canAccessKnArt(555.5,411.5,self.obj64)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("canAccessKnArt", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj64.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj64)
+    self.globalAndLocalPostcondition(self.obj64, rootNode)
+    self.obj64.postAction( rootNode.CREATE )
+
+    self.obj91=isPartOfObjective(self)
+    self.obj91.isGraphObjectVisual = True
+
+    if(hasattr(self.obj91, '_setHierarchicalLink')):
+      self.obj91._setHierarchicalLink(True)
+
+    # ID
+    self.obj91.ID.setValue('pO|1')
+
+    self.obj91.graphClass_= graph_isPartOfObjective
+    if self.genGraphics:
+       new_obj = graph_isPartOfObjective(921.0,285.0,self.obj91)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("isPartOfObjective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj91.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj91)
+    self.globalAndLocalPostcondition(self.obj91, rootNode)
+    self.obj91.postAction( rootNode.CREATE )
+
+    self.obj98=isPartOfObjective(self)
+    self.obj98.isGraphObjectVisual = True
+
+    if(hasattr(self.obj98, '_setHierarchicalLink')):
+      self.obj98._setHierarchicalLink(True)
+
+    # ID
+    self.obj98.ID.setValue('pO|2')
+
+    self.obj98.graphClass_= graph_isPartOfObjective
+    if self.genGraphics:
+       new_obj = graph_isPartOfObjective(911.0,245.0,self.obj98)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("isPartOfObjective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj98.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj98)
+    self.globalAndLocalPostcondition(self.obj98, rootNode)
+    self.obj98.postAction( rootNode.CREATE )
+
+    self.obj99=isPartOfObjective(self)
+    self.obj99.isGraphObjectVisual = True
+
+    if(hasattr(self.obj99, '_setHierarchicalLink')):
+      self.obj99._setHierarchicalLink(True)
+
+    # ID
+    self.obj99.ID.setValue('pO|2')
+
+    self.obj99.graphClass_= graph_isPartOfObjective
+    if self.genGraphics:
+       new_obj = graph_isPartOfObjective(851.0,195.0,self.obj99)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("isPartOfObjective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj99.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj99)
+    self.globalAndLocalPostcondition(self.obj99, rootNode)
+    self.obj99.postAction( rootNode.CREATE )
+
+    self.obj100=hasObjective(self)
+    self.obj100.isGraphObjectVisual = True
+
+    if(hasattr(self.obj100, '_setHierarchicalLink')):
+      self.obj100._setHierarchicalLink(False)
+
+    # ID
+    self.obj100.ID.setValue('RPO|0')
+
+    self.obj100.graphClass_= graph_hasObjective
+    if self.genGraphics:
+       new_obj = graph_hasObjective(738.5,248.5,self.obj100)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("hasObjective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj100.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj100)
+    self.globalAndLocalPostcondition(self.obj100, rootNode)
+    self.obj100.postAction( rootNode.CREATE )
+
+    self.obj101=hasObjective(self)
+    self.obj101.isGraphObjectVisual = True
+
+    if(hasattr(self.obj101, '_setHierarchicalLink')):
+      self.obj101._setHierarchicalLink(False)
+
+    # ID
+    self.obj101.ID.setValue('RPO|1')
+
+    self.obj101.graphClass_= graph_hasObjective
+    if self.genGraphics:
+       new_obj = graph_hasObjective(618.5,188.5,self.obj101)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("hasObjective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj101.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj101)
+    self.globalAndLocalPostcondition(self.obj101, rootNode)
+    self.obj101.postAction( rootNode.CREATE )
+
+    self.obj102=hasObjective(self)
+    self.obj102.isGraphObjectVisual = True
+
+    if(hasattr(self.obj102, '_setHierarchicalLink')):
+      self.obj102._setHierarchicalLink(False)
+
+    # ID
+    self.obj102.ID.setValue('RPO|2')
+
+    self.obj102.graphClass_= graph_hasObjective
+    if self.genGraphics:
+       new_obj = graph_hasObjective(608.5,288.5,self.obj102)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("hasObjective", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj102.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj102)
+    self.globalAndLocalPostcondition(self.obj102, rootNode)
+    self.obj102.postAction( rootNode.CREATE )
+
+    # Connections for obj44 (graphObject_: Obj0) named Player
+    self.drawConnections(
+(self.obj44,self.obj64,[471.0, 423.0, 555.5, 411.5],"true", 0),
+(self.obj44,self.obj65,[471.0, 423.0, 403.5, 357.5],"true", 0) )
+    # Connections for obj47 (graphObject_: Obj1) named Scout
+    self.drawConnections(
+(self.obj47,self.obj102,[336.0, 232.0, 608.5, 288.5],"true", 2) )
+    # Connections for obj50 (graphObject_: Obj2) named Warrior
+    self.drawConnections(
+(self.obj50,self.obj101,[476.0, 232.0, 618.5, 188.5],"true", 2) )
+    # Connections for obj54 (graphObject_: Obj4) named Student
+    self.drawConnections(
+(self.obj54,self.obj100,[616.0, 232.0, 738.5, 248.5],"true", 2) )
+    # Connections for obj61 (graphObject_: Obj5) named KnArtName
+    self.drawConnections(
+ )
+    # Connections for obj66 (graphObject_: Obj10) named TowerOfLondon
+    self.drawConnections(
+ )
+    # Connections for obj69 (graphObject_: Obj11) named KillChief
+    self.drawConnections(
+(self.obj69,self.obj99,[761.0, 145.0, 851.0, 195.0],"true", 2) )
+    # Connections for obj76 (graphObject_: Obj14) named LearnBackstory
+    self.drawConnections(
+(self.obj76,self.obj99,[741.0, 285.0, 851.0, 195.0],"true", 2) )
+    # Connections for obj79 (graphObject_: Obj15) named ExploreLandmark
+    self.drawConnections(
+(self.obj79,self.obj98,[961.0, 225.0, 911.0, 245.0],"true", 2) )
+    # Connections for obj82 (graphObject_: Obj16) named VisitInnerWard
+    self.drawConnections(
+(self.obj82,self.obj91,[881.0, 345.0, 921.0, 285.0],"true", 2) )
+    # Connections for obj83 (graphObject_: Obj17) named VisitOuterWard
+    self.drawConnections(
+(self.obj83,self.obj91,[961.0, 365.0, 921.0, 285.0],"true", 2) )
+    # Connections for obj84 (graphObject_: Obj18) named VisitInnermostWard
+    self.drawConnections(
+(self.obj84,self.obj91,[1021.0, 365.0, 921.0, 285.0],"true", 2) )
+    # Connections for obj92 (graphObject_: Obj21) named KillMinions
+    self.drawConnections(
+(self.obj92,self.obj99,[921.0, 165.0, 851.0, 195.0],"true", 2) )
+    # Connections for obj95 (graphObject_: Obj22) named DecipherClues
+    self.drawConnections(
+(self.obj95,self.obj99,[861.0, 265.0, 851.0, 195.0],"true", 2) )
+    # Connections for obj65 (graphObject_: Obj8) of type canHaveRole
+    self.drawConnections(
+(self.obj65,self.obj50,[403.5, 357.5, 476.0, 232.0],"true", 2),
+(self.obj65,self.obj47,[403.5, 357.5, 336.0, 232.0],"true", 2),
+(self.obj65,self.obj54,[403.5, 357.5, 616.0, 232.0],"true", 2) )
+    # Connections for obj64 (graphObject_: Obj6) of type canAccessKnArt
+    self.drawConnections(
+(self.obj64,self.obj61,[555.5, 411.5, 640.0, 400.0],"true", 2) )
+    # Connections for obj91 (graphObject_: Obj19) of type isPartOfObjective
+    self.drawConnections(
+(self.obj91,self.obj79,[921.0, 285.0, 961.0, 225.0],"true", 2) )
+    # Connections for obj98 (graphObject_: Obj23) of type isPartOfObjective
+    self.drawConnections(
+(self.obj98,self.obj95,[911.0, 245.0, 861.0, 265.0],"true", 2) )
+    # Connections for obj99 (graphObject_: Obj25) of type isPartOfObjective
+    self.drawConnections(
+(self.obj99,self.obj66,[851.0, 195.0, 841.0, 125.0],"true", 2) )
+    # Connections for obj100 (graphObject_: Obj27) of type hasObjective
+    self.drawConnections(
+(self.obj100,self.obj95,[738.5, 248.5, 861.0, 265.0],"true", 2),
+(self.obj100,self.obj76,[738.5, 248.5, 741.0, 285.0],"true", 2) )
+    # Connections for obj101 (graphObject_: Obj29) of type hasObjective
+    self.drawConnections(
+(self.obj101,self.obj69,[618.5, 188.5, 761.0, 145.0],"true", 2),
+(self.obj101,self.obj92,[618.5, 188.5, 921.0, 165.0],"true", 2) )
+    # Connections for obj102 (graphObject_: Obj31) of type hasObjective
+    self.drawConnections(
+(self.obj102,self.obj82,[608.5, 288.5, 881.0, 345.0],"true", 2),
+(self.obj102,self.obj83,[608.5, 288.5, 961.0, 365.0],"true", 2),
+(self.obj102,self.obj84,[608.5, 288.5, 1021.0, 365.0],"true", 2) )
+
+newfunction = MinionWars_MDL
+
+loadedMMName = 'LSMASOMM_META'
+
+atom3version = '0.3'

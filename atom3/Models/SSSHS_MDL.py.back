@@ -1,0 +1,591 @@
+"""
+__SSSHS_MDL.py_____________________________________________________
+
+Automatically generated AToM3 Model File (Do not modify directly)
+Author: bogdan
+Modified: Sun Apr 15 21:13:59 2018
+___________________________________________________________________
+"""
+from stickylink import *
+from widthXfillXdecoration import *
+from OrgUnit import *
+from Role import *
+from Action import *
+from hasActions import *
+from isPartOfRole import *
+from graph_OrgUnit import *
+from graph_Action import *
+from graph_Role import *
+from graph_hasActions import *
+from graph_isPartOfRole import *
+from ATOM3Enum import *
+from ATOM3String import *
+from ATOM3BottomType import *
+from ATOM3Constraint import *
+from ATOM3Attribute import *
+from ATOM3Float import *
+from ATOM3List import *
+from ATOM3Link import *
+from ATOM3Connection import *
+from ATOM3Boolean import *
+from ATOM3Appearance import *
+from ATOM3Text import *
+from ATOM3Action import *
+from ATOM3Integer import *
+from ATOM3Port import *
+from ATOM3MSEnum import *
+
+def SSSHS_MDL(self, rootNode, LSMASOMMRootNode=None):
+
+    # --- Generating attributes code for ASG LSMASOMM ---
+    if( LSMASOMMRootNode ): 
+        # agentImplementation
+        LSMASOMMRootNode.agentImplementation.setValue( (['SPADE', 'Enmasse', 'EveJS'], 0) )
+        LSMASOMMRootNode.agentImplementation.config = 0
+
+        # author
+        LSMASOMMRootNode.author.setValue('Bogdan')
+
+        # description
+        LSMASOMMRootNode.description.setValue('\n')
+        LSMASOMMRootNode.description.setHeight(15)
+
+        # name
+        LSMASOMMRootNode.name.setValue('SSSHS')
+
+        # title
+        LSMASOMMRootNode.title.setValue('')
+        LSMASOMMRootNode.title.setNone()
+    # --- ASG attributes over ---
+
+
+    self.obj44=OrgUnit(self)
+    self.obj44.isGraphObjectVisual = True
+
+    if(hasattr(self.obj44, '_setHierarchicalLink')):
+      self.obj44._setHierarchicalLink(False)
+
+    # Individual
+    self.obj44.Individual.setValue(('1', 0))
+    self.obj44.Individual.config = 0
+
+    # hasActions
+    self.obj44.hasActions.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    cobj2=ATOM3String('ChangeRole', 20)
+    lcobj2.append(cobj2)
+    self.obj44.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj44.ID.setValue('OU|0')
+
+    # name
+    self.obj44.name.setValue('IndividualAgent')
+
+    # UnitSize
+    self.obj44.UnitSize.setValue('Individual')
+
+    self.obj44.graphClass_= graph_OrgUnit
+    if self.genGraphics:
+       new_obj = graph_OrgUnit(80.0,190.0,self.obj44)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("OrgUnit", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj44.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj44)
+    self.globalAndLocalPostcondition(self.obj44, rootNode)
+    self.obj44.postAction( rootNode.CREATE )
+
+    self.obj45=OrgUnit(self)
+    self.obj45.isGraphObjectVisual = True
+
+    if(hasattr(self.obj45, '_setHierarchicalLink')):
+      self.obj45._setHierarchicalLink(False)
+
+    # Individual
+    self.obj45.Individual.setValue(('1', 0))
+    self.obj45.Individual.config = 0
+
+    # hasActions
+    self.obj45.hasActions.setActionFlags([ 1, 1, 1, 0])
+    lcobj2 =[]
+    cobj2=ATOM3String('ChangeRole', 20)
+    lcobj2.append(cobj2)
+    self.obj45.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj45.ID.setValue('OU|1')
+
+    # name
+    self.obj45.name.setValue('Aggregated')
+
+    # UnitSize
+    self.obj45.UnitSize.setValue('Individual')
+
+    self.obj45.graphClass_= graph_OrgUnit
+    if self.genGraphics:
+       new_obj = graph_OrgUnit(170.0,60.0,self.obj45)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("OrgUnit", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj45.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj45)
+    self.globalAndLocalPostcondition(self.obj45, rootNode)
+    self.obj45.postAction( rootNode.CREATE )
+
+    self.obj46=Role(self)
+    self.obj46.isGraphObjectVisual = True
+
+    if(hasattr(self.obj46, '_setHierarchicalLink')):
+      self.obj46._setHierarchicalLink(False)
+
+    # isMetaRole
+    self.obj46.isMetaRole.setValue((None, 0))
+    self.obj46.isMetaRole.config = 0
+
+    # hasActions
+    self.obj46.hasActions.setActionFlags([ 0, 0, 1, 0])
+    lcobj2 =[]
+    cobj2=ATOM3String('Negotiate', 20)
+    lcobj2.append(cobj2)
+    self.obj46.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj46.ID.setValue('R|0')
+
+    # name
+    self.obj46.name.setValue('Negotiator')
+
+    self.obj46.graphClass_= graph_Role
+    if self.genGraphics:
+       new_obj = graph_Role(490.0,120.0,self.obj46)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Role", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj46.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj46)
+    self.globalAndLocalPostcondition(self.obj46, rootNode)
+    self.obj46.postAction( rootNode.CREATE )
+
+    self.obj47=Role(self)
+    self.obj47.isGraphObjectVisual = True
+
+    if(hasattr(self.obj47, '_setHierarchicalLink')):
+      self.obj47._setHierarchicalLink(False)
+
+    # isMetaRole
+    self.obj47.isMetaRole.setValue((None, 1))
+    self.obj47.isMetaRole.config = 0
+
+    # hasActions
+    self.obj47.hasActions.setActionFlags([ 0, 0, 1, 0])
+    lcobj2 =[]
+    cobj2=ATOM3String('StoreResource', 20)
+    lcobj2.append(cobj2)
+    self.obj47.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj47.ID.setValue('R|1')
+
+    # name
+    self.obj47.name.setValue('Storage')
+
+    self.obj47.graphClass_= graph_Role
+    if self.genGraphics:
+       new_obj = graph_Role(410.0,210.0,self.obj47)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Role", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj47.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj47)
+    self.globalAndLocalPostcondition(self.obj47, rootNode)
+    self.obj47.postAction( rootNode.CREATE )
+
+    self.obj48=Role(self)
+    self.obj48.isGraphObjectVisual = True
+
+    if(hasattr(self.obj48, '_setHierarchicalLink')):
+      self.obj48._setHierarchicalLink(False)
+
+    # isMetaRole
+    self.obj48.isMetaRole.setValue((None, 0))
+    self.obj48.isMetaRole.config = 0
+
+    # hasActions
+    self.obj48.hasActions.setActionFlags([ 0, 0, 1, 0])
+    lcobj2 =[]
+    cobj2=ATOM3String('UseResource', 20)
+    lcobj2.append(cobj2)
+    self.obj48.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj48.ID.setValue('R|2')
+
+    # name
+    self.obj48.name.setValue('User')
+
+    self.obj48.graphClass_= graph_Role
+    if self.genGraphics:
+       new_obj = graph_Role(390.0,300.0,self.obj48)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Role", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj48.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj48)
+    self.globalAndLocalPostcondition(self.obj48, rootNode)
+    self.obj48.postAction( rootNode.CREATE )
+
+    self.obj49=Role(self)
+    self.obj49.isGraphObjectVisual = True
+
+    if(hasattr(self.obj49, '_setHierarchicalLink')):
+      self.obj49._setHierarchicalLink(False)
+
+    # isMetaRole
+    self.obj49.isMetaRole.setValue((None, 0))
+    self.obj49.isMetaRole.config = 0
+
+    # hasActions
+    self.obj49.hasActions.setActionFlags([ 0, 0, 1, 0])
+    lcobj2 =[]
+    cobj2=ATOM3String('ProduceResource', 20)
+    lcobj2.append(cobj2)
+    self.obj49.hasActions.setValue(lcobj2)
+
+    # ID
+    self.obj49.ID.setValue('R|3')
+
+    # name
+    self.obj49.name.setValue('Producer')
+
+    self.obj49.graphClass_= graph_Role
+    if self.genGraphics:
+       new_obj = graph_Role(380.0,390.0,self.obj49)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Role", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj49.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj49)
+    self.globalAndLocalPostcondition(self.obj49, rootNode)
+    self.obj49.postAction( rootNode.CREATE )
+
+    self.obj63=Action(self)
+    self.obj63.isGraphObjectVisual = True
+
+    if(hasattr(self.obj63, '_setHierarchicalLink')):
+      self.obj63._setHierarchicalLink(False)
+
+    # ID
+    self.obj63.ID.setValue('A|0')
+
+    # name
+    self.obj63.name.setValue('StoreResource')
+
+    # ActionCode
+    self.obj63.ActionCode.setValue('#action code template\nclass BehaviourNamePlaceholder(spade.Behaviour.OneShotBehaviour):\n    """Behaviour available to agents."""\n    def _process(self):\n        pass\n')
+    self.obj63.ActionCode.setHeight(15)
+
+    self.obj63.graphClass_= graph_Action
+    if self.genGraphics:
+       new_obj = graph_Action(640.0,240.0,self.obj63)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Action", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj63.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj63)
+    self.globalAndLocalPostcondition(self.obj63, rootNode)
+    self.obj63.postAction( rootNode.CREATE )
+
+    self.obj68=Action(self)
+    self.obj68.isGraphObjectVisual = True
+
+    if(hasattr(self.obj68, '_setHierarchicalLink')):
+      self.obj68._setHierarchicalLink(False)
+
+    # ID
+    self.obj68.ID.setValue('A|1')
+
+    # name
+    self.obj68.name.setValue('UseResource')
+
+    # ActionCode
+    self.obj68.ActionCode.setValue('#action code template\nclass BehaviourNamePlaceholder(spade.Behaviour.OneShotBehaviour):\n    """Behaviour available to agents."""\n    def _process(self):\n        pass\n')
+    self.obj68.ActionCode.setHeight(15)
+
+    self.obj68.graphClass_= graph_Action
+    if self.genGraphics:
+       new_obj = graph_Action(670.0,370.0,self.obj68)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Action", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj68.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj68)
+    self.globalAndLocalPostcondition(self.obj68, rootNode)
+    self.obj68.postAction( rootNode.CREATE )
+
+    self.obj69=Action(self)
+    self.obj69.isGraphObjectVisual = True
+
+    if(hasattr(self.obj69, '_setHierarchicalLink')):
+      self.obj69._setHierarchicalLink(False)
+
+    # ID
+    self.obj69.ID.setValue('A|2')
+
+    # name
+    self.obj69.name.setValue('ProduceResource')
+
+    # ActionCode
+    self.obj69.ActionCode.setValue('#action code template\nclass BehaviourNamePlaceholder(spade.Behaviour.OneShotBehaviour):\n    """Behaviour available to agents."""\n    def _process(self):\n        pass\n')
+    self.obj69.ActionCode.setHeight(15)
+
+    self.obj69.graphClass_= graph_Action
+    if self.genGraphics:
+       new_obj = graph_Action(660.0,490.0,self.obj69)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Action", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj69.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj69)
+    self.globalAndLocalPostcondition(self.obj69, rootNode)
+    self.obj69.postAction( rootNode.CREATE )
+
+    self.obj70=Action(self)
+    self.obj70.isGraphObjectVisual = True
+
+    if(hasattr(self.obj70, '_setHierarchicalLink')):
+      self.obj70._setHierarchicalLink(False)
+
+    # ID
+    self.obj70.ID.setValue('A|3')
+
+    # name
+    self.obj70.name.setValue('Negotiate')
+
+    # ActionCode
+    self.obj70.ActionCode.setValue('#action code template\nclass BehaviourNamePlaceholder(spade.Behaviour.OneShotBehaviour):\n    """Behaviour available to agents."""\n    def _process(self):\n        pass\n')
+    self.obj70.ActionCode.setHeight(15)
+
+    self.obj70.graphClass_= graph_Action
+    if self.genGraphics:
+       new_obj = graph_Action(690.0,90.0,self.obj70)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("Action", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj70.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj70)
+    self.globalAndLocalPostcondition(self.obj70, rootNode)
+    self.obj70.postAction( rootNode.CREATE )
+
+    self.obj66=hasActions(self)
+    self.obj66.isGraphObjectVisual = True
+
+    if(hasattr(self.obj66, '_setHierarchicalLink')):
+      self.obj66._setHierarchicalLink(False)
+
+    # ID
+    self.obj66.ID.setValue('aR|0')
+
+    self.obj66.graphClass_= graph_hasActions
+    if self.genGraphics:
+       new_obj = graph_hasActions(565.0,270.0,self.obj66)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("hasActions", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj66.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj66)
+    self.globalAndLocalPostcondition(self.obj66, rootNode)
+    self.obj66.postAction( rootNode.CREATE )
+
+    self.obj75=hasActions(self)
+    self.obj75.isGraphObjectVisual = True
+
+    if(hasattr(self.obj75, '_setHierarchicalLink')):
+      self.obj75._setHierarchicalLink(False)
+
+    # ID
+    self.obj75.ID.setValue('aR|1')
+
+    self.obj75.graphClass_= graph_hasActions
+    if self.genGraphics:
+       new_obj = graph_hasActions(560.0,485.0,self.obj75)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("hasActions", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj75.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj75)
+    self.globalAndLocalPostcondition(self.obj75, rootNode)
+    self.obj75.postAction( rootNode.CREATE )
+
+    self.obj76=hasActions(self)
+    self.obj76.isGraphObjectVisual = True
+
+    if(hasattr(self.obj76, '_setHierarchicalLink')):
+      self.obj76._setHierarchicalLink(False)
+
+    # ID
+    self.obj76.ID.setValue('aR|2')
+
+    self.obj76.graphClass_= graph_hasActions
+    if self.genGraphics:
+       new_obj = graph_hasActions(570.0,380.0,self.obj76)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("hasActions", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj76.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj76)
+    self.globalAndLocalPostcondition(self.obj76, rootNode)
+    self.obj76.postAction( rootNode.CREATE )
+
+    self.obj79=hasActions(self)
+    self.obj79.isGraphObjectVisual = True
+
+    if(hasattr(self.obj79, '_setHierarchicalLink')):
+      self.obj79._setHierarchicalLink(False)
+
+    # ID
+    self.obj79.ID.setValue('aR|3')
+
+    self.obj79.graphClass_= graph_hasActions
+    if self.genGraphics:
+       new_obj = graph_hasActions(630.0,150.0,self.obj79)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("hasActions", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj79.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj79)
+    self.globalAndLocalPostcondition(self.obj79, rootNode)
+    self.obj79.postAction( rootNode.CREATE )
+
+    self.obj62=isPartOfRole(self)
+    self.obj62.isGraphObjectVisual = True
+
+    if(hasattr(self.obj62, '_setHierarchicalLink')):
+      self.obj62._setHierarchicalLink(True)
+
+    # ID
+    self.obj62.ID.setValue('pR|0')
+
+    self.obj62.graphClass_= graph_isPartOfRole
+    if self.genGraphics:
+       new_obj = graph_isPartOfRole(486.0,217.0,self.obj62)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("isPartOfRole", new_obj.tag)
+       new_obj.layConstraints = dict() # Graphical Layout Constraints 
+       new_obj.layConstraints['scale'] = [1.0, 1.0]
+    else: new_obj = None
+    self.obj62.graphObject_ = new_obj
+
+    # Add node to the root: rootNode
+    rootNode.addNode(self.obj62)
+    self.globalAndLocalPostcondition(self.obj62, rootNode)
+    self.obj62.postAction( rootNode.CREATE )
+
+    # Connections for obj44 (graphObject_: Obj0) named IndividualAgent
+    self.drawConnections(
+ )
+    # Connections for obj45 (graphObject_: Obj1) named Aggregated
+    self.drawConnections(
+ )
+    # Connections for obj46 (graphObject_: Obj2) named Negotiator
+    self.drawConnections(
+(self.obj46,self.obj62,[526.0, 172.0, 486.0, 217.0],"true", 2),
+(self.obj46,self.obj79,[526.0, 172.0, 630.0, 150.0],"true", 2) )
+    # Connections for obj47 (graphObject_: Obj3) named Storage
+    self.drawConnections(
+(self.obj47,self.obj66,[446.0, 262.0, 565.0, 270.0],"true", 2) )
+    # Connections for obj48 (graphObject_: Obj4) named User
+    self.drawConnections(
+(self.obj48,self.obj76,[426.0, 352.0, 570.0, 380.0],"true", 2) )
+    # Connections for obj49 (graphObject_: Obj5) named Producer
+    self.drawConnections(
+(self.obj49,self.obj75,[416.0, 442.0, 560.0, 485.0],"true", 2) )
+    # Connections for obj63 (graphObject_: Obj8) named StoreResource
+    self.drawConnections(
+ )
+    # Connections for obj68 (graphObject_: Obj11) named UseResource
+    self.drawConnections(
+ )
+    # Connections for obj69 (graphObject_: Obj12) named ProduceResource
+    self.drawConnections(
+ )
+    # Connections for obj70 (graphObject_: Obj13) named Negotiate
+    self.drawConnections(
+ )
+    # Connections for obj66 (graphObject_: Obj9) of type hasActions
+    self.drawConnections(
+(self.obj66,self.obj63,[565.0, 270.0, 684.0, 278.0],"true", 2) )
+    # Connections for obj75 (graphObject_: Obj14) of type hasActions
+    self.drawConnections(
+(self.obj75,self.obj69,[560.0, 485.0, 704.0, 528.0],"true", 2) )
+    # Connections for obj76 (graphObject_: Obj16) of type hasActions
+    self.drawConnections(
+(self.obj76,self.obj68,[570.0, 380.0, 714.0, 408.0],"true", 2) )
+    # Connections for obj79 (graphObject_: Obj18) of type hasActions
+    self.drawConnections(
+(self.obj79,self.obj70,[630.0, 150.0, 734.0, 128.0],"true", 2) )
+    # Connections for obj62 (graphObject_: Obj6) of type isPartOfRole
+    self.drawConnections(
+(self.obj62,self.obj47,[486.0, 217.0, 446.0, 262.0],"true", 2) )
+
+newfunction = SSSHS_MDL
+
+loadedMMName = 'LSMASOMM_META'
+
+atom3version = '0.3'

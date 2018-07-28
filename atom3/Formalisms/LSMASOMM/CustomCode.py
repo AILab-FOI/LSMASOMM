@@ -39,6 +39,9 @@ def checkUniqueID(self):
     If two identical values are found in the current model, error occurs.
     If some of the node ID values are in the DB already, user is informed. """
     try:
+        # Root = self.getASGbyName('LSMASOMM_META')
+        DBname = self.name.getValue()
+
         Root = self
         db = openDB(DBname)
         conn = db.open()
@@ -378,9 +381,9 @@ def saveToFile(filename, content):
 
 
 def openDB(DBnamed='LSMASOMM'):
-    global DBname
+    # global DBname
     # open DB connection to file mydata.fs; check if conn is open already
-    storage = ZODB.FileStorage.FileStorage("{}/{}.fs".format(DBpath,DBname))
+    storage = ZODB.FileStorage.FileStorage("{}/{}.fs".format(DBpath,DBnamed))
     db = ZODB.DB(storage)
     return db
 
@@ -557,8 +560,14 @@ def generateNodeCode(self):
 
     agents = []
 
-
-    KB = conn.root()['KB']['RoleProcessGoal'] + conn.root()['KB']['RoleActions']
+    KB = []
+    KBDB = conn.root()['KB']
+    print(KBDB)
+    for x in KBDB.keys():
+        for k in KBDB[x]:
+            KB.append(k)
+    print(KB)
+    # KB = conn.root()['KB']['RoleProcessGoal'] + conn.root()['KB']['RoleActions']
 
     # generate code for OrgUnits
     for k, v in conn.root()['OrgUnit'].items():
@@ -921,7 +930,8 @@ def CreateElement(self, nodeID, nodeClass, conn=None):
         'hasObjective': root.createNewhasObjective,
         'hasActions': root.createNewhasActions,
         'genericAssociation': root.createNewgenericAssociation,
-        'answersToRole': root.createNewanswersToRole
+        'answersToRole': root.createNewanswersToRole,
+        'precedentTo': root.createNewprecedentTo
     }
 
     self.newElement = funcCalls[nodeClass](root, 100, 100)

@@ -1,0 +1,7 @@
+************************************************************
+* LSPExample              
+*                                           
+* AToM3Doc generated graph Grammar documentation  
+************************************************************
+
+Rule #1(Order 1): AddRoles

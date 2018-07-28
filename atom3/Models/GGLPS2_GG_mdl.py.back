@@ -1,0 +1,443 @@
+from GraphGrammarEdit import *
+from GGruleEdit import *
+
+def savedTrans(self):
+   self.EditingGraphGrammar= GraphGrammarEdit(None, self)
+   self.EditingGraphGrammar.Name=ATOM3String('LSPExample', 20)
+   self.EditingGraphGrammar.Rules=ATOM3List([ 1, 1, 1, 0],GGruleEdit,None, self)
+   lcobj0=[]
+   cobj0= GGruleEdit(None, self)
+   cobj0.Name=ATOM3String('CreateParty', 20)
+   cobj0.Order=ATOM3Integer(1)
+   cobj0.TimeDelay=ATOM3Integer(2)
+   cobj0.SubtypesMatching=ATOM3Boolean()
+   cobj0.SubtypesMatching.setValue((None, 0))
+   cobj0.SubtypesMatching.config = 0
+
+   from hasObjective import *
+   from isPartOfOrgUnit import *
+   from Strategy import *
+   from canStartProcess import *
+   from Role import *
+   from canHaveRole import *
+   from Objective import *
+   from ASG_LSMASOMM import *
+   from OrganisationalKnArt import *
+   from hasActions import *
+   from isPartOfRole import *
+   from answersToOrgUnit import *
+   from isPartOfObjective import *
+   from IndividualKnArt import *
+   from answersToRole import *
+   from Action import *
+   from KnowledgeArtifacts import *
+   from genericAssociation import *
+   from Process import *
+   from OrgUnit import *
+   from isPartOfProcess import *
+   from canAccessKnArt import *
+   from precedentTo import *
+
+   cobj0.LHS = ASG_LSMASOMM(self)
+
+   self.obj49=OrgUnit(self)
+   self.obj49.preAction( cobj0.LHS.CREATE )
+   self.obj49.isGraphObjectVisual = True
+
+   if(hasattr(self.obj49, '_setHierarchicalLink')):
+     self.obj49._setHierarchicalLink(False)
+
+   # Individual
+   self.obj49.Individual.setNone()
+   self.obj49.Individual.config = 0
+
+   # hasActions
+   self.obj49.hasActions.setActionFlags([ 1, 1, 1, 0])
+   lcobj2 =[]
+   cobj2=ATOM3String('ChangeRole', 20)
+   lcobj2.append(cobj2)
+   self.obj49.hasActions.setValue(lcobj2)
+   self.obj49.hasActions.setNone()
+
+   # ID
+   self.obj49.ID.setValue('')
+   self.obj49.ID.setNone()
+
+   # name
+   self.obj49.name.setValue('')
+   self.obj49.name.setNone()
+
+   # UnitSize
+   self.obj49.UnitSize.setValue('Individual')
+
+   self.obj49.GGLabel.setValue(1)
+   self.obj49.graphClass_= graph_OrgUnit
+   if self.genGraphics:
+      new_obj = graph_OrgUnit(0,0,self.obj49)
+      new_obj.layConstraints = dict() # Graphical Layout Constraints 
+      new_obj.layConstraints['scale'] = [1.0, 1.0]
+   else: new_obj = None
+   self.obj49.graphObject_ = new_obj
+
+   # Add node to the root: cobj0.LHS
+   cobj0.LHS.addNode(self.obj49)
+   self.obj49.postAction( cobj0.LHS.CREATE )
+
+   self.obj50=Role(self)
+   self.obj50.preAction( cobj0.LHS.CREATE )
+   self.obj50.isGraphObjectVisual = True
+
+   if(hasattr(self.obj50, '_setHierarchicalLink')):
+     self.obj50._setHierarchicalLink(False)
+
+   # isMetaRole
+   self.obj50.isMetaRole.setNone()
+   self.obj50.isMetaRole.config = 0
+
+   # hasActions
+   self.obj50.hasActions.setActionFlags([ 0, 0, 1, 0])
+   lcobj2 =[]
+   self.obj50.hasActions.setValue(lcobj2)
+   self.obj50.hasActions.setNone()
+
+   # ID
+   self.obj50.ID.setValue('')
+   self.obj50.ID.setNone()
+
+   # name
+   self.obj50.name.setValue('PartyFounder')
+
+   self.obj50.GGLabel.setValue(2)
+   self.obj50.graphClass_= graph_Role
+   if self.genGraphics:
+      new_obj = graph_Role(153.0,0,self.obj50)
+      new_obj.layConstraints = dict() # Graphical Layout Constraints 
+      new_obj.layConstraints['scale'] = [1.0, 1.0]
+   else: new_obj = None
+   self.obj50.graphObject_ = new_obj
+
+   # Add node to the root: cobj0.LHS
+   cobj0.LHS.addNode(self.obj50)
+   self.obj50.postAction( cobj0.LHS.CREATE )
+
+   self.obj51=canHaveRole(self)
+   self.obj51.preAction( cobj0.LHS.CREATE )
+   self.obj51.isGraphObjectVisual = True
+
+   if(hasattr(self.obj51, '_setHierarchicalLink')):
+     self.obj51._setHierarchicalLink(True)
+
+   # ID
+   self.obj51.ID.setValue('OUR|0')
+
+   self.obj51.GGLabel.setValue(3)
+   self.obj51.graphClass_= graph_canHaveRole
+   if self.genGraphics:
+      new_obj = graph_canHaveRole(82.7757140317,49.5328543483,self.obj51)
+      new_obj.layConstraints = dict() # Graphical Layout Constraints 
+      new_obj.layConstraints['scale'] = [1.0, 1.0]
+   else: new_obj = None
+   self.obj51.graphObject_ = new_obj
+
+   # Add node to the root: cobj0.LHS
+   cobj0.LHS.addNode(self.obj51)
+   self.obj51.postAction( cobj0.LHS.CREATE )
+
+   self.obj49.out_connections_.append(self.obj51)
+   self.obj51.in_connections_.append(self.obj49)
+   self.obj49.graphObject_.pendingConnections.append((self.obj49.graphObject_.tag, self.obj51.graphObject_.tag, [320.0, 383.0, 82.7757140313197, 49.532854348516736], 2, 1))
+   self.obj51.out_connections_.append(self.obj50)
+   self.obj50.in_connections_.append(self.obj51)
+   self.obj51.graphObject_.pendingConnections.append((self.obj51.graphObject_.tag, self.obj50.graphObject_.tag, [318.0, 18.0, 248.5, 202.5], 2, 1))
+
+   cobj0.RHS = ASG_LSMASOMM(self)
+
+   self.obj53=OrgUnit(self)
+   self.obj53.preAction( cobj0.RHS.CREATE )
+   self.obj53.isGraphObjectVisual = True
+
+   if(hasattr(self.obj53, '_setHierarchicalLink')):
+     self.obj53._setHierarchicalLink(False)
+
+   # Individual
+   self.obj53.Individual.setNone()
+   self.obj53.Individual.config = 0
+
+   # hasActions
+   self.obj53.hasActions.setActionFlags([ 1, 1, 1, 0])
+   lcobj2 =[]
+   cobj2=ATOM3String('ChangeRole', 20)
+   lcobj2.append(cobj2)
+   self.obj53.hasActions.setValue(lcobj2)
+   self.obj53.hasActions.setNone()
+
+   # ID
+   self.obj53.ID.setValue('')
+   self.obj53.ID.setNone()
+
+   # name
+   self.obj53.name.setValue('')
+   self.obj53.name.setNone()
+
+   # UnitSize
+   self.obj53.UnitSize.setValue('Individual')
+
+   self.obj53.GGLabel.setValue(1)
+   self.obj53.graphClass_= graph_OrgUnit
+   if self.genGraphics:
+      new_obj = graph_OrgUnit(0,104,self.obj53)
+      new_obj.layConstraints = dict() # Graphical Layout Constraints 
+      new_obj.layConstraints['scale'] = [1.0, 1.0]
+   else: new_obj = None
+   self.obj53.graphObject_ = new_obj
+   self.obj530= AttrCalc()
+   self.obj530.Copy=ATOM3Boolean()
+   self.obj530.Copy.setValue(('Copy from LHS', 1))
+   self.obj530.Copy.config = 0
+   self.obj530.Specify=ATOM3Constraint()
+   self.obj530.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj53.GGset2Any['ID']= self.obj530
+   self.obj531= AttrCalc()
+   self.obj531.Copy=ATOM3Boolean()
+   self.obj531.Copy.setValue(('Copy from LHS', 1))
+   self.obj531.Copy.config = 0
+   self.obj531.Specify=ATOM3Constraint()
+   self.obj531.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj53.GGset2Any['Individual']= self.obj531
+   self.obj532= AttrCalc()
+   self.obj532.Copy=ATOM3Boolean()
+   self.obj532.Copy.setValue(('Copy from LHS', 1))
+   self.obj532.Copy.config = 0
+   self.obj532.Specify=ATOM3Constraint()
+   self.obj532.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj53.GGset2Any['hasActions']= self.obj532
+   self.obj533= AttrCalc()
+   self.obj533.Copy=ATOM3Boolean()
+   self.obj533.Copy.setValue(('Copy from LHS', 1))
+   self.obj533.Copy.config = 0
+   self.obj533.Specify=ATOM3Constraint()
+   self.obj533.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj53.GGset2Any['UnitSize']= self.obj533
+   self.obj534= AttrCalc()
+   self.obj534.Copy=ATOM3Boolean()
+   self.obj534.Copy.setValue(('Copy from LHS', 1))
+   self.obj534.Copy.config = 0
+   self.obj534.Specify=ATOM3Constraint()
+   self.obj534.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj53.GGset2Any['name']= self.obj534
+
+   # Add node to the root: cobj0.RHS
+   cobj0.RHS.addNode(self.obj53)
+   self.obj53.postAction( cobj0.RHS.CREATE )
+
+   self.obj54=OrgUnit(self)
+   self.obj54.preAction( cobj0.RHS.CREATE )
+   self.obj54.isGraphObjectVisual = True
+
+   if(hasattr(self.obj54, '_setHierarchicalLink')):
+     self.obj54._setHierarchicalLink(False)
+
+   # Individual
+   self.obj54.Individual.setValue(('1', 0))
+   self.obj54.Individual.config = 0
+
+   # hasActions
+   self.obj54.hasActions.setActionFlags([ 1, 1, 1, 0])
+   lcobj2 =[]
+   cobj2=ATOM3String('ChangeRole', 20)
+   lcobj2.append(cobj2)
+   self.obj54.hasActions.setValue(lcobj2)
+
+   # ID
+   self.obj54.ID.setValue('OU|99')
+
+   # name
+   self.obj54.name.setValue('Party')
+
+   # UnitSize
+   self.obj54.UnitSize.setValue('Group')
+
+   self.obj54.GGLabel.setValue(5)
+   self.obj54.graphClass_= graph_OrgUnit
+   if self.genGraphics:
+      new_obj = graph_OrgUnit(248,104,self.obj54)
+      new_obj.layConstraints = dict() # Graphical Layout Constraints 
+      new_obj.layConstraints['scale'] = [1.0, 1.0]
+   else: new_obj = None
+   self.obj54.graphObject_ = new_obj
+   self.obj540= AttrCalc()
+   self.obj540.Copy=ATOM3Boolean()
+   self.obj540.Copy.setValue(('Copy from LHS', 0))
+   self.obj540.Copy.config = 0
+   self.obj540.Specify=ATOM3Constraint()
+   self.obj540.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj54.GGset2Any['ID']= self.obj540
+   self.obj541= AttrCalc()
+   self.obj541.Copy=ATOM3Boolean()
+   self.obj541.Copy.setValue(('Copy from LHS', 0))
+   self.obj541.Copy.config = 0
+   self.obj541.Specify=ATOM3Constraint()
+   self.obj541.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj54.GGset2Any['Individual']= self.obj541
+   self.obj542= AttrCalc()
+   self.obj542.Copy=ATOM3Boolean()
+   self.obj542.Copy.setValue(('Copy from LHS', 0))
+   self.obj542.Copy.config = 0
+   self.obj542.Specify=ATOM3Constraint()
+   self.obj542.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj54.GGset2Any['hasActions']= self.obj542
+   self.obj543= AttrCalc()
+   self.obj543.Copy=ATOM3Boolean()
+   self.obj543.Copy.setValue(('Copy from LHS', 0))
+   self.obj543.Copy.config = 0
+   self.obj543.Specify=ATOM3Constraint()
+   self.obj543.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj54.GGset2Any['UnitSize']= self.obj543
+   self.obj544= AttrCalc()
+   self.obj544.Copy=ATOM3Boolean()
+   self.obj544.Copy.setValue(('Copy from LHS', 0))
+   self.obj544.Copy.config = 0
+   self.obj544.Specify=ATOM3Constraint()
+   self.obj544.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj54.GGset2Any['name']= self.obj544
+
+   # Add node to the root: cobj0.RHS
+   cobj0.RHS.addNode(self.obj54)
+   self.obj54.postAction( cobj0.RHS.CREATE )
+
+   self.obj55=Role(self)
+   self.obj55.preAction( cobj0.RHS.CREATE )
+   self.obj55.isGraphObjectVisual = True
+
+   if(hasattr(self.obj55, '_setHierarchicalLink')):
+     self.obj55._setHierarchicalLink(False)
+
+   # isMetaRole
+   self.obj55.isMetaRole.setNone()
+   self.obj55.isMetaRole.config = 0
+
+   # hasActions
+   self.obj55.hasActions.setActionFlags([ 0, 0, 1, 0])
+   lcobj2 =[]
+   self.obj55.hasActions.setValue(lcobj2)
+   self.obj55.hasActions.setNone()
+
+   # ID
+   self.obj55.ID.setValue('')
+   self.obj55.ID.setNone()
+
+   # name
+   self.obj55.name.setValue('PartyFounder')
+
+   self.obj55.GGLabel.setValue(2)
+   self.obj55.graphClass_= graph_Role
+   if self.genGraphics:
+      new_obj = graph_Role(124,0,self.obj55)
+      new_obj.layConstraints = dict() # Graphical Layout Constraints 
+      new_obj.layConstraints['scale'] = [1.0, 1.0]
+   else: new_obj = None
+   self.obj55.graphObject_ = new_obj
+   self.obj550= AttrCalc()
+   self.obj550.Copy=ATOM3Boolean()
+   self.obj550.Copy.setValue(('Copy from LHS', 1))
+   self.obj550.Copy.config = 0
+   self.obj550.Specify=ATOM3Constraint()
+   self.obj550.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj55.GGset2Any['isMetaRole']= self.obj550
+   self.obj551= AttrCalc()
+   self.obj551.Copy=ATOM3Boolean()
+   self.obj551.Copy.setValue(('Copy from LHS', 1))
+   self.obj551.Copy.config = 0
+   self.obj551.Specify=ATOM3Constraint()
+   self.obj551.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj55.GGset2Any['hasActions']= self.obj551
+   self.obj552= AttrCalc()
+   self.obj552.Copy=ATOM3Boolean()
+   self.obj552.Copy.setValue(('Copy from LHS', 1))
+   self.obj552.Copy.config = 0
+   self.obj552.Specify=ATOM3Constraint()
+   self.obj552.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj55.GGset2Any['ID']= self.obj552
+   self.obj553= AttrCalc()
+   self.obj553.Copy=ATOM3Boolean()
+   self.obj553.Copy.setValue(('Copy from LHS', 1))
+   self.obj553.Copy.config = 0
+   self.obj553.Specify=ATOM3Constraint()
+   self.obj553.Specify.setValue(('AttrSpecify', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.obj55.GGset2Any['name']= self.obj553
+
+   # Add node to the root: cobj0.RHS
+   cobj0.RHS.addNode(self.obj55)
+   self.obj55.postAction( cobj0.RHS.CREATE )
+
+   self.obj56=isPartOfOrgUnit(self)
+   self.obj56.preAction( cobj0.RHS.CREATE )
+   self.obj56.isGraphObjectVisual = True
+
+   if(hasattr(self.obj56, '_setHierarchicalLink')):
+     self.obj56._setHierarchicalLink(True)
+
+   # ID
+   self.obj56.ID.setValue('pOU|0')
+
+   self.obj56.GGLabel.setValue(6)
+   self.obj56.graphClass_= graph_isPartOfOrgUnit
+   if self.genGraphics:
+      new_obj = graph_isPartOfOrgUnit(170.95,135.5,self.obj56)
+      new_obj.layConstraints = dict() # Graphical Layout Constraints 
+      new_obj.layConstraints['scale'] = [1.0, 1.0]
+   else: new_obj = None
+   self.obj56.graphObject_ = new_obj
+
+   # Add node to the root: cobj0.RHS
+   cobj0.RHS.addNode(self.obj56)
+   self.obj56.postAction( cobj0.RHS.CREATE )
+
+   self.obj57=canHaveRole(self)
+   self.obj57.preAction( cobj0.RHS.CREATE )
+   self.obj57.isGraphObjectVisual = True
+
+   if(hasattr(self.obj57, '_setHierarchicalLink')):
+     self.obj57._setHierarchicalLink(True)
+
+   # ID
+   self.obj57.ID.setValue('OUR|0')
+
+   self.obj57.GGLabel.setValue(3)
+   self.obj57.graphClass_= graph_canHaveRole
+   if self.genGraphics:
+      new_obj = graph_canHaveRole(96.0835477534,103.612551906,self.obj57)
+      new_obj.layConstraints = dict() # Graphical Layout Constraints 
+      new_obj.layConstraints['scale'] = [1.0, 1.0]
+   else: new_obj = None
+   self.obj57.graphObject_ = new_obj
+
+   # Add node to the root: cobj0.RHS
+   cobj0.RHS.addNode(self.obj57)
+   self.obj57.postAction( cobj0.RHS.CREATE )
+
+   self.obj53.out_connections_.append(self.obj57)
+   self.obj57.in_connections_.append(self.obj53)
+   self.obj53.graphObject_.pendingConnections.append((self.obj53.graphObject_.tag, self.obj57.graphObject_.tag, [172.0, 262.0, 95.70697149494045, 93.18039110188538], 2, 0))
+   self.obj53.out_connections_.append(self.obj56)
+   self.obj56.in_connections_.append(self.obj53)
+   self.obj53.graphObject_.pendingConnections.append((self.obj53.graphObject_.tag, self.obj56.graphObject_.tag, [172.0, 262.0, 170.9500000000995, 135.49999999995433], 0, True))
+   self.obj56.out_connections_.append(self.obj54)
+   self.obj54.in_connections_.append(self.obj56)
+   self.obj56.graphObject_.pendingConnections.append((self.obj56.graphObject_.tag, self.obj54.graphObject_.tag, [138.0, 54.0, 146.5, 173.5], 0, True))
+   self.obj57.out_connections_.append(self.obj55)
+   self.obj55.in_connections_.append(self.obj57)
+   self.obj57.graphObject_.pendingConnections.append((self.obj57.graphObject_.tag, self.obj55.graphObject_.tag, [271.0, 251.0, 211.39913777316735, 113.1006935442384], 2, 0))
+
+   cobj0.Condition=ATOM3Constraint()
+   cobj0.Condition.setValue(('condition', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), 'return 1\n'))
+   cobj0.Action=ATOM3Constraint()
+   cobj0.Action.setValue(('action', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   lcobj0.append(cobj0)
+   self.EditingGraphGrammar.Rules.setValue(lcobj0)
+   self.EditingGraphGrammar.InitialAction=ATOM3Constraint()
+   self.EditingGraphGrammar.InitialAction.setValue(('constraint', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+   self.EditingGraphGrammar.FinalAction=ATOM3Constraint()
+   self.EditingGraphGrammar.FinalAction.setValue(('const', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), None))
+
+

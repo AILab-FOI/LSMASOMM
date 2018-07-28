@@ -3,7 +3,7 @@ __canAccessKnArt.py_____________________________________________________
 
 Automatically generated AToM3 syntactic object (DO NOT MODIFY DIRECTLY)
 Author: bogdan
-Modified: Sun Oct 22 23:29:30 2017
+Modified: Sat Apr 14 23:09:41 2018
 ________________________________________________________________________
 """
 from ASGNode import *

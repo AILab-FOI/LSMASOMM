@@ -3,7 +3,7 @@ __LSMASOMM_MDL.py_____________________________________________________
 
 Automatically generated AToM3 Model File (Do not modify directly)
 Author: bogdan
-Modified: Fri Feb  2 17:51:01 2018
+Modified: Sat Apr 14 23:09:39 2018
 ______________________________________________________________________
 """
 from stickylink import *
@@ -2434,14 +2434,14 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.obj47.isGraphObjectVisual = True
 
     if(hasattr(self.obj47, '_setHierarchicalLink')):
-      self.obj47._setHierarchicalLink(False)
+      self.obj47._setHierarchicalLink(True)
 
     # QOCA
     self.obj47.QOCA.setValue(('QOCA', (['Python', 'OCL'], 1), (['PREaction', 'POSTaction'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '"""\nQOCA Constraint Template\nNOTE: DO NOT select a POST/PRE action trigger\nConstraints will be added/removed in a logical manner by other mechanisms.\n"""\nreturn # <--- Remove this if you want to use QOCA\n\n# Get the high level constraint helper and solver\nfrom Qoca.atom3constraints.OffsetConstraints import OffsetConstraints\noc = OffsetConstraints(self.parent.qocaSolver)  \n\n# Constraint only makes sense if there exists 2 objects connected to this link\nif(not (self.in_connections_ and self.out_connections_)): return\n\n# Get the graphical objects (subclass of graphEntity/graphLink) \ngraphicalObjectLink = self.graphObject_\ngraphicalObjectSource = self.in_connections_[0].graphObject_\ngraphicalObjectTarget = self.out_connections_[0].graphObject_\nobjTuple = (graphicalObjectSource, graphicalObjectTarget, graphicalObjectLink)\n\n"""\nExample constraint, see Kernel/QOCA/atom3constraints/OffsetConstraints.py\nFor more types of constraints\n"""\noc.LeftExactDistance(objTuple, 20)\noc.resolve() # Resolve immediately after creating entity & constraint \n\n'))
 
     # Graphical_Appearance
-    self.obj47.Graphical_Appearance.setValue( ('Association_12', self.obj47))
-    self.obj47.Graphical_Appearance.linkInfo=linkEditor(self,self.obj47.Graphical_Appearance.semObject, "Association_12")
+    self.obj47.Graphical_Appearance.setValue( ('precedentTo', self.obj47))
+    self.obj47.Graphical_Appearance.linkInfo=linkEditor(self,self.obj47.Graphical_Appearance.semObject, "precedentTo")
     self.obj47.Graphical_Appearance.linkInfo.FirstLink= stickylink()
     self.obj47.Graphical_Appearance.linkInfo.FirstLink.arrow=ATOM3Boolean()
     self.obj47.Graphical_Appearance.linkInfo.FirstLink.arrow.setValue((' ', 0))
@@ -2450,7 +2450,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.obj47.Graphical_Appearance.linkInfo.FirstLink.arrowShape2=ATOM3Integer(10)
     self.obj47.Graphical_Appearance.linkInfo.FirstLink.arrowShape3=ATOM3Integer(3)
     self.obj47.Graphical_Appearance.linkInfo.FirstLink.decoration=ATOM3Appearance()
-    self.obj47.Graphical_Appearance.linkInfo.FirstLink.decoration.setValue( ('Association_12_1stLink', self.obj47.Graphical_Appearance.linkInfo.FirstLink))
+    self.obj47.Graphical_Appearance.linkInfo.FirstLink.decoration.setValue( ('precedentTo_1stLink', self.obj47.Graphical_Appearance.linkInfo.FirstLink))
     self.obj47.Graphical_Appearance.linkInfo.FirstSegment= widthXfillXdecoration()
     self.obj47.Graphical_Appearance.linkInfo.FirstSegment.width=ATOM3Integer(2)
     self.obj47.Graphical_Appearance.linkInfo.FirstSegment.fill=ATOM3String('black', 20)
@@ -2462,10 +2462,10 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.obj47.Graphical_Appearance.linkInfo.FirstSegment.arrowShape2=ATOM3Integer(10)
     self.obj47.Graphical_Appearance.linkInfo.FirstSegment.arrowShape3=ATOM3Integer(3)
     self.obj47.Graphical_Appearance.linkInfo.FirstSegment.decoration=ATOM3Appearance()
-    self.obj47.Graphical_Appearance.linkInfo.FirstSegment.decoration.setValue( ('Association_12_1stSegment', self.obj47.Graphical_Appearance.linkInfo.FirstSegment))
+    self.obj47.Graphical_Appearance.linkInfo.FirstSegment.decoration.setValue( ('precedentTo_1stSegment', self.obj47.Graphical_Appearance.linkInfo.FirstSegment))
     self.obj47.Graphical_Appearance.linkInfo.FirstSegment.decoration_Position=ATOM3Enum(['Up', 'Down', 'Middle', 'No decoration'],3,0)
     self.obj47.Graphical_Appearance.linkInfo.Center=ATOM3Appearance()
-    self.obj47.Graphical_Appearance.linkInfo.Center.setValue( ('Association_12_Center', self.obj47.Graphical_Appearance.linkInfo))
+    self.obj47.Graphical_Appearance.linkInfo.Center.setValue( ('precedentTo_Center', self.obj47.Graphical_Appearance.linkInfo))
     self.obj47.Graphical_Appearance.linkInfo.SecondSegment= widthXfillXdecoration()
     self.obj47.Graphical_Appearance.linkInfo.SecondSegment.width=ATOM3Integer(2)
     self.obj47.Graphical_Appearance.linkInfo.SecondSegment.fill=ATOM3String('black', 20)
@@ -2477,7 +2477,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.obj47.Graphical_Appearance.linkInfo.SecondSegment.arrowShape2=ATOM3Integer(10)
     self.obj47.Graphical_Appearance.linkInfo.SecondSegment.arrowShape3=ATOM3Integer(3)
     self.obj47.Graphical_Appearance.linkInfo.SecondSegment.decoration=ATOM3Appearance()
-    self.obj47.Graphical_Appearance.linkInfo.SecondSegment.decoration.setValue( ('Association_12_2ndSegment', self.obj47.Graphical_Appearance.linkInfo.SecondSegment))
+    self.obj47.Graphical_Appearance.linkInfo.SecondSegment.decoration.setValue( ('precedentTo_2ndSegment', self.obj47.Graphical_Appearance.linkInfo.SecondSegment))
     self.obj47.Graphical_Appearance.linkInfo.SecondSegment.decoration_Position=ATOM3Enum(['Up', 'Down', 'Middle', 'No decoration'],3,0)
     self.obj47.Graphical_Appearance.linkInfo.SecondLink= stickylink()
     self.obj47.Graphical_Appearance.linkInfo.SecondLink.arrow=ATOM3Boolean()
@@ -2487,7 +2487,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.obj47.Graphical_Appearance.linkInfo.SecondLink.arrowShape2=ATOM3Integer(10)
     self.obj47.Graphical_Appearance.linkInfo.SecondLink.arrowShape3=ATOM3Integer(3)
     self.obj47.Graphical_Appearance.linkInfo.SecondLink.decoration=ATOM3Appearance()
-    self.obj47.Graphical_Appearance.linkInfo.SecondLink.decoration.setValue( ('Association_12_2ndLink', self.obj47.Graphical_Appearance.linkInfo.SecondLink))
+    self.obj47.Graphical_Appearance.linkInfo.SecondLink.decoration.setValue( ('precedentTo_2ndLink', self.obj47.Graphical_Appearance.linkInfo.SecondLink))
     self.obj47.Graphical_Appearance.linkInfo.FirstLink.decoration.semObject=self.obj47.Graphical_Appearance.semObject
     self.obj47.Graphical_Appearance.linkInfo.FirstSegment.decoration.semObject=self.obj47.Graphical_Appearance.semObject
     self.obj47.Graphical_Appearance.linkInfo.Center.semObject=self.obj47.Graphical_Appearance.semObject
@@ -2504,6 +2504,11 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     # attributes
     self.obj47.attributes.setActionFlags([ 1, 1, 1, 0])
     lcobj2 =[]
+    cobj2=ATOM3Attribute(self.types)
+    cobj2.setValue(('ID', 'String', None, ('Key', 1), ('Direct Editing', 1)))
+    cobj2.initialValue=ATOM3String('OpO|', 20)
+    cobj2.isDerivedAttribute = False
+    lcobj2.append(cobj2)
     self.obj47.attributes.setValue(lcobj2)
 
     # cardinality
@@ -2518,7 +2523,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.obj47.cardinality.setValue(lcobj2)
 
     # display
-    self.obj47.display.setValue('Multiplicities:\n  - From Objective: 0 to N\n  - To Objective: 0 to N\n')
+    self.obj47.display.setValue('Attributes:\n  - ID :: String\nMultiplicities:\n  - From Objective: 0 to N\n  - To Objective: 0 to N\n')
     self.obj47.display.setHeight(15)
 
     # Actions
@@ -2533,11 +2538,11 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 
     self.obj47.graphClass_= graph_CD_Association3
     if self.genGraphics:
-       new_obj = graph_CD_Association3(340.0,962.0,self.obj47)
+       new_obj = graph_CD_Association3(340.0,961.0,self.obj47)
        new_obj.DrawObject(self.UMLmodel)
        self.UMLmodel.addtag_withtag("CD_Association3", new_obj.tag)
        new_obj.layConstraints = dict() # Graphical Layout Constraints 
-       new_obj.layConstraints['scale'] = [1.225, 1.0]
+       new_obj.layConstraints['scale'] = [1.225, 1.3548387096774195]
     else: new_obj = None
     self.obj47.graphObject_ = new_obj
 
@@ -2661,7 +2666,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
     self.drawConnections(
 (self.obj33,self.obj50,[166.5, 498.9016393442623, 151.858254695, 480.846159545],"true", 2),
 (self.obj33,self.obj39,[115.75, 817.0, 131.94404651894035, 946.9122308488277, 131.944046519, 946.91223085],"true", 3),
-(self.obj33,self.obj47,[217.25, 817.0, 340.0, 962.0],"true", 2) )
+(self.obj33,self.obj47,[217.25, 759.0, 340.0, 961.0],"true", 2) )
     # Connections for obj34 (graphObject_: Obj8) named Process
     self.drawConnections(
 (self.obj34,self.obj40,[201.65625, 242.0, 323.0, 995.0, 568.73445957, 873.859445861],"true", 3),
@@ -2705,7 +2710,7 @@ def LSMASOMM_MDL(self, rootNode, CD_ClassDiagramsV3RootNode=None):
 (self.obj46,self.obj34,[441.0, 297.0, 244.72265625, 208.95081967213116],"true", 2) )
     # Connections for obj47 (graphObject_: Obj33) named precedentTo
     self.drawConnections(
-(self.obj47,self.obj33,[340.0, 962.0, 217.25, 817.0],"true", 2) )
+(self.obj47,self.obj33,[340.0, 961.0, 217.25, 759.0],"true", 2) )
     # Connections for obj48 (graphObject_: Obj35) of type CD_Inheritance3
     self.drawConnections(
 (self.obj48,self.obj29,[913.21888986, 906.92763695, 880.0, 898.4545454545455], 0, 2) )

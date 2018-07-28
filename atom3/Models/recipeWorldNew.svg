@@ -1,0 +1,698 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  id="top_" xml:lang="en" version="1.1" baseProfile="full">
+
+<desc>AToM3 model exported to SVG by Denis' AToM3Selection2SVG.py</desc>
+
+<defs>
+  <marker id="TriangleArrowhead"
+    viewBox="0 0 10 10" refX="10" refY="5" 
+    markerUnits="strokeWidth"
+    markerWidth="6" markerHeight="6"
+    orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z" />
+  </marker>
+</defs>
+
+<g id="Obj32">
+  <path id="Obj321stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M826.100464882,444.866959195 L841.488076426,470.495781818 841.877388188,496.350444347" />
+
+  <path id="Obj322ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M841.877388188,496.350444347 L842.26669995,522.205106875 827.657711931,548.285609308" />
+
+<g id="Obj32_Center">
+  <image id="Obj32_Center.gf201" x="832" y="487" width="20" height="20" xlink:href="data:;base64,
+R0lGODlhFAAUAPEAAABVAKoAAAAAAAAAACH5BAEAAAIALAAAAAAUABQAAAI1hH8iwd0IlZsQyfmquTjovXTex2EfUFJk2J2po8Ty28y2OGo047LmiusFgSJhkdhC/nS+SQEAOw=="/>
+
+</g>
+</g>
+<g id="Obj34">
+  <path id="Obj341stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M655.276338666,444.731262286 L655.927633867,522.373126229 655.093669757,532.609085156" />
+
+  <path id="Obj342ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M655.093669757,532.609085156 L654.259705648,542.845044084 638.597056483,649.450440841" />
+
+<g id="Obj34_Center">
+  <image id="Obj34_Center.gf201" x="645" y="523" width="20" height="20" xlink:href="data:;base64,
+R0lGODlhFAAUAPEAAABVAKoAAAAAAAAAACH5BAEAAAIALAAAAAAUABQAAAI1hH8iwd0IlZsQyfmquTjovXTex2EfUFJk2J2po8Ty28y2OGo047LmiusFgSJhkdhC/nS+SQEAOw=="/>
+
+</g>
+</g>
+<g id="Obj36">
+  <path id="Obj361stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M458.693950588,444.740980922 L467.0,531.0 467.0,581.0" />
+
+  <path id="Obj362ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M467.0,581.0 L467.0,632.0 424.837967088,750.425742025" />
+
+<g id="Obj36_Center">
+  <image id="Obj36_Center.gf201" x="457" y="571" width="20" height="20" xlink:href="data:;base64,
+R0lGODlhFAAUAPEAAABVAKoAAAAAAAAAACH5BAEAAAIALAAAAAAUABQAAAI1hH8iwd0IlZsQyfmquTjovXTex2EfUFJk2J2po8Ty28y2OGo047LmiusFgSJhkdhC/nS+SQEAOw=="/>
+
+</g>
+</g>
+<g id="Obj38">
+  <path id="Obj381stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M243.97137864,444.959930745 L278.0,531.0 278.0,632.0 278.0,733.0 278.0,783.0" />
+
+  <path id="Obj382ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M278.0,783.0 L278.0,834.0 278.0,935.0 430.661731239,1053.23125737" />
+
+<g id="Obj38_Center">
+  <image id="Obj38_Center.gf201" x="268" y="773" width="20" height="20" xlink:href="data:;base64,
+R0lGODlhFAAUAPEAAABVAKoAAAAAAAAAACH5BAEAAAIALAAAAAAUABQAAAI1hH8iwd0IlZsQyfmquTjovXTex2EfUFJk2J2po8Ty28y2OGo047LmiusFgSJhkdhC/nS+SQEAOw=="/>
+
+</g>
+</g>
+<g id="Obj40">
+  <path id="Obj401stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M60.0004879664,445.479576972 L89.0,531.0 89.0,632.0 89.0,733.0 89.0,783.0" />
+
+  <path id="Obj402ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M89.0,783.0 L89.0,834.0 89.0,935.0 89.0,1036.0 244.626676567,1154.30104275" />
+
+<g id="Obj40_Center">
+  <image id="Obj40_Center.gf201" x="79" y="773" width="20" height="20" xlink:href="data:;base64,
+R0lGODlhFAAUAPEAAABVAKoAAAAAAAAAACH5BAEAAAIALAAAAAAUABQAAAI1hH8iwd0IlZsQyfmquTjovXTex2EfUFJk2J2po8Ty28y2OGo047LmiusFgSJhkdhC/nS+SQEAOw=="/>
+
+</g>
+</g>
+<g id="Obj42">
+  <path id="Obj421stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M1182.34212863,444.80194619 L1195.36732035,471.807713429 1193.43415707,497.696513385" />
+
+  <path id="Obj422ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M1193.43415707,497.696513385 L1191.50099379,523.585313341 1174.60947552,548.357146013" />
+
+<g id="Obj42_Center">
+  <image id="Obj42_Center.gf201" x="1184" y="488" width="20" height="20" xlink:href="data:;base64,
+R0lGODlhFAAUAPEAAABVAKoAAAAAAAAAACH5BAEAAAIALAAAAAAUABQAAAI1hH8iwd0IlZsQyfmquTjovXTex2EfUFJk2J2po8Ty28y2OGo047LmiusFgSJhkdhC/nS+SQEAOw=="/>
+
+</g>
+</g>
+<g id="Obj44">
+  <path id="Obj441stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M975.225067654,444.589146992 L1028.12250677,522.358914699 1028.4684158,532.596652707" />
+
+  <path id="Obj442ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M1028.4684158,532.596652707 L1028.81432483,542.834390715 982.143248306,649.34390715" />
+
+<g id="Obj44_Center">
+  <image id="Obj44_Center.gf201" x="1019" y="523" width="20" height="20" xlink:href="data:;base64,
+R0lGODlhFAAUAPEAAABVAKoAAAAAAAAAACH5BAEAAAIALAAAAAAUABQAAAI1hH8iwd0IlZsQyfmquTjovXTex2EfUFJk2J2po8Ty28y2OGo047LmiusFgSJhkdhC/nS+SQEAOw=="/>
+
+</g>
+</g>
+<g id="Obj1">
+  <polygon id="Obj1.gf217" fill="#4169e1" stroke="#000000" stroke-width="1.0"
+  points="811.195446082,241.819829322 805.85153912,249.292758777 793.70260289,257.411589702 826.862112749,260.619829322 851.712555631,253.903544014 836.140521261,247.899670293 833.128779416,241.819829322 829.995446082,232.419829322 826.862112749,226.153162655 811.195446082,213.619829322 814.328779416,226.153162655" />
+
+  <text id="Obj1.gf23"
+    style="font-size:12pt;font-family:FreeSans;fill:#000000;font-weight:bold;text-anchor:start"
+    x="801.195446082" y="208.319829322">
+    Order  </text>
+  <g id="Obj1.gf24"
+    style="font-size:9pt;font-family:FreeSans;fill:#000000;text-anchor:start"  >
+    <text x="756" y="275">SearchForFactories</text>
+    <text x="756" y="289">CheckFactoryAvailability</text>
+    <text x="756" y="303">WaitForFactoryAnswer</text>
+    <text x="756" y="317">StartProduction</text>
+    <text x="756" y="331">FinishProduction</text>    </g>
+</g>
+<g id="Obj2">
+  <polygon id="Obj2.gf217" fill="#4169e1" stroke="#000000" stroke-width="1.0"
+  points="970.177372731,242.077283515 964.833465769,249.55021297 952.684529539,257.669043895 985.844039398,260.877283515 1010.69448228,254.160998207 995.12244791,248.157124486 992.110706065,242.077283515 988.977372731,232.677283515 985.844039398,226.410616848 970.177372731,213.877283515 973.310706065,226.410616848" />
+
+  <text id="Obj2.gf23"
+    style="font-size:12pt;font-family:FreeSans;fill:#000000;font-weight:bold;text-anchor:start"
+    x="953.177372731" y="208.577283515">
+    Factory  </text>
+  <g id="Obj2.gf24"
+    style="font-size:9pt;font-family:FreeSans;fill:#000000;text-anchor:start"  >
+    <text x="945" y="275">AnswerQuery</text>
+    <text x="945" y="289">Produce</text>    </g>
+</g>
+<g id="Obj20">
+  <path id="Obj201stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M778.923362042,62.9806227224 L761.487988678,103.602314957 774.0,146.0" />
+
+  <path id="Obj202ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M774.0,146.0 L784.062181755,201.874365302 821.195446082,244.819829322" />
+
+  <path id="Obj202ndSeg1" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M774.0,146.0 L870.59174421,209.058617446 980.177372731,245.077283515" />
+
+<g id="Obj20_Center">
+  <path id="Obj20_Center.gf186" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M766.884751155,144.142507408 L766.884751155,144.142507408 767.546431651,175.589743589 769.862313385,174.803562685" />
+
+  <path id="Obj20_Center.gf188" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M778.464159827,142.78993811 L778.464159827,142.78993811 779.125840322,174.237174291 781.441722056,173.450993387" />
+
+  <path id="Obj20_Center.gf189" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M767.546431651,172.208320344 L767.546431651,172.208320344" />
+
+  <path id="Obj20_Center.gf197" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M767.546431651,148.200215303 L767.546431651,148.200215303 764.238029173,152.623782105 764.238029173,162.402192933" />
+
+  <path id="Obj20_Center.gf198" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M778.795000074,149.890926925 L778.795000074,149.890926925 782.765083047,153.135795293 782.765083047,158.760233798" />
+
+  <polygon id="Obj20_Center.gf208" fill="#ffff00" stroke="#000000" stroke-width="1.0"
+  points="767.644772046,143.804365084 766.963008679,146.517651688 767.41751759,164.907705337 778.806553775,164.907705337 777.871222551,146.819127977 778.780240374,139.885173322" />
+
+  <path id="Obj20_Center.gf195" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M769.20063289,147.862072978 L769.20063289,147.862072978" />
+
+  <ellipse id="Obj20_Center.gf194" fill="#ffffff" stroke="#000000" stroke-width="1.0"
+  cx="774.042931061" cy="142.113653461" rx="8.72215198615" ry="8.45355811315" />
+
+  <ellipse id="Obj20_Center.gf200" fill="#000000" stroke="#000000" stroke-width="1.0"
+  cx="772.608287441" cy="143.635293922" rx="1.09177281758" ry="1.18349813584" />
+
+  <ellipse id="Obj20_Center.gf202" fill="#000000" stroke="#000000" stroke-width="1.0"
+  cx="780.879293635" cy="141.944582299" rx="1.09177281758" ry="1.18349813584" />
+
+  <path id="Obj20_Center.gf221" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M768.691728158,133.642025798 L768.691728158,133.642025798 767.952631078,137.522285469 765.919474887,138.009243302" />
+
+  <path id="Obj20_Center.gf222" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M777.829713806,133.658707237 L777.829713806,133.843481507 778.568810886,136.799869827 780.786102127,137.908515448" />
+
+  <polygon id="Obj20_Center.gf217" fill="#4169e1" stroke="#000000" stroke-width="1.0"
+  points="767.633494874,132.162607911 764.568733092,136.448376498 757.601247372,141.104573342 776.618419497,142.944517459 790.870293294,139.092688699 781.939640844,135.649432135 780.212389346,132.162607911 778.415404422,126.771653137 776.618419497,123.177683288 767.633494874,115.989743589 769.430479799,123.177683288" />
+
+</g>
+</g>
+<g id="Obj10">
+  <ellipse id="Obj10.gf207" fill="#ffffff" stroke="#000000" stroke-width="2.0"
+  cx="434.623076258" cy="1289.09417913" rx="19.5" ry="19.5" />
+
+  <path id="Obj10.gf204" fill="none" stroke="#8b0000" stroke-width="2.0"
+  d="M434.869911701,1288.84734369 L434.869911701,1308.59417913" />
+
+  <ellipse id="Obj10.gf210" fill="#8b0000" stroke="none" stroke-width="2.0"
+  cx="434.869911701" cy="1288.84734369" rx="3.45569620253" ry="3.45569620253" />
+
+  <text id="Obj10.gf30"
+    style="font-size:10pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="378.623076258" y="1261.59417913">
+    ProduceRecipePart  </text>
+  <text id="Obj10.gf31"
+    style="font-size:9pt;font-family:Helvetica;fill:#bebebe;font-weight:bold;text-anchor:start"
+    x="426.623076258" y="1327.59417913">
+    O|0  </text>
+</g>
+<g id="Obj11">
+  <ellipse id="Obj11.gf207" fill="#ffffff" stroke="#000000" stroke-width="2.0"
+  cx="607.374258362" cy="951.502026594" rx="19.5" ry="19.5" />
+
+  <path id="Obj11.gf204" fill="none" stroke="#8b0000" stroke-width="2.0"
+  d="M607.621093805,951.255191151 L607.621093805,971.002026594" />
+
+  <ellipse id="Obj11.gf210" fill="#8b0000" stroke="none" stroke-width="2.0"
+  cx="607.621093805" cy="951.255191151" rx="3.45569620253" ry="3.45569620253" />
+
+  <text id="Obj11.gf30"
+    style="font-size:10pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="567.374258362" y="924.002026594">
+    SelectFactory  </text>
+  <text id="Obj11.gf31"
+    style="font-size:9pt;font-family:Helvetica;fill:#bebebe;font-weight:bold;text-anchor:start"
+    x="599.374258362" y="990.002026594">
+    O|1  </text>
+</g>
+<g id="Obj12">
+  <ellipse id="Obj12.gf207" fill="#ffffff" stroke="#000000" stroke-width="2.0"
+  cx="430.161731239" cy="1052.73125737" rx="19.5" ry="19.5" />
+
+  <path id="Obj12.gf204" fill="none" stroke="#8b0000" stroke-width="2.0"
+  d="M430.408566682,1052.48442193 L430.408566682,1072.23125737" />
+
+  <ellipse id="Obj12.gf210" fill="#8b0000" stroke="none" stroke-width="2.0"
+  cx="430.408566682" cy="1052.48442193" rx="3.45569620253" ry="3.45569620253" />
+
+  <text id="Obj12.gf30"
+    style="font-size:10pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="378.661731239" y="1025.23125737">
+    ProductionStarted  </text>
+  <text id="Obj12.gf31"
+    style="font-size:9pt;font-family:Helvetica;fill:#bebebe;font-weight:bold;text-anchor:start"
+    x="422.161731239" y="1091.23125737">
+    O|2  </text>
+</g>
+<g id="Obj13">
+  <ellipse id="Obj13.gf207" fill="#ffffff" stroke="#000000" stroke-width="2.0"
+  cx="244.126676567" cy="1153.80104275" rx="19.5" ry="19.5" />
+
+  <path id="Obj13.gf204" fill="none" stroke="#8b0000" stroke-width="2.0"
+  d="M244.37351201,1153.55420731 L244.37351201,1173.30104275" />
+
+  <ellipse id="Obj13.gf210" fill="#8b0000" stroke="none" stroke-width="2.0"
+  cx="244.37351201" cy="1153.55420731" rx="3.45569620253" ry="3.45569620253" />
+
+  <text id="Obj13.gf30"
+    style="font-size:10pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="189.126676567" y="1126.30104275">
+    ProductionFinished  </text>
+  <text id="Obj13.gf31"
+    style="font-size:9pt;font-family:Helvetica;fill:#bebebe;font-weight:bold;text-anchor:start"
+    x="236.126676567" y="1192.30104275">
+    O|3  </text>
+</g>
+<g id="Obj14">
+  <ellipse id="Obj14.gf207" fill="#ffffff" stroke="#000000" stroke-width="2.0"
+  cx="827.157711931" cy="547.785609308" rx="19.5" ry="19.5" />
+
+  <path id="Obj14.gf204" fill="none" stroke="#8b0000" stroke-width="2.0"
+  d="M827.404547374,547.538773865 L827.404547374,567.285609308" />
+
+  <ellipse id="Obj14.gf210" fill="#8b0000" stroke="none" stroke-width="2.0"
+  cx="827.404547374" cy="547.538773865" rx="3.45569620253" ry="3.45569620253" />
+
+  <text id="Obj14.gf30"
+    style="font-size:10pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="756.657711931" y="520.285609308">
+    SearchSuitableFactories  </text>
+  <text id="Obj14.gf31"
+    style="font-size:9pt;font-family:Helvetica;fill:#bebebe;font-weight:bold;text-anchor:start"
+    x="819.157711931" y="586.285609308">
+    O|4  </text>
+</g>
+<g id="Obj15">
+  <ellipse id="Obj15.gf207" fill="#ffffff" stroke="#000000" stroke-width="2.0"
+  cx="638.097056483" cy="648.950440841" rx="19.5" ry="19.5" />
+
+  <path id="Obj15.gf204" fill="none" stroke="#8b0000" stroke-width="2.0"
+  d="M638.343891926,648.703605398 L638.343891926,668.450440841" />
+
+  <ellipse id="Obj15.gf210" fill="#8b0000" stroke="none" stroke-width="2.0"
+  cx="638.343891926" cy="648.703605398" rx="3.45569620253" ry="3.45569620253" />
+
+  <text id="Obj15.gf30"
+    style="font-size:10pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="567.097056483" y="621.450440841">
+    CheckIfFactoryAvailable  </text>
+  <text id="Obj15.gf31"
+    style="font-size:9pt;font-family:Helvetica;fill:#bebebe;font-weight:bold;text-anchor:start"
+    x="630.097056483" y="687.450440841">
+    O|5  </text>
+</g>
+<g id="Obj16">
+  <ellipse id="Obj16.gf207" fill="#ffffff" stroke="#000000" stroke-width="2.0"
+  cx="424.337967088" cy="749.925742025" rx="19.5" ry="19.5" />
+
+  <path id="Obj16.gf204" fill="none" stroke="#8b0000" stroke-width="2.0"
+  d="M424.584802531,749.678906582 L424.584802531,769.425742025" />
+
+  <ellipse id="Obj16.gf210" fill="#8b0000" stroke="none" stroke-width="2.0"
+  cx="424.584802531" cy="749.678906582" rx="3.45569620253" ry="3.45569620253" />
+
+  <text id="Obj16.gf30"
+    style="font-size:10pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="378.837967088" y="722.425742025">
+    ReceiveAnswer  </text>
+  <text id="Obj16.gf31"
+    style="font-size:9pt;font-family:Helvetica;fill:#bebebe;font-weight:bold;text-anchor:start"
+    x="416.337967088" y="788.425742025">
+    O|6  </text>
+</g>
+<g id="Obj17">
+  <ellipse id="Obj17.gf207" fill="#ffffff" stroke="#000000" stroke-width="2.0"
+  cx="1208.70804126" cy="850.753466049" rx="19.5" ry="19.5" />
+
+  <path id="Obj17.gf204" fill="none" stroke="#8b0000" stroke-width="2.0"
+  d="M1208.95487671,850.506630606 L1208.95487671,870.253466049" />
+
+  <ellipse id="Obj17.gf210" fill="#8b0000" stroke="none" stroke-width="2.0"
+  cx="1208.95487671" cy="850.506630606" rx="3.45569620253" ry="3.45569620253" />
+
+  <text id="Obj17.gf30"
+    style="font-size:10pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="1134.70804126" y="823.253466049">
+    ProduceSingleRecipePart  </text>
+  <text id="Obj17.gf31"
+    style="font-size:9pt;font-family:Helvetica;fill:#bebebe;font-weight:bold;text-anchor:start"
+    x="1200.70804126" y="889.253466049">
+    O|7  </text>
+</g>
+<g id="Obj18">
+  <ellipse id="Obj18.gf207" fill="#ffffff" stroke="#000000" stroke-width="2.0"
+  cx="1174.10947552" cy="547.857146013" rx="19.5" ry="19.5" />
+
+  <path id="Obj18.gf204" fill="none" stroke="#8b0000" stroke-width="2.0"
+  d="M1174.35631096,547.610310569 L1174.35631096,567.357146013" />
+
+  <ellipse id="Obj18.gf210" fill="#8b0000" stroke="none" stroke-width="2.0"
+  cx="1174.35631096" cy="547.610310569" rx="3.45569620253" ry="3.45569620253" />
+
+  <text id="Obj18.gf30"
+    style="font-size:10pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="1134.10947552" y="520.357146013">
+    ReplyToOrder  </text>
+  <text id="Obj18.gf31"
+    style="font-size:9pt;font-family:Helvetica;fill:#bebebe;font-weight:bold;text-anchor:start"
+    x="1166.10947552" y="586.357146013">
+    O|8  </text>
+</g>
+<g id="Obj19">
+  <ellipse id="Obj19.gf207" fill="#ffffff" stroke="#000000" stroke-width="2.0"
+  cx="981.643248306" cy="648.84390715" rx="19.5" ry="19.5" />
+
+  <path id="Obj19.gf204" fill="none" stroke="#8b0000" stroke-width="2.0"
+  d="M981.890083749,648.597071707 L981.890083749,668.34390715" />
+
+  <ellipse id="Obj19.gf210" fill="#8b0000" stroke="none" stroke-width="2.0"
+  cx="981.890083749" cy="648.597071707" rx="3.45569620253" ry="3.45569620253" />
+
+  <text id="Obj19.gf30"
+    style="font-size:10pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="946.143248306" y="621.34390715">
+    ProducePart  </text>
+  <text id="Obj19.gf31"
+    style="font-size:9pt;font-family:Helvetica;fill:#bebebe;font-weight:bold;text-anchor:start"
+    x="973.643248306" y="687.34390715">
+    O|9  </text>
+</g>
+<g id="Obj22">
+  <path id="Obj221stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M821.195446082,244.819829322 L809.049364078,316.419153481 769.0,377.0" />
+
+  <path id="Obj222ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M769.0,377.0 L809.028120612,401.27645712 826.100464882,444.866959195" />
+
+  <path id="Obj222ndSeg1" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M769.0,377.0 L719.813657433,423.75310112 655.276338666,444.731262286" />
+
+  <path id="Obj222ndSeg2" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M769.0,377.0 L617.0461874,425.525354565 458.693950588,444.740980922" />
+
+  <path id="Obj222ndSeg3" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M769.0,377.0 L508.411231722,425.855861529 243.97137864,444.959930745" />
+
+  <path id="Obj222ndSeg4" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M769.0,377.0 L415.942326256,426.170307523 60.0004879664,445.479576972" />
+
+<g id="Obj22_Center">
+  <ellipse id="Obj22_Center.gf0" fill="#bebebe" stroke="#000000" stroke-width="2.0"
+  cx="769.046571972" cy="377.883180381" rx="11.0555555556" ry="11.0555555556" />
+
+  <ellipse id="Obj22_Center.gf3" fill="#737373" stroke="none" stroke-width="1.0"
+  cx="769.157683083" cy="367.994291492" rx="4.5" ry="4.5" />
+
+  <ellipse id="Obj22_Center.gf5" fill="#737373" stroke="none" stroke-width="1.0"
+  cx="760.268794194" cy="372.994291492" rx="4.5" ry="4.5" />
+
+  <ellipse id="Obj22_Center.gf6" fill="#737373" stroke="none" stroke-width="1.0"
+  cx="778.046571972" cy="382.994291492" rx="4.5" ry="4.5" />
+
+  <ellipse id="Obj22_Center.gf7" fill="#737373" stroke="none" stroke-width="1.0"
+  cx="769.157683083" cy="387.994291492" rx="4.5" ry="4.5" />
+
+  <ellipse id="Obj22_Center.gf8" fill="#737373" stroke="none" stroke-width="1.0"
+  cx="778.046571972" cy="372.994291492" rx="4.5" ry="4.5" />
+
+  <ellipse id="Obj22_Center.gf9" fill="#737373" stroke="none" stroke-width="1.0"
+  cx="760.268794194" cy="382.994291492" rx="4.5" ry="4.5" />
+
+  <ellipse id="Obj22_Center.gf11" fill="#ffffff" stroke="none" stroke-width="1.0"
+  cx="769.074349749" cy="377.910958159" rx="8.30555555556" ry="8.30555555556" />
+
+</g>
+</g>
+<g id="Obj24">
+  <path id="Obj241stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M980.177372731,245.077283515 L954.296251476,308.551902924 958.0,377.0" />
+
+  <path id="Obj242ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M958.0,377.0 L1065.83153649,425.259541904 1182.34212863,444.80194619" />
+
+  <path id="Obj242ndSeg1" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M958.0,377.0 L952.077133678,414.498914534 975.225067654,444.589146992" />
+
+<g id="Obj24_Center">
+  <ellipse id="Obj24_Center.gf0" fill="#bebebe" stroke="#000000" stroke-width="2.0"
+  cx="957.900444438" cy="377.849892483" rx="11.0555555556" ry="11.0555555556" />
+
+  <ellipse id="Obj24_Center.gf3" fill="#737373" stroke="none" stroke-width="1.0"
+  cx="958.011555549" cy="367.961003594" rx="4.5" ry="4.5" />
+
+  <ellipse id="Obj24_Center.gf5" fill="#737373" stroke="none" stroke-width="1.0"
+  cx="949.12266666" cy="372.961003594" rx="4.5" ry="4.5" />
+
+  <ellipse id="Obj24_Center.gf6" fill="#737373" stroke="none" stroke-width="1.0"
+  cx="966.900444438" cy="382.961003594" rx="4.5" ry="4.5" />
+
+  <ellipse id="Obj24_Center.gf7" fill="#737373" stroke="none" stroke-width="1.0"
+  cx="958.011555549" cy="387.961003594" rx="4.5" ry="4.5" />
+
+  <ellipse id="Obj24_Center.gf8" fill="#737373" stroke="none" stroke-width="1.0"
+  cx="966.900444438" cy="372.961003594" rx="4.5" ry="4.5" />
+
+  <ellipse id="Obj24_Center.gf9" fill="#737373" stroke="none" stroke-width="1.0"
+  cx="949.12266666" cy="382.961003594" rx="4.5" ry="4.5" />
+
+  <ellipse id="Obj24_Center.gf11" fill="#ffffff" stroke="none" stroke-width="1.0"
+  cx="957.928222215" cy="377.877670261" rx="8.30555555556" ry="8.30555555556" />
+
+</g>
+</g>
+<g id="Obj26">
+  <path id="Obj261stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M607.874258362,952.002026594 L656.0,1036.0 656.0,1137.0 388.0,1220.0" />
+
+  <path id="Obj261stSeg1" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M430.661731239,1053.23125737 L467.0,1137.0 388.0,1220.0" />
+
+  <path id="Obj261stSeg2" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M244.626676567,1154.30104275 L310.064603585,1200.7869914 388.0,1220.0" />
+
+  <path id="Obj262ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M388.0,1220.0 L399.140987294,1263.20719759 435.123076258,1289.59417913" />
+
+<g id="Obj26_Center">
+  <image id="Obj26_Center.gf206" x="378" y="1210" width="20" height="20" xlink:href="data:;base64,
+R0lGODlhFAAUAPEAAKoAAKsAAAAAAAAAACH5BAEAAAIALAAAAAAUABQAAAIvhI+CyxfaonlS0touXno76H0h0nHBiZ7CyrbuC7PSOh50Ddy1PvKh7wFuhBgioAAAOw=="/>
+
+</g>
+</g>
+<g id="Obj28">
+  <path id="Obj281stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M827.657711931,548.285609308 L845.0,632.0 845.0,733.0 577.0,816.0" />
+
+  <path id="Obj281stSeg1" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M638.597056483,649.450440841 L656.0,733.0 577.0,816.0" />
+
+  <path id="Obj281stSeg2" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M424.837967088,750.425742025 L506.855444592,769.437587704 577.0,816.0" />
+
+  <path id="Obj282ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M577.0,816.0 L607.064941923,880.680306384 607.874258362,952.002026594" />
+
+<g id="Obj28_Center">
+  <image id="Obj28_Center.gf206" x="567" y="806" width="20" height="20" xlink:href="data:;base64,
+R0lGODlhFAAUAPEAAKoAAKsAAAAAAAAAACH5BAEAAAIALAAAAAAUABQAAAIvhI+CyxfaonlS0touXno76H0h0nHBiZ7CyrbuC7PSOh50Ddy1PvKh7wFuhBgioAAAOw=="/>
+
+</g>
+</g>
+<g id="Obj30">
+  <path id="Obj301stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M1174.60947552,548.357146013 L1223.0,632.0 1144.0,715.0" />
+
+  <path id="Obj301stSeg1" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M982.143248306,649.34390715 L1068.71003959,668.272015758 1144.0,715.0" />
+
+  <path id="Obj302ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M1144.0,715.0 L1190.13435834,776.651398159 1209.20804126,851.253466049" />
+
+<g id="Obj30_Center">
+  <image id="Obj30_Center.gf206" x="1134" y="705" width="20" height="20" xlink:href="data:;base64,
+R0lGODlhFAAUAPEAAKoAAKsAAAAAAAAAACH5BAEAAAIALAAAAAAUABQAAAIvhI+CyxfaonlS0touXno76H0h0nHBiZ7CyrbuC7PSOh50Ddy1PvKh7wFuhBgioAAAOw=="/>
+
+</g>
+</g>
+<g id="Obj3">
+  <text id="Obj3.gf3"
+    style="font-size:12pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="756.600464882" y="482.866959195">
+    SearchForFactories  </text>
+  <text id="Obj3.gf15"
+    style="font-size:48pt;font-family:Trebuchet MS;fill:#737373;font-weight:bold;text-anchor:start"
+    x="806.600464882" y="467.866959195">
+    A  </text>
+</g>
+<g id="Obj4">
+  <text id="Obj4.gf3"
+    style="font-size:12pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="567.776338666" y="482.731262286">
+    CheckFactoryAvailability  </text>
+  <text id="Obj4.gf15"
+    style="font-size:48pt;font-family:Trebuchet MS;fill:#737373;font-weight:bold;text-anchor:start"
+    x="635.776338666" y="467.731262286">
+    A  </text>
+</g>
+<g id="Obj5">
+  <text id="Obj5.gf3"
+    style="font-size:12pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="378.193950588" y="482.740980922">
+    WaitForFactoryAnswer  </text>
+  <text id="Obj5.gf15"
+    style="font-size:48pt;font-family:Trebuchet MS;fill:#737373;font-weight:bold;text-anchor:start"
+    x="439.193950588" y="467.740980922">
+    A  </text>
+</g>
+<g id="Obj6">
+  <text id="Obj6.gf3"
+    style="font-size:12pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="189.97137864" y="482.959930745">
+    StartProduction  </text>
+  <text id="Obj6.gf15"
+    style="font-size:48pt;font-family:Trebuchet MS;fill:#737373;font-weight:bold;text-anchor:start"
+    x="224.47137864" y="467.959930745">
+    A  </text>
+</g>
+<g id="Obj7">
+  <text id="Obj7.gf3"
+    style="font-size:12pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="0.500487966354" y="483.479576972">
+    FinishProduction  </text>
+  <text id="Obj7.gf15"
+    style="font-size:48pt;font-family:Trebuchet MS;fill:#737373;font-weight:bold;text-anchor:start"
+    x="40.5004879664" y="468.479576972">
+    A  </text>
+</g>
+<g id="Obj8">
+  <text id="Obj8.gf3"
+    style="font-size:12pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="1134.84212863" y="482.80194619">
+    AnswerQuery  </text>
+  <text id="Obj8.gf15"
+    style="font-size:48pt;font-family:Trebuchet MS;fill:#737373;font-weight:bold;text-anchor:start"
+    x="1162.84212863" y="467.80194619">
+    A  </text>
+</g>
+<g id="Obj9">
+  <text id="Obj9.gf3"
+    style="font-size:12pt;font-family:Helvetica;fill:#000000;text-anchor:start"
+    x="946.225067654" y="482.589146992">
+    Produce  </text>
+  <text id="Obj9.gf15"
+    style="font-size:48pt;font-family:Trebuchet MS;fill:#737373;font-weight:bold;text-anchor:start"
+    x="955.725067654" y="467.589146992">
+    A  </text>
+</g>
+<g id="Obj0">
+  <path id="Obj0.gf186" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M774.385178335,46.3417597335 L774.385178335,46.3417597335 775.156095718,82.9806227224 777.854306559,82.0646511477" />
+
+  <path id="Obj0.gf188" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M783.584338494,59.0343611832 L783.584338494,59.0343611832 784.355255877,82.1118209535 787.053466718,81.5348844592" />
+
+  <path id="Obj0.gf189" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M773.079124054,79.0409600354 L773.079124054,79.0409600354" />
+
+  <path id="Obj0.gf197" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M773.323473662,48.7480336862 L773.323473662,48.7480336862 768.923362042,56.5908651077 769.468886747,65.2946169715" />
+
+  <path id="Obj0.gf198" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M784.352097507,52.1839626749 L784.352097507,52.1839626749 788.977601805,55.9645266288 788.977601805,62.517504149" />
+
+  <polygon id="Obj0.gf208" fill="#ffff00" stroke="#000000" stroke-width="1.0"
+  points="773.193699473,45.9477934648 772.399383736,49.1090167774 772.928927561,70.5350858968 786.198180666,70.5350858968 785.108435533,49.4602638122 786.167523183,41.3815820131" />
+
+  <path id="Obj0.gf195" fill="none" stroke="#000000" stroke-width="1.0"
+  d="M775.006417512,50.6753886891 L775.006417512,50.6753886891" />
+
+  <ellipse id="Obj0.gf194" fill="#ffffff" stroke="#000000" stroke-width="1.0"
+  cx="780.648131087" cy="43.9779621213" rx="10.162092775" ry="9.84915671745" />
+
+  <ellipse id="Obj0.gf200" fill="#000000" stroke="#000000" stroke-width="1.0"
+  cx="778.976642034" cy="45.7508103304" rx="1.27201368184" ry="1.37888194044" />
+
+  <ellipse id="Obj0.gf202" fill="#000000" stroke="#000000" stroke-width="1.0"
+  cx="788.61310932" cy="43.7809789869" rx="1.27201368184" ry="1.37888194044" />
+
+  <text id="Obj0.gf24"
+    style="font-size:9pt;font-family:FreeSans;fill:#000000;text-anchor:start"
+    x="756.423362042" y="96.9806227224">
+    Individual  </text>
+  <text id="Obj0.gf33"
+    style="font-size:9pt;font-family:FreeSans;fill:#000000;text-anchor:start"
+    x="767.923362042" y="11.9806227224">
+    OU|0  </text>
+  <text id="Obj0.gf34"
+    style="font-size:12pt;font-family:FreeSans;fill:#000000;font-weight:bold;text-anchor:start"
+    x="759.423362042" y="29.4806227224">
+    Agent  </text>
+</g>
+<g id="Obj46">
+  <path id="Obj461stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M1174.60947552,548.357146013 L1133.4622887,586.886452079 1085.3457319,612.133142363" />
+
+  <path id="Obj462ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M1085.3457319,612.133142363 L1037.2291751,637.379832647 982.143248306,649.34390715" />
+
+<g id="Obj46_Center">
+  <ellipse id="Obj46_Center.gf1" fill="#ff8247" stroke="none" stroke-width="1.0"
+  cx="1085.82215921" cy="612.689038939" rx="6.5" ry="6.5" />
+
+</g>
+</g>
+<g id="Obj48">
+  <path id="Obj481stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M827.657711931,548.285609308 L787.469472879,586.802441382 740.204309017,612.093649265" />
+
+  <path id="Obj482ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M740.204309017,612.093649265 L692.939145155,637.384857148 638.597056483,649.450440841" />
+
+<g id="Obj48_Center">
+  <ellipse id="Obj48_Center.gf1" fill="#ff8247" stroke="none" stroke-width="1.0"
+  cx="741.189007397" cy="613.08012368" rx="6.5" ry="6.5" />
+
+</g>
+</g>
+<g id="Obj50">
+  <path id="Obj501stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M638.597056483,649.450440841 L591.564117124,688.257174787 538.124344775,713.501000083" />
+
+  <path id="Obj502ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M538.124344775,713.501000083 L484.684572426,738.744825379 424.837967088,750.425742025" />
+
+<g id="Obj50_Center">
+  <ellipse id="Obj50_Center.gf1" fill="#ff8247" stroke="none" stroke-width="1.0"
+  cx="538.233581896" cy="714.142755747" rx="6.5" ry="6.5" />
+
+</g>
+</g>
+<g id="Obj54">
+  <path id="Obj541stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M430.661731239,1053.23125737 L391.313686128,1091.67914793 344.80492246,1116.94659428" />
+
+  <path id="Obj542ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M344.80492246,1116.94659428 L298.296158792,1142.21404063 244.626676567,1154.30104275" />
+
+<g id="Obj54_Center">
+  <ellipse id="Obj54_Center.gf1" fill="#ff8247" stroke="none" stroke-width="1.0"
+  cx="344.936110094" cy="1117.72148612" rx="6.5" ry="6.5" />
+
+</g>
+</g>
+<g id="Obj56">
+  <path id="Obj561stSeg0" fill="none" stroke="#000000" stroke-width="2.0"
+  d="M607.874258362,952.002026594 L571.011267456,990.334091628 526.708135676,1015.64139932" />
+
+  <path id="Obj562ndSeg0" fill="none" stroke="#000000" stroke-width="2.0" marker-end="url(#TriangleArrowhead)"
+  d="M526.708135676,1015.64139932 L482.405003895,1040.94870702 430.661731239,1053.23125737" />
+
+<g id="Obj56_Center">
+  <ellipse id="Obj56_Center.gf1" fill="#ff8247" stroke="none" stroke-width="1.0"
+  cx="527.495180404" cy="1016.04202628" rx="6.5" ry="6.5" />
+
+</g>
+</g>
+
+</svg>
