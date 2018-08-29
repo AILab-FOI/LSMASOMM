@@ -11,6 +11,7 @@ In order to run AToM<sup>3</sup> , the following prerequisites have
 to be installed:
 
 -   python tkinter (`sudo apt-get install python-tk`)
+- ZODB (`pip install zodb`)
 
 The AToM<sup>3</sup> development team suggests the following minimum
 requirements[^1] for using AToM<sup>3</sup> :
