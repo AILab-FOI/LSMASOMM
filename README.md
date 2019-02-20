@@ -1,5 +1,5 @@
-# LSMASOMM
-This repository contains the modelling environment (Atom3) used to develop LSMAS organisational meta-model for ModelMMORPG[^3] project at AI Lab @ FOI, and the meta-model being developed, along with a couple of models.
+# Large-scale Multiagent Systems' Organisational Metamodel
+This repository contains the modelling environment (Atom3) used to develop LSMAS organisational meta-model for ModelMMORPG[^3] project at AI Lab @ FOI, and the meta-model being developed, along with a couple of models. The metamodel is a part of a doctoral thesis from the same faculty, wherein it is named Lamrast-+
 
 How to Use the Meta-model
 =========================
